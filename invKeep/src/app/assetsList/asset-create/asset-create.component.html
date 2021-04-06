@@ -21,8 +21,8 @@
       </label>
     </td>
     <td>
-      <button (click)="onAssetSave(assetName, assetSymbol, assetAmount, price)">Add Asset</button>
-      <button (click)="assetName.value=''; assetSymbol.value=''; assetAmount.value='';price.value=''">Clear</button>
+      <button (click)="onAssetSave(assetName, assetSymbol, assetAmount, price); assetName.value=''; assetSymbol.value=''; assetAmount.value='';price.value=''">Add Asset</button>
+      <button (click)="assetName.value=''; assetSymbol.value=''; assetAmount.value='';price.value=''">Clear fields</button>
     </td>
   </tr>
   <br/>

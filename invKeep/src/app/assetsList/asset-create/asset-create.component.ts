@@ -36,7 +36,7 @@ export class AssetCreateComponent {
       this.removeItem(e);//your typescript function
     });
 
-    nextItem.innerHTML = `Name: ${this.placeholderAsset.nameFull}<br/>Symbol: ${this.placeholderAsset.symbol}<br/>Amount: ${this.placeholderAsset.amount}<br/>Basic Price: ${this.placeholderAsset.basicPrice}<br/> - <br/>`;
+    nextItem.innerHTML = `Name: ${this.placeholderAsset.nameFull}<br/>Symbol: ${this.placeholderAsset.symbol}<br/>Amount: ${this.placeholderAsset.amount}<br/>Basic Price: ${this.placeholderAsset.basicPrice} $<br/> - <br/>`;
     nextItem.setAttribute(`id`, `${this.placeholderAsset.symbol}`);
     nextItem.setAttribute(`name`, `${this.placeholderAsset.nameFull}`);
     nextItem.appendChild(nextItemButton);
