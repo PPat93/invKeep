@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from "@angular/forms";
+import { MatInputModule } from "@angular/material/input";
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppComponent } from './app.component';
 import { AssetCreateComponent } from './assetsList/asset-create/asset-create.component';
-import {FormsModule} from "@angular/forms";
 import { AssetItemComponent } from './assetsList/asset-item/asset-item.component';
 
 @NgModule({
@@ -14,7 +18,11 @@ import { AssetItemComponent } from './assetsList/asset-item/asset-item.component
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

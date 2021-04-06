@@ -1,0 +1,28 @@
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+input.example-right-align{
+  text-align: right;
+
+}
+mat-form-field{
+  margin: 0px 15px;
+}
+button{
+  margin: 0px 10px
+}
+
+mat-card{
+  width: 80%;
+  margin: auto;
+}
+mat-card button{
+  align-items: flex-end;
+}
