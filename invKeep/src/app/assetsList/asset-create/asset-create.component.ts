@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-assets-create',
-  templateUrl: './asset-create.component.html'
+  templateUrl: './asset-create.component.html',
+  styleUrls: ['./asset-create.component.scss']
 })
 
 
@@ -33,10 +35,10 @@ export class AssetCreateComponent {
     nextItemButton.setAttribute(`id`, `${this.placeholderAsset.nameFull}`);
     nextItemButton.innerText = `Remove!`;
     nextItemButton.addEventListener('click', (e) => {
-      this.removeItem(e);//your typescript function
+      this.removeItem(e);
     });
 
-    nextItem.innerHTML = `Name: ${this.placeholderAsset.nameFull}<br/>Symbol: ${this.placeholderAsset.symbol}<br/>Amount: ${this.placeholderAsset.amount}<br/>Basic Price: ${this.placeholderAsset.basicPrice} $<br/> - <br/>`;
+    nextItem.innerHTML = `Name: ${this.placeholderAsset.nameFull}&nbsp;Symbol: ${this.placeholderAsset.symbol}&nbsp;Amount: ${this.placeholderAsset.amount}&nbsp;Basic Price: ${this.placeholderAsset.basicPrice} $&nbsp; - &nbsp;`;
     nextItem.setAttribute(`id`, `${this.placeholderAsset.symbol}`);
     nextItem.setAttribute(`name`, `${this.placeholderAsset.nameFull}`);
     nextItem.appendChild(nextItemButton);
