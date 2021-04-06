@@ -22,7 +22,7 @@
     </td>
     <td>
       <button (click)="onAssetSave(assetName, assetSymbol, assetAmount, price)">Add Asset</button>
-      <button>Cancel</button>
+      <button (click)="assetName.value=''; assetSymbol.value=''; assetAmount.value='';price.value=''">Clear</button>
     </td>
   </tr>
   <br/>
@@ -31,6 +31,6 @@
 
 </table>
 <hr width="100%">
-<td id='output' [innerHTML]="returnedString"> </td>
-
-
+<table>
+  <tr id='output' [innerHTML]="returnedString"></tr>
+</table>
