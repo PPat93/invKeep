@@ -5,7 +5,10 @@ import {Component, EventEmitter, Output} from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
+
 export class AppComponent {
+
   title = 'invKeep';
   assetsArray = [];
   @Output() emiterson = new EventEmitter();

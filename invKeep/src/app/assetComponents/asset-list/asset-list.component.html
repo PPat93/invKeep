@@ -1,5 +1,7 @@
 <mat-card>
   <mat-card-title>Asset list:</mat-card-title>
-  <app-asset-component></app-asset-component>
-  <app-asset-component></app-asset-component>
+  <mat-divider></mat-divider>
+  <div class="items">
+    <app-asset-component *ngFor="let oneAsset of assetArray" [assetArrayReceived]="oneAsset"></app-asset-component>
+  </div>
 </mat-card>

@@ -13,18 +13,18 @@ export class AssetCreateComponent {
     nameFull: string,
     symbol: string,
     amount: number,
-    basicPrice: number
+    buyPrice: number
     }
   createdAssetObject: object;
   @Output() sendCreatedAsset = new EventEmitter();
 
-  onAssetSave(nameF: HTMLInputElement, symbol: HTMLInputElement, amount: HTMLInputElement, basicPrice: HTMLInputElement) {
+  onAssetSave(nameF: HTMLInputElement, symbol: HTMLInputElement, amount: HTMLInputElement, buyPrice: HTMLInputElement) {
 
     this.placeholderAsset = {
       nameFull: nameF.value.toString(),
       symbol: symbol.value.toString(),
       amount: parseFloat(amount.value),
-      basicPrice: parseFloat(basicPrice.value)
+      buyPrice: parseFloat(buyPrice.value)
     }
 
 
@@ -39,7 +39,7 @@ export class AssetCreateComponent {
       this.removeItem(e);
     });
 
-    nextItem.innerHTML = `Name: ${this.placeholderAsset.nameFull}&nbsp;Symbol: ${this.placeholderAsset.symbol}&nbsp;Amount: ${this.placeholderAsset.amount}&nbsp;Basic Price: ${this.placeholderAsset.basicPrice} $&nbsp; - &nbsp;`;
+    nextItem.innerHTML = `Name: ${this.placeholderAsset.nameFull}&nbsp;Symbol: ${this.placeholderAsset.symbol}&nbsp;Amount: ${this.placeholderAsset.amount}&nbsp;Buy Price: ${this.placeholderAsset.buyPrice} $&nbsp; - &nbsp;`;
     nextItem.setAttribute(`id`, `${this.placeholderAsset.symbol}`);
     nextItem.setAttribute(`name`, `${this.placeholderAsset.nameFull}`);
     nextItem.appendChild(nextItemButton);

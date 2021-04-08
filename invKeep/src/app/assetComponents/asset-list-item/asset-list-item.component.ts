@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {assetRecord} from "../asset-list/asset-list.component";
 
 @Component({
   selector: 'app-asset-component',
@@ -9,4 +10,10 @@ import { Component } from '@angular/core';
 export class AssetListItemComponent{
 
   panelExpanded: boolean = false;
+
+  @Input() assetArrayReceived: assetRecord;
+
+  ngOnInit(): void{
+
+  }
 }
