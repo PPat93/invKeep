@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'invKeep';
+  assetsArray = [];
+  @Output() emiterson = new EventEmitter();
+
+  onAssetAddition(receivedAsset){
+    this.assetsArray.push(receivedAsset);
+    this.emiterson.emit(this.assetsArray)
+  }
 }

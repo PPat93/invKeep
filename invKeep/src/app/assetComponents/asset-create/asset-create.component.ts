@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-assets-create',
@@ -16,7 +15,8 @@ export class AssetCreateComponent {
     amount: number,
     basicPrice: number
     }
-  returnedString: string;
+  createdAssetObject: object;
+  @Output() sendCreatedAsset = new EventEmitter();
 
   onAssetSave(nameF: HTMLInputElement, symbol: HTMLInputElement, amount: HTMLInputElement, basicPrice: HTMLInputElement) {
 
@@ -26,6 +26,7 @@ export class AssetCreateComponent {
       amount: parseFloat(amount.value),
       basicPrice: parseFloat(basicPrice.value)
     }
+
 
     let nextItem = document.createElement(`DIV`);
     let nextItemButton = document.createElement(`BUTTON`);
@@ -42,8 +43,10 @@ export class AssetCreateComponent {
     nextItem.setAttribute(`id`, `${this.placeholderAsset.symbol}`);
     nextItem.setAttribute(`name`, `${this.placeholderAsset.nameFull}`);
     nextItem.appendChild(nextItemButton);
+    this.createdAssetObject = nextItem;
 
-    return  document.getElementById('output').appendChild(nextItem);
+    this.sendCreatedAsset.emit(this.placeholderAsset);
+    // document.getElementById('output').appendChild(nextItem);
   };
 
   removeItem(e){
