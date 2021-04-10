@@ -8,9 +8,11 @@ import {Component, Input} from '@angular/core';
 
 export class AssetListComponent {
 
-  @Input() assetsReceivedFromCreation: assetRecord[];
+  // Receive asset list from App
+  @Input() assetsReceivedFromAppComp: assetRecord[];
 }
 
+// Global asset type
 export type assetRecord = {
   assetName: string,
   assetSymbol: string,

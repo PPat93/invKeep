@@ -11,5 +11,6 @@ export class AssetListItemComponent {
 
   panelExpanded: boolean = false;
 
+  // Receive single asset from list component
   @Input() listSingleAsset: assetRecord;
 }

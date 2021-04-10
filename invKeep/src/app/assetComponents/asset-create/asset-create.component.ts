@@ -54,6 +54,7 @@ export class AssetCreateComponent {
     this.sendCreatedAsset.emit(this.placeholderAsset);
   };
 
+  // Clear data from input fields
   clearFields() {
     this.tempFullName = ``;
     this.tempSymbol = ``;
