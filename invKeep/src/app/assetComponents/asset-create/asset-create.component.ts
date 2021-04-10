@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {stringify} from "querystring";
 
 @Component({
   selector: 'app-assets-create',
@@ -6,52 +7,57 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./asset-create.component.scss']
 })
 
-
 export class AssetCreateComponent {
 
+  // Temporary asset inputs
+  tempFullName: string = ``;
+  tempSymbol: string = ``;
+  tempAmount: number = null;
+  tempBuyPrice: number = null;
+
+  // Disable Add Asset button variable
+  disableAddition: boolean;
+
+  // Initialization of asset object
   placeholderAsset: {
-    nameFull: string,
-    symbol: string,
+    assetName: string,
+    assetSymbol: string,
     amount: number,
     buyPrice: number
-    }
-  createdAssetObject: object;
-  @Output() sendCreatedAsset = new EventEmitter();
-
-  onAssetSave(nameF: HTMLInputElement, symbol: HTMLInputElement, amount: HTMLInputElement, buyPrice: HTMLInputElement) {
-
-    this.placeholderAsset = {
-      nameFull: nameF.value.toString(),
-      symbol: symbol.value.toString(),
-      amount: parseFloat(amount.value),
-      buyPrice: parseFloat(buyPrice.value)
-    }
-
-
-    let nextItem = document.createElement(`DIV`);
-    let nextItemButton = document.createElement(`BUTTON`);
-
-    nextItemButton.setAttribute(`value`, `Remove`);
-    nextItemButton.setAttribute(`class`, `remove`);
-    nextItemButton.setAttribute(`id`, `${this.placeholderAsset.nameFull}`);
-    nextItemButton.innerText = `Remove!`;
-    nextItemButton.addEventListener('click', (e) => {
-      this.removeItem(e);
-    });
-
-    nextItem.innerHTML = `Name: ${this.placeholderAsset.nameFull}&nbsp;Symbol: ${this.placeholderAsset.symbol}&nbsp;Amount: ${this.placeholderAsset.amount}&nbsp;Buy Price: ${this.placeholderAsset.buyPrice} $&nbsp; - &nbsp;`;
-    nextItem.setAttribute(`id`, `${this.placeholderAsset.symbol}`);
-    nextItem.setAttribute(`name`, `${this.placeholderAsset.nameFull}`);
-    nextItem.appendChild(nextItemButton);
-    this.createdAssetObject = nextItem;
-
-    this.sendCreatedAsset.emit(this.placeholderAsset);
-    // document.getElementById('output').appendChild(nextItem);
+  } = {
+    assetName: ``,
+    assetSymbol: ``,
+    amount: null,
+    buyPrice: null
   };
 
-  removeItem(e){
-    var removeAsset = e.target.parentNode;
-    removeAsset.remove();
+  // Send data to parent component
+  @Output() sendCreatedAsset = new EventEmitter();
 
+  disableAddButton(): boolean {
+    if ((this.tempFullName === `` || this.tempSymbol === ``) || (this.tempAmount === null || this.tempBuyPrice === null)) {
+      return this.disableAddition = true;
+    } else {
+      return this.disableAddition = false;
+    }
+  }
+
+  // Create asset object and send it to main app component
+  onAssetSave(nameF: string, symbol: string, amount: number, buyPrice: number): void {
+    this.placeholderAsset = {
+      assetName: nameF,
+      assetSymbol: symbol,
+      amount: amount,
+      buyPrice: buyPrice
+    }
+
+    this.sendCreatedAsset.emit(this.placeholderAsset);
+  };
+
+  clearFields() {
+    this.tempFullName = ``;
+    this.tempSymbol = ``;
+    this.tempAmount = null;
+    this.tempBuyPrice = null;
   }
 }

@@ -2,6 +2,7 @@
   <mat-card-title>Asset list:</mat-card-title>
   <mat-divider></mat-divider>
   <div class="items">
-    <app-asset-component *ngFor="let oneAsset of assetArray" [assetArrayReceived]="oneAsset"></app-asset-component>
+    <app-asset-component [listSingleAsset]="oneRecord"
+                         *ngFor="let oneRecord of assetsReceivedFromCreation"></app-asset-component>
   </div>
 </mat-card>

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {assetRecord} from "../asset-list/asset-list.component";
+import {assetRecord} from "../asset-list.component";
 
 @Component({
   selector: 'app-asset-component',
@@ -7,13 +7,9 @@ import {assetRecord} from "../asset-list/asset-list.component";
   styleUrls: ['./asset-list-item.component.scss']
 })
 
-export class AssetListItemComponent{
+export class AssetListItemComponent {
 
   panelExpanded: boolean = false;
 
-  @Input() assetArrayReceived: assetRecord;
-
-  ngOnInit(): void{
-
-  }
+  @Input() listSingleAsset: assetRecord;
 }

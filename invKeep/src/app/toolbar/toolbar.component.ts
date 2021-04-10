@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import {Component} from "@angular/core";
 
 @Component({
   selector: 'mat-toolbar-row',
@@ -6,6 +6,6 @@ import { Component } from "@angular/core";
   styleUrls: ['./toolbar.component.scss']
 })
 
-export class ToolbarMenuComponent{
+export class ToolbarMenuComponent {
 
 }

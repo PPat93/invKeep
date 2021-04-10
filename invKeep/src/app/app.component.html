@@ -1,5 +1,5 @@
 <mat-toolbar-row></mat-toolbar-row>
 <main>
   <app-assets-create (sendCreatedAsset)="onAssetAddition($event)"></app-assets-create>
-  <app-asset-list  ></app-asset-list>
+  <app-asset-list [assetsReceivedFromCreation]="assetsAppArray"></app-asset-list>
 </main>

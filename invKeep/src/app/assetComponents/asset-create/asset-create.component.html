@@ -3,33 +3,28 @@
   <mat-divider></mat-divider>
   <mat-form-field>
     <mat-label>Full asset name</mat-label>
-    <input matInput id="asset-name" required class="assetInput" type="string" #assetName>
+    <input matInput id="asset-name" class="assetInput" [(ngModel)]="tempFullName">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Asset symbol</mat-label>
-    <input matInput id="asset-symbol" required class="assetInput" type="string" #assetSymbol>
+    <input matInput id="asset-symbol" class="assetInput" [(ngModel)]="tempSymbol">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Amount of units</mat-label>
-    <input matInput id="asset-amount" required class="assetInput example-right-align" [ngClass]="" type="number" #assetAmount>
+    <input matInput id="asset-amount" class="assetInput example-right-align" type="number" [(ngModel)]="tempAmount">
     <span matSuffix>.00</span>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Price for one unit</mat-label>
-    <input matInput id="asset-price" required class="assetInput example-right-align" type="number" #price>
+    <input matInput id="asset-price" class="assetInput example-right-align" type="number" [(ngModel)]="tempBuyPrice">
     <span matSuffix>$&nbsp;</span>
   </mat-form-field>
-
-  <button *ngIf="price.value&&assetAmount.value&&assetName.value&&assetSymbol.value != ''else elseBlock" mat-raised-button color="primary"
-          (click)="onAssetSave(assetName, assetSymbol, assetAmount, price); assetName.value=''; assetSymbol.value=''; assetAmount.value='';price.value=''">
+  <button [disabled]="disableAddButton()" mat-raised-button color="primary"
+          (click)="onAssetSave(tempFullName, tempSymbol, tempAmount, tempBuyPrice); clearFields()">
     Add Asset
   </button>
-  <ng-template #elseBlock><button mat-raised-button disabled>Add Asset</button></ng-template>
   <button mat-raised-button color="warn"
-          (click)="assetName.value=''; assetSymbol.value=''; assetAmount.value='';price.value=''">Clear
+          (click)="clearFields()">Clear
   </button>
 </mat-card>
-<br/>
-<br/>
-<br/>
 
