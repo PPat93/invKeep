@@ -1,0 +1,16 @@
+<mat-expansion-panel hideToggle (click)="panelExpanded=!panelExpanded">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <span>Asset full name:&nbsp;<b>{{ listSingleAsset.assetName }}</b></span>
+    </mat-panel-title>
+    <mat-panel-description class="description">
+      <span>Asset symbol:&nbsp;<b class="symbol">{{ listSingleAsset.assetSymbol }}</b></span>
+    </mat-panel-description>
+    <mat-icon *ngIf="panelExpanded else elseBlock" aria-hidden="false" aria-label="expand">expand_less</mat-icon>
+    <ng-template #elseBlock>
+      <mat-icon aria-hidden="false" aria-label="collapse">expand_more</mat-icon>
+    </ng-template>
+  </mat-expansion-panel-header>
+  <span>Asset amount:&nbsp;<b>{{ listSingleAsset.amount }}</b></span><br>
+  <span>Asset buy price:&nbsp;<b>{{ listSingleAsset.buyPrice }}</b></span><br>
+</mat-expansion-panel>

@@ -8,26 +8,28 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
-input.example-right-align{
+input.example-right-align {
   text-align: right;
+}
 
+mat-form-field {
+  margin: 10px 15px;
 }
-mat-form-field{
-  margin: 0 15px;
-}
-button{
+
+button {
   margin: 0 10px
 }
 
-mat-card{
+mat-card {
   width: 80%;
   margin: 2.5% auto;
 }
-mat-card button{
+
+mat-card button {
   align-items: flex-end;
 }
 
-.card-title{
+.card-title {
   font-size: small;
   color: black;
   font-family: Roboto, "Helvetica Neue", sans-serif;

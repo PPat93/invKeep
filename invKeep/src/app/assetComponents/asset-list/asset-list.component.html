@@ -1,0 +1,8 @@
+<mat-card>
+  <mat-card-title>Asset list:</mat-card-title>
+  <mat-divider></mat-divider>
+  <div class="items">
+    <app-asset-component [listSingleAsset]="oneRecord"
+                         *ngFor="let oneRecord of assetsReceivedFromAppComp"></app-asset-component>
+  </div>
+</mat-card>
