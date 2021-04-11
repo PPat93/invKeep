@@ -1,8 +1,13 @@
 <mat-card>
   <mat-card-title>Asset list:</mat-card-title>
   <mat-divider></mat-divider>
-  <div class="items">
+  <div class="items" *ngIf="assetsReceivedFromAppComp.length > 0">
     <app-asset-component [listSingleAsset]="oneRecord"
                          *ngFor="let oneRecord of assetsReceivedFromAppComp"></app-asset-component>
+  </div>
+  <div class="items" *ngIf="assetsReceivedFromAppComp.length <= 0">
+    <mat-card id="nothing-to-see">
+    <p>No portfolio added.</p>
+    </mat-card>
   </div>
 </mat-card>
