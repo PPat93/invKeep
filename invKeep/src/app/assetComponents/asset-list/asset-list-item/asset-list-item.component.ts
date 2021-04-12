@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {assetRecord} from "../asset-list.component";
+import {assetRecord} from "../../../shared/shared";
 
 @Component({
   selector: 'app-asset-component',

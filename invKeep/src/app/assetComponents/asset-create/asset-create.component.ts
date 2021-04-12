@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {stringify} from "querystring";
 
 @Component({
   selector: 'app-assets-create',
@@ -14,6 +13,7 @@ export class AssetCreateComponent {
   tempSymbol: string = ``;
   tempAmount: number = null;
   tempBuyPrice: number = null;
+  tempPurchaseDate: Date;
 
   // Disable Add Asset button variable
   disableAddition: boolean;

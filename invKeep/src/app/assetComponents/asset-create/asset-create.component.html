@@ -19,8 +19,14 @@
     <input matInput id="asset-price" class="assetInput example-right-align" type="number" [(ngModel)]="tempBuyPrice">
     <span matSuffix>$&nbsp;</span>
   </mat-form-field>
+  <mat-form-field>
+    <mat-label>Purchase Date:</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="purchaseDate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
   <button [disabled]="disableAddButton()" mat-raised-button color="primary"
-          (click)="onAssetSave(tempFullName, tempSymbol, tempAmount, tempBuyPrice); clearFields()">
+          (click)="onAssetSave(tempFullName, tempSymbol, tempAmount, tempBuyPrice, purchaseDate); clearFields()">
     Add Asset
   </button>
   <button mat-raised-button color="warn"
