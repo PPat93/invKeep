@@ -1,36 +1,38 @@
 <mat-card>
+  <form class="example-form"  #form="ngForm">
   <mat-card-title class="card-title">Create asset:</mat-card-title>
   <mat-divider></mat-divider>
   <mat-form-field>
     <mat-label>Full asset name</mat-label>
-    <input matInput id="asset-name" class="assetInput" [(ngModel)]="tempFullName">
+    <input name="fullName" matInput id="asset-name" required class="assetInput" [(ngModel)]="tempFullName">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Asset symbol</mat-label>
-    <input matInput id="asset-symbol" class="assetInput" [(ngModel)]="tempSymbol">
+    <input name="symbol" matInput id="asset-symbol" required class="assetInput" [(ngModel)]="tempSymbol">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Amount of units</mat-label>
-    <input matInput id="asset-amount" class="assetInput example-right-align" type="number" [(ngModel)]="tempAmount">
+    <input name="amount" matInput id="asset-amount" required class="assetInput example-right-align" type="number" [(ngModel)]="tempAmount">
     <span matSuffix>.00</span>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Price for one unit</mat-label>
-    <input matInput id="asset-price" class="assetInput example-right-align" type="number" [(ngModel)]="tempBuyPrice">
+    <input name="price" matInput id="asset-price" required class="assetInput example-right-align" type="number" [(ngModel)]="tempBuyPrice">
     <span matSuffix>$&nbsp;</span>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Purchase Date:</mat-label>
-    <input matInput [matDatepicker]="picker" [(ngModel)]="purchaseDate">
+    <input name="date" matInput [matDatepicker]="picker" [(ngModel)]="tempPurchaseDate">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
   <button [disabled]="disableAddButton()" mat-raised-button color="primary"
-          (click)="onAssetSave(tempFullName, tempSymbol, tempAmount, tempBuyPrice, purchaseDate); clearFields()">
+          (click)="onAssetSave(tempFullName, tempSymbol, tempAmount, tempBuyPrice, tempPurchaseDate); clearFields()">
     Add Asset
   </button>
   <button mat-raised-button color="warn"
-          (click)="clearFields()">Clear
+          (click)="clearFields(); form.reset()">Clear
   </button>
+  </form>
 </mat-card>
 
