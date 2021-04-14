@@ -56,7 +56,7 @@ export class AssetCreateComponent {
     }
     if (purchaseDate) {
       console.log(purchaseDate.toLocaleString().slice(0, 10))
-      this.placeholderAsset.purchaseDate = purchaseDate.toLocaleString().split(` `)[0];
+      this.placeholderAsset.purchaseDate = purchaseDate.toLocaleString().split(`,`)[0];
     }else{
       this.placeholderAsset.purchaseDate = `-`;
     }
