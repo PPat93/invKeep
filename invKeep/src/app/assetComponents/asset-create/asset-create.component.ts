@@ -14,6 +14,7 @@ export class AssetCreateComponent {
   tempSymbol: string = ``;
   tempAmount: number = null;
   tempBuyPrice: number = null;
+  tempPurchaseDate: Date = null;
 
   // Disable Add Asset button variable
   disableAddition: boolean;
@@ -23,12 +24,14 @@ export class AssetCreateComponent {
     assetName: string,
     assetSymbol: string,
     amount: number,
-    buyPrice: number
+    buyPrice: number,
+    purchaseDate: Date | string
   } = {
     assetName: ``,
     assetSymbol: ``,
     amount: null,
-    buyPrice: null
+    buyPrice: null,
+    purchaseDate: null
   };
 
   // Send data to parent component
@@ -43,12 +46,19 @@ export class AssetCreateComponent {
   }
 
   // Create asset object and send it to main app component
-  onAssetSave(nameF: string, symbol: string, amount: number, buyPrice: number): void {
+  onAssetSave(nameF: string, symbol: string, amount: number, buyPrice: number, purchaseDate?: Date): void {
     this.placeholderAsset = {
       assetName: nameF,
       assetSymbol: symbol,
       amount: amount,
-      buyPrice: buyPrice
+      buyPrice: buyPrice,
+      purchaseDate: `-`
+    }
+    if (purchaseDate) {
+      console.log(purchaseDate.toLocaleString().slice(0, 10))
+      this.placeholderAsset.purchaseDate = purchaseDate.toLocaleString().split(`,`)[0];
+    }else{
+      this.placeholderAsset.purchaseDate = `-`;
     }
 
     this.sendCreatedAsset.emit(this.placeholderAsset);
@@ -60,5 +70,6 @@ export class AssetCreateComponent {
     this.tempSymbol = ``;
     this.tempAmount = null;
     this.tempBuyPrice = null;
+    this.tempPurchaseDate = null;
   }
 }

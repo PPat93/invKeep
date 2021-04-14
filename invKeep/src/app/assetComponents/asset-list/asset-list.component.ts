@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {assetRecord} from "../../shared/shared";
 
 @Component({
   selector: 'app-asset-list',
@@ -10,12 +11,4 @@ export class AssetListComponent {
 
   // Receive asset list from App
   @Input() assetsReceivedFromAppComp: assetRecord[];
-}
-
-// Global asset type
-export type assetRecord = {
-  assetName: string,
-  assetSymbol: string,
-  amount: number,
-  buyPrice: number
 }
