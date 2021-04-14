@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {stringify} from "querystring";
+import {assetRecord} from "../../shared/shared";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-assets-create',
@@ -35,7 +36,7 @@ export class AssetCreateComponent {
   };
 
   // Send data to parent component
-  @Output() sendCreatedAsset = new EventEmitter();
+  @Output() sendCreatedAsset = new EventEmitter<assetRecord>();
 
   disableAddButton(): boolean {
     if ((this.tempFullName === `` || this.tempSymbol === ``) || (this.tempAmount === null || this.tempBuyPrice === null)) {
@@ -46,30 +47,20 @@ export class AssetCreateComponent {
   }
 
   // Create asset object and send it to main app component
-  onAssetSave(nameF: string, symbol: string, amount: number, buyPrice: number, purchaseDate?: Date): void {
+  onAssetSave(assetForm: NgForm): void {
     this.placeholderAsset = {
-      assetName: nameF,
-      assetSymbol: symbol,
-      amount: amount,
-      buyPrice: buyPrice,
+      assetName: assetForm.value.fullName,
+      assetSymbol: assetForm.value.symbol,
+      amount: Math.trunc(assetForm.value.amount),
+      buyPrice: assetForm.value.price,
       purchaseDate: `-`
     }
-    if (purchaseDate) {
-      console.log(purchaseDate.toLocaleString().slice(0, 10))
-      this.placeholderAsset.purchaseDate = purchaseDate.toLocaleString().split(`,`)[0];
-    }else{
+    if (assetForm.value.date) {
+      this.placeholderAsset.purchaseDate = assetForm.value.date.toLocaleString().split(`,`)[0];
+    } else {
       this.placeholderAsset.purchaseDate = `-`;
     }
 
     this.sendCreatedAsset.emit(this.placeholderAsset);
   };
-
-  // Clear data from input fields
-  clearFields() {
-    this.tempFullName = ``;
-    this.tempSymbol = ``;
-    this.tempAmount = null;
-    this.tempBuyPrice = null;
-    this.tempPurchaseDate = null;
-  }
 }
