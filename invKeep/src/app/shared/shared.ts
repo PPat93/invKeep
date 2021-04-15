@@ -3,5 +3,5 @@ export interface assetRecord {
   assetSymbol: string,
   amount: number,
   buyPrice: number,
-  purchaseDate: string
+  purchaseDate: Date | string
 }
