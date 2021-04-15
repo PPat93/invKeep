@@ -10,57 +10,42 @@ import {NgForm} from "@angular/forms";
 
 export class AssetCreateComponent {
 
-  // Temporary asset inputs
-  tempFullName: string = ``;
-  tempSymbol: string = ``;
-  tempAmount: number = null;
-  tempBuyPrice: number = null;
-  tempPurchaseDate: Date = null;
-
-  // Disable Add Asset button variable
-  disableAddition: boolean;
-
-  // Initialization of asset object
-  placeholderAsset: {
-    assetName: string,
-    assetSymbol: string,
-    amount: number,
-    buyPrice: number,
-    purchaseDate: Date | string
-  } = {
-    assetName: ``,
-    assetSymbol: ``,
-    amount: null,
-    buyPrice: null,
-    purchaseDate: null
-  };
-
   // Send data to parent component
   @Output() sendCreatedAsset = new EventEmitter<assetRecord>();
 
-  disableAddButton(): boolean {
-    if ((this.tempFullName === `` || this.tempSymbol === ``) || (this.tempAmount === null || this.tempBuyPrice === null)) {
-      return this.disableAddition = true;
-    } else {
-      return this.disableAddition = false;
-    }
-  }
-
   // Create asset object and send it to main app component
   onAssetSave(assetForm: NgForm): void {
-    this.placeholderAsset = {
+
+    let placeholderAsset = {
       assetName: assetForm.value.fullName,
       assetSymbol: assetForm.value.symbol,
       amount: Math.trunc(assetForm.value.amount),
       buyPrice: assetForm.value.price,
       purchaseDate: `-`
     }
+
     if (assetForm.value.date) {
-      this.placeholderAsset.purchaseDate = assetForm.value.date.toLocaleString().split(`,`)[0];
-    } else {
-      this.placeholderAsset.purchaseDate = `-`;
+      placeholderAsset.purchaseDate = assetForm.value.date.toLocaleString().split(`,`)[0];
     }
 
-    this.sendCreatedAsset.emit(this.placeholderAsset);
+    if (!assetForm.invalid) {
+      this.sendCreatedAsset.emit(placeholderAsset);
+      assetForm.resetForm();
+    }
   };
+
+  getErrorMessage(formName: string): string {
+    switch (formName) {
+      case `fullName`:
+        return `Please provide valid asset name.`;
+      case `symbol`:
+        return `Please provide valid asset symbol.`;
+      case `amount`:
+        return `Please provide valid whole number amount.`;
+      case `price`:
+        return `Please provide valid price.`;
+      case `date`:
+        return `Provided date is invalid.`;
+    }
+  }
 }
