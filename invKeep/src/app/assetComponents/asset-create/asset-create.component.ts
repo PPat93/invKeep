@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {assetRecord} from "../../shared/shared";
+import {Component} from '@angular/core';
 import {NgForm} from "@angular/forms";
+import {AssetsService} from "../asset-list/assets.service";
 
 @Component({
   selector: 'app-assets-create',
@@ -10,8 +10,8 @@ import {NgForm} from "@angular/forms";
 
 export class AssetCreateComponent {
 
-  // Send data to parent component
-  @Output() sendCreatedAsset = new EventEmitter<assetRecord>();
+  constructor(public AssetsService: AssetsService) {
+  }
 
   // Create asset object and send it to main app component
   onAssetSave(assetForm: NgForm): void {
@@ -29,7 +29,7 @@ export class AssetCreateComponent {
     }
 
     if (!assetForm.invalid) {
-      this.sendCreatedAsset.emit(placeholderAsset);
+      this.AssetsService.addAssets(placeholderAsset);
       assetForm.resetForm();
     }
   };

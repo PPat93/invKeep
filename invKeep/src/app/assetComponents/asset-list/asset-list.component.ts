@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {assetRecord} from "../../shared/shared";
+import {AssetsService} from "./assets.service";
 
 @Component({
   selector: 'app-asset-list',
@@ -7,8 +8,14 @@ import {assetRecord} from "../../shared/shared";
   styleUrls: ['./asset-list.component.scss']
 })
 
-export class AssetListComponent {
+export class AssetListComponent implements OnInit {
 
-  // Receive asset list from App
-  @Input() assetsReceivedFromAppComp: assetRecord[];
+  assetsReceivedFromAppComp: assetRecord[];
+
+  constructor(public AssetsService: AssetsService) {
+  }
+
+  ngOnInit() {
+    this.assetsReceivedFromAppComp = this.AssetsService.getAssets()
+  }
 }
