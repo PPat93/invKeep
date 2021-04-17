@@ -15,7 +15,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {AppComponent} from './app.component';
 import {AssetCreateComponent} from './assetComponents/asset-create/asset-create.component';
 import {AssetListComponent} from './assetComponents/asset-list/asset-list.component';
-import {AssetListItemComponent} from './assetComponents/asset-list/asset-list-item/asset-list-item.component';
 import {ToolbarMenuComponent} from './toolbar/toolbar.component';
 
 @NgModule({
@@ -23,8 +22,7 @@ import {ToolbarMenuComponent} from './toolbar/toolbar.component';
     AppComponent,
     AssetCreateComponent,
     ToolbarMenuComponent,
-    AssetListComponent,
-    AssetListItemComponent
+    AssetListComponent
   ],
   imports: [
     BrowserAnimationsModule,

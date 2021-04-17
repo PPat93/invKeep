@@ -11,6 +11,7 @@ import {AssetsService} from "./assets.service";
 export class AssetListComponent implements OnInit {
 
   assetsReceivedFromAppComp: assetRecord[];
+  panelExpanded: boolean = false;
 
   constructor(public AssetsService: AssetsService) {
   }
@@ -18,4 +19,5 @@ export class AssetListComponent implements OnInit {
   ngOnInit() {
     this.assetsReceivedFromAppComp = this.AssetsService.getAssets()
   }
+
 }

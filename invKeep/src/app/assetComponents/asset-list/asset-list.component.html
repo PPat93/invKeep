@@ -2,8 +2,23 @@
   <mat-card-title>Asset list:</mat-card-title>
   <mat-divider></mat-divider>
   <div class="items" *ngIf="assetsReceivedFromAppComp.length > 0">
-    <app-asset-component *ngFor="let oneRecord of assetsReceivedFromAppComp"
-                          [listSingleAsset]="oneRecord"></app-asset-component>
+    <mat-expansion-panel hideToggle *ngFor="let oneRecord of assetsReceivedFromAppComp">
+      <mat-expansion-panel-header (click)="panelExpanded=!panelExpanded">
+        <mat-panel-title>
+          <span>Asset full name:&nbsp;<b>{{ oneRecord.assetName }}</b></span>
+        </mat-panel-title>
+        <mat-panel-description class="description">
+          <span>Asset symbol:&nbsp;<b class="symbol">{{ oneRecord.assetSymbol }}</b></span>
+        </mat-panel-description>
+        <mat-icon *ngIf="panelExpanded else elseBlock" aria-hidden="false" aria-label="expand">expand_less</mat-icon>
+        <ng-template #elseBlock>
+          <mat-icon aria-hidden="false" aria-label="collapse">expand_more</mat-icon>
+        </ng-template>
+      </mat-expansion-panel-header>
+      <span>Asset amount:&nbsp;<b>{{ oneRecord.amount }}</b></span><br>
+      <span>Asset buy price:&nbsp;<b>{{ oneRecord.buyPrice }}</b></span><br>
+      <span>Purchase Date:&nbsp;<b>{{ oneRecord.purchaseDate }}</b></span><br>
+    </mat-expansion-panel>
   </div>
   <div class="items" *ngIf="assetsReceivedFromAppComp.length <= 0">
     <mat-card id="nothing-to-see">

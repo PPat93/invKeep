@@ -1,6 +1,5 @@
 import {assetRecord} from "../../shared/shared";
 import {Injectable} from "@angular/core";
-impo
 
 @Injectable({providedIn: 'root'})
 export class AssetsService{
