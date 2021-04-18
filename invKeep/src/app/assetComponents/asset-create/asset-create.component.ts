@@ -15,24 +15,23 @@ export class AssetCreateComponent {
 
   // Create asset object and send it to main app component
   onAssetSave(assetForm: NgForm): void {
-
-    let placeholderAsset = {
-      assetName: assetForm.value.fullName,
-      assetSymbol: assetForm.value.symbol,
-      amount: Math.trunc(assetForm.value.amount),
-      buyPrice: assetForm.value.price,
-      purchaseDate: `-`
-    }
-
-    if (assetForm.value.date) {
-      placeholderAsset.purchaseDate = assetForm.value.date.toLocaleString().split(`,`)[0];
-    }
-
     if (!assetForm.invalid) {
+      let placeholderAsset = {
+        assetName: assetForm.value.fullName,
+        assetSymbol: assetForm.value.symbol.toLocaleString().toUpperCase(),
+        amount: Math.trunc(assetForm.value.amount),
+        buyPrice: assetForm.value.price,
+        purchaseDate: `-`
+      }
+
+      if (assetForm.value.date) {
+        placeholderAsset.purchaseDate = assetForm.value.date.toLocaleString().split(`,`)[0];
+      }
+
       this.AssetsService.addAssets(placeholderAsset);
       assetForm.resetForm();
     }
-  };
+  }
 
   getErrorMessage(formName: string): string {
     switch (formName) {
