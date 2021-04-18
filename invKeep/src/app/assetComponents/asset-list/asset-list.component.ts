@@ -1,5 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {assetRecord} from "../../shared/shared";
+import {AssetsService} from "./assets.service";
+import { Subscription} from "rxjs";
 
 @Component({
   selector: 'app-asset-list',
@@ -7,8 +9,22 @@ import {assetRecord} from "../../shared/shared";
   styleUrls: ['./asset-list.component.scss']
 })
 
-export class AssetListComponent {
+export class AssetListComponent implements OnInit, OnDestroy {
 
-  // Receive asset list from App
-  @Input() assetsReceivedFromAppComp: assetRecord[];
+  assetArray: assetRecord[] = [];
+  panelExpanded: boolean = false;
+  private assetSub: Subscription;
+
+  constructor(public AssetsService: AssetsService) {
+  }
+
+  ngOnInit() {
+    this.assetSub = this.AssetsService.getAssetsUpdateListener().subscribe((assetsSubscribed: assetRecord[]) => {
+      this.assetArray = assetsSubscribed;
+    })
+  }
+
+  ngOnDestroy(){
+    this.assetSub.unsubscribe();
+  }
 }

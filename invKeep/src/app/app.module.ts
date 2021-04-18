@@ -10,12 +10,12 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {MatNativeDateModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
 import {MatToolbarModule} from '@angular/material/toolbar';
 
 import {AppComponent} from './app.component';
 import {AssetCreateComponent} from './assetComponents/asset-create/asset-create.component';
 import {AssetListComponent} from './assetComponents/asset-list/asset-list.component';
-import {AssetListItemComponent} from './assetComponents/asset-list/asset-list-item/asset-list-item.component';
 import {ToolbarMenuComponent} from './toolbar/toolbar.component';
 
 @NgModule({
@@ -23,8 +23,7 @@ import {ToolbarMenuComponent} from './toolbar/toolbar.component';
     AppComponent,
     AssetCreateComponent,
     ToolbarMenuComponent,
-    AssetListComponent,
-    AssetListItemComponent
+    AssetListComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -38,6 +37,7 @@ import {ToolbarMenuComponent} from './toolbar/toolbar.component';
     MatIconModule,
     MatInputModule,
     MatNativeDateModule,
+    MatSelectModule,
     MatToolbarModule
   ],
   providers: [],
