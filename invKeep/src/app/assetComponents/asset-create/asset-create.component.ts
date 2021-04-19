@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {AssetsService} from "../asset-list/assets.service";
+import {AssetCurrency} from "../../shared/shared"
 
 @Component({
   selector: 'app-assets-create',
@@ -9,6 +10,8 @@ import {AssetsService} from "../asset-list/assets.service";
 })
 
 export class AssetCreateComponent {
+
+  currencyArray = {...AssetCurrency};
 
   constructor(public AssetsService: AssetsService) {
   }
@@ -21,6 +24,7 @@ export class AssetCreateComponent {
         assetSymbol: assetForm.value.symbol.toLocaleString().toUpperCase(),
         amount: Math.trunc(assetForm.value.amount),
         buyPrice: assetForm.value.price,
+        currency: this.currencyArray,
         purchaseDate: `-`
       }
 
