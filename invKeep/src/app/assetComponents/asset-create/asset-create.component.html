@@ -47,10 +47,12 @@
       <mat-datepicker #picker></mat-datepicker>
       <mat-error *ngIf="date.invalid"> {{ getErrorMessage(date.name) }}</mat-error>
     </mat-form-field>
-    <button [disabled]="" mat-raised-button color="primary" type="submit">
-      Add Asset
-    </button>
-    <button mat-raised-button color="warn" type="reset">Clear</button>
+    <div class="create-buttons">
+      <button [disabled]="" mat-raised-button color="primary" type="submit">
+        Add Asset
+      </button>
+      <button mat-raised-button color="warn" type="reset">Clear</button>
+    </div>
   </form>
 </mat-card>
 
