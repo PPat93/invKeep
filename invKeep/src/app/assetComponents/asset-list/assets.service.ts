@@ -1,19 +1,19 @@
-import {assetRecord} from "../../shared/shared";
+import {AssetRecord} from "../../shared/shared";
 import {Injectable} from "@angular/core";
-import { Subject} from "rxjs";
+import {Subject} from "rxjs";
 
 @Injectable({providedIn: 'root'})
-export class AssetsService{
+export class AssetsService {
 
-  private assetsArray: assetRecord[] = [];
-  private updateAssets = new Subject<assetRecord[]>();
+  private assetsArray: AssetRecord[] = [];
+  private updateAssets = new Subject<AssetRecord[]>();
 
-  addAssets(assetItem: assetRecord){
+  addAssets(assetItem: AssetRecord) {
     this.assetsArray.push(assetItem);
     this.updateAssets.next([...this.assetsArray]);
   }
 
-  getAssetsUpdateListener(){
+  getAssetsUpdateListener() {
     return this.updateAssets.asObservable();
   }
 }

@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {assetRecord} from "../../shared/shared";
+import {AssetRecord} from "../../shared/shared";
 import {AssetsService} from "./assets.service";
-import { Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-asset-list',
@@ -11,7 +11,7 @@ import { Subscription} from "rxjs";
 
 export class AssetListComponent implements OnInit, OnDestroy {
 
-  assetArray: assetRecord[] = [];
+  assetArray: AssetRecord[] = [];
   panelExpanded: boolean = false;
   private assetSub: Subscription;
 
@@ -19,12 +19,12 @@ export class AssetListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.assetSub = this.AssetsService.getAssetsUpdateListener().subscribe((assetsSubscribed: assetRecord[]) => {
+    this.assetSub = this.AssetsService.getAssetsUpdateListener().subscribe((assetsSubscribed: AssetRecord[]) => {
       this.assetArray = assetsSubscribed;
     })
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.assetSub.unsubscribe();
   }
 }

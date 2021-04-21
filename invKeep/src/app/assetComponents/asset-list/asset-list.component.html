@@ -15,14 +15,23 @@
           <mat-icon aria-hidden="false" aria-label="collapse">expand_more</mat-icon>
         </ng-template>
       </mat-expansion-panel-header>
-      <span>Asset amount:&nbsp;<b>{{ oneRecord.amount }}</b></span><br>
-      <span>Asset buy price:&nbsp;<b>{{ oneRecord.buyPrice }} $</b></span><br>
-      <span>Purchase Date:&nbsp;<b>{{ oneRecord.purchaseDate }}</b></span><br>
+      <table>
+        <tr>
+          <td>
+            <span>Asset amount:&nbsp;<b>{{ oneRecord.amount }}</b></span><br>
+            <span>Asset buy price:&nbsp;<b>{{ oneRecord.buyPrice }} {{oneRecord.currency}}</b></span><br>
+            <span>Purchase Date:&nbsp;<b>{{ oneRecord.purchaseDate }}</b></span><br>
+          </td>
+          <td>
+            <button class="details" mat-raised-button>Details</button>
+          </td>
+        </tr>
+      </table>
     </mat-expansion-panel>
   </div>
   <div class="items" *ngIf="assetArray.length <= 0">
     <mat-card id="nothing-to-see">
-    <p>No portfolio added.</p>
+      <p>No portfolio added.</p>
     </mat-card>
   </div>
 </mat-card>

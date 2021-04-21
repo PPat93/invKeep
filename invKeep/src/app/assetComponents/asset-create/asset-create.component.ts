@@ -21,6 +21,7 @@ export class AssetCreateComponent {
         assetSymbol: assetForm.value.symbol.toLocaleString().toUpperCase(),
         amount: Math.trunc(assetForm.value.amount),
         buyPrice: assetForm.value.price,
+        currency: assetForm.value.currency,
         purchaseDate: `-`
       }
 
@@ -43,8 +44,12 @@ export class AssetCreateComponent {
         return `Please provide valid whole number amount.`;
       case `price`:
         return `Please provide valid price.`;
+      case `currency`:
+        return `Please select valid currency.`;
       case `date`:
         return `Provided date is invalid.`;
+      default:
+        return `Something went wrong. Please contact with developer.`;
     }
   }
 }

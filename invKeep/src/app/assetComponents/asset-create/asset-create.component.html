@@ -28,8 +28,17 @@
       <input name="price" matInput ngModel id="asset-price" required class="assetInput example-right-align"
              type="number"
              #price="ngModel">
-      <span matSuffix>$&nbsp;</span>
       <mat-error *ngIf="price.invalid"> {{ getErrorMessage(price.name) }}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Currency:</mat-label>
+      <mat-select required ngModel name="currency" #currency="ngModel">
+        <mat-option value="$">$</mat-option>
+        <mat-option value="€">€</mat-option>
+        <mat-option value="£">£</mat-option>
+        <mat-option value="¥">¥</mat-option>
+      </mat-select>
+      <mat-error *ngIf="currency.invalid"> {{ getErrorMessage(currency.name) }}</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Purchase Date:</mat-label>
@@ -38,10 +47,12 @@
       <mat-datepicker #picker></mat-datepicker>
       <mat-error *ngIf="date.invalid"> {{ getErrorMessage(date.name) }}</mat-error>
     </mat-form-field>
-    <button [disabled]="" mat-raised-button color="primary" type="submit">
-      Add Asset
-    </button>
-    <button mat-raised-button color="warn" type="reset">Clear</button>
+    <div class="create-buttons">
+      <button [disabled]="" mat-raised-button color="primary" type="submit">
+        Add Asset
+      </button>
+      <button mat-raised-button color="warn" type="reset">Clear</button>
+    </div>
   </form>
 </mat-card>
 
