@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {AssetsService} from "../asset-list/assets.service";
-import {AssetCurrency} from "../../shared/shared";
 
 @Component({
   selector: 'app-assets-create',
@@ -10,8 +9,6 @@ import {AssetCurrency} from "../../shared/shared";
 })
 
 export class AssetCreateComponent {
-
-  currencyArray:  {name: string, symbol: string}[] = AssetCurrency;
 
   constructor(public AssetsService: AssetsService) {
   }
@@ -47,8 +44,12 @@ export class AssetCreateComponent {
         return `Please provide valid whole number amount.`;
       case `price`:
         return `Please provide valid price.`;
+      case `currency`:
+        return `Please select valid currency.`;
       case `date`:
         return `Provided date is invalid.`;
+      default:
+        return `Something went wrong. Please contact with developer.`;
     }
   }
 }

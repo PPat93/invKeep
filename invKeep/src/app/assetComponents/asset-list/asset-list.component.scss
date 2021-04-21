@@ -12,7 +12,7 @@ div.items {
   margin-top: 16px;
 }
 
-#nothing-to-see{
+#nothing-to-see {
   text-align: center;
   font-size: large;
   width: inherit;
@@ -21,4 +21,16 @@ div.items {
 
 mat-panel-description span {
   margin-left: 65%;
+}
+
+table {
+  width: 100%;
+}
+
+.details {
+  display: inline-block;
+  margin-left: 70%;
+  width: 6rem !important;
+  height: 2rem !important;
+  font-size: large;
 }

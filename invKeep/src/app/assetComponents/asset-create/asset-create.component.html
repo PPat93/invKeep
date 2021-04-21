@@ -32,11 +32,13 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Currency:</mat-label>
-      <mat-select ngModel name="currency" #currency="ngModel">
-        <mat-option (select)="curr.symbol" *ngFor="let curr of currencyArray" >
-          {{curr.symbol}}
-        </mat-option>
+      <mat-select required ngModel name="currency" #currency="ngModel">
+        <mat-option value="$">$</mat-option>
+        <mat-option value="€">€</mat-option>
+        <mat-option value="£">£</mat-option>
+        <mat-option value="¥">¥</mat-option>
       </mat-select>
+      <mat-error *ngIf="currency.invalid"> {{ getErrorMessage(currency.name) }}</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Purchase Date:</mat-label>

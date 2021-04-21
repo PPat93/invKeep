@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AssetRecord} from "../../shared/shared";
 import {AssetsService} from "./assets.service";
-import { Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-asset-list',
@@ -24,7 +24,7 @@ export class AssetListComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.assetSub.unsubscribe();
   }
 }
