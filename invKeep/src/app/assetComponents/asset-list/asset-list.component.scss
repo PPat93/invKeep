@@ -3,6 +3,10 @@ mat-card {
   margin: auto;
 }
 
+mat-expansion-panel{
+  margin-top: 2px;
+}
+
 mat-card-title {
   font-size: small;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -19,8 +23,10 @@ div.items {
   margin: 0 16px;
 }
 
-mat-panel-description span {
-  margin-left: 65%;
+mat-panel-description {
+  float: right;
+  width: 180px;
+  flex-grow: 0;
 }
 
 table {
@@ -29,7 +35,7 @@ table {
 
 .details {
   display: inline-block;
-  margin-left: 70%;
+  float: right;
   width: 6rem !important;
   height: 2rem !important;
   font-size: large;

@@ -23,10 +23,14 @@
             <span>Purchase Date:&nbsp;<b>{{ oneRecord.purchaseDate }}</b></span><br>
           </td>
           <td>
-            <button class="details" mat-raised-button>Details</button>
+            <button class="details" mat-stroked-button>Details</button>
           </td>
         </tr>
       </table>
+      <mat-action-row>
+        <button mat-stroked-button color="primary" (click)="editAsset()">Edit</button>
+        <button mat-stroked-button color="warn" (click)="removeAsset()">Delete</button>
+      </mat-action-row>
     </mat-expansion-panel>
   </div>
   <div class="items" *ngIf="assetArray.length <= 0">
