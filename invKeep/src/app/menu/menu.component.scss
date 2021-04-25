@@ -1,0 +1,29 @@
+a {
+  text-decoration: none;
+  color: white;
+  font-size: medium;
+  vertical-align: middle;
+}
+
+:host {
+  width: 100%;
+}
+
+#settings {
+  float: right;
+}
+
+div {
+  padding-left: 15px;
+}
+
+span {
+  padding-left: 15px;
+}
+p {
+  display: inline;
+}
+
+mat-icon {
+  vertical-align: -5px;
+}
