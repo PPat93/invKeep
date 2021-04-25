@@ -1,0 +1,19 @@
+{
+  "name": "invkeep",
+  "version": "1.0.0",
+  "description": "Simple assets holder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PPat93/invKeep.git"
+  },
+  "author": "Piotr Paterek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PPat93/invKeep/issues"
+  },
+  "homepage": "https://github.com/PPat93/invKeep#readme"
+}
