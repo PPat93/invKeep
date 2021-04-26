@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/invKeep'),
+      dir: require('path').join(__dirname, './coverage/invKeepFrontend'),
       subdir: '.',
       reporters: [
         { type: 'html' },
