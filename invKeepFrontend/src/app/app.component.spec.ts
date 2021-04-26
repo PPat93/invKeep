@@ -19,13 +19,13 @@ describe('AppComponent', () => {
   it(`should have as title 'invKeep'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('invKeep');
+    expect(app.title).toEqual('invKeepFrontend');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('invKeep app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('invKeepFrontend app is running!');
   });
 });
