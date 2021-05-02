@@ -24,6 +24,7 @@ export class AssetCreateComponent {
   onAssetSave(assetForm: NgForm): void {
     if (!assetForm.invalid) {
       let placeholderAsset = {
+        id: null,
         assetName: assetForm.value.fullName,
         assetSymbol: assetForm.value.symbol.toLocaleString().toUpperCase(),
         amount: Math.trunc(assetForm.value.amount),

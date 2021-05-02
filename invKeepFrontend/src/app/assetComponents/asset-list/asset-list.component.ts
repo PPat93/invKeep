@@ -19,7 +19,9 @@ export class AssetListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.assetSub = this.AssetsService.getAssetsUpdateListener().subscribe((assetsSubscribed: AssetRecord[]) => {
+    this.AssetsService.getAssets();
+    this.assetSub = this.AssetsService.getAssetsUpdateListener()
+      .subscribe((assetsSubscribed: AssetRecord[]) => {
       this.assetArray = assetsSubscribed;
     })
   }

@@ -1,12 +1,23 @@
-import {AssetRecord} from "../../shared/shared";
-import {Injectable} from "@angular/core";
-import {Subject} from "rxjs";
+import {AssetRecord} from '../../shared/shared';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class AssetsService {
 
+  constructor(private http: HttpClient){}
+
   private assetsArray: AssetRecord[] = [];
   private updateAssets = new Subject<AssetRecord[]>();
+
+  getAssets(){
+    this.http.get<{message: string, payload: AssetRecord[]}>('http://localhost:3000/api/assets')
+      .subscribe((assetData) => {
+        this.assetsArray = assetData.payload;
+        this.updateAssets.next([...this.assetsArray]);
+      })
+  }
 
   addAssets(assetItem: AssetRecord) {
     this.assetsArray.push(assetItem);
