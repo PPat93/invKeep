@@ -11,7 +11,7 @@ import {AssetsService} from "../asset-list/assets.service";
 export class AssetCreateComponent {
 
   validationPatterns = {
-    fullName: `[a-zA-Z0-9,.-_()]{2,30}$`,
+    fullName: `[a-zA-Z0-9,.-_ ()]{2,30}$`,
     symbol: `[a-zA-Z0-9.-]{1,6}$`,
     amount: `[0-9]{1,10}$`,
     price: `[0-9.]{1,10}`
@@ -28,7 +28,7 @@ export class AssetCreateComponent {
         assetName: assetForm.value.fullName,
         assetSymbol: assetForm.value.symbol.toLocaleString().toUpperCase(),
         amount: Math.trunc(assetForm.value.amount),
-        buyPrice: assetForm.value.price,
+        buyPrice: Number(assetForm.value.price),
         currency: assetForm.value.currency,
         purchaseDate: `-`
       }

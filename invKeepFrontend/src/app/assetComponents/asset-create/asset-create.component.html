@@ -30,7 +30,7 @@
     <div>
       <mat-form-field>
         <mat-label>Price for one unit</mat-label>
-        <input name="price" matInput [pattern]="validationPatterns.price" ngModel id="asset-price" required
+        <input name="price" matInput ngModel [pattern]="validationPatterns.price"  id="asset-price" required
                class="assetInput example-right-align"
                #price="ngModel">
         <mat-error *ngIf="price.invalid"> {{ getErrorMessage(price.name) }}</mat-error>
