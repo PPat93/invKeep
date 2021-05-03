@@ -11,8 +11,8 @@ import {AssetsService} from "../asset-list/assets.service";
 export class AssetCreateComponent {
 
   validationPatterns = {
-    fullName: `[a-zA-Z0-9,.-_ ()]{2,30}$`,
-    symbol: `[a-zA-Z0-9.-]{1,6}$`,
+    fullName: `[a-zA-Z0-9,._ ()\-]{2,30}$`,
+    symbol: `[a-zA-Z0-9.\-]{1,6}$`,
     amount: `[0-9]{1,10}$`,
     price: `[0-9.]{1,10}`
   }
