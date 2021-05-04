@@ -6,13 +6,14 @@ import {Subject} from 'rxjs';
 @Injectable({providedIn: 'root'})
 export class AssetsService {
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) {
+  }
 
   private assetsArray: AssetRecord[] = [];
   private updateAssets = new Subject<AssetRecord[]>();
 
-  getAssets(){
-    this.http.get<{message: string, payload: AssetRecord[]}>('http://localhost:3000/api/assets')
+  getAssets() {
+    this.http.get<{ message: string, payload: AssetRecord[] }>('http://localhost:3000/api/assets')
       .subscribe((assetData) => {
         this.assetsArray = assetData.payload;
         this.updateAssets.next([...this.assetsArray]);
@@ -20,8 +21,13 @@ export class AssetsService {
   }
 
   addAssets(assetItem: AssetRecord) {
-    this.assetsArray.push(assetItem);
-    this.updateAssets.next([...this.assetsArray]);
+    this.http.post<{ message: string }>('http://localhost:3000/api/assets', (assetItem))
+      .subscribe((responseData) => {
+        console.log(responseData);
+        this.assetsArray.push(assetItem);
+        this.updateAssets.next([...this.assetsArray]);
+      })
+
   }
 
   getAssetsUpdateListener() {
