@@ -1,10 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const Asset = require('./models/asset');
+const mongoose = require('mongoose');
 
 const app = express();
 
-let assetList = [];
+
+mongoose.connect('',  {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
+    .then(() => {
+        console.log('\x1b[32m', 'Connected to Cloud mongoDB database!');
+    })
+    .catch(() => {
+        console.log('\x1b[31m', 'Connection to Cloud mongoDB database failed!');
+    });
 
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended: false}));
@@ -17,7 +25,7 @@ app.use((req, res, next) => {
     next();
 })
 
-app.post('/api/assets',(req, res, next) => {
+app.post('/api/assets', (req, res, next) => {
     const singleAsset = new Asset({
         id: req.body.id,
         assetName: req.body.assetName,
@@ -27,8 +35,13 @@ app.post('/api/assets',(req, res, next) => {
         currency: req.body.currency,
         purchaseDate: req.body.purchaseDate
     })
-    console.log(singleAsset);
-    assetList.push(singleAsset);
+    singleAsset.save()
+        .then(() => {
+            console.log('\x1b[32m', 'Asset added correctly!');
+        })
+        .catch(() => {
+            console.log('\x1b[31m', 'Asset addition failed!');
+        })
     res.status(201).json({
         message: 'Asset added successfully!'
     })
@@ -36,10 +49,13 @@ app.post('/api/assets',(req, res, next) => {
 
 app.get('/api/assets', (req, res, next) => {
 
-    res.status(200).json({
-        message: 'Asset list returned successfully!',
-        payload: assetList
-    });
+    Asset.find()
+        .then((documents) => {
+            res.status(200).json({
+                message: 'Asset list returned successfully!',
+                payload: documents
+            });
+        })
 });
 
 module.exports = app;
