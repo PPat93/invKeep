@@ -23,7 +23,7 @@ export class AssetsService {
   addAssets(assetItem: AssetRecord) {
     this.http.post<{ message: string }>('http://localhost:3000/api/assets', (assetItem))
       .subscribe((responseData) => {
-        console.log(responseData);
+        // console.log(responseData);
         this.assetsArray.push(assetItem);
         this.updateAssets.next([...this.assetsArray]);
       })
