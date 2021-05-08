@@ -1,0 +1,49 @@
+[{
+  "_id": {
+    "$oid": "60971a6eda658a2ca8ac9f5b"
+  },
+  "id": null,
+  "assetName": "Comerica",
+  "assetSymbol": "CMA",
+  "amount": 12,
+  "buyPrice": 58.63,
+  "currency": "$",
+  "purchaseDate": "5/2/2021",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60971a7dda658a2ca8ac9f5c"
+  },
+  "id": null,
+  "assetName": "Nio",
+  "assetSymbol": "NIO",
+  "amount": 45,
+  "buyPrice": 12.76,
+  "currency": "¥",
+  "purchaseDate": "3/16/2021",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60971a93da658a2ca8ac9f5d"
+  },
+  "id": null,
+  "assetName": "Apple",
+  "assetSymbol": "AAPL",
+  "amount": 87,
+  "buyPrice": 364.85,
+  "currency": "$",
+  "purchaseDate": "4/14/2021",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60971ad5da658a2ca8ac9f5e"
+  },
+  "id": null,
+  "assetName": "Rolls Royce",
+  "assetSymbol": "RR.L",
+  "amount": 86,
+  "buyPrice": 1.12,
+  "currency": "£",
+  "purchaseDate": "2/3/2021",
+  "__v": 0
+}]
