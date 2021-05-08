@@ -16,11 +16,12 @@ automatically reload if you change any of the source files.
 
 Run `npm run start:server` in `invKeepFrontend` folder to start backend server of invKeep. \
 To reload changes introduced in backend run `rs` in server console.
+`http://localhost:3000/`
 
 ## Database
 
-Having local MongoDB run is enough to use invKeep. \
-If you don't have installed local MongoDB -> download it from `https://www.mongodb.com/try/download`. \
-After installation create folders `C:\data\db`. \
-In `C:\Program Files\MongoDB\Server\4.4\bin` (default MongoDB path) run `mongod.exe` -> start local MongoDB. To monitor
-databases, in different console window from `C:\Program Files\MongoDB\Server\4.4\bin` run `mongo.exe`.
+- Having local MongoDB run is enough to use invKeep.
+- If you don't have installed local MongoDB -> download it from `https://www.mongodb.com/try/download`.
+- After installation create folders `C:\data\db`.
+- In `C:\Program Files\MongoDB\Server\4.4\bin` (default MongoDB path) run `mongod.exe` -> start local MongoDB.
+- To monitor databases, in different console window from `C:\Program Files\MongoDB\Server\4.4\bin` run `mongo.exe`.
