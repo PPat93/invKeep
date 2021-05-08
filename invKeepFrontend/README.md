@@ -19,8 +19,20 @@ To reload changes introduced in backend run `rs` in server console.
 
 ## Database
 
-Having local MongoDB run is enough to use invKeep. \
-If you don't have installed local MongoDB -> download it from `https://www.mongodb.com/try/download`. \
-After installation create folders `C:\data\db`. \
-In `C:\Program Files\MongoDB\Server\4.4\bin` (default MongoDB path) run `mongod.exe` -> start local MongoDB. To monitor
-databases, in different console window from `C:\Program Files\MongoDB\Server\4.4\bin` run `mongo.exe`.
+- Having local MongoDB run is enough to use invKeep.
+
+### Empty database
+- If you don't have installed local MongoDB -> download it from `https://www.mongodb.com/try/download`.
+- After installation create folders `C:\data\db`.
+- In `C:\Program Files\MongoDB\Server\4.4\bin` (default MongoDB path) run `mongod.exe` -> start local MongoDB.
+- To monitor databases, in different console window from `C:\Program Files\MongoDB\Server\4.4\bin` run `mongo.exe`.
+
+Above steps is enough to run the app - create and load assets.
+
+### Import collection to database
+
+- Create database `invKeepDatabase`.
+- Inside created database - create `assets` collection.
+- Import file from `invKeepDatabase` repository folder to previously created collection
+
+After invKeep main page refresh, all imported assets should be displayed.
