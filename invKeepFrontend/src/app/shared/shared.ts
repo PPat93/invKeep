@@ -1,5 +1,5 @@
 export interface AssetRecord {
-  id: number,
+  id: string,
   assetName: string,
   assetSymbol: string,
   amount: number,

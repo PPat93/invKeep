@@ -22,19 +22,19 @@ export class AssetListComponent implements OnInit, OnDestroy {
     this.AssetsService.getAssets();
     this.assetSub = this.AssetsService.getAssetsUpdateListener()
       .subscribe((assetsSubscribed: AssetRecord[]) => {
-      this.assetArray = assetsSubscribed;
-    })
-  }
-
-  ngOnDestroy() {
-    this.assetSub.unsubscribe();
+        this.assetArray = assetsSubscribed;
+      })
   }
 
   editAsset() {
     // placeholder
   }
 
-  removeAsset() {
-    // placeholder
+  deleteAsset(assetId: string) {
+    this.AssetsService.deleteAsset(assetId);
+  }
+
+  ngOnDestroy() {
+    this.assetSub.unsubscribe();
   }
 }
