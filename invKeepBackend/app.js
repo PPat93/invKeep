@@ -64,6 +64,9 @@ app.delete('/api/delete/:id', (req, res, next) => {
     Asset.deleteOne({_id: req.params.id}).then((done) => {
         res.status(200).json(done);
     })
+        .catch($e => {
+            console.log('Error with asset deletion. Error: ' + $e);
+        })
 })
 
 module.exports = app;

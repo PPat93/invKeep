@@ -44,7 +44,8 @@ export class AssetsService {
 
   deleteAsset(assetId: string) {
     this.http.delete(`http://localhost:3000/api/delete/${assetId}`).subscribe(() => {
-
+      this. assetsArray = this.assetsArray.filter(asset => asset.id !== assetId);
+      this.updateAssets.next([...this.assetsArray]);
     })
   }
 
