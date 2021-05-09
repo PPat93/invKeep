@@ -37,3 +37,5 @@ Above steps is enough to run the app - create and load assets.
 - Import file from `invKeepDatabase` repository folder to previously created collection
 
 After invKeep main page refresh, all imported assets should be displayed.
+
+![invKeep](https://user-images.githubusercontent.com/45639693/117556569-9ce1d580-b06a-11eb-8780-46694befc9b7.PNG)
