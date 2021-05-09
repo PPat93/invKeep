@@ -22,8 +22,8 @@ export class AssetListComponent implements OnInit, OnDestroy {
     this.AssetsService.getAssets();
     this.assetSub = this.AssetsService.getAssetsUpdateListener()
       .subscribe((assetsSubscribed: AssetRecord[]) => {
-      this.assetArray = assetsSubscribed;
-    })
+        this.assetArray = assetsSubscribed;
+      })
   }
 
   editAsset() {
