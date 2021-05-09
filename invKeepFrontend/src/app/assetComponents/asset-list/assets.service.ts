@@ -35,8 +35,9 @@ export class AssetsService {
   }
 
   addAssets(assetItem: AssetRecord) {
-    this.http.post<{ message: string }>(`http://localhost:3000/api/assets`, (assetItem))
+    this.http.post<{ message: string, assetId: string }>(`http://localhost:3000/api/assets`, (assetItem))
       .subscribe((responseData) => {
+        assetItem.id = responseData.assetId;
         this.assetsArray.push(assetItem);
         this.updateAssets.next([...this.assetsArray]);
       })
@@ -44,7 +45,7 @@ export class AssetsService {
 
   deleteAsset(assetId: string) {
     this.http.delete(`http://localhost:3000/api/delete/${assetId}`).subscribe(() => {
-      this. assetsArray = this.assetsArray.filter(asset => asset.id !== assetId);
+      this.assetsArray = this.assetsArray.filter(asset => asset.id !== assetId);
       this.updateAssets.next([...this.assetsArray]);
     })
   }

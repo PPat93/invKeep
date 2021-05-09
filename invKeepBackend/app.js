@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+// connection with database
 mongoose.connect('mongodb://127.0.0.1:27017/invKeepDatabase?retryWrites=true&w=majority&compressors=zlib&gssapiServiceName=mongodb', {
     useUnifiedTopology: true,
     useNewUrlParser: true,
@@ -20,6 +21,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/invKeepDatabase?retryWrites=true&w=m
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended: false}));
 
+// set all needed headers for every response
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers',
@@ -28,7 +30,8 @@ app.use((req, res, next) => {
     next();
 })
 
-app.post('/api/assets', (req, res, next) => {
+// Addition of a new asset, connected with rewrite it to matching mongo model pattern
+app.post('/api/assets', (req, res) => {
     const singleAsset = new Asset({
         id: req.body.id,
         assetName: req.body.assetName,
@@ -39,18 +42,19 @@ app.post('/api/assets', (req, res, next) => {
         purchaseDate: req.body.purchaseDate
     })
     singleAsset.save()
-        .then(() => {
+        .then((addedAsset) => {
             console.log('\x1b[32m', 'Asset added correctly!');
+            res.status(201).json({
+                message: 'Asset added successfully!',
+                assetId: addedAsset._id
+            })
         })
         .catch(($e) => {
             console.log('\x1b[31m', `Asset addition failed! Error: ${$e}`);
         })
-    res.status(201).json({
-        message: 'Asset added successfully!'
-    })
 })
 
-app.get('/api/assets', (req, res, next) => {
+app.get('/api/assets', (req, res) => {
     Asset.find()
         .then((documents) => {
             res.status(200).json({
@@ -60,7 +64,7 @@ app.get('/api/assets', (req, res, next) => {
         })
 });
 
-app.delete('/api/delete/:id', (req, res, next) => {
+app.delete('/api/delete/:id', (req, res) => {
     Asset.deleteOne({_id: req.params.id}).then((done) => {
         res.status(200).json(done);
     })
