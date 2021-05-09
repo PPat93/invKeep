@@ -14,7 +14,7 @@ export class AssetsService {
   private updateAssets = new Subject<AssetRecord[]>();
 
   getAssets() {
-    this.http.get<{ message: string, payload: any }>('http://localhost:3000/api/assets')
+    this.http.get<{ message: string, payload: any }>(`http://localhost:3000/api/assets`)
       .pipe(map((assetItems) => {
         return assetItems.payload.map(oneAsset => {
           return {
@@ -35,12 +35,17 @@ export class AssetsService {
   }
 
   addAssets(assetItem: AssetRecord) {
-    this.http.post<{ message: string }>('http://localhost:3000/api/assets', (assetItem))
+    this.http.post<{ message: string }>(`http://localhost:3000/api/assets`, (assetItem))
       .subscribe((responseData) => {
         this.assetsArray.push(assetItem);
         this.updateAssets.next([...this.assetsArray]);
       })
+  }
 
+  deleteAsset(assetId: string) {
+    this.http.delete(`http://localhost:3000/api/delete/${assetId}`).subscribe(() => {
+
+    })
   }
 
   getAssetsUpdateListener() {

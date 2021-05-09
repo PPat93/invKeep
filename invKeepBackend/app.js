@@ -11,10 +11,10 @@ mongoose.connect('mongodb://127.0.0.1:27017/invKeepDatabase?retryWrites=true&w=m
     useCreateIndex: true
 })
     .then(() => {
-        console.log('\x1b[32m', 'Connected to Cloud mongoDB database!');
+        console.log('\x1b[32m', 'Connected to MongoDB database!');
     })
     .catch(($e) => {
-        console.log('\x1b[31m', `Connection to Cloud mongoDB database failed! Error: ${$e}`);
+        console.log('\x1b[31m', `Connection to MongoDB database failed! Error: ${$e}`);
     });
 
 app.use(bodyParser.json());
@@ -51,7 +51,6 @@ app.post('/api/assets', (req, res, next) => {
 })
 
 app.get('/api/assets', (req, res, next) => {
-
     Asset.find()
         .then((documents) => {
             res.status(200).json({
@@ -60,5 +59,11 @@ app.get('/api/assets', (req, res, next) => {
             });
         })
 });
+
+app.delete('/api/delete/:id', (req, res, next) => {
+    Asset.deleteOne({_id: req.params.id}).then((done) => {
+        res.status(200).json(done);
+    })
+})
 
 module.exports = app;

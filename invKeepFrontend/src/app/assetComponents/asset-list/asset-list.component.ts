@@ -26,15 +26,15 @@ export class AssetListComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnDestroy() {
-    this.assetSub.unsubscribe();
-  }
-
   editAsset() {
     // placeholder
   }
 
-  removeAsset() {
-    // placeholder
+  deleteAsset(assetId: string) {
+    this.AssetsService.deleteAsset(assetId);
+  }
+
+  ngOnDestroy() {
+    this.assetSub.unsubscribe();
   }
 }
