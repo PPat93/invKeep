@@ -13,6 +13,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select'
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {AppRoutingModule} from "./app-routing.module";
 
 import {AppComponent} from './app.component';
 import {AssetCreateComponent} from './assetComponents/asset-create/asset-create.component';
@@ -23,6 +24,7 @@ import {MenuComponent} from './menu/menu.component';
 @NgModule({
   declarations: [
     AppComponent,
+    AppRoutingModule,
     AssetCreateComponent,
     ToolbarMenuComponent,
     AssetListComponent,
@@ -42,7 +44,8 @@ import {MenuComponent} from './menu/menu.component';
     MatInputModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatToolbarModule
+    MatToolbarModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
