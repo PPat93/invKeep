@@ -24,13 +24,13 @@ import {MenuComponent} from './menu/menu.component';
 @NgModule({
   declarations: [
     AppComponent,
-    AppRoutingModule,
     AssetCreateComponent,
     ToolbarMenuComponent,
     AssetListComponent,
     MenuComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
