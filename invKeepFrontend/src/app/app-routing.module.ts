@@ -1,11 +1,11 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 
-import {AssetListComponent} from "./assetComponents/asset-list/asset-list.component";
 import {AssetCreateComponent} from "./assetComponents/asset-create/asset-create.component";
+import {HomePageComponent} from "./home-page/home-page.component";
 
 const routes: Routes = [
-  {path: '', component: AssetListComponent},
+  {path: '', component: HomePageComponent},
   {path: 'create', component: AssetCreateComponent}
 ]
 

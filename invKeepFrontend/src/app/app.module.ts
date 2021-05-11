@@ -18,16 +18,20 @@ import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from './app.component';
 import {AssetCreateComponent} from './assetComponents/asset-create/asset-create.component';
 import {AssetListComponent} from './assetComponents/asset-list/asset-list.component';
-import {ToolbarMenuComponent} from './toolbar/toolbar.component';
 import {MenuComponent} from './menu/menu.component';
+import {MessageDisplayComponent} from './message-display/message-display.component';
+import {ToolbarMenuComponent} from './toolbar/toolbar.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AssetCreateComponent,
-    ToolbarMenuComponent,
     AssetListComponent,
-    MenuComponent
+    MenuComponent,
+    MessageDisplayComponent,
+    ToolbarMenuComponent,
+    HomePageComponent
   ],
   imports: [
     AppRoutingModule,
