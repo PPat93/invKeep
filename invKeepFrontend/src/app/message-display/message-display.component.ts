@@ -1,4 +1,5 @@
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
+import {welcomeMsg} from "../shared/shared";
 
 @Component({
   selector: 'app-message-display',
@@ -7,6 +8,23 @@ import {Component} from "@angular/core";
 })
 
 export class MessageDisplayComponent {
+
+  @Input() id: string;
+
+  chooseContent(): { title: string, msg: string } {
+    let messageData: { title: string, msg: string };
+    switch (this.id) {
+      case `welcomeMsg`:
+        messageData = {
+          title: welcomeMsg.title,
+          msg: welcomeMsg.msg
+        }
+        return messageData;
+      default:
+        console.error(`Message component ID not recognised.`)
+        break;
+    }
+  }
 
   closeMessage(e) {
     let classNameElement = e.currentTarget;
