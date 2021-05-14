@@ -3,6 +3,9 @@
 An application on which I am enhancing my coding skills. \
 Angular with TypeScript + Node.js with Express.js + MongoDB.
 
+![invKeepMain](https://user-images.githubusercontent.com/45639693/118302350-6251c000-b4e4-11eb-8b01-8264a4a7f1e2.PNG)
+![invKeepCreate](https://user-images.githubusercontent.com/45639693/118302344-6087fc80-b4e4-11eb-8434-c57f3890f355.PNG)
+
 ## Before everything
 
 Run `npm install` in invKeepFrontend folder.
@@ -38,6 +41,4 @@ Above steps is enough to run the app - create and load assets.
 
 After invKeep main page refresh, all imported assets should be displayed.
 
-![invKeepMain](https://user-images.githubusercontent.com/45639693/118302350-6251c000-b4e4-11eb-8b01-8264a4a7f1e2.PNG)
-![invKeepCreate](https://user-images.githubusercontent.com/45639693/118302344-6087fc80-b4e4-11eb-8434-c57f3890f355.PNG)
 
