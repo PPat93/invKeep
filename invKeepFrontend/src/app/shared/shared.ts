@@ -7,3 +7,8 @@ export interface AssetRecord {
   currency: string,
   purchaseDate: Date | string
 }
+
+export let welcomeMsg = {
+  "title": "Welcome!",
+  "msg": "I'm glad you chose invKeep to keep your assets and analyze them (in the future). App is intuitive, simple and I will do my best to keep it like that."
+};

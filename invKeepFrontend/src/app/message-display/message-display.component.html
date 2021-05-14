@@ -1,0 +1,17 @@
+<mat-card class="message">
+  <mat-card-title>
+    <div>
+      <span>
+        {{ chooseContent().title }}
+      </span>
+      <button mat-icon-button id="close-button">
+        <span class="material-icons" (click)="closeMessage($event)">close</span>
+      </button>
+    </div>
+  </mat-card-title>
+  <mat-divider></mat-divider>
+  <br>
+  <mat-card-content>
+    {{ chooseContent().msg }}
+  </mat-card-content>
+</mat-card>
