@@ -1,6 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {AssetsService} from "../asset-list/assets.service";
+import {AssetRecord} from "../../shared/shared";
+import {ActivatedRoute, ParamMap} from "@angular/router";
 
 @Component({
   selector: 'app-assets-create',
@@ -8,7 +10,11 @@ import {AssetsService} from "../asset-list/assets.service";
   styleUrls: ['./asset-create.component.scss']
 })
 
-export class AssetCreateComponent {
+export class AssetCreateComponent implements OnInit {
+
+  actionMode: CreateComponentMode;
+
+  assetId: string;
 
   validationPatterns = {
     fullName: `[a-zA-Z0-9,._ ()\-]{2,30}$`,
@@ -17,7 +23,19 @@ export class AssetCreateComponent {
     price: `[0-9.]{1,10}`
   }
 
-  constructor(public AssetsService: AssetsService) {
+  constructor(public AssetsService: AssetsService, public route: ActivatedRoute) {
+  }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has(`assetId`)) {
+        this.actionMode = CreateComponentMode.edit;
+        this.assetId = paramMap.get(`assetId`)
+      } else {
+        this.actionMode = CreateComponentMode.create;
+        this.assetId = null;
+      }
+    });
   }
 
   // Create asset object and send it to main app component
@@ -60,4 +78,9 @@ export class AssetCreateComponent {
         return `Something went wrong. Please contact with developer.`;
     }
   }
+}
+
+export enum CreateComponentMode {
+  create = 0,
+  edit = 1
 }

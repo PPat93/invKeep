@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AssetRecord} from "../../shared/shared";
 import {AssetsService} from "./assets.service";
 import {Subscription} from "rxjs";
+import {AssetCreateComponent} from "../asset-create/asset-create.component";
 
 @Component({
   selector: 'app-asset-list',
@@ -26,8 +27,8 @@ export class AssetListComponent implements OnInit, OnDestroy {
       })
   }
 
-  editAsset() {
-    // placeholder
+  editAsset(entireRcord: AssetRecord) {
+    this.AssetsService.editAsset(entireRcord);
   }
 
   deleteAsset(assetId: string) {

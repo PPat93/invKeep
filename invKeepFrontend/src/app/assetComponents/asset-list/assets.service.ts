@@ -53,6 +53,10 @@ export class AssetsService {
     })
   }
 
+  editAsset(oneRecord: AssetRecord) {
+
+  }
+
   getAssetsUpdateListener() {
     return this.updateAssets.asObservable();
   }
