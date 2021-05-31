@@ -53,8 +53,8 @@ export class AssetsService {
     })
   }
 
-  editAsset(oneRecord: AssetRecord) {
-
+  getSingeAsset(id: string){
+    return {...this.assetsArray.find(as => as.id === id)};
   }
 
   getAssetsUpdateListener() {

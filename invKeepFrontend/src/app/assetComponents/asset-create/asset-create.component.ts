@@ -13,8 +13,8 @@ import {ActivatedRoute, ParamMap} from "@angular/router";
 export class AssetCreateComponent implements OnInit {
 
   actionMode: CreateComponentMode;
-
   assetId: string;
+  editedAsset: AssetRecord;
 
   validationPatterns = {
     fullName: `[a-zA-Z0-9,._ ()\-]{2,30}$`,
@@ -31,6 +31,7 @@ export class AssetCreateComponent implements OnInit {
       if (paramMap.has(`assetId`)) {
         this.actionMode = CreateComponentMode.edit;
         this.assetId = paramMap.get(`assetId`)
+        this.editedAsset = this.AssetsService.getSingeAsset(this.assetId);
       } else {
         this.actionMode = CreateComponentMode.create;
         this.assetId = null;
