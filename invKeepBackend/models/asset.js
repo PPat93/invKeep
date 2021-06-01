@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const assetSchema = new mongoose.Schema({
     id: {
-        type: Number,
+        type: String,
     },
     assetName: {
         type: String,

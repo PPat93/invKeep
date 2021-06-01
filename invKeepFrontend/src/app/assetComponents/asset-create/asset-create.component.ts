@@ -43,7 +43,7 @@ export class AssetCreateComponent implements OnInit {
   onAssetSave(assetForm: NgForm): void {
     if (!assetForm.invalid) {
       let placeholderAsset = {
-        id: null,
+        id: this.assetId,
         assetName: assetForm.value.fullName,
         assetSymbol: assetForm.value.symbol.toLocaleString().toUpperCase(),
         amount: Math.trunc(assetForm.value.amount),
@@ -56,7 +56,15 @@ export class AssetCreateComponent implements OnInit {
         placeholderAsset.purchaseDate = assetForm.value.date.toLocaleString().split(`,`)[0];
       }
 
-      this.AssetsService.addAssets(placeholderAsset);
+      switch (this.actionMode) {
+        case CreateComponentMode.create:
+          this.AssetsService.addAsset(placeholderAsset);
+          break;
+        case CreateComponentMode.edit:
+          this.AssetsService.editAsset(placeholderAsset);
+          break;
+        default:
+      }
       assetForm.resetForm();
     }
   }

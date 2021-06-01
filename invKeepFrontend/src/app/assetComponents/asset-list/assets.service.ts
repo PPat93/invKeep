@@ -35,11 +35,19 @@ export class AssetsService {
       })
   }
 
-  addAssets(assetItem: AssetRecord) {
+  addAsset(assetItem: AssetRecord) {
     this.http.post<{ message: string, assetId: string }>(`http://localhost:3000/api/assets`, (assetItem))
       .subscribe((responseData) => {
         // update  front asset id with db _id
         assetItem.id = responseData.assetId;
+        this.assetsArray.push(assetItem);
+        this.updateAssets.next([...this.assetsArray]);
+      })
+  }
+
+  editAsset(assetItem: AssetRecord){
+    this.http.put<{message: string, assetId: string}>(`http://localhost:3000/api/assets`, (assetItem))
+      .subscribe((responseData) => {
         this.assetsArray.push(assetItem);
         this.updateAssets.next([...this.assetsArray]);
       })

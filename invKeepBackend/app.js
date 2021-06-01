@@ -26,7 +26,7 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers',
         'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
     next();
 })
 
@@ -63,6 +63,29 @@ app.get('/api/assets', (req, res) => {
             });
         })
 });
+
+app.put('/api/assets', (req, res) => {
+    Asset.find({id: req.body.id}, assetSearch => {
+        console.log(assetSearch)
+        if (req.body.id === assetSearch.id) {
+            let updatedAsset = {
+                id: req.body.id,
+                assetName: req.body.assetName,
+                assetSymbol: req.body.assetSymbol,
+                amount: req.body.amount,
+                buyPrice: req.body.price,
+                currency: req.body.currency,
+                purchaseDate: req.body.date
+            }
+            Asset.updateOne(req.body._id, updatedAsset);
+        }
+    }).then((updatedAsset) => {
+        res.status(200).json({
+            message: 'Asset updated successfully!',
+            payload: updatedAsset
+        })
+    })
+})
 
 app.delete('/api/delete/:id', (req, res) => {
     Asset.deleteOne({_id: req.params.id}).then((done) => {
