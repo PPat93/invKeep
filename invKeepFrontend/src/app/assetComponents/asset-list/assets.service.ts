@@ -3,11 +3,12 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Injectable({providedIn: 'root'})
 export class AssetsService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   private assetsArray: AssetRecord[] = [];
@@ -35,13 +36,27 @@ export class AssetsService {
       })
   }
 
-  addAssets(assetItem: AssetRecord) {
+  addAsset(assetItem: AssetRecord) {
     this.http.post<{ message: string, assetId: string }>(`http://localhost:3000/api/assets`, (assetItem))
       .subscribe((responseData) => {
         // update  front asset id with db _id
         assetItem.id = responseData.assetId;
         this.assetsArray.push(assetItem);
         this.updateAssets.next([...this.assetsArray]);
+        this.router.navigate([`/`]).then(() => {
+          // placeholder
+        });
+      })
+  }
+
+  editAsset(assetItem: AssetRecord) {
+    this.http.put<{ message: string, assetId: string }>(`http://localhost:3000/api/assets/:id`, (assetItem))
+      .subscribe((responseData) => {
+        this.assetsArray.push(assetItem);
+        this.updateAssets.next([...this.assetsArray]);
+        this.router.navigate([`/`]).then(() => {
+          // placeholder
+        });
       })
   }
 
@@ -51,6 +66,10 @@ export class AssetsService {
       this.assetsArray = this.assetsArray.filter(asset => asset.id !== assetId);
       this.updateAssets.next([...this.assetsArray]);
     })
+  }
+
+  getSingleAsset(id: string) {
+    return {...this.assetsArray.find(as => as.id === id)};
   }
 
   getAssetsUpdateListener() {

@@ -2,15 +2,15 @@
   <mat-card-title>Asset list:</mat-card-title>
   <mat-divider></mat-divider>
   <div class="items" *ngIf="assetArray.length > 0">
-    <mat-expansion-panel hideToggle *ngFor="let oneRecord of assetArray">
-      <mat-expansion-panel-header (click)="panelExpanded=!panelExpanded">
+    <mat-expansion-panel #panel hideToggle="true" *ngFor="let oneRecord of assetArray">
+      <mat-expansion-panel-header>
         <mat-panel-title>
           <span>Asset full name:&nbsp;<b>{{ oneRecord.assetName }}</b></span>
         </mat-panel-title>
         <mat-panel-description class="description">
           <span>Asset symbol:&nbsp;<b class="symbol">{{ oneRecord.assetSymbol }}</b></span>
         </mat-panel-description>
-        <mat-icon *ngIf="panelExpanded else elseBlock" aria-hidden="false" aria-label="expand">expand_less</mat-icon>
+        <mat-icon *ngIf="panel.expanded else elseBlock" aria-hidden="false" aria-label="expand">expand_less</mat-icon>
         <ng-template #elseBlock>
           <mat-icon aria-hidden="false" aria-label="collapse">expand_more</mat-icon>
         </ng-template>
@@ -28,7 +28,7 @@
         </tr>
       </table>
       <mat-action-row>
-        <button mat-stroked-button color="primary" (click)="editAsset()">Edit</button>
+        <a mat-stroked-button color="primary" [routerLink]="['edit', oneRecord.id]">Edit</a>
         <button mat-stroked-button color="warn" (click)="deleteAsset(oneRecord.id)">Delete</button>
       </mat-action-row>
     </mat-expansion-panel>

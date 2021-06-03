@@ -6,7 +6,8 @@ import {HomePageComponent} from "./home-page/home-page.component";
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
-  {path: 'create', component: AssetCreateComponent}
+  {path: 'create', component: AssetCreateComponent},
+  {path: 'edit/:assetId', component: AssetCreateComponent}
 ]
 
 @NgModule({

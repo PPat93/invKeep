@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AssetRecord} from "../../shared/shared";
 import {AssetsService} from "./assets.service";
 import {Subscription} from "rxjs";
+import {AssetCreateComponent} from "../asset-create/asset-create.component";
 
 @Component({
   selector: 'app-asset-list',
@@ -12,7 +13,6 @@ import {Subscription} from "rxjs";
 export class AssetListComponent implements OnInit, OnDestroy {
 
   assetArray: AssetRecord[] = [];
-  panelExpanded: boolean = false;
   private assetSub: Subscription;
 
   constructor(public AssetsService: AssetsService) {
@@ -24,10 +24,6 @@ export class AssetListComponent implements OnInit, OnDestroy {
       .subscribe((assetsSubscribed: AssetRecord[]) => {
         this.assetArray = assetsSubscribed;
       })
-  }
-
-  editAsset() {
-    // placeholder
   }
 
   deleteAsset(assetId: string) {
