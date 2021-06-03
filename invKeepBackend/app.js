@@ -64,22 +64,18 @@ app.get('/api/assets', (req, res) => {
         })
 });
 
-app.put('/api/assets', (req, res) => {
-    Asset.find({id: req.body.id}, assetSearch => {
-        console.log(assetSearch)
-        if (req.body.id === assetSearch.id) {
-            let updatedAsset = {
-                id: req.body.id,
-                assetName: req.body.assetName,
-                assetSymbol: req.body.assetSymbol,
-                amount: req.body.amount,
-                buyPrice: req.body.price,
-                currency: req.body.currency,
-                purchaseDate: req.body.date
-            }
-            Asset.updateOne(req.body._id, updatedAsset);
-        }
-    }).then((updatedAsset) => {
+app.put('/api/assets/:id', (req, res) => {
+    let updatedAsset = {
+        id: req.body.id,
+        assetName: req.body.assetName,
+        assetSymbol: req.body.assetSymbol,
+        amount: req.body.amount,
+        buyPrice: req.body.buyPrice,
+        currency: req.body.currency,
+        purchaseDate: req.body.purchaseDate
+    }
+    console.log(updatedAsset)
+    Asset.updateOne(req.body._id, updatedAsset).then((updatedAsset) => {
         res.status(200).json({
             message: 'Asset updated successfully!',
             payload: updatedAsset

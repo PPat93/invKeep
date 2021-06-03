@@ -31,7 +31,9 @@ export class AssetCreateComponent implements OnInit {
       if (paramMap.has(`assetId`)) {
         this.actionMode = CreateComponentMode.edit;
         this.assetId = paramMap.get(`assetId`)
-        this.editedAsset = this.AssetsService.getSingeAsset(this.assetId);
+        this.editedAsset = this.AssetsService.getSingleAsset(this.assetId);
+        this.editedAsset.purchaseDate = new Date(this.editedAsset.purchaseDate)
+        console.log(this.editedAsset)
       } else {
         this.actionMode = CreateComponentMode.create;
         this.assetId = null;
@@ -59,13 +61,13 @@ export class AssetCreateComponent implements OnInit {
       switch (this.actionMode) {
         case CreateComponentMode.create:
           this.AssetsService.addAsset(placeholderAsset);
+          assetForm.resetForm();
           break;
         case CreateComponentMode.edit:
           this.AssetsService.editAsset(placeholderAsset);
           break;
         default:
       }
-      assetForm.resetForm();
     }
   }
 
