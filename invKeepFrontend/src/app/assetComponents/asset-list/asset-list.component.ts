@@ -13,7 +13,6 @@ import {AssetCreateComponent} from "../asset-create/asset-create.component";
 export class AssetListComponent implements OnInit, OnDestroy {
 
   assetArray: AssetRecord[] = [];
-  panelExpanded: boolean = false;
   private assetSub: Subscription;
 
   constructor(public AssetsService: AssetsService) {

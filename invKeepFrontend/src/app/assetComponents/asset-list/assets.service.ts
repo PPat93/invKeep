@@ -43,6 +43,9 @@ export class AssetsService {
         assetItem.id = responseData.assetId;
         this.assetsArray.push(assetItem);
         this.updateAssets.next([...this.assetsArray]);
+        this.router.navigate([`/`]).then(() => {
+          // placeholder
+        });
       })
   }
 

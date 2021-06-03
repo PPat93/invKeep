@@ -43,10 +43,13 @@ app.post('/api/assets', (req, res) => {
     })
     singleAsset.save()
         .then((addedAsset) => {
-            console.log('\x1b[32m', 'Asset added correctly!');
-            res.status(201).json({
-                message: 'Asset added successfully!',
-                assetId: addedAsset._id
+            singleAsset.id = singleAsset._id;
+            singleAsset.updateOne({id: singleAsset.id}).then(() => {
+                console.log('\x1b[32m', 'Asset added correctly!');
+                res.status(201).json({
+                    message: 'Asset added successfully!',
+                    assetId: addedAsset._id
+                })
             })
         })
         .catch(($e) => {
@@ -65,7 +68,7 @@ app.get('/api/assets', (req, res) => {
 });
 
 app.put('/api/assets/:id', (req, res) => {
-    let updatedAsset = {
+    const updatedAsset = {
         id: req.body.id,
         assetName: req.body.assetName,
         assetSymbol: req.body.assetSymbol,
