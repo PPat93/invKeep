@@ -3,7 +3,8 @@
 An application on which I am enhancing my coding skills. \
 Angular with TypeScript + Node.js with Express.js + MongoDB.
 
-![invKeepMain](https://user-images.githubusercontent.com/45639693/118302350-6251c000-b4e4-11eb-8b01-8264a4a7f1e2.PNG)
+![invKeepMain](https://user-images.githubusercontent.com/45639693/120713631-7b85d500-c4c2-11eb-9eba-e456e93fca1e.PNG)
+
 ![invKeepCreate](https://user-images.githubusercontent.com/45639693/118302344-6087fc80-b4e4-11eb-8434-c57f3890f355.PNG)
 
 ## Before everything
