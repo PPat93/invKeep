@@ -14,7 +14,7 @@ export class AssetCreateComponent implements OnInit {
 
   actionMode: CreateComponentMode;
   assetId: string;
-  editedAsset: AssetRecord;
+  usedAsset: AssetRecord;
 
   validationPatterns = {
     fullName: `[a-zA-Z0-9,._ ()\-]{2,30}$`,
@@ -31,11 +31,19 @@ export class AssetCreateComponent implements OnInit {
       if (paramMap.has(`assetId`)) {
         this.actionMode = CreateComponentMode.edit;
         this.assetId = paramMap.get(`assetId`)
-        this.editedAsset = this.AssetsService.getSingleAsset(this.assetId);
-        this.editedAsset.purchaseDate = new Date(this.editedAsset.purchaseDate)
-        console.log(this.editedAsset)
+        this.usedAsset = this.AssetsService.getSingleAsset(this.assetId);
+        this.usedAsset.purchaseDate = new Date(this.usedAsset.purchaseDate)
       } else {
         this.actionMode = CreateComponentMode.create;
+        this.usedAsset = {
+          id: ``,
+          assetName: ``,
+          assetSymbol: ``,
+          amount: null,
+          buyPrice: null,
+          currency: ``,
+          purchaseDate: ``
+        };
         this.assetId = null;
       }
     });
