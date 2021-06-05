@@ -17,16 +17,18 @@ import {AppRoutingModule} from "./app-routing.module";
 
 import {AppComponent} from './app.component';
 import {AssetCreateComponent} from './assetComponents/asset-create/asset-create.component';
+import {AssetDetailsComponent} from './assetComponents/asset-details/asset-details.component';
 import {AssetListComponent} from './assetComponents/asset-list/asset-list.component';
 import {MenuComponent} from './menu/menu.component';
 import {MessageDisplayComponent} from './message-display/message-display.component';
 import {ToolbarMenuComponent} from './toolbar/toolbar.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import {HomePageComponent} from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AssetCreateComponent,
+    AssetDetailsComponent,
     AssetListComponent,
     MenuComponent,
     MessageDisplayComponent,
