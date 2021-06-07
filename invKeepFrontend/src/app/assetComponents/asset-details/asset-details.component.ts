@@ -9,18 +9,18 @@ import {AssetRecord} from "../../shared/shared";
   styleUrls: ['asset-details.component.scss']
 })
 
-export class AssetDetailsComponent implements OnInit{
+export class AssetDetailsComponent implements OnInit {
 
   assetId: string;
   assetMainDetails: AssetRecord;
 
-  constructor(public AssetService: AssetsService, public route: ActivatedRoute){}
+  constructor(public AssetService: AssetsService, public route: ActivatedRoute) {
+  }
 
-  ngOnInit(){
+  ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      this.assetId = paramMap.get(this.assetId);
+      this.assetId = paramMap.get(`assetId`);
       this.assetMainDetails = this.AssetService.getSingleAsset(this.assetId);
     })
   }
-
 }

@@ -1,4 +1,22 @@
 <mat-card>
-<mat-card-title>
-</mat-card-title>
+  <mat-card-title>
+    {{assetMainDetails.assetName}}
+  </mat-card-title>
+  <mat-divider></mat-divider>
+  <br>
+  <mat-card-subtitle>
+    Main details
+  </mat-card-subtitle>
+  <mat-card-content>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-stroked-button color="primary" [routerLink]="['/edit', assetId]">Edit</a>
+  </mat-card-actions>
+  <mat-divider></mat-divider>
+  <br>
+  <mat-card-subtitle>
+    Stock ratios
+  </mat-card-subtitle>
+  <mat-card-content>
+  </mat-card-content>
 </mat-card>
