@@ -1,20 +1,27 @@
 <mat-card>
   <mat-card-title>
-    {{assetMainDetails.assetName}}
+    <span id="name">{{assetMainDetails.assetName}}</span>
+    <span id="symbol">{{assetMainDetails.assetSymbol}}</span>
   </mat-card-title>
   <mat-divider></mat-divider>
   <br>
-  <mat-card-subtitle>
+  <mat-card-subtitle class="subtitle">
     Main details
   </mat-card-subtitle>
-  <mat-card-content>
+  <mat-card-content class="primary-details">
+    <div id="amount">
+      Owned quantity: {{assetMainDetails.amount}}&nbsp;{{assetMainDetails.currency}}
+    </div>
+    <div id="price">
+      Purchase price: {{assetMainDetails.buyPrice}}
+    </div>
   </mat-card-content>
   <mat-card-actions>
-    <a mat-stroked-button color="primary" [routerLink]="['/edit', assetId]">Edit</a>
+    <a class="edit" mat-stroked-button color="primary" [routerLink]="['/edit', assetId]">Edit</a>
   </mat-card-actions>
   <mat-divider></mat-divider>
   <br>
-  <mat-card-subtitle>
+  <mat-card-subtitle class="subtitle">
     Stock ratios
   </mat-card-subtitle>
   <mat-card-content>

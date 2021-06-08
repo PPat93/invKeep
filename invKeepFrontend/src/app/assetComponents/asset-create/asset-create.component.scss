@@ -30,11 +30,11 @@ mat-card button {
 }
 
 .card-title {
-  font-size: small;
   color: black;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.create-buttons {
+.create-buttons button {
   display: inline-block;
+  font-size: large;
 }
