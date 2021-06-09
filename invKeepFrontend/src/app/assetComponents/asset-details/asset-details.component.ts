@@ -17,10 +17,19 @@ export class AssetDetailsComponent implements OnInit {
   constructor(public AssetService: AssetsService, public route: ActivatedRoute) {
   }
 
+
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       this.assetId = paramMap.get(`assetId`);
       this.assetMainDetails = this.AssetService.getSingleAsset(this.assetId);
     })
+  }
+
+  assetObjKeys(){
+    return Object.keys(this.assetMainDetails);
+  }
+
+  assetObjValues(){
+    return Object.values(this.assetMainDetails);
   }
 }

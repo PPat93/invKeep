@@ -11,7 +11,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
-import {MatSelectModule} from '@angular/material/select'
+import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from "@angular/material/table";
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {AppRoutingModule} from "./app-routing.module";
 
@@ -50,6 +51,7 @@ import {HomePageComponent} from './home-page/home-page.component';
     MatInputModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatTableModule,
     MatToolbarModule,
     AppRoutingModule
   ],

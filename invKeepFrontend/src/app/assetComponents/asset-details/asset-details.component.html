@@ -9,12 +9,24 @@
     Main details
   </mat-card-subtitle>
   <mat-card-content class="primary-details">
-    <div id="amount">
-      Owned quantity: {{assetMainDetails.amount}}&nbsp;{{assetMainDetails.currency}}
-    </div>
-    <div id="price">
-      Purchase price: {{assetMainDetails.buyPrice}}
-    </div>
+    <table>
+      <tr id="amount">
+        <td> Owned quantity:</td>
+        <td class="primary-values">{{assetMainDetails.amount}}</td>
+      </tr>
+      <tr id="price">
+        <td>Price per share:</td>
+        <td class="primary-values">{{assetMainDetails.buyPrice}}&nbsp;{{assetMainDetails.currency}}</td>
+      </tr>
+      <tr id="date">
+        <td>Purchase date:</td>
+        <td class="primary-values">{{assetMainDetails.purchaseDate}}</td>
+      </tr>
+      <tr id="total-price">
+        <td>Total paid price:</td>
+        <td class="primary-values">{{assetMainDetails.buyPrice * assetMainDetails.amount}}&nbsp;{{assetMainDetails.currency}}</td>
+      </tr>
+    </table>
   </mat-card-content>
   <mat-card-actions>
     <a class="edit" mat-stroked-button color="primary" [routerLink]="['/edit', assetId]">Edit</a>

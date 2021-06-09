@@ -17,13 +17,13 @@ mat-card-actions {
   height: 20px;
 }
 
-.edit{
+.edit {
   display: inline-block;
   float: right;
   font-size: large;
 }
 
-#symbol{
+#symbol {
   display: inline-block;
   float: right;
   color: grey;
@@ -31,4 +31,8 @@ mat-card-actions {
 
 .primary-details {
   size: 20px;
+}
+
+.primary-values {
+  font-weight: bold;
 }
