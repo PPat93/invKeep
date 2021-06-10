@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const assetIndicatorsSchema = new mongoose.Schema({
+const assetRatioSchema = new mongoose.Schema({
     assetId: {
         type: String
     },
@@ -48,4 +48,4 @@ const assetIndicatorsSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('assetIndicatorsSchema', assetIndicatorsSchema);
+module.exports = mongoose.model('assetRatioSchema', assetRatioSchema);

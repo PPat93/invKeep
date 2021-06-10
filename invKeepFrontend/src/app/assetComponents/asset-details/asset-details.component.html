@@ -18,13 +18,13 @@
         <td>Price per share:</td>
         <td class="primary-values">{{assetMainDetails.buyPrice}}&nbsp;{{assetMainDetails.currency}}</td>
       </tr>
+      <tr id="total-price">
+        <td>Total paid price:</td>
+        <td class="primary-values">{{stockTotalCost()}}&nbsp;{{assetMainDetails.currency}}</td>
+      </tr>
       <tr id="date">
         <td>Purchase date:</td>
         <td class="primary-values">{{assetMainDetails.purchaseDate}}</td>
-      </tr>
-      <tr id="total-price">
-        <td>Total paid price:</td>
-        <td class="primary-values">{{assetMainDetails.buyPrice * assetMainDetails.amount}}&nbsp;{{assetMainDetails.currency}}</td>
       </tr>
     </table>
   </mat-card-content>
@@ -37,5 +37,61 @@
     Stock ratios
   </mat-card-subtitle>
   <mat-card-content>
+    <ng-form ngForm #ratios class="asset-ratios-table">
+      <table mat-table [dataSource]="detailedAssetRatios">
+        <ng-container matColumnDef="parameterName">
+          <th mat-header-cell *matHeaderCellDef>Parameter</th>
+          <td mat-cell *matCellDef="let ratio"> {{ratio.parameterName}}</td>
+        </ng-container>
+        <ng-container matColumnDef="valueNum">
+          <th mat-header-cell *matHeaderCellDef>Value</th>
+          <td mat-cell *matCellDef="let ratio">{{ratio.valueNum}}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="ratiosColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: ratiosColumns"></tr>
+        <tr>
+          <td>EPS</td>
+        </tr>
+        <tr>
+          <td>P/E</td>
+        </tr>
+        <tr>
+          <td>PEG</td>
+        </tr>
+        <tr>
+          <td>CAPE</td>
+        </tr>
+        <tr>
+          <td>P/B</td>
+        </tr>
+        <tr>
+          <td>D/E</td>
+        </tr>
+        <tr>
+          <td>ROE</td>
+        </tr>
+        <tr>
+          <td>ROCE</td>
+        </tr>
+        <tr>
+          <td>Dividend Yield</td>
+        </tr>
+        <tr>
+          <td>DPR</td>
+        </tr>
+        <tr>
+          <td>P/S</td>
+        </tr>
+        <tr>
+          <td>Graham Number</td>
+        </tr>
+        <tr>
+          <td>EV/EBIT</td>
+        </tr>
+        <tr>
+          <td>EV/EBITDA</td>
+        </tr>
+      </table>
+    </ng-form>
   </mat-card-content>
 </mat-card>

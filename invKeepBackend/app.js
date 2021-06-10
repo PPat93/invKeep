@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const Asset = require('./models/asset');
+const AssetDetails = require('./models/assetRatio');
 const mongoose = require('mongoose');
 
 const app = express();
@@ -92,6 +93,10 @@ app.delete('/api/delete/:id', (req, res) => {
         .catch($e => {
             console.log('Error with asset deletion. Error: ' + $e);
         })
+})
+
+app.get('/api/detailed-ratios/:id', (req, res) => {
+    AssetDetails.findById(req.body.id)
 })
 
 module.exports = app;

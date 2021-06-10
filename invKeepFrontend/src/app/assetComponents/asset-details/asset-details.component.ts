@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AssetsService} from "../asset-list/assets.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
-import {AssetRecord} from "../../shared/shared";
+import {AssetRecord, DetailedAssetRatios} from "../../shared/shared";
 
 @Component({
   selector: 'app-asset-details',
@@ -13,10 +13,11 @@ export class AssetDetailsComponent implements OnInit {
 
   assetId: string;
   assetMainDetails: AssetRecord;
+  detailedAssetRatios = [{parameterName: `CheckPar`, valueNum: 12}];
+  ratiosColumns: string[] = [`parameterName`, `valueNum`];
 
   constructor(public AssetService: AssetsService, public route: ActivatedRoute) {
   }
-
 
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -25,11 +26,17 @@ export class AssetDetailsComponent implements OnInit {
     })
   }
 
-  assetObjKeys(){
-    return Object.keys(this.assetMainDetails);
+  stockTotalCost() {
+    const totalPrice: string = (this.assetMainDetails.buyPrice * this.assetMainDetails.amount).toFixed(2);
+    return totalPrice;
   }
 
-  assetObjValues(){
-    return Object.values(this.assetMainDetails);
+  getDetailedRatios() {
+
+  }
+
+  saveDetailedRatios(detailedRatios) {
+    // this.detailedAssetRatios.id = this.assetMainDetails.id;
+
   }
 }
