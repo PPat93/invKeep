@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card xmlns="http://www.w3.org/1999/html">
   <mat-card-title>
     <span id="name">{{assetMainDetails.assetName}}</span>
     <span id="symbol">{{assetMainDetails.assetSymbol}}</span>
@@ -37,61 +37,69 @@
     Stock ratios
   </mat-card-subtitle>
   <mat-card-content>
-    <ng-form ngForm #ratios class="asset-ratios-table">
+    <ng-form (submit)="saveDetailedRatios(ratiosInput)" ngForm #ratiosInput class="asset-ratios-table">
       <table mat-table [dataSource]="detailedAssetRatios">
         <ng-container matColumnDef="parameterName">
           <th mat-header-cell *matHeaderCellDef>Parameter</th>
-          <td mat-cell *matCellDef="let ratio"> {{ratio.parameterName}}</td>
+          <td class="parameter-name" mat-cell *matCellDef="let ratio"> {{ratio.parameterName}}</td>
         </ng-container>
         <ng-container matColumnDef="valueNum">
           <th mat-header-cell *matHeaderCellDef>Value</th>
-          <td mat-cell *matCellDef="let ratio">{{ratio.valueNum}}</td>
+          <td mat-cell *matCellDef="let ratio">
+            <mat-form-field class="parameter-value">
+              <input [ngModel]="ratio.valueNum" name="ratio.parameterName"matInput value="{{ratio.valueNum}}">
+            </mat-form-field>
+          </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="ratiosColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: ratiosColumns"></tr>
-        <tr>
-          <td>EPS</td>
-        </tr>
-        <tr>
-          <td>P/E</td>
-        </tr>
-        <tr>
-          <td>PEG</td>
-        </tr>
-        <tr>
-          <td>CAPE</td>
-        </tr>
-        <tr>
-          <td>P/B</td>
-        </tr>
-        <tr>
-          <td>D/E</td>
-        </tr>
-        <tr>
-          <td>ROE</td>
-        </tr>
-        <tr>
-          <td>ROCE</td>
-        </tr>
-        <tr>
-          <td>Dividend Yield</td>
-        </tr>
-        <tr>
-          <td>DPR</td>
-        </tr>
-        <tr>
-          <td>P/S</td>
-        </tr>
-        <tr>
-          <td>Graham Number</td>
-        </tr>
-        <tr>
-          <td>EV/EBIT</td>
-        </tr>
-        <tr>
-          <td>EV/EBITDA</td>
-        </tr>
       </table>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Save</button>
+      </mat-card-actions>
     </ng-form>
   </mat-card-content>
 </mat-card>
+
+<!--<&#45;&#45; <tr>-->
+<!--  <td>EPS</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--  <td>P/E</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--  <td>PEG</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--  <td>CAPE</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--  <td>P/B</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--  <td>D/E</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--  <td>ROE</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--  <td>ROCE</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--  <td>Dividend Yield</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--  <td>DPR</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--  <td>P/S</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--  <td>Graham Number</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--  <td>EV/EBIT</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--  <td>EV/EBITDA</td>-->
+<!--</tr> -->

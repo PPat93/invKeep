@@ -17,7 +17,7 @@ mat-card-actions {
   height: 20px;
 }
 
-.edit {
+.edit, button {
   display: inline-block;
   float: right;
   margin-right: 10px !important;
@@ -36,4 +36,15 @@ mat-card-actions {
 
 .primary-values {
   font-weight: bold;
+}
+
+.parameter-name {
+  width: 100px;
+}
+.parameter-value {
+  width: 100px !important;
+}
+
+tr:hover {
+  background-color: #eeeaf1;
 }

@@ -13,7 +13,10 @@ export class AssetDetailsComponent implements OnInit {
 
   assetId: string;
   assetMainDetails: AssetRecord;
-  detailedAssetRatios = [{parameterName: `CheckPar`, valueNum: 12}];
+  detailedAssetRatios = [{parameterName: `CheckPar`, valueNum: 12},
+    {parameterName: `CheckPar`, valueNum: 12},
+    {parameterName: `CheckPar`, valueNum: 12}
+  ];
   ratiosColumns: string[] = [`parameterName`, `valueNum`];
 
   constructor(public AssetService: AssetsService, public route: ActivatedRoute) {
@@ -36,7 +39,7 @@ export class AssetDetailsComponent implements OnInit {
   }
 
   saveDetailedRatios(detailedRatios) {
-    // this.detailedAssetRatios.id = this.assetMainDetails.id;
+    console.log(detailedRatios)
 
   }
 }
