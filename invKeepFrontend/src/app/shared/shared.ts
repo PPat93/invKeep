@@ -12,18 +12,18 @@ export interface DetailedAssetRatios{
   id: string,
   EPSRatio: number,
   PERatio: number,
-  PEGRatio: number,
-  CAPERatio: number,
-  PBRatio: number,
-  DERatio: number,
-  ROE: number,
-  ROCERatio: number,
-  DividendYield: number,
-  DPRRatio: number,
-  PSRatio: number,
-  GrahamNum: number,
-  EVtoEBITRatio: number,
-  EVtoEBITDA: number
+  // PEGRatio: number,
+  // CAPERatio: number,
+  // PBRatio: number,
+  // DERatio: number,
+  // ROE: number,
+  // ROCERatio: number,
+  // DividendYield: number,
+  // DPRRatio: number,
+  // PSRatio: number,
+  // GrahamNum: number,
+  // EVtoEBITRatio: number,
+  // EVtoEBITDA: number
 }
 
 export let welcomeMsg = {

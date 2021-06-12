@@ -9,9 +9,9 @@ export class AssetRatiosService {
   }
 
   getDetailedRatios(assetId){
-    this.http.get<{message: string, payload: AssetRatiosService}>('http://localhost:3000/api/detailed-ratios/:id', assetId)
-      .subscribe((responseData) => {
-      responseData.payload
-    })
+    // this.http.get<{message: string, payload: AssetRatiosService}>('http://localhost:3000/api/detailed-ratios/:id', assetId)
+    //   .subscribe((responseData) => {
+    //   responseData.payload
+    // })
   }
 }
