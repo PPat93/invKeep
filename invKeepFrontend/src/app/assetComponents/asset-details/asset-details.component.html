@@ -38,7 +38,7 @@
   </mat-card-subtitle>
   <mat-card-content>
     <form (submit)="saveDetailedRatios(ratiosInput)" ngForm #ratiosInput="ngForm" class="asset-ratios-table">
-      <table mat-table [dataSource]="detailedAssetRatios">
+      <table mat-table [dataSource]="detailedAssetRatios.ratiosArray">
         <ng-container matColumnDef="parameterName">
           <th mat-header-cell *matHeaderCellDef>Parameter</th>
           <td class="parameter-name" mat-cell *matCellDef="let ratio"> {{ratio.parameterName}}</td>

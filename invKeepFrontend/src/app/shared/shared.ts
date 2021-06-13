@@ -8,22 +8,24 @@ export interface AssetRecord {
   purchaseDate: Date | string
 }
 
-export interface DetailedAssetRatios{
+export interface DetailedAssetRatios {
   id: string,
-  EPSRatio: number,
-  PERatio: number,
-  // PEGRatio: number,
-  // CAPERatio: number,
-  // PBRatio: number,
-  // DERatio: number,
-  // ROE: number,
-  // ROCERatio: number,
-  // DividendYield: number,
-  // DPRRatio: number,
-  // PSRatio: number,
-  // GrahamNum: number,
-  // EVtoEBITRatio: number,
-  // EVtoEBITDA: number
+  ratiosArray: [
+    { EPSRatio: number },
+    { PERatio: number },
+    {PEGRatio: number},
+    // {CAPERatio: number},
+    // {PBRatio: number},
+    // {DERatio: number},
+    // {ROE: number},
+    // {ROCERatio: number},
+    // {DividendYield: number},
+    // {DPRRatio: number},
+    // {PSRatio: number},
+    // {GrahamNum: number},
+    // {EVtoEBITRatio: number},
+    // {EVtoEBITDA: number}
+  ]
 }
 
 export let welcomeMsg = {

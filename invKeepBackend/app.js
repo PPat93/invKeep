@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const Asset = require('./models/asset');
-const AssetDetails = require('./models/assetRatio');
+const AssetRatio = require('./models/assetRatio');
 const mongoose = require('mongoose');
 
 const app = express();
@@ -96,7 +96,33 @@ app.delete('/api/delete/:id', (req, res) => {
 })
 
 app.get('/api/detailed-ratios/:id', (req, res) => {
-    AssetDetails.findById(req.body.id)
+    AssetRatio.findById(req.body.id).then((detailedRatios) => {
+        res.status(200).json({
+            message: 'Asset ratios retrieved successfully!',
+            payload: detailedRatios
+        })
+    })
+        .catch($e => {
+            console.log('Error while detailed ratios get. Error: ' + $e);
+        })
 })
+
+app.put('/api/detailed-ratios/:id', (req, res) => {
+    console.log('mam dane' + req.body)
+    AssetRatio.findById(req.body.id).then(() => {
+        console.log('updatuje')
+        AssetRatio.updateOne({id: req.body.id}, req.body);
+    }).catch($e => {
+        console.log('weszl do savu')
+        req.body.save().then(resData => {
+            res.status(200).json({
+                message: 'Ratios updated correctly!',
+                payload: resData
+            })
+        }).catch($err => {
+            console.log('Error with detailed ratios save. Error: ' + $e)
+            })
+        })
+    })
 
 module.exports = app;

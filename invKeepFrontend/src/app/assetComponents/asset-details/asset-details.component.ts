@@ -3,6 +3,7 @@ import {AssetsService} from "../asset-list/assets.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {AssetRecord, DetailedAssetRatios} from "../../shared/shared";
 import {NgForm} from "@angular/forms";
+import {AssetRatiosService} from "./asset-ratios.service";
 
 @Component({
   selector: 'app-asset-details',
@@ -14,13 +15,17 @@ export class AssetDetailsComponent implements OnInit {
 
   assetId: string;
   assetMainDetails: AssetRecord;
-  detailedAssetRatios = [{parameterName: `CheckPar1`, valueNum: 1},
-    {parameterName: `CheckPar5`, valueNum: 2},
-    {parameterName: `CheckPar3`, valueNum: 12}
-  ];
+  detailedAssetRatios = {
+    id: ``,
+    ratiosArray: [
+      {parameterName: `EPSRatio`, valueNum: 1},
+      {parameterName: `PERatio`, valueNum: 2},
+      {parameterName: `PEGRatio`, valueNum: 12}
+    ]
+  }
   ratiosColumns: string[] = [`parameterName`, `valueNum`];
 
-  constructor(public AssetService: AssetsService, public route: ActivatedRoute) {
+  constructor(public AssetService: AssetsService, public AssetRatiosService: AssetRatiosService, public route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -48,16 +53,13 @@ export class AssetDetailsComponent implements OnInit {
   }
 
   saveDetailedRatios(detailedRatios: NgForm) {
-    for (let ratio in this.detailedAssetRatios) {
+    for (let ratio in this.detailedAssetRatios.ratiosArray) {
       for (let newRatio in detailedRatios.form.value) {
-        if (this.detailedAssetRatios[ratio].parameterName === newRatio)
-          this.detailedAssetRatios[ratio].valueNum = Number(detailedRatios.form.value[newRatio]);
+        if (this.detailedAssetRatios.ratiosArray[ratio].parameterName === newRatio)
+          this.detailedAssetRatios.ratiosArray[ratio].valueNum = Number(detailedRatios.form.value[newRatio]);
       }
     }
-    console.log(this.detailedAssetRatios)
-      // [{id: `3a`,parameterName: `CheckPar3`, valueNum: 12}]
-      // this.detailedAssetRatios = {
-      //
-      // }
-    }
+    this.detailedAssetRatios.id = this.assetId;
+    this.AssetRatiosService.saveDetailedRatios(this.assetId, this.detailedAssetRatios);
   }
+}

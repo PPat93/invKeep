@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 
-const assetRatioSchema = new mongoose.Schema({
-    assetId: {
-        type: String
-    },
+const subDetails = new mongoose.Schema({
     EPSRatio: {
         type: Number
     },
@@ -13,39 +10,46 @@ const assetRatioSchema = new mongoose.Schema({
     PEGRatio: {
         type: Number
     },
-    CAPERatio: {
-        type: Number
+    // CAPERatio: {
+    //     type: Number
+    // },
+    // PBRatio: {
+    //     type: Number
+    // },
+    // DERatio: {
+    //     type: Number
+    // },
+    // ROE: {
+    //     type: Number
+    // },
+    // ROCERatio: {
+    //     type: Number
+    // },
+    // DividendYield: {
+    //     type: Number
+    // },
+    // DPRRatio: {
+    //     type: Number
+    // },
+    // PSRatio: {
+    //     type: Number
+    // },
+    // GrahamNum: {
+    //     type: Number
+    // },
+    // EVtoEBITRatio: {
+    //     type: Number
+    // },
+    // EVtoEBITDA: {
+    //     type: Number
+    // }
+});
+
+const assetRatioSchema = new mongoose.Schema({
+    assetId: {
+        type: String
     },
-    PBRatio: {
-        type: Number
-    },
-    DERatio: {
-        type: Number
-    },
-    ROE: {
-        type: Number
-    },
-    ROCERatio: {
-        type: Number
-    },
-    DividendYield: {
-        type: Number
-    },
-    DPRRatio: {
-        type: Number
-    },
-    PSRatio: {
-        type: Number
-    },
-    GrahamNum: {
-        type: Number
-    },
-    EVtoEBITRatio: {
-        type: Number
-    },
-    EVtoEBITDA: {
-        type: Number
-    }
+    ratiosArray: [subDetails],
 });
 
 module.exports = mongoose.model('assetRatioSchema', assetRatioSchema);
