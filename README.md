@@ -38,7 +38,8 @@ Above steps is enough to run the app - create and load assets.
 
 - Create database `invKeepDatabase`.
 - Inside created database - create `assets` collection.
-- Import file from `invKeepDatabase` repository folder to previously created collection
+- Inside created database - create `assetRatios` collection.
+- Import files from `invKeepDatabase` repository folder to previously created collections
 
 After invKeep main page refresh, all imported assets should be displayed.
 
