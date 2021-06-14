@@ -1,0 +1,461 @@
+[{
+  "_id": {
+    "$oid": "60c7c631befdd32674b973e6"
+  },
+  "ratiosArray": [
+    {
+      "_id": {
+        "$oid": "60c7c631befdd32674b973e7"
+      },
+      "EPSRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c631befdd32674b973e8"
+      },
+      "PERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c631befdd32674b973e9"
+      },
+      "PEGRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c631befdd32674b973ea"
+      },
+      "CAPERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c631befdd32674b973eb"
+      },
+      "PBRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c631befdd32674b973ec"
+      },
+      "DERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c631befdd32674b973ed"
+      },
+      "ROE": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c631befdd32674b973ee"
+      },
+      "ROCERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c631befdd32674b973ef"
+      },
+      "DividendYield": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c631befdd32674b973f0"
+      },
+      "DPRRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c631befdd32674b973f1"
+      },
+      "PSRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c631befdd32674b973f2"
+      },
+      "GrahamNum": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c631befdd32674b973f3"
+      },
+      "EVtoEBITRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c631befdd32674b973f4"
+      },
+      "EVtoEBITDA": 0
+    }
+  ],
+  "assetId": "60c7c631befdd32674b973e5",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60c7c649befdd32674b973f6"
+  },
+  "ratiosArray": [
+    {
+      "_id": {
+        "$oid": "60c7c649befdd32674b973f7"
+      },
+      "EPSRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c649befdd32674b973f8"
+      },
+      "PERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c649befdd32674b973f9"
+      },
+      "PEGRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c649befdd32674b973fa"
+      },
+      "CAPERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c649befdd32674b973fb"
+      },
+      "PBRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c649befdd32674b973fc"
+      },
+      "DERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c649befdd32674b973fd"
+      },
+      "ROE": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c649befdd32674b973fe"
+      },
+      "ROCERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c649befdd32674b973ff"
+      },
+      "DividendYield": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c649befdd32674b97400"
+      },
+      "DPRRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c649befdd32674b97401"
+      },
+      "PSRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c649befdd32674b97402"
+      },
+      "GrahamNum": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c649befdd32674b97403"
+      },
+      "EVtoEBITRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c649befdd32674b97404"
+      },
+      "EVtoEBITDA": 0
+    }
+  ],
+  "assetId": "60c7c649befdd32674b973f5",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60c7c664befdd32674b97406"
+  },
+  "ratiosArray": [
+    {
+      "_id": {
+        "$oid": "60c7c664befdd32674b97407"
+      },
+      "EPSRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c664befdd32674b97408"
+      },
+      "PERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c664befdd32674b97409"
+      },
+      "PEGRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c664befdd32674b9740a"
+      },
+      "CAPERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c664befdd32674b9740b"
+      },
+      "PBRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c664befdd32674b9740c"
+      },
+      "DERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c664befdd32674b9740d"
+      },
+      "ROE": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c664befdd32674b9740e"
+      },
+      "ROCERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c664befdd32674b9740f"
+      },
+      "DividendYield": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c664befdd32674b97410"
+      },
+      "DPRRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c664befdd32674b97411"
+      },
+      "PSRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c664befdd32674b97412"
+      },
+      "GrahamNum": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c664befdd32674b97413"
+      },
+      "EVtoEBITRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c664befdd32674b97414"
+      },
+      "EVtoEBITDA": 0
+    }
+  ],
+  "assetId": "60c7c664befdd32674b97405",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60c7c681befdd32674b97416"
+  },
+  "ratiosArray": [
+    {
+      "_id": {
+        "$oid": "60c7c681befdd32674b97417"
+      },
+      "EPSRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c681befdd32674b97418"
+      },
+      "PERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c681befdd32674b97419"
+      },
+      "PEGRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c681befdd32674b9741a"
+      },
+      "CAPERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c681befdd32674b9741b"
+      },
+      "PBRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c681befdd32674b9741c"
+      },
+      "DERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c681befdd32674b9741d"
+      },
+      "ROE": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c681befdd32674b9741e"
+      },
+      "ROCERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c681befdd32674b9741f"
+      },
+      "DividendYield": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c681befdd32674b97420"
+      },
+      "DPRRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c681befdd32674b97421"
+      },
+      "PSRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c681befdd32674b97422"
+      },
+      "GrahamNum": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c681befdd32674b97423"
+      },
+      "EVtoEBITRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c681befdd32674b97424"
+      },
+      "EVtoEBITDA": 0
+    }
+  ],
+  "assetId": "60c7c681befdd32674b97415",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60c7c696befdd32674b97426"
+  },
+  "ratiosArray": [
+    {
+      "_id": {
+        "$oid": "60c7c696befdd32674b97427"
+      },
+      "EPSRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c696befdd32674b97428"
+      },
+      "PERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c696befdd32674b97429"
+      },
+      "PEGRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c696befdd32674b9742a"
+      },
+      "CAPERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c696befdd32674b9742b"
+      },
+      "PBRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c696befdd32674b9742c"
+      },
+      "DERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c696befdd32674b9742d"
+      },
+      "ROE": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c696befdd32674b9742e"
+      },
+      "ROCERatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c696befdd32674b9742f"
+      },
+      "DividendYield": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c696befdd32674b97430"
+      },
+      "DPRRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c696befdd32674b97431"
+      },
+      "PSRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c696befdd32674b97432"
+      },
+      "GrahamNum": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c696befdd32674b97433"
+      },
+      "EVtoEBITRatio": 0
+    },
+    {
+      "_id": {
+        "$oid": "60c7c696befdd32674b97434"
+      },
+      "EVtoEBITDA": 0
+    }
+  ],
+  "assetId": "60c7c696befdd32674b97425",
+  "__v": 0
+}]

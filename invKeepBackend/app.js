@@ -41,11 +41,36 @@ app.post('/api/assets', (req, res) => {
         buyPrice: req.body.buyPrice,
         currency: req.body.currency,
         purchaseDate: req.body.purchaseDate
-    })
+    });
+
+    const assetRatiosPlaceholder = new AssetRatio({
+        id: '',
+        ratiosArray: [
+            {EPSRatio: 0},
+            {PERatio: 0},
+            {PEGRatio: 0},
+            {CAPERatio: 0},
+            {PBRatio: 0},
+            {DERatio: 0},
+            {ROE: 0},
+            {ROCERatio: 0},
+            {DividendYield: 0},
+            {DPRRatio: 0},
+            {PSRatio: 0},
+            {GrahamNum: 0},
+            {EVtoEBITRatio: 0},
+            {EVtoEBITDA: 0}
+        ]
+    });
+
     singleAsset.save()
         .then((addedAsset) => {
             singleAsset.id = singleAsset._id;
-            singleAsset.updateOne({id: singleAsset.id}).then(() => {
+            assetRatiosPlaceholder.assetId = singleAsset._id
+            assetRatiosPlaceholder.save().then((data) => {
+                console.log('\x1b[32m', 'Asset placeholder added correctly!' + assetRatiosPlaceholder);
+            })
+            singleAsset.updateOne({id: singleAsset.id}).then(() => { // update asset id with _id created while first save
                 console.log('\x1b[32m', 'Asset added correctly!');
                 res.status(201).json({
                     message: 'Asset added successfully!',
@@ -121,8 +146,8 @@ app.put('/api/detailed-ratios/:id', (req, res) => {
             })
         }).catch($err => {
             console.log('Error with detailed ratios save. Error: ' + $e)
-            })
         })
     })
+})
 
 module.exports = app;

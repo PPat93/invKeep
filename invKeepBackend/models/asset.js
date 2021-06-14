@@ -29,6 +29,6 @@ const assetSchema = new mongoose.Schema({
         type: String  // for some reason if Date type is added - instead 2021-05-14 there is 2021-05-13 displayed.
         // Probably when conversion from string to Date is performed - to be investigated.
     }
-});
+}, {collection: 'assets'});
 
 module.exports = mongoose.model('Asset', assetSchema);
