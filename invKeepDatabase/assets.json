@@ -1,61 +1,61 @@
 [{
   "_id": {
-    "$oid": "60c7c631befdd32674b973e5"
+    "$oid": "60c90702263f8d13a49bad06"
   },
-  "id": "60c7c631befdd32674b973e5",
+  "id": "60c90702263f8d13a49bad06",
   "assetName": "Rolls Royce",
   "assetSymbol": "RR.L",
   "amount": 86,
   "buyPrice": 1.12,
   "currency": "£",
-  "purchaseDate": "5/11/2021",
+  "purchaseDate": "6/2/2021",
   "__v": 0
 },{
   "_id": {
-    "$oid": "60c7c649befdd32674b973f5"
+    "$oid": "60c90736263f8d13a49bad16"
   },
-  "id": "60c7c649befdd32674b973f5",
-  "assetName": "Apple",
-  "assetSymbol": "AAPL",
-  "amount": 33,
-  "buyPrice": 358.15,
-  "currency": "$",
-  "purchaseDate": "11/17/2020",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "60c7c664befdd32674b97405"
-  },
-  "id": "60c7c664befdd32674b97405",
-  "assetName": "Nio",
-  "assetSymbol": "NIO",
-  "amount": 25,
-  "buyPrice": 12.58,
-  "currency": "¥",
-  "purchaseDate": "1/12/2021",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "60c7c681befdd32674b97415"
-  },
-  "id": "60c7c681befdd32674b97415",
+  "id": "60c90736263f8d13a49bad16",
   "assetName": "Comerica",
   "assetSymbol": "CMA",
   "amount": 12,
-  "buyPrice": 58.72,
+  "buyPrice": 58.46,
   "currency": "$",
+  "purchaseDate": "3/10/2021",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60c90773263f8d13a49bad26"
+  },
+  "id": "60c90773263f8d13a49bad26",
+  "assetName": "Apple",
+  "assetSymbol": "AAPL",
+  "amount": 10,
+  "buyPrice": 356.94,
+  "currency": "$",
+  "purchaseDate": "1/5/2021",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60c90783263f8d13a49bad36"
+  },
+  "id": "60c90783263f8d13a49bad36",
+  "assetName": "Nio",
+  "assetSymbol": "NIO",
+  "amount": 45,
+  "buyPrice": 18.54,
+  "currency": "¥",
   "purchaseDate": "-",
   "__v": 0
 },{
   "_id": {
-    "$oid": "60c7c696befdd32674b97425"
+    "$oid": "60c9079e263f8d13a49bad46"
   },
-  "id": "60c7c696befdd32674b97425",
+  "id": "60c9079e263f8d13a49bad46",
   "assetName": "Chesapeak Energy",
   "assetSymbol": "CHK",
-  "amount": 12,
-  "buyPrice": 0.56,
+  "amount": 45,
+  "buyPrice": 0.38,
   "currency": "$",
-  "purchaseDate": "4/13/2021",
+  "purchaseDate": "6/2/2021",
   "__v": 0
 }]

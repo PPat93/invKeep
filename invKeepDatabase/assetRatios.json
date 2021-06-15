@@ -1,461 +1,531 @@
 [{
   "_id": {
-    "$oid": "60c7c631befdd32674b973e6"
+    "$oid": "60c90702263f8d13a49bad07"
   },
   "ratiosArray": [
     {
       "_id": {
-        "$oid": "60c7c631befdd32674b973e7"
+        "$oid": "60c90702263f8d13a49bad08"
       },
-      "EPSRatio": 0
+      "parameterName": "EPSRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c631befdd32674b973e8"
+        "$oid": "60c90702263f8d13a49bad09"
       },
-      "PERatio": 0
+      "parameterName": "PERatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c631befdd32674b973e9"
+        "$oid": "60c90702263f8d13a49bad0a"
       },
-      "PEGRatio": 0
+      "parameterName": "PEGRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c631befdd32674b973ea"
+        "$oid": "60c90702263f8d13a49bad0b"
       },
-      "CAPERatio": 0
+      "parameterName": "CAPERatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c631befdd32674b973eb"
+        "$oid": "60c90702263f8d13a49bad0c"
       },
-      "PBRatio": 0
+      "parameterName": "PBRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c631befdd32674b973ec"
+        "$oid": "60c90702263f8d13a49bad0d"
       },
-      "DERatio": 0
+      "parameterName": "DERatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c631befdd32674b973ed"
+        "$oid": "60c90702263f8d13a49bad0e"
       },
-      "ROE": 0
+      "parameterName": "ROE",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c631befdd32674b973ee"
+        "$oid": "60c90702263f8d13a49bad0f"
       },
-      "ROCERatio": 0
+      "parameterName": "ROCERatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c631befdd32674b973ef"
+        "$oid": "60c90702263f8d13a49bad10"
       },
-      "DividendYield": 0
+      "parameterName": "DividendYield",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c631befdd32674b973f0"
+        "$oid": "60c90702263f8d13a49bad11"
       },
-      "DPRRatio": 0
+      "parameterName": "DPRRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c631befdd32674b973f1"
+        "$oid": "60c90702263f8d13a49bad12"
       },
-      "PSRatio": 0
+      "parameterName": "PSRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c631befdd32674b973f2"
+        "$oid": "60c90702263f8d13a49bad13"
       },
-      "GrahamNum": 0
+      "parameterName": "GrahamNum",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c631befdd32674b973f3"
+        "$oid": "60c90702263f8d13a49bad14"
       },
-      "EVtoEBITRatio": 0
+      "parameterName": "EVtoEBITRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c631befdd32674b973f4"
+        "$oid": "60c90702263f8d13a49bad15"
       },
-      "EVtoEBITDA": 0
+      "parameterName": "EVtoEBITDA",
+      "valueNum": 0
     }
   ],
-  "assetId": "60c7c631befdd32674b973e5",
+  "assetId": "60c90702263f8d13a49bad06",
   "__v": 0
 },{
   "_id": {
-    "$oid": "60c7c649befdd32674b973f6"
+    "$oid": "60c90736263f8d13a49bad17"
   },
   "ratiosArray": [
     {
       "_id": {
-        "$oid": "60c7c649befdd32674b973f7"
+        "$oid": "60c90736263f8d13a49bad18"
       },
-      "EPSRatio": 0
+      "parameterName": "EPSRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c649befdd32674b973f8"
+        "$oid": "60c90736263f8d13a49bad19"
       },
-      "PERatio": 0
+      "parameterName": "PERatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c649befdd32674b973f9"
+        "$oid": "60c90736263f8d13a49bad1a"
       },
-      "PEGRatio": 0
+      "parameterName": "PEGRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c649befdd32674b973fa"
+        "$oid": "60c90736263f8d13a49bad1b"
       },
-      "CAPERatio": 0
+      "parameterName": "CAPERatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c649befdd32674b973fb"
+        "$oid": "60c90736263f8d13a49bad1c"
       },
-      "PBRatio": 0
+      "parameterName": "PBRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c649befdd32674b973fc"
+        "$oid": "60c90736263f8d13a49bad1d"
       },
-      "DERatio": 0
+      "parameterName": "DERatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c649befdd32674b973fd"
+        "$oid": "60c90736263f8d13a49bad1e"
       },
-      "ROE": 0
+      "parameterName": "ROE",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c649befdd32674b973fe"
+        "$oid": "60c90736263f8d13a49bad1f"
       },
-      "ROCERatio": 0
+      "parameterName": "ROCERatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c649befdd32674b973ff"
+        "$oid": "60c90736263f8d13a49bad20"
       },
-      "DividendYield": 0
+      "parameterName": "DividendYield",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c649befdd32674b97400"
+        "$oid": "60c90736263f8d13a49bad21"
       },
-      "DPRRatio": 0
+      "parameterName": "DPRRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c649befdd32674b97401"
+        "$oid": "60c90736263f8d13a49bad22"
       },
-      "PSRatio": 0
+      "parameterName": "PSRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c649befdd32674b97402"
+        "$oid": "60c90736263f8d13a49bad23"
       },
-      "GrahamNum": 0
+      "parameterName": "GrahamNum",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c649befdd32674b97403"
+        "$oid": "60c90736263f8d13a49bad24"
       },
-      "EVtoEBITRatio": 0
+      "parameterName": "EVtoEBITRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c649befdd32674b97404"
+        "$oid": "60c90736263f8d13a49bad25"
       },
-      "EVtoEBITDA": 0
+      "parameterName": "EVtoEBITDA",
+      "valueNum": 0
     }
   ],
-  "assetId": "60c7c649befdd32674b973f5",
+  "assetId": "60c90736263f8d13a49bad16",
   "__v": 0
 },{
   "_id": {
-    "$oid": "60c7c664befdd32674b97406"
+    "$oid": "60c90773263f8d13a49bad27"
   },
   "ratiosArray": [
     {
       "_id": {
-        "$oid": "60c7c664befdd32674b97407"
+        "$oid": "60c90773263f8d13a49bad28"
       },
-      "EPSRatio": 0
+      "parameterName": "EPSRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c664befdd32674b97408"
+        "$oid": "60c90773263f8d13a49bad29"
       },
-      "PERatio": 0
+      "parameterName": "PERatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c664befdd32674b97409"
+        "$oid": "60c90773263f8d13a49bad2a"
       },
-      "PEGRatio": 0
+      "parameterName": "PEGRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c664befdd32674b9740a"
+        "$oid": "60c90773263f8d13a49bad2b"
       },
-      "CAPERatio": 0
+      "parameterName": "CAPERatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c664befdd32674b9740b"
+        "$oid": "60c90773263f8d13a49bad2c"
       },
-      "PBRatio": 0
+      "parameterName": "PBRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c664befdd32674b9740c"
+        "$oid": "60c90773263f8d13a49bad2d"
       },
-      "DERatio": 0
+      "parameterName": "DERatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c664befdd32674b9740d"
+        "$oid": "60c90773263f8d13a49bad2e"
       },
-      "ROE": 0
+      "parameterName": "ROE",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c664befdd32674b9740e"
+        "$oid": "60c90773263f8d13a49bad2f"
       },
-      "ROCERatio": 0
+      "parameterName": "ROCERatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c664befdd32674b9740f"
+        "$oid": "60c90773263f8d13a49bad30"
       },
-      "DividendYield": 0
+      "parameterName": "DividendYield",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c664befdd32674b97410"
+        "$oid": "60c90773263f8d13a49bad31"
       },
-      "DPRRatio": 0
+      "parameterName": "DPRRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c664befdd32674b97411"
+        "$oid": "60c90773263f8d13a49bad32"
       },
-      "PSRatio": 0
+      "parameterName": "PSRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c664befdd32674b97412"
+        "$oid": "60c90773263f8d13a49bad33"
       },
-      "GrahamNum": 0
+      "parameterName": "GrahamNum",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c664befdd32674b97413"
+        "$oid": "60c90773263f8d13a49bad34"
       },
-      "EVtoEBITRatio": 0
+      "parameterName": "EVtoEBITRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c664befdd32674b97414"
+        "$oid": "60c90773263f8d13a49bad35"
       },
-      "EVtoEBITDA": 0
+      "parameterName": "EVtoEBITDA",
+      "valueNum": 0
     }
   ],
-  "assetId": "60c7c664befdd32674b97405",
+  "assetId": "60c90773263f8d13a49bad26",
   "__v": 0
 },{
   "_id": {
-    "$oid": "60c7c681befdd32674b97416"
+    "$oid": "60c90783263f8d13a49bad37"
   },
   "ratiosArray": [
     {
       "_id": {
-        "$oid": "60c7c681befdd32674b97417"
+        "$oid": "60c913cf2e03f503b076c058"
       },
-      "EPSRatio": 0
+      "parameterName": "EPSRatio",
+      "valueNum": 1111111
     },
     {
       "_id": {
-        "$oid": "60c7c681befdd32674b97418"
+        "$oid": "60c913cf2e03f503b076c059"
       },
-      "PERatio": 0
+      "parameterName": "PERatio",
+      "valueNum": 211111
     },
     {
       "_id": {
-        "$oid": "60c7c681befdd32674b97419"
+        "$oid": "60c913cf2e03f503b076c05a"
       },
-      "PEGRatio": 0
+      "parameterName": "PEGRatio",
+      "valueNum": 33333
     },
     {
       "_id": {
-        "$oid": "60c7c681befdd32674b9741a"
+        "$oid": "60c913cf2e03f503b076c05b"
       },
-      "CAPERatio": 0
+      "parameterName": "CAPERatio",
+      "valueNum": 4
     },
     {
       "_id": {
-        "$oid": "60c7c681befdd32674b9741b"
+        "$oid": "60c913cf2e03f503b076c05c"
       },
-      "PBRatio": 0
+      "parameterName": "PBRatio",
+      "valueNum": 5
     },
     {
       "_id": {
-        "$oid": "60c7c681befdd32674b9741c"
+        "$oid": "60c913cf2e03f503b076c05d"
       },
-      "DERatio": 0
+      "parameterName": "DERatio",
+      "valueNum": 611111
     },
     {
       "_id": {
-        "$oid": "60c7c681befdd32674b9741d"
+        "$oid": "60c913cf2e03f503b076c05e"
       },
-      "ROE": 0
+      "parameterName": "ROE",
+      "valueNum": 7
     },
     {
       "_id": {
-        "$oid": "60c7c681befdd32674b9741e"
+        "$oid": "60c913cf2e03f503b076c05f"
       },
-      "ROCERatio": 0
+      "parameterName": "ROCERatio",
+      "valueNum": 8
     },
     {
       "_id": {
-        "$oid": "60c7c681befdd32674b9741f"
+        "$oid": "60c913cf2e03f503b076c060"
       },
-      "DividendYield": 0
+      "parameterName": "DividendYield",
+      "valueNum": 9
     },
     {
       "_id": {
-        "$oid": "60c7c681befdd32674b97420"
+        "$oid": "60c913cf2e03f503b076c061"
       },
-      "DPRRatio": 0
+      "parameterName": "DPRRatio",
+      "valueNum": 22
     },
     {
       "_id": {
-        "$oid": "60c7c681befdd32674b97421"
+        "$oid": "60c913cf2e03f503b076c062"
       },
-      "PSRatio": 0
+      "parameterName": "PSRatio",
+      "valueNum": 11
     },
     {
       "_id": {
-        "$oid": "60c7c681befdd32674b97422"
+        "$oid": "60c913cf2e03f503b076c063"
       },
-      "GrahamNum": 0
+      "parameterName": "GrahamNum",
+      "valueNum": 12
     },
     {
       "_id": {
-        "$oid": "60c7c681befdd32674b97423"
+        "$oid": "60c913cf2e03f503b076c064"
       },
-      "EVtoEBITRatio": 0
+      "parameterName": "EVtoEBITRatio",
+      "valueNum": 13
     },
     {
       "_id": {
-        "$oid": "60c7c681befdd32674b97424"
+        "$oid": "60c913cf2e03f503b076c065"
       },
-      "EVtoEBITDA": 0
+      "parameterName": "EVtoEBITDA",
+      "valueNum": 14
     }
   ],
-  "assetId": "60c7c681befdd32674b97415",
+  "assetId": "60c90783263f8d13a49bad36",
   "__v": 0
 },{
   "_id": {
-    "$oid": "60c7c696befdd32674b97426"
+    "$oid": "60c9079e263f8d13a49bad47"
   },
   "ratiosArray": [
     {
       "_id": {
-        "$oid": "60c7c696befdd32674b97427"
+        "$oid": "60c9079e263f8d13a49bad48"
       },
-      "EPSRatio": 0
+      "parameterName": "EPSRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c696befdd32674b97428"
+        "$oid": "60c9079e263f8d13a49bad49"
       },
-      "PERatio": 0
+      "parameterName": "PERatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c696befdd32674b97429"
+        "$oid": "60c9079e263f8d13a49bad4a"
       },
-      "PEGRatio": 0
+      "parameterName": "PEGRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c696befdd32674b9742a"
+        "$oid": "60c9079e263f8d13a49bad4b"
       },
-      "CAPERatio": 0
+      "parameterName": "CAPERatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c696befdd32674b9742b"
+        "$oid": "60c9079e263f8d13a49bad4c"
       },
-      "PBRatio": 0
+      "parameterName": "PBRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c696befdd32674b9742c"
+        "$oid": "60c9079e263f8d13a49bad4d"
       },
-      "DERatio": 0
+      "parameterName": "DERatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c696befdd32674b9742d"
+        "$oid": "60c9079e263f8d13a49bad4e"
       },
-      "ROE": 0
+      "parameterName": "ROE",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c696befdd32674b9742e"
+        "$oid": "60c9079e263f8d13a49bad4f"
       },
-      "ROCERatio": 0
+      "parameterName": "ROCERatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c696befdd32674b9742f"
+        "$oid": "60c9079e263f8d13a49bad50"
       },
-      "DividendYield": 0
+      "parameterName": "DividendYield",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c696befdd32674b97430"
+        "$oid": "60c9079e263f8d13a49bad51"
       },
-      "DPRRatio": 0
+      "parameterName": "DPRRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c696befdd32674b97431"
+        "$oid": "60c9079e263f8d13a49bad52"
       },
-      "PSRatio": 0
+      "parameterName": "PSRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c696befdd32674b97432"
+        "$oid": "60c9079e263f8d13a49bad53"
       },
-      "GrahamNum": 0
+      "parameterName": "GrahamNum",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c696befdd32674b97433"
+        "$oid": "60c9079e263f8d13a49bad54"
       },
-      "EVtoEBITRatio": 0
+      "parameterName": "EVtoEBITRatio",
+      "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c7c696befdd32674b97434"
+        "$oid": "60c9079e263f8d13a49bad55"
       },
-      "EVtoEBITDA": 0
+      "parameterName": "EVtoEBITDA",
+      "valueNum": 0
     }
   ],
-  "assetId": "60c7c696befdd32674b97425",
+  "assetId": "60c9079e263f8d13a49bad46",
   "__v": 0
 }]

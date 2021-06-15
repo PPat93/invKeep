@@ -15,12 +15,23 @@ export class AssetDetailsComponent implements OnInit {
 
   assetId: string;
   assetMainDetails: AssetRecord;
-  detailedAssetRatios = {
-    id: ``,
+  detailedAssetRatios: DetailedAssetRatios  = {
+    id: `60c7c664befdd32674b97405`,
     ratiosArray: [
       {parameterName: `EPSRatio`, valueNum: 1},
       {parameterName: `PERatio`, valueNum: 2},
-      {parameterName: `PEGRatio`, valueNum: 12}
+      {parameterName: `PEGRatio`, valueNum: 3},
+      {parameterName: `CAPERatio`, valueNum: 4},
+      {parameterName: `PBRatio`, valueNum: 5},
+      {parameterName: `DERatio`, valueNum: 6},
+      {parameterName: `ROE`, valueNum: 7},
+      {parameterName: `ROCERatio`, valueNum: 8},
+      {parameterName: `DividendYield`, valueNum: 9},
+      {parameterName: `DPRRatio`, valueNum: 0},
+      {parameterName: `PSRatio`, valueNum: 11},
+      {parameterName: `GrahamNum`, valueNum: 12},
+      {parameterName: `EVtoEBITRatio`, valueNum: 13},
+      {parameterName: `EVtoEBITDA`, valueNum: 14}
     ]
   }
   ratiosColumns: string[] = [`parameterName`, `valueNum`];

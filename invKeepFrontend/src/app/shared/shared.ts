@@ -10,22 +10,7 @@ export interface AssetRecord {
 
 export interface DetailedAssetRatios {
   id: string,
-  ratiosArray: [
-    { EPSRatio: number },
-    { PERatio: number },
-    {PEGRatio: number},
-    // {CAPERatio: number},
-    // {PBRatio: number},
-    // {DERatio: number},
-    // {ROE: number},
-    // {ROCERatio: number},
-    // {DividendYield: number},
-    // {DPRRatio: number},
-    // {PSRatio: number},
-    // {GrahamNum: number},
-    // {EVtoEBITRatio: number},
-    // {EVtoEBITDA: number}
-  ]
+  ratiosArray: {parameterName: string, valueNum: number}[]
 }
 
 export let welcomeMsg = {
