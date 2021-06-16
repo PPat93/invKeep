@@ -15,25 +15,27 @@ export class AssetDetailsComponent implements OnInit {
 
   assetId: string;
   assetMainDetails: AssetRecord;
-  detailedAssetRatios: DetailedAssetRatios  = {
-    id: `60c7c664befdd32674b97405`,
-    ratiosArray: [
-      {parameterName: `EPSRatio`, valueNum: 1},
-      {parameterName: `PERatio`, valueNum: 2},
-      {parameterName: `PEGRatio`, valueNum: 3},
-      {parameterName: `CAPERatio`, valueNum: 4},
-      {parameterName: `PBRatio`, valueNum: 5},
-      {parameterName: `DERatio`, valueNum: 6},
-      {parameterName: `ROE`, valueNum: 7},
-      {parameterName: `ROCERatio`, valueNum: 8},
-      {parameterName: `DividendYield`, valueNum: 9},
-      {parameterName: `DPRRatio`, valueNum: 0},
-      {parameterName: `PSRatio`, valueNum: 11},
-      {parameterName: `GrahamNum`, valueNum: 12},
-      {parameterName: `EVtoEBITRatio`, valueNum: 13},
-      {parameterName: `EVtoEBITDA`, valueNum: 14}
-    ]
-  }
+  detailedAssetRatios: DetailedAssetRatios;
+    // =
+  //   {
+  //   id: `60c7c664befdd32674b97405`,
+  //   ratiosArray: [
+  //     {parameterName: `EPSRatio`, valueNum: 1},
+  //     {parameterName: `PERatio`, valueNum: 2},
+  //     {parameterName: `PEGRatio`, valueNum: 3},
+  //     {parameterName: `CAPERatio`, valueNum: 4},
+  //     {parameterName: `PBRatio`, valueNum: 5},
+  //     {parameterName: `DERatio`, valueNum: 6},
+  //     {parameterName: `ROE`, valueNum: 7},
+  //     {parameterName: `ROCERatio`, valueNum: 8},
+  //     {parameterName: `DividendYield`, valueNum: 9},
+  //     {parameterName: `DPRRatio`, valueNum: 0},
+  //     {parameterName: `PSRatio`, valueNum: 11},
+  //     {parameterName: `GrahamNum`, valueNum: 12},
+  //     {parameterName: `EVtoEBITRatio`, valueNum: 13},
+  //     {parameterName: `EVtoEBITDA`, valueNum: 14}
+  //   ]
+  // }
   ratiosColumns: string[] = [`parameterName`, `valueNum`];
 
   constructor(public AssetService: AssetsService, public AssetRatiosService: AssetRatiosService, public route: ActivatedRoute) {
@@ -43,7 +45,8 @@ export class AssetDetailsComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       this.assetId = paramMap.get(`assetId`);
       this.assetMainDetails = this.AssetService.getSingleAsset(this.assetId);
-    })
+    });
+    this.detailedAssetRatios = this.getDetailedRatios(this.assetId);
   }
 
   // findRatioInArray(ratioName: string) : number{
@@ -59,7 +62,9 @@ export class AssetDetailsComponent implements OnInit {
     return totalPrice;
   }
 
-  getDetailedRatios() {
+  getDetailedRatios(assetId: string): DetailedAssetRatios{
+    console.log(this.AssetRatiosService.getDetailedRatios(assetId))
+    return this.AssetRatiosService.getDetailedRatios(assetId);
 
   }
 

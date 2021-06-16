@@ -117,13 +117,14 @@ app.delete('/api/delete/:id', (req, res) => {
 });
 
 app.get('/api/detailed-ratios/:id', (req, res) => {
-    AssetRatio.findById(req.body.id).then((detailedRatios) => {
+    AssetRatio.find({assetId: req.params.id}).then((detailedRatios) => {
+        console.log(detailedRatios)
         res.status(200).json({
             message: 'Asset ratios retrieved successfully!',
             payload: detailedRatios
         });
     }).catch($e => {
-        console.log('Error while detailed ratios get. Error: ' + $e);
+        console.log('Error while detailed ratios retrieval. Error: ' + $e);
     });
 })
 

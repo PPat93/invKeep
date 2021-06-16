@@ -68,7 +68,7 @@ export class AssetsService {
     })
   }
 
-  getSingleAsset(id: string) {
+  getSingleAsset(id: string): AssetRecord {
     return {...this.assetsArray.find(as => as.id === id)};
   }
 
