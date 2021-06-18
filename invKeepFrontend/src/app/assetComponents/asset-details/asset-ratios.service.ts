@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {stringify} from "@angular/compiler/src/util";
 import {DetailedAssetRatios} from "../../shared/shared";
-import {map, tap} from "rxjs/operators";
+import {map} from "rxjs/operators";
 
 @Injectable({providedIn: 'root'})
 
@@ -24,7 +23,6 @@ export class AssetRatiosService {
   }
 
   saveDetailedRatios(assetId: string, detailedRatios) {
-    console.log(detailedRatios)
     this.http.put<{ message: string, payload: any }>(`http://localhost:3000/api/detailed-ratios/${assetId}`, detailedRatios)
       .subscribe(responseData => {
         //placeholder for later toastr

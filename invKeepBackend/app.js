@@ -118,7 +118,6 @@ app.delete('/api/delete/:id', (req, res) => {
 
 app.get('/api/detailed-ratios/:id', (req, res) => {
     AssetRatio.find({assetId: req.params.id}).then((detailedRatios) => {
-        console.log(detailedRatios)
         res.status(200).json({
             message: 'Asset ratios retrieved successfully!',
             payload: detailedRatios
