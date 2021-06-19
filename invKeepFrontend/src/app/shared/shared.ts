@@ -9,7 +9,7 @@ export interface AssetRecord {
 }
 
 export interface DetailedAssetRatios {
-  id: string,
+  assetId: string,
   ratiosArray: {parameterName: string, valueNum: number}[]
 }
 

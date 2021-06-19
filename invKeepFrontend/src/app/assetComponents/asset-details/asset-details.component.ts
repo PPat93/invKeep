@@ -15,10 +15,10 @@ export class AssetDetailsComponent implements OnInit {
 
   assetId: string;
   assetMainDetails: AssetRecord;
-  detailedAssetRatios: DetailedAssetRatios;
-    // =
+  detailedAssetRatios;
+  //   =
   //   {
-  //   id: `60c7c664befdd32674b97405`,
+  //   assetId: `60c7c664befdd32674b97405`,
   //   ratiosArray: [
   //     {parameterName: `EPSRatio`, valueNum: 1},
   //     {parameterName: `PERatio`, valueNum: 2},
@@ -49,23 +49,16 @@ export class AssetDetailsComponent implements OnInit {
     this.detailedAssetRatios = this.getDetailedRatios(this.assetId);
   }
 
-  // findRatioInArray(ratioName: string) : number{
-  //   for(let i in this.detailedAssetRatios){
-  //     if(this.detailedAssetRatios[i].parameterName == ratioName){
-  //       return this.detailedAssetRatios[i].valueNum;
-  //     }
-  //   }
-  // }
-
   stockTotalCost() {
     const totalPrice: string = (this.assetMainDetails.buyPrice * this.assetMainDetails.amount).toFixed(2);
     return totalPrice;
   }
 
-  getDetailedRatios(assetId: string): DetailedAssetRatios{
-    console.log(this.AssetRatiosService.getDetailedRatios(assetId))
-    return this.AssetRatiosService.getDetailedRatios(assetId);
-
+  getDetailedRatios(assetId: string){
+    return {
+      assetId: this.assetId,
+      ratiosArray: this.AssetRatiosService.getDetailedRatios(assetId)
+    }
   }
 
   saveDetailedRatios(detailedRatios: NgForm) {
@@ -75,7 +68,7 @@ export class AssetDetailsComponent implements OnInit {
           this.detailedAssetRatios.ratiosArray[ratio].valueNum = Number(detailedRatios.form.value[newRatio]);
       }
     }
-    this.detailedAssetRatios.id = this.assetId;
+    this.detailedAssetRatios.assetId = this.assetId;
     this.AssetRatiosService.saveDetailedRatios(this.assetId, this.detailedAssetRatios);
   }
 }

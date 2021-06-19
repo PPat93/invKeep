@@ -118,9 +118,10 @@ app.delete('/api/delete/:id', (req, res) => {
 
 app.get('/api/detailed-ratios/:id', (req, res) => {
     AssetRatio.find({assetId: req.params.id}).then((detailedRatios) => {
+        const newRatios = detailedRatios[0];
         res.status(200).json({
             message: 'Asset ratios retrieved successfully!',
-            payload: detailedRatios
+            payload: newRatios
         });
     }).catch($e => {
         console.log('Error while detailed ratios retrieval. Error: ' + $e);
@@ -128,8 +129,8 @@ app.get('/api/detailed-ratios/:id', (req, res) => {
 })
 
 app.put('/api/detailed-ratios/:id', (req, res) => {
-    AssetRatio.findById(req.body.id).then(() => {
-        AssetRatio.updateOne({assetId: req.body.id}, req.body).then(resData => {
+    AssetRatio.findById(req.body.assetId).then((data) => {
+        AssetRatio.updateOne({assetId: req.body.assetId}, req.body).then(resData => {
             res.status(200).json({
                 message: 'Ratios updated correctly!',
                 payload: resData
