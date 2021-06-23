@@ -4,6 +4,7 @@ import {ActivatedRoute, ParamMap} from "@angular/router";
 import {AssetRecord, DetailedAssetRatios} from "../../shared/shared";
 import {NgForm} from "@angular/forms";
 import {AssetRatiosService} from "./asset-ratios.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-asset-details',
@@ -15,28 +16,14 @@ export class AssetDetailsComponent implements OnInit {
 
   assetId: string;
   assetMainDetails: AssetRecord;
-  detailedAssetRatios;
-  //   =
-  //   {
-  //   assetId: `60c7c664befdd32674b97405`,
-  //   ratiosArray: [
-  //     {parameterName: `EPSRatio`, valueNum: 1},
-  //     {parameterName: `PERatio`, valueNum: 2},
-  //     {parameterName: `PEGRatio`, valueNum: 3},
-  //     {parameterName: `CAPERatio`, valueNum: 4},
-  //     {parameterName: `PBRatio`, valueNum: 5},
-  //     {parameterName: `DERatio`, valueNum: 6},
-  //     {parameterName: `ROE`, valueNum: 7},
-  //     {parameterName: `ROCERatio`, valueNum: 8},
-  //     {parameterName: `DividendYield`, valueNum: 9},
-  //     {parameterName: `DPRRatio`, valueNum: 0},
-  //     {parameterName: `PSRatio`, valueNum: 11},
-  //     {parameterName: `GrahamNum`, valueNum: 12},
-  //     {parameterName: `EVtoEBITRatio`, valueNum: 13},
-  //     {parameterName: `EVtoEBITDA`, valueNum: 14}
-  //   ]
-  // }
+  detailedAssetRatios: DetailedAssetRatios = {
+    assetId: ``,
+    ratiosArray: [
+      {parameterName: ``, valueNum: null}
+    ]
+  };
   ratiosColumns: string[] = [`parameterName`, `valueNum`];
+  private ratiosSub: Subscription;
 
   constructor(public AssetService: AssetsService, public AssetRatiosService: AssetRatiosService, public route: ActivatedRoute) {
   }
@@ -46,19 +33,16 @@ export class AssetDetailsComponent implements OnInit {
       this.assetId = paramMap.get(`assetId`);
       this.assetMainDetails = this.AssetService.getSingleAsset(this.assetId);
     });
-    this.detailedAssetRatios = this.getDetailedRatios(this.assetId);
+    this.AssetRatiosService.getDetailedRatios(this.assetId);
+    this.ratiosSub = this.AssetRatiosService.getRatiosUpdateListener()
+      .subscribe((ratiosSubscribed: DetailedAssetRatios) => {
+        this.detailedAssetRatios = ratiosSubscribed;
+      });
   }
 
   stockTotalCost() {
     const totalPrice: string = (this.assetMainDetails.buyPrice * this.assetMainDetails.amount).toFixed(2);
     return totalPrice;
-  }
-
-  getDetailedRatios(assetId: string){
-    return {
-      assetId: this.assetId,
-      ratiosArray: this.AssetRatiosService.getDetailedRatios(assetId)
-    }
   }
 
   saveDetailedRatios(detailedRatios: NgForm) {
@@ -70,5 +54,9 @@ export class AssetDetailsComponent implements OnInit {
     }
     this.detailedAssetRatios.assetId = this.assetId;
     this.AssetRatiosService.saveDetailedRatios(this.assetId, this.detailedAssetRatios);
+  }
+
+  ngOnDestroy() {
+    this.ratiosSub.unsubscribe();
   }
 }

@@ -8,7 +8,7 @@ import {Subject} from "rxjs";
 
 export class AssetRatiosService {
 
-  private assetRatios = new Subject<DetailedAssetRatios>();
+  private upadateAssetRatios = new Subject<DetailedAssetRatios>();
   ratiosReturn;
 
   constructor(private http: HttpClient) {
@@ -37,8 +37,11 @@ export class AssetRatiosService {
         });
       }))
       .subscribe((returnedRatios) => {
-        this.ratiosReturn = returnedRatios[0]
-        return returnedRatios[0];
+        this.ratiosReturn = {
+          assetId: assetId,
+          ratiosArray:  returnedRatios[0]
+        }
+        this.upadateAssetRatios.next(this.ratiosReturn);
       })
     return this.ratiosReturn;
   }
@@ -48,5 +51,9 @@ export class AssetRatiosService {
       .subscribe(responseData => {
         //placeholder for later toastr
       })
+  }
+
+  getRatiosUpdateListener(){
+  return this.upadateAssetRatios.asObservable()
   }
 }
