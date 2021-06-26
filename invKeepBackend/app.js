@@ -66,7 +66,7 @@ app.post('/api/assets', (req, res) => {
             singleAsset.id = singleAsset._id;
             assetRatiosPlaceholder.assetId = singleAsset._id
             assetRatiosPlaceholder.save().then((data) => {
-                console.log('\x1b[32m', 'Asset placeholder added correctly!' + assetRatiosPlaceholder);
+                console.log('\x1b[32m', 'Asset placeholder added correctly!');
             });
             singleAsset.updateOne({id: singleAsset.id}).then(() => { // update asset id with _id created while first save
                 console.log('\x1b[32m', 'Asset added correctly!');

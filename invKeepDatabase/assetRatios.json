@@ -5,101 +5,101 @@
   "ratiosArray": [
     {
       "_id": {
-        "$oid": "60c90702263f8d13a49bad08"
+        "$oid": "60d791fc6980263ddce86aac"
       },
-      "parameterName": "EPSRatio",
+      "parameterName": "EPS Ratio",
+      "valueNum": 11111
+    },
+    {
+      "_id": {
+        "$oid": "60d791fc6980263ddce86aad"
+      },
+      "parameterName": "P/E Ratio",
+      "valueNum": 1
+    },
+    {
+      "_id": {
+        "$oid": "60d791fc6980263ddce86aae"
+      },
+      "parameterName": "PEG Ratio",
+      "valueNum": 1
+    },
+    {
+      "_id": {
+        "$oid": "60d791fc6980263ddce86aaf"
+      },
+      "parameterName": "CAPE Ratio",
+      "valueNum": 1
+    },
+    {
+      "_id": {
+        "$oid": "60d791fc6980263ddce86ab0"
+      },
+      "parameterName": "P/B Ratio",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90702263f8d13a49bad09"
+        "$oid": "60d791fc6980263ddce86ab1"
       },
-      "parameterName": "PERatio",
+      "parameterName": "D/E Ratio",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90702263f8d13a49bad0a"
+        "$oid": "60d791fc6980263ddce86ab2"
       },
-      "parameterName": "PEGRatio",
+      "parameterName": "ROE Ratio",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90702263f8d13a49bad0b"
+        "$oid": "60d791fc6980263ddce86ab3"
       },
-      "parameterName": "CAPERatio",
+      "parameterName": "ROCE Ratio",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90702263f8d13a49bad0c"
+        "$oid": "60d791fc6980263ddce86ab4"
       },
-      "parameterName": "PBRatio",
+      "parameterName": "Dividend Yield",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90702263f8d13a49bad0d"
+        "$oid": "60d791fc6980263ddce86ab5"
       },
-      "parameterName": "DERatio",
-      "valueNum": 0
+      "parameterName": "DPR Ratio",
+      "valueNum": 6
     },
     {
       "_id": {
-        "$oid": "60c90702263f8d13a49bad0e"
+        "$oid": "60d791fc6980263ddce86ab6"
       },
-      "parameterName": "ROE",
-      "valueNum": 0
+      "parameterName": "P/S Ratio",
+      "valueNum": 5
     },
     {
       "_id": {
-        "$oid": "60c90702263f8d13a49bad0f"
+        "$oid": "60d791fc6980263ddce86ab7"
       },
-      "parameterName": "ROCERatio",
-      "valueNum": 0
+      "parameterName": "Graham Number",
+      "valueNum": 4
     },
     {
       "_id": {
-        "$oid": "60c90702263f8d13a49bad10"
+        "$oid": "60d791fc6980263ddce86ab8"
       },
-      "parameterName": "DividendYield",
-      "valueNum": 0
+      "parameterName": "EV/EBIT Ratio",
+      "valueNum": 2
     },
     {
       "_id": {
-        "$oid": "60c90702263f8d13a49bad11"
+        "$oid": "60d791fc6980263ddce86ab9"
       },
-      "parameterName": "DPRRatio",
-      "valueNum": 0
-    },
-    {
-      "_id": {
-        "$oid": "60c90702263f8d13a49bad12"
-      },
-      "parameterName": "PSRatio",
-      "valueNum": 0
-    },
-    {
-      "_id": {
-        "$oid": "60c90702263f8d13a49bad13"
-      },
-      "parameterName": "GrahamNum",
-      "valueNum": 0
-    },
-    {
-      "_id": {
-        "$oid": "60c90702263f8d13a49bad14"
-      },
-      "parameterName": "EVtoEBITRatio",
-      "valueNum": 0
-    },
-    {
-      "_id": {
-        "$oid": "60c90702263f8d13a49bad15"
-      },
-      "parameterName": "EVtoEBITDA",
-      "valueNum": 0
+      "parameterName": "EV/EBITDA Ratio",
+      "valueNum": 2
     }
   ],
   "assetId": "60c90702263f8d13a49bad06",
@@ -111,100 +111,100 @@
   "ratiosArray": [
     {
       "_id": {
-        "$oid": "60c90736263f8d13a49bad18"
+        "$oid": "60d792df7e7070407c551a7f"
       },
-      "parameterName": "EPSRatio",
+      "parameterName": "EPS Ratio",
+      "valueNum": 11
+    },
+    {
+      "_id": {
+        "$oid": "60d792df7e7070407c551a80"
+      },
+      "parameterName": "P/E Ratio",
+      "valueNum": 234
+    },
+    {
+      "_id": {
+        "$oid": "60d792df7e7070407c551a81"
+      },
+      "parameterName": "PEG Ratio",
+      "valueNum": 5342
+    },
+    {
+      "_id": {
+        "$oid": "60d792df7e7070407c551a82"
+      },
+      "parameterName": "CAPE Ratio",
+      "valueNum": 3
+    },
+    {
+      "_id": {
+        "$oid": "60d792df7e7070407c551a83"
+      },
+      "parameterName": "P/B Ratio",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90736263f8d13a49bad19"
+        "$oid": "60d792df7e7070407c551a84"
       },
-      "parameterName": "PERatio",
+      "parameterName": "D/E Ratio",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90736263f8d13a49bad1a"
+        "$oid": "60d792df7e7070407c551a85"
       },
-      "parameterName": "PEGRatio",
+      "parameterName": "ROE Ratio",
+      "valueNum": 20
+    },
+    {
+      "_id": {
+        "$oid": "60d792df7e7070407c551a86"
+      },
+      "parameterName": "ROCE Ratio",
+      "valueNum": 4444
+    },
+    {
+      "_id": {
+        "$oid": "60d792df7e7070407c551a87"
+      },
+      "parameterName": "Dividend Yield",
+      "valueNum": 3
+    },
+    {
+      "_id": {
+        "$oid": "60d792df7e7070407c551a88"
+      },
+      "parameterName": "DPR Ratio",
+      "valueNum": 2
+    },
+    {
+      "_id": {
+        "$oid": "60d792df7e7070407c551a89"
+      },
+      "parameterName": "P/S Ratio",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90736263f8d13a49bad1b"
+        "$oid": "60d792df7e7070407c551a8a"
       },
-      "parameterName": "CAPERatio",
+      "parameterName": "Graham Number",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90736263f8d13a49bad1c"
+        "$oid": "60d792df7e7070407c551a8b"
       },
-      "parameterName": "PBRatio",
+      "parameterName": "EV/EBIT Ratio",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90736263f8d13a49bad1d"
+        "$oid": "60d792df7e7070407c551a8c"
       },
-      "parameterName": "DERatio",
-      "valueNum": 0
-    },
-    {
-      "_id": {
-        "$oid": "60c90736263f8d13a49bad1e"
-      },
-      "parameterName": "ROE",
-      "valueNum": 0
-    },
-    {
-      "_id": {
-        "$oid": "60c90736263f8d13a49bad1f"
-      },
-      "parameterName": "ROCERatio",
-      "valueNum": 0
-    },
-    {
-      "_id": {
-        "$oid": "60c90736263f8d13a49bad20"
-      },
-      "parameterName": "DividendYield",
-      "valueNum": 0
-    },
-    {
-      "_id": {
-        "$oid": "60c90736263f8d13a49bad21"
-      },
-      "parameterName": "DPRRatio",
-      "valueNum": 0
-    },
-    {
-      "_id": {
-        "$oid": "60c90736263f8d13a49bad22"
-      },
-      "parameterName": "PSRatio",
-      "valueNum": 0
-    },
-    {
-      "_id": {
-        "$oid": "60c90736263f8d13a49bad23"
-      },
-      "parameterName": "GrahamNum",
-      "valueNum": 0
-    },
-    {
-      "_id": {
-        "$oid": "60c90736263f8d13a49bad24"
-      },
-      "parameterName": "EVtoEBITRatio",
-      "valueNum": 0
-    },
-    {
-      "_id": {
-        "$oid": "60c90736263f8d13a49bad25"
-      },
-      "parameterName": "EVtoEBITDA",
+      "parameterName": "EV/EBITDA Ratio",
       "valueNum": 0
     }
   ],
@@ -217,98 +217,98 @@
   "ratiosArray": [
     {
       "_id": {
-        "$oid": "60c90773263f8d13a49bad28"
+        "$oid": "60d39e7283832c1768b62b4b"
       },
       "parameterName": "EPSRatio",
-      "valueNum": 0
+      "valueNum": 111111
     },
     {
       "_id": {
-        "$oid": "60c90773263f8d13a49bad29"
+        "$oid": "60d39e7283832c1768b62b4c"
       },
       "parameterName": "PERatio",
-      "valueNum": 0
+      "valueNum": 11111111
     },
     {
       "_id": {
-        "$oid": "60c90773263f8d13a49bad2a"
+        "$oid": "60d39e7283832c1768b62b4d"
       },
       "parameterName": "PEGRatio",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90773263f8d13a49bad2b"
+        "$oid": "60d39e7283832c1768b62b4e"
       },
       "parameterName": "CAPERatio",
-      "valueNum": 0
+      "valueNum": 111111
     },
     {
       "_id": {
-        "$oid": "60c90773263f8d13a49bad2c"
+        "$oid": "60d39e7283832c1768b62b4f"
       },
       "parameterName": "PBRatio",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90773263f8d13a49bad2d"
+        "$oid": "60d39e7283832c1768b62b50"
       },
       "parameterName": "DERatio",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90773263f8d13a49bad2e"
+        "$oid": "60d39e7283832c1768b62b51"
       },
       "parameterName": "ROE",
-      "valueNum": 0
+      "valueNum": 1
     },
     {
       "_id": {
-        "$oid": "60c90773263f8d13a49bad2f"
+        "$oid": "60d39e7283832c1768b62b52"
       },
       "parameterName": "ROCERatio",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90773263f8d13a49bad30"
+        "$oid": "60d39e7283832c1768b62b53"
       },
       "parameterName": "DividendYield",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90773263f8d13a49bad31"
+        "$oid": "60d39e7283832c1768b62b54"
       },
       "parameterName": "DPRRatio",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90773263f8d13a49bad32"
+        "$oid": "60d39e7283832c1768b62b55"
       },
       "parameterName": "PSRatio",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90773263f8d13a49bad33"
+        "$oid": "60d39e7283832c1768b62b56"
       },
       "parameterName": "GrahamNum",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90773263f8d13a49bad34"
+        "$oid": "60d39e7283832c1768b62b57"
       },
       "parameterName": "EVtoEBITRatio",
       "valueNum": 0
     },
     {
       "_id": {
-        "$oid": "60c90773263f8d13a49bad35"
+        "$oid": "60d39e7283832c1768b62b58"
       },
       "parameterName": "EVtoEBITDA",
       "valueNum": 0
@@ -323,100 +323,100 @@
   "ratiosArray": [
     {
       "_id": {
-        "$oid": "60c913cf2e03f503b076c058"
+        "$oid": "60d752fd6980263ddce86a9e"
       },
-      "parameterName": "EPSRatio",
-      "valueNum": 1111111
+      "parameterName": "EPS Ratio",
+      "valueNum": 1111
     },
     {
       "_id": {
-        "$oid": "60c913cf2e03f503b076c059"
+        "$oid": "60d752fd6980263ddce86a9f"
       },
-      "parameterName": "PERatio",
-      "valueNum": 211111
+      "parameterName": "P/E Ratio",
+      "valueNum": 34
     },
     {
       "_id": {
-        "$oid": "60c913cf2e03f503b076c05a"
+        "$oid": "60d752fd6980263ddce86aa0"
       },
-      "parameterName": "PEGRatio",
+      "parameterName": "PEG Ratio",
       "valueNum": 33333
     },
     {
       "_id": {
-        "$oid": "60c913cf2e03f503b076c05b"
+        "$oid": "60d752fd6980263ddce86aa1"
       },
-      "parameterName": "CAPERatio",
-      "valueNum": 4
+      "parameterName": "CAPE Ratio",
+      "valueNum": 4444
     },
     {
       "_id": {
-        "$oid": "60c913cf2e03f503b076c05c"
+        "$oid": "60d752fd6980263ddce86aa2"
       },
-      "parameterName": "PBRatio",
+      "parameterName": "P/B Ratio",
       "valueNum": 5
     },
     {
       "_id": {
-        "$oid": "60c913cf2e03f503b076c05d"
+        "$oid": "60d752fd6980263ddce86aa3"
       },
-      "parameterName": "DERatio",
+      "parameterName": "D/E Ratio",
       "valueNum": 611111
     },
     {
       "_id": {
-        "$oid": "60c913cf2e03f503b076c05e"
+        "$oid": "60d752fd6980263ddce86aa4"
       },
-      "parameterName": "ROE",
+      "parameterName": "ROE Ratio",
       "valueNum": 7
     },
     {
       "_id": {
-        "$oid": "60c913cf2e03f503b076c05f"
+        "$oid": "60d752fd6980263ddce86aa5"
       },
-      "parameterName": "ROCERatio",
+      "parameterName": "ROCE Ratio",
       "valueNum": 8
     },
     {
       "_id": {
-        "$oid": "60c913cf2e03f503b076c060"
+        "$oid": "60d752fd6980263ddce86aa6"
       },
-      "parameterName": "DividendYield",
+      "parameterName": "Dividend Yield",
       "valueNum": 9
     },
     {
       "_id": {
-        "$oid": "60c913cf2e03f503b076c061"
+        "$oid": "60d752fd6980263ddce86aa7"
       },
-      "parameterName": "DPRRatio",
+      "parameterName": "DPR Ratio",
       "valueNum": 22
     },
     {
       "_id": {
-        "$oid": "60c913cf2e03f503b076c062"
+        "$oid": "60d752fd6980263ddce86aa8"
       },
-      "parameterName": "PSRatio",
+      "parameterName": "P/S Ratio",
       "valueNum": 11
     },
     {
       "_id": {
-        "$oid": "60c913cf2e03f503b076c063"
+        "$oid": "60d752fd6980263ddce86aa9"
       },
-      "parameterName": "GrahamNum",
+      "parameterName": "Graham Number",
       "valueNum": 12
     },
     {
       "_id": {
-        "$oid": "60c913cf2e03f503b076c064"
+        "$oid": "60d752fd6980263ddce86aaa"
       },
-      "parameterName": "EVtoEBITRatio",
+      "parameterName": "EV/EBIT Ratio",
       "valueNum": 13
     },
     {
       "_id": {
-        "$oid": "60c913cf2e03f503b076c065"
+        "$oid": "60d752fd6980263ddce86aab"
       },
-      "parameterName": "EVtoEBITDA",
+      "parameterName": "EV/EBITDA Ratio",
       "valueNum": 14
     }
   ],
