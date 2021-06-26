@@ -8,7 +8,7 @@ import {Subject} from "rxjs";
 
 export class AssetRatiosService {
 
-  private upadateAssetRatios = new Subject<DetailedAssetRatios>();
+  private updateAssetRatios = new Subject<DetailedAssetRatios>();
   ratiosReturn;
 
   constructor(private http: HttpClient) {
@@ -19,20 +19,20 @@ export class AssetRatiosService {
       .pipe(map((returnedRatios) => {
         return returnedRatios.payload.ratiosArray.map((ratios) => {
           return [
-            {parameterName: `EPSRatio`, valueNum: returnedRatios.payload.ratiosArray[0].valueNum},
-            {parameterName: `PERatio`, valueNum: returnedRatios.payload.ratiosArray[1].valueNum},
-            {parameterName: `PEGRatio`, valueNum: returnedRatios.payload.ratiosArray[2].valueNum},
-            {parameterName: `CAPERatio`, valueNum: returnedRatios.payload.ratiosArray[3].valueNum},
-            {parameterName: `PBRatio`, valueNum: returnedRatios.payload.ratiosArray[4].valueNum},
-            {parameterName: `DERatio`, valueNum: returnedRatios.payload.ratiosArray[5].valueNum},
+            {parameterName: `EPS Ratio`, valueNum: returnedRatios.payload.ratiosArray[0].valueNum},
+            {parameterName: `P/E Ratio`, valueNum: returnedRatios.payload.ratiosArray[1].valueNum},
+            {parameterName: `PEG Ratio`, valueNum: returnedRatios.payload.ratiosArray[2].valueNum},
+            {parameterName: `CAPE Ratio`, valueNum: returnedRatios.payload.ratiosArray[3].valueNum},
+            {parameterName: `P/B Ratio`, valueNum: returnedRatios.payload.ratiosArray[4].valueNum},
+            {parameterName: `D/E Ratio`, valueNum: returnedRatios.payload.ratiosArray[5].valueNum},
             {parameterName: `ROE`, valueNum: returnedRatios.payload.ratiosArray[6].valueNum},
-            {parameterName: `ROCERatio`, valueNum: returnedRatios.payload.ratiosArray[7].valueNum},
-            {parameterName: `DividendYield`, valueNum: returnedRatios.payload.ratiosArray[8].valueNum},
-            {parameterName: `DPRRatio`, valueNum: returnedRatios.payload.ratiosArray[9].valueNum},
-            {parameterName: `PSRatio`, valueNum: returnedRatios.payload.ratiosArray[10].valueNum},
-            {parameterName: `GrahamNum`, valueNum: returnedRatios.payload.ratiosArray[11].valueNum},
-            {parameterName: `EVtoEBITRatio`, valueNum: returnedRatios.payload.ratiosArray[12].valueNum},
-            {parameterName: `EVtoEBITDA`, valueNum: returnedRatios.payload.ratiosArray[13].valueNum}
+            {parameterName: `ROCE Ratio`, valueNum: returnedRatios.payload.ratiosArray[7].valueNum},
+            {parameterName: `Dividend Yield`, valueNum: returnedRatios.payload.ratiosArray[8].valueNum},
+            {parameterName: `DPR Ratio`, valueNum: returnedRatios.payload.ratiosArray[9].valueNum},
+            {parameterName: `P/S Ratio`, valueNum: returnedRatios.payload.ratiosArray[10].valueNum},
+            {parameterName: `Graham Number`, valueNum: returnedRatios.payload.ratiosArray[11].valueNum},
+            {parameterName: `EV/EBIT Ratio`, valueNum: returnedRatios.payload.ratiosArray[12].valueNum},
+            {parameterName: `EV/EBITDA Ratio`, valueNum: returnedRatios.payload.ratiosArray[13].valueNum}
           ]
         });
       }))
@@ -41,7 +41,7 @@ export class AssetRatiosService {
           assetId: assetId,
           ratiosArray: returnedRatios[0]
         }
-        this.upadateAssetRatios.next(this.ratiosReturn);
+        this.updateAssetRatios.next(this.ratiosReturn);
       })
     return this.ratiosReturn;
   }
@@ -54,6 +54,6 @@ export class AssetRatiosService {
   }
 
   getRatiosUpdateListener() {
-    return this.upadateAssetRatios.asObservable()
+    return this.updateAssetRatios.asObservable()
   }
 }

@@ -44,20 +44,20 @@ app.post('/api/assets', (req, res) => {
     const assetRatiosPlaceholder = new AssetRatio({
         id: '',
         ratiosArray: [
-            {parameterName: `EPSRatio`, valueNum: 0},
-            {parameterName: `PERatio`, valueNum: 0},
-            {parameterName: `PEGRatio`, valueNum: 0},
-            {parameterName: `CAPERatio`, valueNum: 0},
-            {parameterName: `PBRatio`, valueNum: 0},
-            {parameterName: `DERatio`, valueNum: 0},
+            {parameterName: `EPS Ratio`, valueNum: 0},
+            {parameterName: `P/E Ratio`, valueNum: 0},
+            {parameterName: `PEG Ratio`, valueNum: 0},
+            {parameterName: `CAPE Ratio`, valueNum: 0},
+            {parameterName: `P/B Ratio`, valueNum: 0},
+            {parameterName: `D/E Ratio`, valueNum: 0},
             {parameterName: `ROE`, valueNum: 0},
-            {parameterName: `ROCERatio`, valueNum: 0},
-            {parameterName: `DividendYield`, valueNum: 0},
-            {parameterName: `DPRRatio`, valueNum: 0},
-            {parameterName: `PSRatio`, valueNum: 0},
-            {parameterName: `GrahamNum`, valueNum: 0},
-            {parameterName: `EVtoEBITRatio`, valueNum: 0},
-            {parameterName: `EVtoEBITDA`, valueNum: 0}
+            {parameterName: `ROCE Ratio`, valueNum: 0},
+            {parameterName: `Dividend Yield`, valueNum: 0},
+            {parameterName: `DPR Ratio`, valueNum: 0},
+            {parameterName: `P/S Ratio`, valueNum: 0},
+            {parameterName: `Graham Number`, valueNum: 0},
+            {parameterName: `EV/EBIT Ratio`, valueNum: 0},
+            {parameterName: `EV/EBITDA Ratio`, valueNum: 0}
         ]
     });
 
@@ -110,7 +110,9 @@ app.put('/api/assets/:id', (req, res) => {
 
 app.delete('/api/delete/:id', (req, res) => {
     Asset.deleteOne({_id: req.params.id}).then((done) => {
+        AssetRatio.deleteOne({assetId: req.params.id}).then(() => {
         res.status(200).json(done);
+        })
     }).catch($e => {
         console.log('Error with asset deletion. Error: ' + $e);
     });
