@@ -50,7 +50,7 @@ app.post('/api/assets', (req, res) => {
             {parameterName: `CAPE Ratio`, valueNum: 0},
             {parameterName: `P/B Ratio`, valueNum: 0},
             {parameterName: `D/E Ratio`, valueNum: 0},
-            {parameterName: `ROE`, valueNum: 0},
+            {parameterName: `ROE Ratio`, valueNum: 0},
             {parameterName: `ROCE Ratio`, valueNum: 0},
             {parameterName: `Dividend Yield`, valueNum: 0},
             {parameterName: `DPR Ratio`, valueNum: 0},
@@ -111,7 +111,7 @@ app.put('/api/assets/:id', (req, res) => {
 app.delete('/api/delete/:id', (req, res) => {
     Asset.deleteOne({_id: req.params.id}).then((done) => {
         AssetRatio.deleteOne({assetId: req.params.id}).then(() => {
-        res.status(200).json(done);
+            res.status(200).json(done);
         })
     }).catch($e => {
         console.log('Error with asset deletion. Error: ' + $e);
