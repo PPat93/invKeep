@@ -11,22 +11,25 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
-import {MatSelectModule} from '@angular/material/select'
+import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from "@angular/material/table";
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {AppRoutingModule} from "./app-routing.module";
 
 import {AppComponent} from './app.component';
 import {AssetCreateComponent} from './assetComponents/asset-create/asset-create.component';
+import {AssetDetailsComponent} from './assetComponents/asset-details/asset-details.component';
 import {AssetListComponent} from './assetComponents/asset-list/asset-list.component';
 import {MenuComponent} from './menu/menu.component';
 import {MessageDisplayComponent} from './message-display/message-display.component';
 import {ToolbarMenuComponent} from './toolbar/toolbar.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import {HomePageComponent} from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AssetCreateComponent,
+    AssetDetailsComponent,
     AssetListComponent,
     MenuComponent,
     MessageDisplayComponent,
@@ -48,6 +51,7 @@ import { HomePageComponent } from './home-page/home-page.component';
     MatInputModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatTableModule,
     MatToolbarModule,
     AppRoutingModule
   ],

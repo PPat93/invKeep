@@ -1,37 +1,61 @@
 [{
   "_id": {
-    "$oid": "60984100f307443b1062f5ce"
+    "$oid": "60c90702263f8d13a49bad06"
   },
-  "id": "60984100f307443b1062f5ce",
+  "id": "60c90702263f8d13a49bad06",
   "assetName": "Rolls Royce",
   "assetSymbol": "RR.L",
   "amount": 86,
   "buyPrice": 1.12,
   "currency": "£",
-  "purchaseDate": "11/17/2020",
+  "purchaseDate": "6/2/2021",
   "__v": 0
 },{
   "_id": {
-    "$oid": "609995eef397693314fcad1c"
+    "$oid": "60c90736263f8d13a49bad16"
   },
-  "id": "609995eef397693314fcad1c",
+  "id": "60c90736263f8d13a49bad16",
+  "assetName": "Comerica",
+  "assetSymbol": "CMA",
+  "amount": 11,
+  "buyPrice": 58.46,
+  "currency": "$",
+  "purchaseDate": "3/10/2021",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60c90773263f8d13a49bad26"
+  },
+  "id": "60c90773263f8d13a49bad26",
   "assetName": "Apple",
   "assetSymbol": "AAPL",
-  "amount": 32,
-  "buyPrice": 358.62,
+  "amount": 10,
+  "buyPrice": 356.94,
   "currency": "$",
-  "purchaseDate": "5/11/2021",
+  "purchaseDate": "1/5/2021",
   "__v": 0
 },{
   "_id": {
-    "$oid": "609ea9fd61567f362ce8751b"
+    "$oid": "60c90783263f8d13a49bad36"
   },
-  "id": "609ea9fd61567f362ce8751b",
+  "id": "60c90783263f8d13a49bad36",
   "assetName": "Nio",
   "assetSymbol": "NIO",
-  "amount": 58,
-  "buyPrice": 12.58,
+  "amount": 45,
+  "buyPrice": 18.54,
   "currency": "¥",
-  "purchaseDate": "4/19/2021",
+  "purchaseDate": "-",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60c9079e263f8d13a49bad46"
+  },
+  "id": "60c9079e263f8d13a49bad46",
+  "assetName": "Chesapeak Energy",
+  "assetSymbol": "CHK",
+  "amount": 45,
+  "buyPrice": 0.38,
+  "currency": "$",
+  "purchaseDate": "6/2/2021",
   "__v": 0
 }]

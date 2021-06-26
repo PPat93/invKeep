@@ -23,7 +23,7 @@
             <span>Purchase Date:&nbsp;<b>{{ oneRecord.purchaseDate }}</b></span><br>
           </td>
           <td>
-            <button class="details" mat-stroked-button>Details</button>
+            <button class="details" mat-stroked-button [routerLink]="['details', oneRecord.id]">Details</button>
           </td>
         </tr>
       </table>
