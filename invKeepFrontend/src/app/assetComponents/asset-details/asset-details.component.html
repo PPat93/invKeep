@@ -47,7 +47,7 @@
           <th mat-header-cell *matHeaderCellDef>Value</th>
           <td mat-cell *matCellDef="let ratio">
             <mat-form-field class="parameter-value">
-              <input name="{{ratio.parameterName}}" matInput [ngModel]="ratio.valueNum"  #inputElement="ngModel"
+              <input name="r{{ratio.parameterName}}" matInput [ngModel]="ratio.valueNum"
                       value="{{ratio.valueNum}}">
             </mat-form-field>
           </td>

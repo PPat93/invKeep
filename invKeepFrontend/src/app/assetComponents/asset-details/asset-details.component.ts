@@ -48,7 +48,8 @@ export class AssetDetailsComponent implements OnInit {
   saveDetailedRatios(detailedRatios: NgForm) {
     for (let ratio in this.detailedAssetRatios.ratiosArray) {
       for (let newRatio in detailedRatios.form.value) {
-        if (this.detailedAssetRatios.ratiosArray[ratio].parameterName === newRatio)
+        if (this.detailedAssetRatios.ratiosArray[ratio].parameterName === (newRatio.substring(1))) // because of error that appears if input field has name set only by
+          // two way binding it was needed to add a letter that is not dynamic. Here I remove it.
           this.detailedAssetRatios.ratiosArray[ratio].valueNum = Number(detailedRatios.form.value[newRatio]);
       }
     }
