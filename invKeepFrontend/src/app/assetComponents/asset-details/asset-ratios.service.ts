@@ -1,20 +1,20 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {AssetRecord, DetailedAssetRatios, RatiosNames} from "../../shared/shared";
+import {DetailedAssetRatios, RatiosNames} from "../../shared/shared";
 import {map} from "rxjs/operators";
-import {Subject} from "rxjs";
+import {Observable, Subject} from "rxjs";
 
 @Injectable({providedIn: 'root'})
 
 export class AssetRatiosService {
 
   private updateAssetRatios = new Subject<DetailedAssetRatios>();
-  ratiosReturn;
+  ratiosReturn: DetailedAssetRatios;
 
   constructor(private http: HttpClient) {
   }
 
-  getDetailedRatios(assetId: string): { parameterName: string, valueNum: number }[] {
+  getDetailedRatios(assetId: string): DetailedAssetRatios {
     this.http.get<{ message: string, payload: DetailedAssetRatios }>(`http://localhost:3000/api/detailed-ratios/${assetId}`)
       .pipe(map((returnedRatios) => {
         return returnedRatios.payload.ratiosArray.map((ratios) => {
@@ -53,7 +53,7 @@ export class AssetRatiosService {
       })
   }
 
-  getRatiosUpdateListener() {
+  getRatiosUpdateListener(): Observable<DetailedAssetRatios> {
     return this.updateAssetRatios.asObservable()
   }
 }

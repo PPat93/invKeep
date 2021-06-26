@@ -1,7 +1,7 @@
 import {AssetRecord} from '../../shared/shared';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Router} from '@angular/router';
 
@@ -72,7 +72,7 @@ export class AssetsService {
     return {...this.assetsArray.find(as => as.id === id)};
   }
 
-  getAssetsUpdateListener() {
+  getAssetsUpdateListener(): Observable<AssetRecord[]> {
     return this.updateAssets.asObservable();
   }
 }

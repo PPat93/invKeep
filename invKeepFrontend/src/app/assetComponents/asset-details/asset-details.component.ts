@@ -40,12 +40,11 @@ export class AssetDetailsComponent implements OnInit {
       });
   }
 
-  stockTotalCost() {
-    const totalPrice: string = (this.assetMainDetails.buyPrice * this.assetMainDetails.amount).toFixed(2);
-    return totalPrice;
+  stockTotalCost(): string {
+    return (this.assetMainDetails.buyPrice * this.assetMainDetails.amount).toFixed(2);
   }
 
-  saveDetailedRatios(detailedRatios: NgForm) {
+  saveDetailedRatios(detailedRatios: NgForm): void {
     for (let ratio in this.detailedAssetRatios.ratiosArray) {
       for (let newRatio in detailedRatios.form.value) {
         if (this.detailedAssetRatios.ratiosArray[ratio].parameterName === (newRatio.substring(1))) // because of error that appears if input field has name set only by

@@ -25,7 +25,7 @@ export class AssetListComponent implements OnInit, OnDestroy {
       })
   }
 
-  deleteAsset(assetId: string) {
+  deleteAsset(assetId: string): void {
     this.AssetsService.deleteAsset(assetId);
   }
 
