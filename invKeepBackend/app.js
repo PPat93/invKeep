@@ -118,6 +118,8 @@ app.delete('/api/delete/:id', (req, res) => {
     });
 });
 
+    ////// DETAILED RATIOS ///////////////////////////////////////////////////////////////////////////////////////////
+
 app.get('/api/detailed-ratios/:id', (req, res) => {
     AssetRatio.find({assetId: req.params.id}).then((detailedRatios) => {
         const newRatios = detailedRatios[0];

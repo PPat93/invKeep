@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AssetRecord} from "../../shared/shared";
+import {AssetRecord} from "../../shared/sharedTS";
 import {AssetsService} from "./assets.service";
 import {Subscription} from "rxjs";
 

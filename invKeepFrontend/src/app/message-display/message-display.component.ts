@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {welcomeMsg} from "../shared/shared";
+import {welcomeMsg} from "../shared/sharedTS";
 
 @Component({
   selector: 'app-message-display',

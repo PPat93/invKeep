@@ -19,29 +19,32 @@ class EPSRatio extends BasicRatio {
     calculate() {
         let netIncome, prefDividends, endShareOutstand;
         // here external def of above values for calculation
-        return super.final_value = (netIncome - prefDividends) / endShareOutstand;
+        return this.final_value = (netIncome - prefDividends) / endShareOutstand;
     }
 
     determineProfitability(EPSRatio = this.final_value) {
         switch (EPSRatio) {
             case (EPSRatio < 0):
-                super.analysisSummary = [`Really bad`, `negative value indicates loss`];
+                this.analysisSummary = [`Really bad`, `negative value indicates loss`];
                 break;
             case (EPSRatio = 0):
-                super.analysisSummary = [`Bad`, `0 value indicates no profits`];
+                this.analysisSummary = [`Bad`, `0 value indicates no profits`];
                 break;
             case (0 < EPSRatio < 13):
-                super.analysisSummary = [`Rather bad`, `significantly below average (counted as average of S&P500 from last 20 years)`];
+                this.analysisSummary = [`Rather bad`, `significantly below average (counted as average of S&P500 from last 20 years)`];
                 break;
             case (13 <= EPSRatio < 26):
-                super.analysisSummary = [`Not really good`, `slightly below average (counted as average of S&P500 from last 20 years)`];
+                this.analysisSummary = [`Not really good`, `slightly below average (counted as average of S&P500 from last 20 years)`];
                 break;
             case (26<= EPSRatio <39):
-                super.analysisSummary = [`Rather good`, `slightly above average (counted as average of S&P500 from last 20 years)`];
+                this.analysisSummary = [`Rather good`, `slightly above average (counted as average of S&P500 from last 20 years)`];
                 break;
             case (39 <= EPSRatio):
-                super.analysisSummary = [`Outstanding`, `significantly above average (counted as average of S&P500 from last 20 years)`];
+                this.analysisSummary = [`Outstanding`, `significantly above average (counted as average of S&P500 from last 20 years)`];
                 break;
+            default:
+                this.analysisSummary = [`Error, data is out of boundaries`];
         }
+        return this.analysisSummary;
     }
 }

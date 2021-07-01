@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AssetsService} from "../asset-list/assets.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
-import {AssetRecord, DetailedAssetRatios} from "../../shared/shared";
+import {AssetRecord, DetailedAssetRatios} from "../../shared/sharedTS";
 import {NgForm} from "@angular/forms";
 import {AssetRatiosService} from "./asset-ratios.service";
 import {Subscription} from "rxjs";

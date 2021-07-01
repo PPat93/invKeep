@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {AssetsService} from "../asset-list/assets.service";
-import {AssetRecord} from "../../shared/shared";
+import {AssetRecord} from "../../shared/sharedTS";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 
 @Component({
