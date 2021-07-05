@@ -27,7 +27,7 @@ module.exports = class EPSRatio {
     }
 
     determineProfitability(EPSRatio) {
-        switch (EPSRatio) {
+        switch (true) {
             case (EPSRatio < 0):
                 this.analysisSummary = [`Really bad`, `negative value indicates loss`];
                 break;
