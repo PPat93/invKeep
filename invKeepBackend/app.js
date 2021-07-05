@@ -1,3 +1,6 @@
+const EPSRatio = require('./ratiosCalc/EPSRatio');
+const RatiosNames = require('../invKeepFrontend/src/app/shared/sharedJS');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const Asset = require('./models/asset');
@@ -123,6 +126,8 @@ app.delete('/api/delete/:id', (req, res) => {
 app.get('/api/detailed-ratios/:id', (req, res) => {
     AssetRatio.find({assetId: req.params.id}).then((detailedRatios) => {
         const newRatios = detailedRatios[0];
+        const tab = [{parameterName: RatiosNames.eps_ratio, valueNum: 9}];
+        console.log(new EPSRatio(2).determineProfitability(8));
         res.status(200).json({
             message: 'Asset ratios retrieved successfully!',
             payload: newRatios

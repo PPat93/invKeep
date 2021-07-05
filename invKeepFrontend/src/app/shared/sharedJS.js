@@ -22,4 +22,4 @@ function searchObject(ratiosArray, searchedNameObj){
   }
 }
 
-export {RatiosNames, searchObject};
+module.exports = {RatiosNames, searchObject};

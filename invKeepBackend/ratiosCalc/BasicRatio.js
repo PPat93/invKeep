@@ -4,7 +4,7 @@ class BasicRatio {
     final_value = 0;
     description = '';
     additionalDetails = [];
-    analysisSummary = [];
+    analysisSummary = [''];
     coAnalysis = [];
 
     constructor(ratio = 0, msg = '') {

@@ -1,18 +1,17 @@
-class EPSRatio extends BasicRatio {
+module.exports = class EPSRatio {
 
     constructor(EPSRatio = 0) {
-        super();
-        super.description = `Earnings per share (EPS) is calculated as a company\'s profit divided by the outstanding shares ` +
+        this.description = `Earnings per share (EPS) is calculated as a company\'s profit divided by the outstanding shares ` +
             `of its common stock. The resulting number serves as an indicator of a company\'s profitability. It is common ` +
             `for a company to report EPS that is adjusted for extraordinary items and potential share dilution. `;
-        super.additionalDetails = [
+        this.additionalDetails = [
             `One of the most important metrics`,
             `Shows how much company earns on most basic level`,
             `The higher value the better`,
-            `Analyze with: ${super.coAnalysis}`
+            `Analyze with: ${this.coAnalysis}`
         ];
-        super.coAnalysis = [`P/E Ratio`]
-        super.final_value = EPSRatio;
+        this.coAnalysis = [`P/E Ratio`]
+        this.final_value = EPSRatio;
     }
 
 
@@ -22,7 +21,12 @@ class EPSRatio extends BasicRatio {
         return this.final_value = (netIncome - prefDividends) / endShareOutstand;
     }
 
-    determineProfitability(EPSRatio = this.final_value) {
+    createEPSClass(detailedRatiosArray) {
+        var objEPSratio = new EPSRatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.eps_ratio)).valueNum);
+        return objEPSratio.determineProfitability()
+    }
+
+    determineProfitability(EPSRatio) {
         switch (EPSRatio) {
             case (EPSRatio < 0):
                 this.analysisSummary = [`Really bad`, `negative value indicates loss`];
@@ -43,8 +47,9 @@ class EPSRatio extends BasicRatio {
                 this.analysisSummary = [`Outstanding`, `significantly above average (counted as average of S&P500 from last 20 years)`];
                 break;
             default:
-                this.analysisSummary = [`Error, data is out of boundaries`];
+                this.analysisSummary = [`Error, data is out of boundaries + ${EPSRatio}`];
         }
         return this.analysisSummary;
     }
 }
+
