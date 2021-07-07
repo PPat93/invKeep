@@ -15,10 +15,13 @@ const RatiosNames = Object.freeze({
   ev_ebitda_ratio: `EV/EBITDA Ratio`
 });
 
-function searchObject(ratiosArray, searchedNameObj){
-  for(let i = 0; i < ratiosArray.length ; i++){
-    if(ratiosArray[i].parameterName === searchedNameObj)
-      return ratiosArray[i];
+function searchObject(ratiosArray, searchedNameObj) {
+  for (let a = 0; a < ratiosArray.length; a++) {
+    if (ratiosArray[a].parameterName === searchedNameObj) {
+      return ratiosArray[a];
+    } else {
+      return null;
+    }
   }
 }
 

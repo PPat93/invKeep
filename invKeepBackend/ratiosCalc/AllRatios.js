@@ -1,15 +1,14 @@
 const sharedJS = require ('../../invKeepFrontend/src/app/shared/sharedJS');
+const EPSRatio = require ('./EPSRatio');
 
-class AllRatios {
+module.exports = class AllRatios {
 
     constructor(detailedRatiosArray) {
          // this.createEPSClass(detailedRatiosArray);
     }
 
-   static createEPSClass(detailedRatiosArray) {
-        var objEPSratio = new EPSRatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.eps_ratio)).valueNum);
-        return objEPSratio.determineProfitability()
+   createRatios(detailedRatiosArray) {
+        let objEPSRatio = new EPSRatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.eps_ratio)).valueNum);
+        return objEPSRatio.determineProfitability(objEPSRatio.final_value);
     }
 }
-
-module.exports = {AllRatios}

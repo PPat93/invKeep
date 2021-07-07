@@ -1,6 +1,11 @@
-module.exports = class EPSRatio {
+const BasicRatio = require('./BasicRatio');
+
+module.exports = class EPSRatio extends BasicRatio {
+
+    ratioName = `EPS Ratio`;
 
     constructor(EPSRatio = 0) {
+        super();
         this.description = `Earnings per share (EPS) is calculated as a company\'s profit divided by the outstanding shares ` +
             `of its common stock. The resulting number serves as an indicator of a company\'s profitability. It is common ` +
             `for a company to report EPS that is adjusted for extraordinary items and potential share dilution. `;
@@ -21,33 +26,28 @@ module.exports = class EPSRatio {
         return this.final_value = (netIncome - prefDividends) / endShareOutstand;
     }
 
-    createEPSClass(detailedRatiosArray) {
-        var objEPSratio = new EPSRatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.eps_ratio)).valueNum);
-        return objEPSratio.determineProfitability()
-    }
-
     determineProfitability(EPSRatio) {
         switch (true) {
             case (EPSRatio < 0):
-                this.analysisSummary = [`Really bad`, `negative value indicates loss`];
+                this.analysisSummary = [`${this.ratioName}`, `Really bad`, `negative value indicates loss`];
                 break;
-            case (EPSRatio = 0):
-                this.analysisSummary = [`Bad`, `0 value indicates no profits`];
+            case (EPSRatio === 0):
+                this.analysisSummary = [`${this.ratioName}`, `Bad`, `0 value indicates no profits`];
                 break;
             case (0 < EPSRatio < 13):
-                this.analysisSummary = [`Rather bad`, `significantly below average (counted as average of S&P500 from last 20 years)`];
+                this.analysisSummary = [`${this.ratioName}`, `Rather bad`, `significantly below average (counted as average of S&P500 from last 20 years)`];
                 break;
             case (13 <= EPSRatio < 26):
-                this.analysisSummary = [`Not really good`, `slightly below average (counted as average of S&P500 from last 20 years)`];
+                this.analysisSummary = [`${this.ratioName}`, `Not really good`, `slightly below average (counted as average of S&P500 from last 20 years)`];
                 break;
-            case (26<= EPSRatio <39):
-                this.analysisSummary = [`Rather good`, `slightly above average (counted as average of S&P500 from last 20 years)`];
+            case (26 <= EPSRatio < 39):
+                this.analysisSummary = [`${this.ratioName}`, `Rather good`, `slightly above average (counted as average of S&P500 from last 20 years)`];
                 break;
             case (39 <= EPSRatio):
-                this.analysisSummary = [`Outstanding`, `significantly above average (counted as average of S&P500 from last 20 years)`];
+                this.analysisSummary = [`${this.ratioName}`, `Outstanding`, `significantly above average (counted as average of S&P500 from last 20 years)`];
                 break;
             default:
-                this.analysisSummary = [`Error, data is out of boundaries + ${EPSRatio}`];
+                this.analysisSummary = [`${this.ratioName}`, `Error, data is out of boundaries - value: ${EPSRatio}`];
         }
         return this.analysisSummary;
     }

@@ -1,5 +1,5 @@
 
-class BasicRatio {
+module.exports = class BasicRatio {
 
     final_value = 0;
     description = '';
