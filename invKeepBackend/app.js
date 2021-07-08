@@ -127,8 +127,6 @@ app.delete('/api/delete/:id', (req, res) => {
 app.get('/api/detailed-ratios/:id', (req, res) => {
     AssetRatio.find({assetId: req.params.id}).then((detailedRatios) => {
         const newRatios = detailedRatios[0];
-        const tab = [{parameterName: RatiosNames.RatiosNames.eps_ratio, valueNum: 40},{parameterName: RatiosNames.RatiosNames.de_ratio, valueNum: 25}];
-        // console.log(new AllRatios().createRatios(tab));
         res.status(200).json({
             message: 'Asset ratios retrieved successfully!',
             payload: newRatios
