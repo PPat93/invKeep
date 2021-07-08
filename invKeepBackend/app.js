@@ -1,3 +1,7 @@
+const AllRatios = require('./ratiosCalc/AllRatios');
+const EPSRatio = require('./ratiosCalc/EPSRatio');
+const RatiosNames = require('../invKeepFrontend/src/app/shared/sharedJS');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const Asset = require('./models/asset');
@@ -117,6 +121,8 @@ app.delete('/api/delete/:id', (req, res) => {
         console.log('Error with asset deletion. Error: ' + $e);
     });
 });
+
+    ////// DETAILED RATIOS ///////////////////////////////////////////////////////////////////////////////////////////
 
 app.get('/api/detailed-ratios/:id', (req, res) => {
     AssetRatio.find({assetId: req.params.id}).then((detailedRatios) => {
