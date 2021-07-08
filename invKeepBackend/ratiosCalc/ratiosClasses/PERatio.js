@@ -18,4 +18,17 @@ module.exports = class PERatio extends BasicRatio{
         ];
         this.final_value = PERatio;
     }
+
+    // calculate(){ // future ratio more precise analysis method
+    //  let oneSharePrice, earningsPerShare
+    // here external def of above values for calculation
+    // this.final_value = oneSharePrice/earningsPerShare
+    // }
+
+    determineProfitability(PERatio) {
+        switch (true){
+            case :
+                break;
+        }
+    }
 }

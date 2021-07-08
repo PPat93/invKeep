@@ -19,11 +19,11 @@ module.exports = class EPSRatio extends BasicRatio {
     }
 
 
-    calculate() {
-        let netIncome, prefDividends, endShareOutstand;
-        // here external def of above values for calculation
-        return this.final_value = (netIncome - prefDividends) / endShareOutstand;
-    }
+    // calculate() { // future ratio more precise analysis method
+    //     let netIncome, prefDividends, endShareOutstand;
+    //     // here external def of above values for calculation
+    //     return this.final_value = (netIncome - prefDividends) / endShareOutstand;
+    // }
 
     determineProfitability(EPSRatio) {
         switch (true) {
