@@ -1,5 +1,5 @@
 const sharedJS = require ('../../invKeepFrontend/src/app/shared/sharedJS');
-const EPSRatio = require ('./EPSRatio');
+const EPSRatio = require ('./ratiosClasses/EPSRatio');
 
 module.exports = class AllRatios {
 

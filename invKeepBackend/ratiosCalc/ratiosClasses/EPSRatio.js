@@ -1,11 +1,11 @@
-const BasicRatio = require('./BasicRatio');
+const BasicRatio = require('../BasicRatio');
 
 module.exports = class EPSRatio extends BasicRatio {
 
-    ratioName = `EPS Ratio`;
-
     constructor(EPSRatio = 0) {
         super();
+        this.ratioName  = `EPS Ratio`;
+        this.coAnalysis = [`P/E Ratio`];
         this.description = `Earnings per share (EPS) is calculated as a company\'s profit divided by the outstanding shares ` +
             `of its common stock. The resulting number serves as an indicator of a company\'s profitability. It is common ` +
             `for a company to report EPS that is adjusted for extraordinary items and potential share dilution. `;
@@ -15,7 +15,6 @@ module.exports = class EPSRatio extends BasicRatio {
             `The higher value the better`,
             `Analyze with: ${this.coAnalysis}`
         ];
-        this.coAnalysis = [`P/E Ratio`]
         this.final_value = EPSRatio;
     }
 

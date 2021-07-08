@@ -1,13 +1,13 @@
-
 module.exports = class BasicRatio {
 
     final_value = 0;
-    description = '';
+    description = ``
     additionalDetails = [];
-    analysisSummary = [''];
+    analysisSummary = [``];
     coAnalysis = [];
+    ratioName = ``;
 
-    constructor(ratio = 0, msg = '') {
+    constructor(ratio = 0, msg = ``) {
         this.final_value = ratio;
         this.description = msg;
     }
