@@ -1,5 +1,5 @@
 const AllRatios = require('./ratiosCalc/AllRatios');
-const EPSRatio = require('./ratiosCalc/EPSRatio');
+const EPSRatio = require('./ratiosCalc/ratiosClasses/EPSRatio');
 const RatiosNames = require('../invKeepFrontend/src/app/shared/sharedJS');
 
 const express = require('express');
