@@ -5,18 +5,18 @@ module.exports = class PERatio extends BasicRatio {
     constructor(PERatio) {
         super();
         this.ratioName = `P/E Ratio`;
-        this.coAnalysis = [``];
+        this.coAnalysis = [`EPS Ratio`];
         this.description = `The price-to-earnings ratio (P/E ratio) is the ratio for valuing a company that measures 
             its current share price relative to its per-share earnings (EPS). Determine the relative value of a company's 
-            shares in an apples-to-apples comparison. Can be used to compare a company against its own historical record 
-            or to compare aggregate markets against one another or over time`;
+            shares in an apples-to-apples comparison. Constant negative ratio may indicate bankruptcy risk.`;
         this.additionalDetails = [
-            `One of the most important metrics`,
-            `Shows how much company earns on most basic level`,
-            `The higher value the better`,
+            `One of the most important metrics.`,
+            `Shows how is the price of one share compared to company earnings per one share`,
+            `The higher value the worse`,
             `Analyze with: ${this.coAnalysis}`
         ];
         this.final_value = PERatio;
+        this.onScaleRating = 0;
     }
 
     // calculate(){ // future ratio more precise analysis method
@@ -29,26 +29,30 @@ module.exports = class PERatio extends BasicRatio {
         switch (true) {
             case (PERatio < 0) || (PERatio === 0):
                 this.analysisSummary = [`${this.ratioName}`, `Depends`, `Company is loosing money. Dependently from 
-                periods it is ok (e.g. during a crisis) or bad.`];
+                periods it is ok (e.g. during a crisis) or bad.`, this.onScaleRating = 3];
                 break;
             case (0 < PERatio < 5):
                 this.analysisSummary = [`${this.ratioName}`, `Outstanding`, `Amazing earnings with really low price 
-                (compared to average of american stocks from last 200 years - 15)`];
+                (compared to average of american stocks from last 200 years - 15)`, this.onScaleRating = 6];
                 break;
             case (5 <= PERatio < 8):
                 this.analysisSummary = [`${this.ratioName}`, `Rather good`, `Decent earnings with low price (compared 
-                to average of american stocks from last 200 years - 15)`];
+                to average of american stocks from last 200 years - 15)`, this.onScaleRating = 5];
                 break;
             case (8 <= PERatio < 16):
                 this.analysisSummary = [`${this.ratioName}`, `Neutral`, `Close to average, still may be worth attention 
-                (compared to average of american stocks from last 200 years - 15)`];
+                (compared to average of american stocks from last 200 years - 15)`, this.onScaleRating = 4];
                 break;
             case (16 <= PERatio < 20):
-                this.analysisSummary = [`${this.ratioName}`, `Bad`, `The higher, the worse. Too expensive stocks. May be
-                a speculative bubble (compared to average of american stocks from last 200 years - 15)`];
+                this.analysisSummary = [`${this.ratioName}`, `Bad`, `Expensive stocks. May be a speculative bubble 
+                (compared to average of american stocks from last 200 years - 15)`, this.onScaleRating = 2];
+                break;
+            case (20 <= PERatio):
+                this.analysisSummary = [`${this.ratioName}`, `Really bad`, ` Really expensive stocks. Speculative bubble
+                 highly probable (compared to average of american stocks from last 200 years - 15)`, this.onScaleRating = 1];
                 break;
             default:
-                this.analysisSummary = [`${this.ratioName}`, `Error, data is out of boundaries - value: ${PERatio}`];
+                this.analysisSummary = [`${this.ratioName}`, `Error`, `Data is out of boundaries - value: ${PERatio}`, this.onScaleRating];
         }
         return this.analysisSummary;
     }
