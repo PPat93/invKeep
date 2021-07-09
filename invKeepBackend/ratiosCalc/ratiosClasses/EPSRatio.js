@@ -28,22 +28,26 @@ module.exports = class EPSRatio extends BasicRatio {
     determineProfitability(EPSRatio) {
         switch (true) {
             case (EPSRatio < 0):
-                this.analysisSummary = [`${this.ratioName}`, `Really bad`, `negative value indicates loss`];
+                this.analysisSummary = [`${this.ratioName}`, `Really bad`, `Negative value indicates loss`];
                 break;
             case (EPSRatio === 0):
                 this.analysisSummary = [`${this.ratioName}`, `Bad`, `0 value indicates no profits`];
                 break;
             case (0 < EPSRatio < 13):
-                this.analysisSummary = [`${this.ratioName}`, `Rather bad`, `significantly below average (counted as average of S&P500 from last 20 years)`];
+                this.analysisSummary = [`${this.ratioName}`, `Rather bad`, `Significantly below average (counted as 
+                average of S&P500 from last 20 years)`];
                 break;
             case (13 <= EPSRatio < 26):
-                this.analysisSummary = [`${this.ratioName}`, `Not really good`, `slightly below average (counted as average of S&P500 from last 20 years)`];
+                this.analysisSummary = [`${this.ratioName}`, `Not really good`, `Slightly below average (counted as 
+                average of S&P500 from last 20 years)`];
                 break;
             case (26 <= EPSRatio < 39):
-                this.analysisSummary = [`${this.ratioName}`, `Rather good`, `slightly above average (counted as average of S&P500 from last 20 years)`];
+                this.analysisSummary = [`${this.ratioName}`, `Rather good`, `Slightly above average (counted as average 
+                of S&P500 from last 20 years)`];
                 break;
             case (39 <= EPSRatio):
-                this.analysisSummary = [`${this.ratioName}`, `Outstanding`, `significantly above average (counted as average of S&P500 from last 20 years)`];
+                this.analysisSummary = [`${this.ratioName}`, `Outstanding`, `Significantly above average (counted as 
+                average of S&P500 from last 20 years)`];
                 break;
             default:
                 this.analysisSummary = [`${this.ratioName}`, `Error, data is out of boundaries - value: ${EPSRatio}`];

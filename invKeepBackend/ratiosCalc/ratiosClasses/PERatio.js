@@ -1,6 +1,6 @@
 const BasicRatio = require('../BasicRatio');
 
-module.exports = class PERatio extends BasicRatio{
+module.exports = class PERatio extends BasicRatio {
 
     constructor(PERatio) {
         super();
@@ -26,9 +26,30 @@ module.exports = class PERatio extends BasicRatio{
     // }
 
     determineProfitability(PERatio) {
-        switch (true){
-            case :
+        switch (true) {
+            case (PERatio < 0) || (PERatio === 0):
+                this.analysisSummary = [`${this.ratioName}`, `Depends`, `Company is loosing money. Dependently from 
+                periods it is ok (e.g. during a crisis) or bad.`];
                 break;
+            case (0 < PERatio < 5):
+                this.analysisSummary = [`${this.ratioName}`, `Outstanding`, `Amazing earnings with really low price 
+                (compared to average of american stocks from last 200 years - 15)`];
+                break;
+            case (5 <= PERatio < 8):
+                this.analysisSummary = [`${this.ratioName}`, `Rather good`, `Decent earnings with low price (compared 
+                to average of american stocks from last 200 years - 15)`];
+                break;
+            case (8 <= PERatio < 16):
+                this.analysisSummary = [`${this.ratioName}`, `Neutral`, `Close to average, still may be worth attention 
+                (compared to average of american stocks from last 200 years - 15)`];
+                break;
+            case (16 <= PERatio < 20):
+                this.analysisSummary = [`${this.ratioName}`, `Bad`, `The higher, the worse. Too expensive stocks. May be
+                a speculative bubble (compared to average of american stocks from last 200 years - 15)`];
+                break;
+            default:
+                this.analysisSummary = [`${this.ratioName}`, `Error, data is out of boundaries - value: ${PERatio}`];
         }
+        return this.analysisSummary;
     }
 }
