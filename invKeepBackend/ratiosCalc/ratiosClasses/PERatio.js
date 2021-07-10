@@ -13,6 +13,7 @@ module.exports = class PERatio extends BasicRatio {
             `One of the most important metrics.`,
             `Shows how is the price of one share compared to company earnings per one share`,
             `The higher value the worse`,
+            `Shows how many years you need to wait for full investment return with current earnings repeated every year.`
             `Analyze with: ${this.coAnalysis}`
         ];
         this.final_value = PERatio;
