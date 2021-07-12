@@ -32,31 +32,31 @@ module.exports = class CAPERatio extends BasicRatio {
     determineProfitability(CAPERatio) {
         switch (true) {
             case (0 < CAPERatio <= 10):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.outstanding, `value between 0 and 10 indicates great 
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.outstanding, `value between 0 and 10 indicates great 
                 possibilities, average return  after 10 - 15 years is 11.7%`, this.onScaleRating = 6];
                 break;
             case (10 < CAPERatio < 15):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.rather_good, `value between 10 and 15 indicates good 
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.rather_good, `value between 10 and 15 indicates good 
                 possibilities, average return  after 10 - 15 years is 8.7%`, this.onScaleRating = 5];
                 break;
             case (15 <= CAPERatio < 20):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.ok, `value between 15 and 20 indicates quite OK 
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.ok, `value between 15 and 20 indicates quite OK 
                 possibilities, average return  after 10 - 15 years is 7.2%`, this.onScaleRating = 4];
                 break;
             case (20 <= CAPERatio < 25):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.neutral, `value between 20 and 25 indicates normal 
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.neutral, `value between 20 and 25 indicates normal 
                 possibilities, average return  after 10 - 15 years is 5.7%`, this.onScaleRating = 3];
                 break;
             case (25 <= CAPERatio < 30):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.rather_bad, `value between 25 and 30 indicates bad 
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.rather_bad, `value between 25 and 30 indicates bad 
                 possibilities, average return  after 10 - 15 years is 4.1%`, this.onScaleRating = 2];
                 break;
             case (30 <= CAPERatio):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.terrible, `value between 25 and 30 indicates bad 
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.terrible, `value between 25 and 30 indicates bad 
                 possibilities, average return  after 10 - 15 years is 0.5%`, this.onScaleRating = 1];
                 break;
             default:
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.error, `Data is out of boundaries - value: ${CAPERatio}`, this.onScaleRating];
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.error, `Data is out of boundaries - value: ${CAPERatio}`, this.onScaleRating];
         }
         return this.analysisSummary;
     }

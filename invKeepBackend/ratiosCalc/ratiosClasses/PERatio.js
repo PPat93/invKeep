@@ -30,31 +30,31 @@ module.exports = class PERatio extends BasicRatio {
     determineProfitability(PERatio) {
         switch (true) {
             case (PERatio < 0) || (PERatio === 0):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.depends, `Company is loosing money. Dependently from 
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.depends, `Company is loosing money. Dependently from 
                 periods it is ok (e.g. during a crisis) or bad.`, this.onScaleRating = 3];
                 break;
             case (0 < PERatio < 5):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.outstanding, `Amazing earnings with really low price 
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.outstanding, `Amazing earnings with really low price 
                 (compared to average of american stocks from last 200 years - 15)`, this.onScaleRating = 6];
                 break;
             case (5 <= PERatio < 8):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.rather_good, `Decent earnings with low price (compared 
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.rather_good, `Decent earnings with low price (compared 
                 to average of american stocks from last 200 years - 15)`, this.onScaleRating = 5];
                 break;
             case (8 <= PERatio < 16):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.neutral, `Close to average, still may be worth attention 
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.neutral, `Close to average, still may be worth attention 
                 (compared to average of american stocks from last 200 years - 15)`, this.onScaleRating = 4];
                 break;
             case (16 <= PERatio < 20):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.rather_bad, `Expensive stocks. May be a speculative bubble 
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.rather_bad, `Expensive stocks. May be a speculative bubble 
                 (compared to average of american stocks from last 200 years - 15)`, this.onScaleRating = 2];
                 break;
             case (20 <= PERatio):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.terrible, ` Really expensive stocks. Speculative bubble
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.terrible, ` Really expensive stocks. Speculative bubble
                  highly probable (compared to average of american stocks from last 200 years - 15)`, this.onScaleRating = 1];
                 break;
             default:
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.error, `Data is out of boundaries - value: ${PERatio}`, this.onScaleRating];
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.error, `Data is out of boundaries - value: ${PERatio}`, this.onScaleRating];
         }
         return this.analysisSummary;
     }

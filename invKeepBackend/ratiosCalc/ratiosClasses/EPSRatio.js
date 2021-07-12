@@ -30,29 +30,29 @@ module.exports = class EPSRatio extends BasicRatio {
     determineProfitability(EPSRatio) {
         switch (true) {
             case (EPSRatio < 0):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.terrible, `Negative value indicates loss`, this.onScaleRating = 1];
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.terrible, `Negative value indicates loss`, this.onScaleRating = 1];
                 break;
             case (EPSRatio === 0):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.depends, `0 value indicates no profits`, this.onScaleRating = 2];
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.depends, `0 value indicates no profits`, this.onScaleRating = 2];
                 break;
             case (0 < EPSRatio < 13):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.rather_bad, `Significantly below average (counted as 
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.rather_bad, `Significantly below average (counted as 
                 average of S&P500 from last 20 years)`, this.onScaleRating = 3];
                 break;
             case (13 <= EPSRatio < 26):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.neutral, `Slightly below average (counted as 
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.neutral, `Slightly below average (counted as 
                 average of S&P500 from last 20 years)`, this.onScaleRating = 4];
                 break;
             case (26 <= EPSRatio < 39):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.rather_good, `Slightly above average (counted as average 
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.rather_good, `Slightly above average (counted as average 
                 of S&P500 from last 20 years)`, this.onScaleRating] = 5;
                 break;
             case (39 <= EPSRatio):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.outstanding, `Significantly above average (counted as 
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.outstanding, `Significantly above average (counted as 
                 average of S&P500 from last 20 years)`, this.onScaleRating = 6];
                 break;
             default:
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatiosObject.error, `Data is out of boundaries - value: ${EPSRatio}`, this.onScaleRating];
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.error, `Data is out of boundaries - value: ${EPSRatio}`, this.onScaleRating];
         }
         return this.analysisSummary;
     }
