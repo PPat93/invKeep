@@ -15,6 +15,18 @@ const RatiosNames = Object.freeze({
   ev_ebitda_ratio: `EV/EBITDA Ratio`
 });
 
+const RatingObject = Object.freeze({
+  undetermined: `Undetermined`,
+  error: `Error`,
+  depends: `Depends`,
+  terrible: `Terrible`,
+  rather_bad: `Rather bad`,
+  neutral: `Neutral`,
+  ok: `OK`,
+  rather_good: `Rather good`,
+  outstanding: `Outstanding`
+});
+
 function searchObject(ratiosArray, searchedNameObj) {
   for (let a = 0; a < ratiosArray.length; a++) {
     if (ratiosArray[a].parameterName === searchedNameObj) {
@@ -25,4 +37,4 @@ function searchObject(ratiosArray, searchedNameObj) {
   }
 }
 
-module.exports = {RatiosNames, searchObject};
+module.exports = {RatiosNames, searchObject, RatingObject};

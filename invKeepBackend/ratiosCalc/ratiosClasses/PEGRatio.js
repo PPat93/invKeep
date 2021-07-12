@@ -1,4 +1,5 @@
 const BasicRatio = require ('../BasicRatio');
+const SharedJS = require('../../../invKeepFrontend/src/app/shared/sharedJS');
 
 module.exports = class PEGRatio extends BasicRatio{
 
@@ -30,19 +31,19 @@ module.exports = class PEGRatio extends BasicRatio{
     determineProfitability(PEGRatio) {
         switch (true) {
             case (PEGRatio <= 0):
-                this.analysisSummary = [`${this.ratioName}`, `Rather bad`, `Company is shrinking or not creating any 
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.rather_bad, `Company is shrinking or not creating any 
                 profits. Definitely needs more analysis.`, this.onScaleRating = 3];
                 break;
             case (0 < PEGRatio <= 1):
-                this.analysisSummary = [`${this.ratioName}`, `Outstanding`, `Stock is probably undervalued. Good 
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.outstanding, `Stock is probably undervalued. Good 
                 opportunity.`, this.onScaleRating = 6];
                 break;
             case (1 < PEGRatio):
-                this.analysisSummary = [`${this.ratioName}`, `Bad or Really bad`, `Stock is probably overvalued. One 
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.terrible, `Stock is probably overvalued. One 
                 unit is too expensive to be considered.`, this.onScaleRating = 5];
                 break;
             default:
-                this.analysisSummary = [`${this.ratioName}`, `Error`, `Data is out of boundaries - value: ${EPSRatio}`, this.onScaleRating];
+                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.error, `Data is out of boundaries - value: ${PEGRatio}`, this.onScaleRating];
         }
         return this.analysisSummary;
     }
