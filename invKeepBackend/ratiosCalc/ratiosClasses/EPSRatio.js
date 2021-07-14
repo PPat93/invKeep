@@ -45,7 +45,7 @@ module.exports = class EPSRatio extends BasicRatio {
                 break;
             case (26 <= EPSRatio < 39):
                 this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.rather_good, `Slightly above average (counted as average 
-                of S&P500 from last 20 years)`, this.onScaleRating] = 5;
+                of S&P500 from last 20 years)`, this.onScaleRating = 5];
                 break;
             case (39 <= EPSRatio):
                 this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.outstanding, `Significantly above average (counted as 
