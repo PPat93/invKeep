@@ -1,4 +1,4 @@
-const SharedJS = require('../../../invKeepFrontend/src/app/shared/sharedJS');
+const SharedJS = require('../../invKeepFrontend/src/app/shared/sharedJS');
 
 module.exports = class BasicRatio {
 
