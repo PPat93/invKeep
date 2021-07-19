@@ -37,13 +37,13 @@ module.exports = class PBRatio extends BasicRatio {
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.ok,
-                summary:  `Stock is probably still under or about fair value. It is definitely worth consideration.`,
+                summary: `Stock is probably still under or about fair value. It is definitely worth consideration.`,
                 numberRating: 4
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_bad,
-                summary:  `Stock is overvalued. It is too expensive, should not be taken into account.`,
+                summary: `Stock is overvalued. It is too expensive, should not be taken into account.`,
                 numberRating: 2
             }];
         this.intervals = [[-Infinity, 0], [0, 1], [1, 3], [3, Infinity]];
