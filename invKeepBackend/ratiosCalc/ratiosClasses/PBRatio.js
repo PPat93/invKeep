@@ -16,11 +16,37 @@ module.exports = class PBRatio extends BasicRatio {
             `Low value may indicate company's poor performance.`,
             `The higher value the worse.`,
             `Does not show company's debt levels`,
-            `Can be influenced by eg. buybacks, recent acquisitions etc.`
-                `Analyze with: ${this.coAnalysis}`
+            `Can be influenced by eg. buybacks, recent acquisitions etc.`,
+            `Analyze with: ${this.coAnalysis}`
         ];
         this.final_value = PBRatio;
-        this.onScaleRating = 0;
+        this.intervalsData = [
+            {
+                name: `${this.ratioName}`,
+                verbalRating: SharedJS.RatingObject.rather_bad,
+                summary: `Most likely company has debts, serious problems and not showing earnings. However, there is a 
+                chance that it is made by e.g. a lot of buybacks. Definitely needs more analysis.`,
+                numberRating: 2
+            },
+            {
+                name: `${this.ratioName}`,
+                verbalRating: SharedJS.RatingObject.outstanding,
+                summary: `Stock is probably undervalued. Good opportunity.`,
+                numberRating: 6
+            },
+            {
+                name: `${this.ratioName}`,
+                verbalRating: SharedJS.RatingObject.ok,
+                summary:  `Stock is probably still under or about fair value. It is definitely worth consideration.`,
+                numberRating: 4
+            },
+            {
+                name: `${this.ratioName}`,
+                verbalRating: SharedJS.RatingObject.rather_bad,
+                summary:  `Stock is overvalued. It is too expensive, should not be taken into account.`,
+                numberRating: 2
+            }];
+        this.intervals = [[-Infinity, 0], [0, 1], [1, 3], [3, Infinity]];
     }
 
     // calculate(){ // future ratio more precise analysis method
@@ -28,24 +54,4 @@ module.exports = class PBRatio extends BasicRatio {
     // here external def of above values for calculation
     // this.final_value = (oneSharePrice/earningsPerShare)/earningsPerShare
     // }
-
-    determineProfitability(PBRatio) {
-        switch (true) {
-            case (PBRatio <= 0):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.rather_bad, `Company is shrinking or not creating any 
-                profits. Definitely needs more analysis.`, this.onScaleRating = 3];
-                break;
-            case (0 < PBRatio <= 1):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.outstanding, `Stock is probably undervalued. Good 
-                opportunity.`, this.onScaleRating = 6];
-                break;
-            case (1 < PBRatio):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.terrible, `Stock is probably overvalued. One 
-                unit is too expensive to be considered.`, this.onScaleRating = 5];
-                break;
-            default:
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.error, `Data is out of boundaries - value: ${PBRatio}`, this.onScaleRating];
-        }
-        return this.analysisSummary;
-    }
 }
