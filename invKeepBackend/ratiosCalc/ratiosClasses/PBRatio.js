@@ -6,7 +6,7 @@ module.exports = class PBRatio extends BasicRatio {
     constructor(PBRatio) {
         super();
         this.ratioName = `P/B Ratio`;
-        this.coAnalysis = [`NEVER ALONE!`];
+        this.coAnalysis = [`NEVER ALONE!, ROE Ratio`];
         this.description = `The Price/Book Ratio allows to see how much it is needed to pay for one share of business
         in comparison to how much one share is worth. The higher value of this parameter is, the more overvalued a 
         company is. If P/B Ratio is equal to 1, then price of one share is exact the same as it is really worth. However,
