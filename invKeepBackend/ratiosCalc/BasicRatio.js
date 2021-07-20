@@ -8,26 +8,32 @@ module.exports = class BasicRatio {
     analysisSummary = [``];
     coAnalysis = [];
     ratioName = ``;
-    onScaleRating = 0;
+    intervalsData = [{name: `${this.ratioName}`, verbalRating: ``, summary: ``, numberRating: 0}];
+    intervals = [[-Infinity, 0], [0, Infinity]];
 
     constructor(ratio = 0, msg = ``) {
         this.final_value = ratio;
         this.description = msg;
     }
 
-    determineProfitability(ratioValue) {
-        switch(true){
-            case (0 <= ratioValue):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.undetermined, `Value added on default ratio class, use 
-                specified ratio class or add new one.`, this.onScaleRating];
-                break;
-            default:
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.undetermined, `Value added on default ratio class, use 
-                specified ratio class or add new one.`, this.onScaleRating];
+    determineProfitability(ratioValue, intervals = this.intervals, intervalsData = this.intervalsData) {
+        let wholeDataStruct = {intervals: intervals, data: intervalsData};
+        for (let i = 0; i < wholeDataStruct.intervals.length; i++) {
+            if (ratioValue > wholeDataStruct.intervals[i][0] && ratioValue <= wholeDataStruct.intervals[i][1]) {
+                return wholeDataStruct.data[i]
+            }
         }
-        return this.analysisSummary;
+        // switch (true) {
+        //     case (0 <= ratioValue):
+        //         this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.undetermined, `Value added on default ratio class, use
+        //         specified ratio class or add new one.`, this.onScaleRating];
+        //         break;
+        //     default:
+        //         this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.undetermined, `Value added on default ratio class, use
+        //         specified ratio class or add new one.`, this.onScaleRating];
+        // }
+        // return this.analysisSummary;
     }
-
 
 
 }

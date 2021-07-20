@@ -1,7 +1,7 @@
-const BasicRatio = require ('../BasicRatio');
+const BasicRatio = require('../BasicRatio');
 const SharedJS = require('../../../invKeepFrontend/src/app/shared/sharedJS');
 
-module.exports = class PEGRatio extends BasicRatio{
+module.exports = class PEGRatio extends BasicRatio {
 
     constructor(PEGRatio) {
         super();
@@ -15,11 +15,30 @@ module.exports = class PEGRatio extends BasicRatio{
             `Complementary to PE Ratio.`,
             `Is believed to be a true stock's value.`,
             `The higher value the worse.`,
-            `Can be used for future earnings estimation.`
+            `Can be used for future earnings estimation.`,
             `Analyze with: ${this.coAnalysis}`
         ];
         this.final_value = PEGRatio;
-        this.onScaleRating = 0;
+        this.intervalsData = [
+            {
+                name: `${this.ratioName}`,
+                verbalRating: SharedJS.RatingObject.rather_bad,
+                summary: `Company is shrinking or not creating any profits. Definitely needs more analysis.`,
+                numberRating: 3
+            },
+            {
+                name: `${this.ratioName}`,
+                verbalRating: SharedJS.RatingObject.outstanding,
+                summary: `Stock is probably undervalued. Good opportunity.`,
+                numberRating: 6
+            },
+            {
+                name: `${this.ratioName}`,
+                verbalRating: SharedJS.RatingObject.terrible,
+                summary: `Stock is probably overvalued. One unit is too expensive to be considered.`,
+                numberRating: 1
+            }];
+        this.intervals = [[-Infinity, 0], [0, 1], [1, Infinity]];
     }
 
     // calculate(){ // future ratio more precise analysis method
@@ -27,24 +46,4 @@ module.exports = class PEGRatio extends BasicRatio{
     // here external def of above values for calculation
     // this.final_value = (oneSharePrice/earningsPerShare)/earningsPerShare
     // }
-
-    determineProfitability(PEGRatio) {
-        switch (true) {
-            case (PEGRatio <= 0):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.rather_bad, `Company is shrinking or not creating any 
-                profits. Definitely needs more analysis.`, this.onScaleRating = 3];
-                break;
-            case (0 < PEGRatio <= 1):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.outstanding, `Stock is probably undervalued. Good 
-                opportunity.`, this.onScaleRating = 6];
-                break;
-            case (1 < PEGRatio):
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.terrible, `Stock is probably overvalued. One 
-                unit is too expensive to be considered.`, this.onScaleRating = 5];
-                break;
-            default:
-                this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.error, `Data is out of boundaries - value: ${PEGRatio}`, this.onScaleRating];
-        }
-        return this.analysisSummary;
-    }
 }
