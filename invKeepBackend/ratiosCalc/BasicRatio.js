@@ -5,7 +5,6 @@ module.exports = class BasicRatio {
     final_value = 0;
     description = ``
     additionalDetails = [];
-    analysisSummary = [``];
     coAnalysis = [];
     ratioName = ``;
     intervalsData = [{name: `${this.ratioName}`, verbalRating: ``, summary: ``, numberRating: 0}];
@@ -23,17 +22,5 @@ module.exports = class BasicRatio {
                 return wholeDataStruct.data[i]
             }
         }
-        // switch (true) {
-        //     case (0 <= ratioValue):
-        //         this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.undetermined, `Value added on default ratio class, use
-        //         specified ratio class or add new one.`, this.onScaleRating];
-        //         break;
-        //     default:
-        //         this.analysisSummary = [`${this.ratioName}`, SharedJS.RatingObject.undetermined, `Value added on default ratio class, use
-        //         specified ratio class or add new one.`, this.onScaleRating];
-        // }
-        // return this.analysisSummary;
     }
-
-
 }

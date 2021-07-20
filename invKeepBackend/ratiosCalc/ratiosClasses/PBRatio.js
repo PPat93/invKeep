@@ -12,7 +12,7 @@ module.exports = class PBRatio extends BasicRatio {
         company is. If P/B Ratio is equal to 1, then price of one share is exact the same as it is really worth. However,
         low ratio may indicate that company performance is poor. Includes all liabilities and assets of the company.`;
         this.additionalDetails = [
-            `Shows if company is over- or under-valued`,
+            `Shows if company is over- or under-valued.`,
             `Low value may indicate company's poor performance.`,
             `The higher value the worse.`,
             `Does not show company's debt levels`,

@@ -1,23 +1,25 @@
 const BasicRatio = require('../BasicRatio');
 const SharedJS = require('../../../invKeepFrontend/src/app/shared/sharedJS');
 
-module.exports = class PERatio extends BasicRatio {
+module.exports = class DERatio extends BasicRatio {
 
-    constructor(PERatio) {
+    constructor(DERatio) {
         super();
-        this.ratioName = `P/E Ratio`;
-        this.coAnalysis = [`EPS Ratio`, `PEG Ratio`];
-        this.description = `The price-to-earnings ratio (P/E ratio) is the ratio for valuing a company that measures 
-            its current share price relative to its per-share earnings (EPS). Determine the relative value of a company's 
-            shares in an apples-to-apples comparison. Constant negative ratio may indicate bankruptcy risk.`;
+        this.ratioName = `D/E Ratio`;
+        this.coAnalysis = [`With other same industry companies debts ratios`];
+        this.description = `Debt to Equity Ratio allows to compare total company debt with company equity. It shows level 
+        of the leverage used by a firm. D/E Ratio is highly dependent from industry type and it's average - "normal" size.
+        May be hard to compare stocks among different sectors. The higher D/E Ratio is, the more risky stock probably is. 
+        E.g. if D/E = 1.5$ it means that on every 1$ stock has 1.5$ debt.`;
         this.additionalDetails = [
-            `One of the most important metrics.`,
-            `Shows how is the price of one share compared to company earnings per one share.`,
-            `The higher value the worse.`,
-            `Shows how many years you need to wait for full investment return with current earnings repeated every year.`,
+            `The higher the riskier.`,
+            `Compares company's debt with equity.`,
+            `Highly dependant on average industry debt.`,
+            `Must be considered with other ratios.`,
+            `Negative values probably indicate near bankruptcy.`,
             `Analyze with: ${this.coAnalysis}`
         ];
-        this.final_value = PERatio;
+        this.final_value = DERatio;
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
@@ -63,8 +65,8 @@ module.exports = class PERatio extends BasicRatio {
     }
 
     // calculate(){ // future ratio more precise analysis method
-    //  let oneSharePrice, earningsPerShare
+    //  let totalDebt, shareholdersEquity;
     // here external def of above values for calculation
-    // this.final_value = oneSharePrice/earningsPerShare
+    // this.final_value = totalDebt/shareholdersEquity;
     // }
 }
