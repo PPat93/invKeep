@@ -7,9 +7,16 @@ module.exports = class ROERatio extends BasicRatio {
         super();
         this.ratioName = `ROE Ratio`;
         this.coAnalysis = [``];
-        this.description = ``;
+        this.description = `Return on Equity ratio allows to calculate company financial performance. Basically, the 
+        higher, the better. As it takes debt  into account, it is dependant on what is average for company's industry. 
+        Usually counted on last financial year, however it is important to check base period. It may be influenced by 
+        inconsistent profits e.g.: if company is unprofitable for several years and suddenly gains profits -ROE Ratio 
+        will skyrocket.`;
         this.additionalDetails = [
-            ``,
+            `The higher, the better.`,
+            `Allows to calculate company financial performance.`,
+            `Highly dependant on industry average.`,
+            `May be influenced by inconsistent profits.`,
             `Analyze with: ${this.coAnalysis}`
         ];
         this.final_value = ROERatio;
