@@ -27,25 +27,25 @@ module.exports = class EPSRatio extends BasicRatio {
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_bad,
-                summary: `Significantly below average (counted as average of S&P500 from last 20 years)`,
+                summary: `Significantly below average (counted as average of S&P500 from last 20 years).`,
                 numberRating: 3
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.neutral,
-                summary: `Slightly below average (counted as average of S&P500 from last 20 years)`,
+                summary: `Slightly below average (counted as average of S&P500 from last 20 years).`,
                 numberRating: 4
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_good,
-                summary: `Slightly above average (counted as average of S&P500 from last 20 years)`,
+                summary: `Slightly above average (counted as average of S&P500 from last 20 years).`,
                 numberRating: 5
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.outstanding,
-                summary: `Significantly above average (counted as average of S&P500 from last 20 years)`,
+                summary: `Significantly above average (counted as average of S&P500 from last 20 years).`,
                 numberRating: 6
             }];
         this.intervals = [[-Infinity, 0], [0, 13], [13, 26], [26, 39], [39, Infinity]];

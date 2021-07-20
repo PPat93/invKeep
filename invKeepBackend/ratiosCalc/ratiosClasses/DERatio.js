@@ -23,45 +23,29 @@ module.exports = class DERatio extends BasicRatio {
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.depends,
-                summary: `Company is loosing money. Dependently from periods it is ok (e.g. during a crisis) or bad.`,
-                numberRating: 3
+                verbalRating: SharedJS.RatingObject.terrible,
+                summary: `Negative value indicates that company is probably on the verge of bankruptcy.`,
+                numberRating: 1
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.outstanding,
-                summary: `Amazing earnings with really low price (compared to average of american stocks from last 200 
-                years - 15)`,
+                summary: `Low ratio shows little risk and reasonable debt levels.`,
                 numberRating: 6
             },
             {
                 name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.rather_good,
-                summary: `Decent earnings with low price (compared to average of american stocks from last 200 years - 15)`,
-                numberRating: 5
-            },
-            {
-                name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.neutral,
-                summary: `Close to average, still may be worth attention (compared to average of american stocks from 
-                last 200 years - 15)`,
-                numberRating: 4
+                verbalRating: SharedJS.RatingObject.ok,
+                summary: `Debt amount is close to reasonable limits. Equity is lower than total debt.`,
+                numberRating: 3
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_bad,
-                summary: `Expensive stocks. May be a speculative bubble (compared to average of american stocks from 
-                last 200 years - 15)`,
+                summary: `Debt is significantly higher than equity. High risk exists. Better not to buy.`,
                 numberRating: 2
-            },
-            {
-                name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.terrible,
-                summary: ` Really expensive stocks. Speculative bubble highly probable (compared to average of american 
-                stocks from last 200 years - 15)`,
-                numberRating: 1
             }];
-        this.intervals = [[-Infinity, 0], [0, 5], [5, 8], [8, 16], [16, 20], [20, Infinity]];
+        this.intervals = [[-Infinity, 0], [0, 1], [1, 2], [2, Infinity]];
     }
 
     // calculate(){ // future ratio more precise analysis method

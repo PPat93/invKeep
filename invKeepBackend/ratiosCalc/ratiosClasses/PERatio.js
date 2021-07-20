@@ -29,34 +29,34 @@ module.exports = class PERatio extends BasicRatio {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.outstanding,
                 summary: `Amazing earnings with really low price (compared to average of american stocks from last 200 
-                years - 15)`,
+                years - 15).`,
                 numberRating: 6
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_good,
-                summary: `Decent earnings with low price (compared to average of american stocks from last 200 years - 15)`,
+                summary: `Decent earnings with low price (compared to average of american stocks from last 200 years - 15).`,
                 numberRating: 5
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.neutral,
                 summary: `Close to average, still may be worth attention (compared to average of american stocks from 
-                last 200 years - 15)`,
+                last 200 years - 15).`,
                 numberRating: 4
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_bad,
                 summary: `Expensive stocks. May be a speculative bubble (compared to average of american stocks from 
-                last 200 years - 15)`,
+                last 200 years - 15).`,
                 numberRating: 2
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.terrible,
                 summary: ` Really expensive stocks. Speculative bubble highly probable (compared to average of american 
-                stocks from last 200 years - 15)`,
+                stocks from last 200 years - 15).`,
                 numberRating: 1
             }];
         this.intervals = [[-Infinity, 0], [0, 5], [5, 8], [8, 16], [16, 20], [20, Infinity]];
