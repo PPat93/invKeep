@@ -25,44 +25,33 @@ module.exports = class ROERatio extends BasicRatio {
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.depends,
-                summary: `Company is loosing money. Dependently from periods it is ok (e.g. during a crisis) or bad.`,
+                summary: `Negative ROE is probably a consequence of loosing money by company. However some actions - like 
+                restructuring - may make ROE negative despite business is profitable. (Long term average ROE for S&P500 
+                is 14%).`,
                 numberRating: 3
             },
             {
                 name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.outstanding,
-                summary: `Amazing earnings with really low price (compared to average of american stocks from last 200 
-                years - 15).`,
-                numberRating: 6
-            },
-            {
-                name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.rather_good,
-                summary: `Decent earnings with low price (compared to average of american stocks from last 200 years - 15).`,
-                numberRating: 5
-            },
-            {
-                name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.neutral,
-                summary: `Close to average, still may be worth attention (compared to average of american stocks from 
-                last 200 years - 15).`,
-                numberRating: 4
-            },
-            {
-                name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_bad,
-                summary: `Expensive stocks. May be a speculative bubble (compared to average of american stocks from 
-                last 200 years - 15).`,
+                summary: `Ratio significantly below industry average indicates that company is not doing good. Better not 
+                to buy. (Long term average ROE for S&P500 is 14%).`,
                 numberRating: 2
             },
             {
                 name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.terrible,
-                summary: ` Really expensive stocks. Speculative bubble highly probable (compared to average of american 
-                stocks from last 200 years - 15).`,
-                numberRating: 1
+                verbalRating: SharedJS.RatingObject.ok,
+                summary: `Value just about industry average is considered as ok. Ratio above average indicates good stock.
+                (Long term average ROE for S&P500 is 14%).`,
+                numberRating: 4
+            },
+            {
+                name: `${this.ratioName}`,
+                verbalRating: SharedJS.RatingObject.rather_good,
+                summary: `Be cautious. It may be great opportunity as the higher ROE the better. However, inconsistent 
+                profits influence the ratio (Long term average ROE for S&P500 is 14%).`,
+                numberRating: 5
             }];
-        this.intervals = [[-Infinity, 0], [0, 5], [5, 8], [8, 16], [16, 20], [20, Infinity]];
+        this.intervals = [[-Infinity, 0], [0, 12], [12, 16], [16, Infinity]];
     }
 
     // calculate(){ // future ratio more precise analysis method
