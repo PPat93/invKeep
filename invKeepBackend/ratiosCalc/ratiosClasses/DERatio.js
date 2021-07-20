@@ -37,7 +37,7 @@ module.exports = class DERatio extends BasicRatio {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.ok,
                 summary: `Debt amount is close to reasonable limits. Equity is lower than total debt.`,
-                numberRating: 3
+                numberRating: 4
             },
             {
                 name: `${this.ratioName}`,
