@@ -15,7 +15,7 @@ module.exports = class DividendYieldRatio extends BasicRatio {
             `The higher, the better.`,
             `Declining stock price may falsely rise Dividend Yield Ratio.`,
             `Dividend usually amplify returns.`,
-            `May be falsely high to constant stock price lowering.`
+            `May be falsely high to constant stock price lowering.`,
             `Analyze with: ${this.coAnalysis}`
         ];
         this.final_value = DividendYieldRatio;
