@@ -7,7 +7,7 @@ module.exports = class PERatio extends BasicRatio {
         super();
         this.ratioName = `P/E Ratio`;
         this.coAnalysis = [`EPS Ratio`, `PEG Ratio`];
-        this.description = `The price-to-earnings ratio (P/E ratio) is the ratio for valuing a company that measures 
+        this.description = `The price-to-earnings ratio is the ratio for valuing a company that measures 
             its current share price relative to its per-share earnings (EPS). Determine the relative value of a company's 
             shares in an apples-to-apples comparison. Constant negative ratio may indicate bankruptcy risk.`;
         this.additionalDetails = [
