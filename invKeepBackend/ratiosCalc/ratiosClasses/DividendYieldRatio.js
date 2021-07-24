@@ -7,13 +7,13 @@ module.exports = class DividendYieldRatio extends BasicRatio {
         super();
         this.ratioName = `Dividend Yield Ratio`;
         this.coAnalysis = [``];
-        this.description = `Dividend Yield Ratio is a percentage financial ratio showing how much is paid each year 
-        comparing to stock price. Dividend is not always paid. It is important that higher Dividend Yields may not 
+        this.description = `${this.ratioName} is a percentage financial ratio showing how much is paid each year 
+        comparing to stock price. Dividend is not always paid. It is important that higher ${this.ratioName} may not 
         indicate better stock opportunities - lowering stock price may skyrocket this ratio. Mature companies pays 
         divided more often. Some industries are taxed at a higher rate.`;
         this.additionalDetails = [
             `The higher, the better.`,
-            `Declining stock price may falsely rise Dividend Yield Ratio.`,
+            `Declining stock price may falsely rise the ratio.`,
             `Dividend usually amplify returns.`,
             `May be falsely high to constant stock price lowering.`,
             `Analyze with: ${this.coAnalysis}`
@@ -22,39 +22,38 @@ module.exports = class DividendYieldRatio extends BasicRatio {
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.terrible,
-                summary: `Negative ROCE indicates negative profitability or net operational loss - no profits. Definitely
-                 avoid.`,
-                numberRating: 1
+                verbalRating: SharedJS.RatingObject.undetermined,
+                summary: `No dividend  payout is not a reason to avoid stock. It is still worth to consider a company.`,
+                numberRating: 0
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_bad,
-                summary: `Rather low levels of ROCE implies that there is low level of company performance. It depends 
-                from industry. However it does not look good.`,
+                summary: `Rather low levels of ${this.ratioName} implies that company is paying low dividend or stock
+                price is too high (may be an indicator to take a closer look of price comparing to industry or market)`,
                 numberRating: 2
             },
             {
                 name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.ok,
-                summary: `It is hard to say which level of ROCE is good. It highly depends from industry and the company.
-                The higher - the better.`,
+                verbalRating: SharedJS.RatingObject.outstanding,
+                summary: `Interval between 2% and 6% is considered to be safe. Also it indicates that company probably 
+                does not have problems with declining stock price. However, it is dependent from many more factors, so 
+                must not be the only decision-determining ratio.`,
                 numberRating: 4
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_good,
-                summary: `Legendary investor Warren Buffet said that ROCE above 20% is a good ROCE. The higher the better.
-                In that way it also should be checked if company does not have too much cash and it s good to compare this
-                ratio with other companies from an industry.`,
+                summary: `${this.ratioName} above 6% may indicate company problems. It should be watched closely and
+                checked. However, sometimes companies have ${this.ratioName} on higher levels, what may imply that stock is undervalued.`,
                 numberRating: 5
             }];
-        this.intervals = [[-Infinity, 0], [0, 10], [10, 20], [20, Infinity]];
+        this.intervals = [[-Infinity, 0], [0, 2], [2, 6], [6, Infinity]];
     }
 
     // calculate(){ // future ratio more precise analysis method
-    //  let EBIT, capitalEmployed;
+    //  let annualDividendsPerShare, oneSharePrice;
     // here external def of above values for calculation
-    // this.final_value = EBIT/capitalEmployed;
+    // this.final_value = annualDividendsPerShare/oneSharePrice;
     // }
 }
