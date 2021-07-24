@@ -11,7 +11,7 @@ module.exports = class ROERatio extends BasicRatio {
         higher, the better - above industry average is considered as good. As it takes debt  into account, it is 
         dependant on what is average for company's industry. Usually counted on last financial year, however it is 
         important to check base period. It may be influenced by inconsistent profits e.g.: if company is unprofitable 
-        for several years and suddenly gains profits -ROE Ratio will skyrocket. Represented in %.`;
+        for several years and suddenly gains profits - ${this.ratioName} will skyrocket. Represented in %.`;
         this.additionalDetails = [
             `The higher, the better - above industry average is considered as good.`,
             `Allows to calculate company financial performance.`,
@@ -26,7 +26,7 @@ module.exports = class ROERatio extends BasicRatio {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.depends,
                 summary: `Negative ROE is probably a consequence of loosing money by company. However some actions - like 
-                restructuring - may make ROE negative despite business is profitable. (Long term average ROE for S&P500 
+                restructuring - may make ROE negative despite business is profitable. (Long term average ${this.ratioName} for S&P500 
                 is 14%).`,
                 numberRating: 3
             },
@@ -34,21 +34,21 @@ module.exports = class ROERatio extends BasicRatio {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_bad,
                 summary: `Ratio significantly below industry average indicates that company is not doing good. Better not 
-                to buy. (Long term average ROE for S&P500 is 14%).`,
+                to buy. (Long term average ${this.ratioName} for S&P500 is 14%).`,
                 numberRating: 2
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.ok,
                 summary: `Value just about industry average is considered as ok. Ratio above average indicates good stock.
-                (Long term average ROE for S&P500 is 14%).`,
+                (Long term average ${this.ratioName} for S&P500 is 14%).`,
                 numberRating: 4
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_good,
-                summary: `Be cautious. It may be great opportunity as the higher ROE the better. However, inconsistent 
-                profits influence the ratio (Long term average ROE for S&P500 is 14%).`,
+                summary: `Be cautious. It may be great opportunity as the higher ${this.ratioName} the better. However, inconsistent 
+                profits influence the ratio (Long term average ${this.ratioName} for S&P500 is 14%).`,
                 numberRating: 5
             }];
         this.intervals = [[-Infinity, 0], [0, 12], [12, 16], [16, Infinity]];
