@@ -3,11 +3,16 @@ const SharedJS = require('../../../invKeepFrontend/src/app/shared/sharedJS');
 
 module.exports = class DPRRatio extends BasicRatio {
 
-    constructor(PEGRatio) {
+    constructor(DPRRatio) {
         super();
         this.ratioName = `DPR Ratio`;
-        this.coAnalysis = [``];
-        this.description = ``;
+        this.coAnalysis = [`Dividend Yield Ratio`];
+        this.description = `Dividend Payout Ratio shows comparison of total dividend pay out to net company income. 
+        It sums up how much money is being returned to shareholders, reinvested, payout debts etc. 0% is for companies that 
+        do not pay dividend and 100% is for companies that pays all income as dividends. This ratio is not a "game changer". 
+        It adds new value to analysis, can affect it, but definitely should not be decision-defining ratio.
+        Shows how much net earnings are paid as dividends, while Dividend Yields Ratio is a simple rate of return in 
+        cash dividends to shareholders.`;
         this.additionalDetails = [
             ``,
             `Analyze with: ${this.coAnalysis}`
