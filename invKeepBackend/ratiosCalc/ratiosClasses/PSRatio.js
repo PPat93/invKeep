@@ -23,34 +23,41 @@ module.exports = class PSRatio extends BasicRatio {
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
+                verbalRating: SharedJS.RatingObject.terrible,
+                summary: `Negative value indicates that revenue of the company is also negative (not likely). However, 
+                in this kind of situation - avoid at all cost!`,
+                numberRating: 1
+            },
+            {
+                name: `${this.ratioName}`,
+                verbalRating: SharedJS.RatingObject.outstanding,
+                summary: `Value below 1 and higher than 0 shows that stock is undervalued. After positive industry 
+                comparison and analysis - totally worth buying.`,
+                numberRating: 6
+            },
+            {
+                name: `${this.ratioName}`,
+                verbalRating: SharedJS.RatingObject.rather_good,
+                summary: `Ratio between 1 and 2 is a solid, considerable value. Thi kind of stocks may have 
+                potential for further growth. After comparison it is worth to consider buying.`,
+                numberRating: 5
+            },
+            {
+                name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.depends,
-                summary: `Negative ROE is probably a consequence of loosing money by company. However some actions - like 
-                restructuring - may make ROE negative despite business is profitable. (Long term average ${this.ratioName} for S&P500 
-                is 14%).`,
+                summary: `Values from 2 to 4 are usually thought as ok, especially if company is relatively young with
+                a lot of growth potential. It may also indicate company that is not necessarily promise well. Requires 
+                analysis and comparison.`,
                 numberRating: 3
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_bad,
-                summary: `Ratio significantly below industry average indicates that company is not doing good. Better not 
-                to buy. (Long term average ${this.ratioName} for S&P500 is 14%).`,
+                summary: `Stock is most likely overvalued. Over 0.25 $ of revenue per one dollar price does not indicate 
+                a good opportunity. Definitely avoid.`,
                 numberRating: 2
-            },
-            {
-                name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.ok,
-                summary: `Value just about industry average is considered as ok. Ratio above average indicates good stock.
-                (Long term average ${this.ratioName} for S&P500 is 14%).`,
-                numberRating: 4
-            },
-            {
-                name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.rather_good,
-                summary: `Be cautious. It may be great opportunity as the higher ${this.ratioName} the better. However, inconsistent 
-                profits influence the ratio (Long term average ${this.ratioName} for S&P500 is 14%).`,
-                numberRating: 5
             }];
-        this.intervals = [[-Infinity, 0], [0, 12], [12, 16], [16, Infinity]];
+        this.intervals = [[-Infinity, 0], [0, 1], [1, 2], [2, 4], [4, Infinity]];
     }
 
     // calculate(){ // future ratio more precise analysis method
