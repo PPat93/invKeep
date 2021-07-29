@@ -52,6 +52,6 @@ module.exports = class PBRatio extends BasicRatio {
     // calculate(){ // future ratio more precise analysis method
     //  let marketPricePerShare, bookValuePerShare
     // here external def of above values for calculation
-    // this.final_value = (oneSharePrice/earningsPerShare)/earningsPerShare
+    // this.final_value = marketPricePerShare/bookValuePerShare
     // }
 }
