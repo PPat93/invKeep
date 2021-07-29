@@ -6,11 +6,12 @@ module.exports = class DividendYieldRatio extends BasicRatio {
     constructor(DividendYieldRatio) {
         super();
         this.ratioName = `Dividend Yield Ratio`;
-        this.coAnalysis = [``];
+        this.coAnalysis = [`DPR Ratio`];
         this.description = `${this.ratioName} is a percentage financial ratio showing how much is paid each year 
         comparing to stock price. Dividend is not always paid. It is important that higher ${this.ratioName} may not 
         indicate better stock opportunities - lowering stock price may skyrocket this ratio. Mature companies pays 
-        divided more often. Some industries are taxed at a higher rate.`;
+        divided more often. Some industries are taxed at a higher rate. Shows simple rate of return in cash dividends 
+        to shareholders, while DPR shows how much net earnings are paid as dividends.`;
         this.additionalDetails = [
             `The higher, the better.`,
             `Declining stock price may falsely rise the ratio.`,
