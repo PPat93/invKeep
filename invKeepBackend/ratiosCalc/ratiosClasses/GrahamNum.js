@@ -7,7 +7,9 @@ module.exports = class GrahamNum extends BasicRatio {
         super();
         this.ratioName = `Graham Number`;
         this.coAnalysis = [``];
-        this.description = ``;
+        this.description = `${this.ratioName} responds to the question - What is the maximum value of the stock that is 
+        allowed to pay by investor? Usually, every value below ${this.ratioName} is considered as a good opportunity to 
+        buy.`;
         this.additionalDetails = [
             ``,
             `Analyze with: ${this.coAnalysis}`
@@ -42,8 +44,8 @@ module.exports = class GrahamNum extends BasicRatio {
     }
 
     // calculate(){ // future ratio more precise analysis method
-    //  let oneSharePrice, earningsPerShare
+    //  let netIncome, sharesOutstanding, shareholdersEquity,
     // here external def of above values for calculation
-    // this.final_value = oneSharePrice/earningsPerShare
+    // this.final_value = sqrt(15 * 1.5 * (netIncome/sharesOutstanding) * (shareholdersEquity/sharesOutstanding))
     // }
 }
