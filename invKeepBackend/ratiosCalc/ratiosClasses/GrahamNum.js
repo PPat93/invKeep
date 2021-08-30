@@ -9,7 +9,7 @@ module.exports = class GrahamNum extends BasicRatio {
         this.coAnalysis = [``];
         this.description = `${this.ratioName} responds to the question - What is the maximum value of the stock that is 
         allowed to pay by investor? Usually, every value below ${this.ratioName} is considered as a good opportunity to 
-        buy. Basically numbers shouldn't be higher than P/E Value < 22.5x and P/B Value < 1.5x`;
+        buy. Basically numbers shouldn't be higher than P/E Value < 15x and P/B Value < 1.5x`;
         this.additionalDetails = [
             ``,
             `Analyze with: ${this.coAnalysis}`
@@ -19,28 +19,11 @@ module.exports = class GrahamNum extends BasicRatio {
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.depends,
-                summary: ``,
+                summary: `Graham number has no real intervals of values. Each case must be analyzed individually. Maximum profitable Graham Number consists of 
+                15 times P/E ratio multiplied by 1.5 times P/B ratio. Above that value, stock most likely won't be able to bring any profits.`,
                 numberRating: 3
-            },
-            {
-                name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.rather_bad,
-                summary: ``,
-                numberRating: 2
-            },
-            {
-                name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.ok,
-                summary: ``,
-                numberRating: 4
-            },
-            {
-                name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.rather_good,
-                summary: ``,
-                numberRating: 5
             }];
-        this.intervals = [[-Infinity, 0], [0, 12], [12, 16], [16, Infinity]];
+        this.intervals = [[-Infinity, Infinity]];
     }
 
     // calculate(){ // future ratio more precise analysis method
