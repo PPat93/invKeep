@@ -9,7 +9,7 @@ module.exports = class GrahamNum extends BasicRatio {
         this.coAnalysis = [``];
         this.description = `${this.ratioName} responds to the question - What is the maximum value of the stock that is 
         allowed to pay by investor? Usually, every value below ${this.ratioName} is considered as a good opportunity to 
-        buy.`;
+        buy. Basically numbers shouldn't be higher than P/E Value < 22.5x and P/B Value < 1.5x`;
         this.additionalDetails = [
             ``,
             `Analyze with: ${this.coAnalysis}`
