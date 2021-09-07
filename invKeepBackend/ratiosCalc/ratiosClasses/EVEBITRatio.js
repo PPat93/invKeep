@@ -6,13 +6,19 @@ module.exports = class EVEBITRatio extends BasicRatio {
     constructor(EVEBITRatio) {
         super();
         this.ratioName = `EV/EBIT Ratio`;
-        this.coAnalysis = [``];
-        this.description = ``;
+        this.coAnalysis = [`EV/EBITDA Ratio`];
+        this.description = `It is more powerfull P/E Ratio. Whole enterprise value is compared with company's earnings
+            before taxes and interests. The bigger earnings the better - whole ratio would be lower. Low ${this.ratioName}
+            indicates stable and secure company. Allows easy comparison of two firms with similar operating profiles. 
+            The difference between EV/EBITDA is ${this.ratioName} do not incorporaates depreciation and amortization.`;
         this.additionalDetails = [
-            ``,
+            `Should be compared with industry average.`,
+            `May by totally different across industries.`,
+            `The lower the better.`,
+            `Allows to estimate fair company value, ratio below average indicates undervalued stock.`,
             `Analyze with: ${this.coAnalysis}`
         ];
-        this.final_value = DERatio;
+        this.final_value = EVEBITRatio;
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
@@ -42,8 +48,8 @@ module.exports = class EVEBITRatio extends BasicRatio {
     }
 
     // calculate(){ // future ratio more precise analysis method
-    //  let totalDebt, shareholdersEquity;
+    //  let enterpiseValue, ebit;
     // here external def of above values for calculation
-    // this.final_value = totalDebt/shareholdersEquity;
+    // this.final_value = enterpiseValue/ebit;
     // }
 }
