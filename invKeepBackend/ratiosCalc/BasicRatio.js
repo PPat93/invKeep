@@ -2,7 +2,7 @@ const SharedJS = require('../../invKeepFrontend/src/app/shared/sharedJS');
 
 module.exports = class BasicRatio {
 
-    final_value = 0;
+    finalValue = 0;
     description = ``
     additionalDetails = [];
     coAnalysis = [];
@@ -11,7 +11,7 @@ module.exports = class BasicRatio {
     intervals = [[-Infinity, 0], [0, Infinity]];
 
     constructor(ratio = 0, msg = ``) {
-        this.final_value = ratio;
+        this.finalValue = ratio;
         this.description = msg;
     }
 

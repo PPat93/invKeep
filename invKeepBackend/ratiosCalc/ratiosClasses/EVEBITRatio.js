@@ -18,7 +18,7 @@ module.exports = class EVEBITRatio extends BasicRatio {
             `Allows to estimate fair company value, ratio below average indicates undervalued stock.`,
             `Analyze with: ${this.coAnalysis}`
         ];
-        this.final_value = EVEBITRatio;
+        this.finalValue = EVEBITRatio;
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
@@ -50,6 +50,6 @@ module.exports = class EVEBITRatio extends BasicRatio {
     // calculate(){ // future ratio more precise analysis method
     //  let enterpiseValue, ebit;
     // here external def of above values for calculation
-    // this.final_value = enterpiseValue/ebit;
+    // this.finalValue = enterpiseValue/ebit;
     // }
 }

@@ -18,7 +18,7 @@ module.exports = class CAPERatio extends BasicRatio {
             `Analyzes long term company results.`,
             `Analyze with: ${this.coAnalysis}`
         ];
-        this.final_value = CAPERatio;
+        this.finalValue = CAPERatio;
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
@@ -69,7 +69,7 @@ module.exports = class CAPERatio extends BasicRatio {
     // calculate() { // future ratio more precise analysis method
     //     let stockPrice, 10yearInflationAdjusted;
     //     // here external def of above values for calculation
-    //     return this.final_value = stockPrice / 10yearInflationAdjusted;
+    //     return this.finalValue = stockPrice / 10yearInflationAdjusted;
     // }
 }
 

@@ -16,7 +16,7 @@ module.exports = class EPSRatio extends BasicRatio {
             `The higher value the better.`,
             `Analyze with: ${this.coAnalysis}`
         ];
-        this.final_value = EPSRatio;
+        this.finalValue = EPSRatio;
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
@@ -55,6 +55,6 @@ module.exports = class EPSRatio extends BasicRatio {
     // calculate() { // future ratio more precise analysis method
     //     let netIncome, prefDividends, endShareOutstand;
     //     // here external def of above values for calculation
-    //     return this.final_value = (netIncome - prefDividends) / endShareOutstand
+    //     return this.finalValue = (netIncome - prefDividends) / endShareOutstand
     // }
 }

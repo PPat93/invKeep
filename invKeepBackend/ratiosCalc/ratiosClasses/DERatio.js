@@ -19,7 +19,7 @@ module.exports = class DERatio extends BasicRatio {
             `Negative values probably indicate near bankruptcy.`,
             `Analyze with: ${this.coAnalysis}`
         ];
-        this.final_value = DERatio;
+        this.finalValue = DERatio;
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
@@ -51,6 +51,6 @@ module.exports = class DERatio extends BasicRatio {
     // calculate(){ // future ratio more precise analysis method
     //  let totalDebt, shareholdersEquity;
     // here external def of above values for calculation
-    // this.final_value = totalDebt/shareholdersEquity;
+    // this.finalValue = totalDebt/shareholdersEquity;
     // }
 }

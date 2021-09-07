@@ -20,7 +20,7 @@ module.exports = class ROERatio extends BasicRatio {
             `Represented in %.`,
             `Analyze with: ${this.coAnalysis}`
         ];
-        this.final_value = ROERatio;
+        this.finalValue = ROERatio;
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
@@ -57,6 +57,6 @@ module.exports = class ROERatio extends BasicRatio {
     // calculate(){ // future ratio more precise analysis method
     //  let oneSharePrice, earningsPerShare
     // here external def of above values for calculation
-    // this.final_value = oneSharePrice/earningsPerShare
+    // this.finalValue = oneSharePrice/earningsPerShare
     // }
 }
