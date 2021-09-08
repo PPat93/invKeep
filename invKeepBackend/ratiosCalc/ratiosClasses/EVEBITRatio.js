@@ -22,29 +22,32 @@ module.exports = class EVEBITRatio extends BasicRatio {
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.terrible,
-                summary: `Negative value indicates that company is probably on the verge of bankruptcy.`,
-                numberRating: 1
+                verbalRating: SharedJS.RatingObject.depends,
+                summary: `Negative value indicates that either enterprise value or earnings before interests 
+                    and taxes are negative. Treat with caution. Not necessarily bad, need further investigation.`,
+                numberRating: 3
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.outstanding,
-                summary: `Low ratio shows little risk and reasonable debt levels.`,
+                summary: `The lower ratio is, the better. Values below 10 are considered to be good.Indicates 
+                    stable and secure company.`,
                 numberRating: 6
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.ok,
-                summary: `Debt amount is close to reasonable limits. Equity is lower than total debt.`,
+                summary: `Value 14.20 was average for S&P500 on January 2020. Values between 10 and 18 are about 
+                    average and they may be worth attention of investors.`,
                 numberRating: 4
             },
             {
                 name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.rather_bad,
-                summary: `Debt is significantly higher than equity. High risk exists. Better not to buy.`,
-                numberRating: 2
+                verbalRating: SharedJS.RatingObject.terrible,
+                summary: `Too big value indicates unstable and unsecure company. Not worth of wasting time.`,
+                numberRating: 1
             }];
-        this.intervals = [[-Infinity, 0], [0, 1], [1, 2], [2, Infinity]];
+        this.intervals = [[-Infinity, 0], [0, 10], [10, 18], [18, Infinity]];
     }
 
     // calculate(){ // future ratio more precise analysis method
