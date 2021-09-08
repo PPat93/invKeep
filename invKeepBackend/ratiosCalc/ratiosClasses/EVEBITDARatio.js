@@ -52,8 +52,8 @@ module.exports = class EVEBITDARatio extends BasicRatio {
     }
 
     // calculate(){ // future ratio more precise analysis method
-    //  let enterpiseValue, ebit;
+    //  let enterpiseValue, ebitda;
     // here external def of above values for calculation
-    // this.finalValue = enterpiseValue/ebit;
+    // this.finalValue = enterpiseValue/ebitda;
     // }
 }
