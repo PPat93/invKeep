@@ -12,9 +12,9 @@ module.exports = class EVEBITRatio extends BasicRatio {
             indicates stable and secure company. Allows easy comparison of two firms with similar operating profiles. 
             The difference between EV/EBITDA is ${this.ratioName} do not incorporaates depreciation and amortization.`;
         this.additionalDetails = [
-            `Should be compared with industry average.`,
-            `May by totally different across industries.`,
-            `The lower the better.`,
+            `Show stability and security of company.`,
+            `aries dependently from industry and should be analyzed on industry average basis.`,
+            `The lower the better, the higher the worse.`,
             `Allows to estimate fair company value, ratio below average indicates undervalued stock.`,
             `Analyze with: ${this.coAnalysis}`
         ];
@@ -23,31 +23,11 @@ module.exports = class EVEBITRatio extends BasicRatio {
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.depends,
-                summary: `Negative value indicates that either enterprise value or earnings before interests 
-                    and taxes are negative. Treat with caution. Not necessarily bad, need further investigation.`,
+                summary: `Highly volatile. Must be analyzed individually, in connection with similar companies
+                    from the same industry.`,
                 numberRating: 3
-            },
-            {
-                name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.outstanding,
-                summary: `The lower ratio is, the better. Values below 10 are considered to be good.Indicates 
-                    stable and secure company.`,
-                numberRating: 6
-            },
-            {
-                name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.ok,
-                summary: `Value 14.20 was average for S&P500 on January 2020. Values between 10 and 18 are about 
-                    average and they may be worth attention of investors.`,
-                numberRating: 4
-            },
-            {
-                name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.terrible,
-                summary: `Too big value indicates unstable and unsecure company. Not worth of wasting time.`,
-                numberRating: 1
             }];
-        this.intervals = [[-Infinity, 0], [0, 10], [10, 18], [18, Infinity]];
+        this.intervals = [[-Infinity, Infinity]];
     }
 
     // calculate(){ // future ratio more precise analysis method
