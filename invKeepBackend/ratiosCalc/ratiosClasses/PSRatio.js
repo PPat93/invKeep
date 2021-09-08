@@ -19,7 +19,7 @@ module.exports = class PSRatio extends BasicRatio {
             `One value shows that for every dollar investor must pay one dollar.`,
             `Analyze with: ${this.coAnalysis}`
         ];
-        this.final_value = PSRatio;
+        this.finalValue = PSRatio;
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
@@ -63,6 +63,6 @@ module.exports = class PSRatio extends BasicRatio {
     // calculate(){ // future ratio more precise analysis method
     //  let pricePerShare, revenuePerShare
     // here external def of above values for calculation
-    // this.final_value = pricePerShare/revenuePerShare
+    // this.finalValue = pricePerShare/revenuePerShare
     // }
 }

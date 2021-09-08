@@ -17,7 +17,7 @@ module.exports = class PERatio extends BasicRatio {
             `Shows how many years you need to wait for full investment return with current earnings repeated every year.`,
             `Analyze with: ${this.coAnalysis}`
         ];
-        this.final_value = PERatio;
+        this.finalValue = PERatio;
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
@@ -65,6 +65,6 @@ module.exports = class PERatio extends BasicRatio {
     // calculate(){ // future ratio more precise analysis method
     //  let oneSharePrice, earningsPerShare
     // here external def of above values for calculation
-    // this.final_value = oneSharePrice/earningsPerShare
+    // this.finalValue = oneSharePrice/earningsPerShare
     // }
 }

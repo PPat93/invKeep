@@ -11,10 +11,13 @@ module.exports = class GrahamNum extends BasicRatio {
         allowed to pay by investor? Usually, every value below ${this.ratioName} is considered as a good opportunity to 
         buy. Basically numbers shouldn't be higher than P/E Value < 15x and P/B Value < 1.5x`;
         this.additionalDetails = [
-            ``,
+            `Determines fair value of stock.`,
+            `Stock price below ${this.ratioName} is considered as undervalued.`,
+            `Different for every company.`,
+            `Must be considered separately from anothers companies or averages.`
             `Analyze with: ${this.coAnalysis}`
         ];
-        this.final_value = GrahamNum;
+        this.finalValue = GrahamNum;
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
@@ -29,6 +32,6 @@ module.exports = class GrahamNum extends BasicRatio {
     // calculate(){ // future ratio more precise analysis method
     //  let netIncome, sharesOutstanding, shareholdersEquity,
     // here external def of above values for calculation
-    // this.final_value = sqrt(15 * 1.5 * (netIncome/sharesOutstanding) * (shareholdersEquity/sharesOutstanding))
+    // this.finalValue = sqrt(15 * 1.5 * (netIncome/sharesOutstanding) * (shareholdersEquity/sharesOutstanding))
     // }
 }

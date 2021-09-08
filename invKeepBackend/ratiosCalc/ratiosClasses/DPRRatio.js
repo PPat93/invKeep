@@ -17,7 +17,7 @@ module.exports = class DPRRatio extends BasicRatio {
             ``,
             `Analyze with: ${this.coAnalysis}`
         ];
-        this.final_value = DPRRatio;
+        this.finalValue = DPRRatio;
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
@@ -48,6 +48,6 @@ module.exports = class DPRRatio extends BasicRatio {
     // calculate(){ // future ratio more precise analysis method
     //  let annualDividendPerShare, earningsPerShare
     // here external def of above values for calculation
-    // this.final_value = annualDividendPerShare/earningsPerShare
+    // this.finalValue = annualDividendPerShare/earningsPerShare
     // }
 }

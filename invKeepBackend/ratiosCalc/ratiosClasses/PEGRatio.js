@@ -18,7 +18,7 @@ module.exports = class PEGRatio extends BasicRatio {
             `Can be used for future earnings estimation.`,
             `Analyze with: ${this.coAnalysis}`
         ];
-        this.final_value = PEGRatio;
+        this.finalValue = PEGRatio;
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
@@ -44,6 +44,6 @@ module.exports = class PEGRatio extends BasicRatio {
     // calculate(){ // future ratio more precise analysis method
     //  let oneSharePrice, earningsPerShare, earningsPerShare
     // here external def of above values for calculation
-    // this.final_value = (oneSharePrice/earningsPerShare)/earningsPerShare
+    // this.finalValue = (oneSharePrice/earningsPerShare)/earningsPerShare
     // }
 }

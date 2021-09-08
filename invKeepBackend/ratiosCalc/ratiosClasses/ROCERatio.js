@@ -19,7 +19,7 @@ module.exports = class ROCERatio extends BasicRatio {
             `Can be affected by high money amounts.`,
             `Analyze with: ${this.coAnalysis}`
         ];
-        this.final_value = ROCERatio;
+        this.finalValue = ROCERatio;
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
@@ -56,6 +56,6 @@ module.exports = class ROCERatio extends BasicRatio {
     // calculate(){ // future ratio more precise analysis method
     //  let EBIT, capitalEmployed;
     // here external def of above values for calculation
-    // this.final_value = EBIT/capitalEmployed;
+    // this.finalValue = EBIT/capitalEmployed;
     // }
 }

@@ -19,7 +19,7 @@ module.exports = class DividendYieldRatio extends BasicRatio {
             `May be falsely high to constant stock price lowering.`,
             `Analyze with: ${this.coAnalysis}`
         ];
-        this.final_value = DividendYieldRatio;
+        this.finalValue = DividendYieldRatio;
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
@@ -55,6 +55,6 @@ module.exports = class DividendYieldRatio extends BasicRatio {
     // calculate(){ // future ratio more precise analysis method
     //  let annualDividendsPerShare, oneSharePrice;
     // here external def of above values for calculation
-    // this.final_value = annualDividendsPerShare/oneSharePrice;
+    // this.finalValue = annualDividendsPerShare/oneSharePrice;
     // }
 }
