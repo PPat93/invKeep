@@ -33,9 +33,9 @@
       </mat-action-row>
     </mat-expansion-panel>
   </div>
-  <div class="items" *ngIf="assetArray.length <= 0">
-    <mat-spinner class="loading-spinner" id="asset-list-spinner"></mat-spinner>
-    <mat-card id="nothing-to-see">
+  <div class="items" *ngIf="assetArray.length <= 0 && getData()">
+    <mat-spinner class="loading-spinner" id="asset-list-spinner" *ngIf="stopSpinner"></mat-spinner>
+    <mat-card id="nothing-to-see" *ngIf="showSpinner() === false">
       <p>No portfolio added.</p>
     </mat-card>
   </div>
