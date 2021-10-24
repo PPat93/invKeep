@@ -31,7 +31,9 @@ export class AssetDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       this.assetId = paramMap.get(`assetId`);
-      this.assetMainDetails = this.AssetService.getSingleAsset(this.assetId);
+      this.AssetService.getSingleAsset(this.assetId).subscribe(singleAsset => {
+        this.assetMainDetails = singleAsset.payload;
+      });
     });
     this.AssetRatiosService.getDetailedRatios(this.assetId);
     this.ratiosSub = this.AssetRatiosService.getRatiosUpdateListener()

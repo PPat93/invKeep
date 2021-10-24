@@ -48,20 +48,20 @@ app.post('/api/assets', (req, res) => {
     const assetRatiosPlaceholder = new AssetRatio({
         id: '',
         ratiosArray: [
-            {parameterName: `EPS Ratio`, valueNum: 0},
-            {parameterName: `P/E Ratio`, valueNum: 0},
-            {parameterName: `PEG Ratio`, valueNum: 0},
-            {parameterName: `CAPE Ratio`, valueNum: 0},
-            {parameterName: `P/B Ratio`, valueNum: 0},
-            {parameterName: `D/E Ratio`, valueNum: 0},
-            {parameterName: `ROE Ratio`, valueNum: 0},
-            {parameterName: `ROCE Ratio`, valueNum: 0},
-            {parameterName: `Dividend Yield`, valueNum: 0},
-            {parameterName: `DPR Ratio`, valueNum: 0},
-            {parameterName: `P/S Ratio`, valueNum: 0},
-            {parameterName: `Graham Number`, valueNum: 0},
-            {parameterName: `EV/EBIT Ratio`, valueNum: 0},
-            {parameterName: `EV/EBITDA Ratio`, valueNum: 0}
+            { parameterName: `EPS Ratio`, valueNum: 0 },
+            { parameterName: `P/E Ratio`, valueNum: 0 },
+            { parameterName: `PEG Ratio`, valueNum: 0 },
+            { parameterName: `CAPE Ratio`, valueNum: 0 },
+            { parameterName: `P/B Ratio`, valueNum: 0 },
+            { parameterName: `D/E Ratio`, valueNum: 0 },
+            { parameterName: `ROE Ratio`, valueNum: 0 },
+            { parameterName: `ROCE Ratio`, valueNum: 0 },
+            { parameterName: `Dividend Yield`, valueNum: 0 },
+            { parameterName: `DPR Ratio`, valueNum: 0 },
+            { parameterName: `P/S Ratio`, valueNum: 0 },
+            { parameterName: `Graham Number`, valueNum: 0 },
+            { parameterName: `EV/EBIT Ratio`, valueNum: 0 },
+            { parameterName: `EV/EBITDA Ratio`, valueNum: 0 }
         ]
     });
 
@@ -72,7 +72,7 @@ app.post('/api/assets', (req, res) => {
             assetRatiosPlaceholder.save().then((data) => {
                 console.log('\x1b[32m', 'Asset placeholder added correctly!');
             });
-            singleAsset.updateOne({id: singleAsset.id}).then(() => { // update asset id with _id created while first save
+            singleAsset.updateOne({ id: singleAsset.id }).then(() => { // update asset id with _id created while first save
                 console.log('\x1b[32m', 'Asset added correctly!');
                 res.status(201).json({
                     message: 'Asset added successfully!',
@@ -80,19 +80,30 @@ app.post('/api/assets', (req, res) => {
                 });
             });
         }).catch(($e) => {
-        console.log('\x1b[31m', `Asset addition failed! Error: ${$e}`);
-    });
+            console.log('\x1b[31m', `Asset addition failed! Error: ${$e}`);
+        });
 });
 
 app.get('/api/assets', (req, res) => {
-    Asset.find()
-        .then((documents) => {
-            res.status(200).json({
-                message: 'Asset list returned successfully!',
-                payload: documents
-            });
+    Asset.find().then((documents) => {
+        res.status(200).json({
+            message: 'Asset list returned successfully!',
+            payload: documents
         });
+    });
 });
+
+app.get('/api/assets/:id', (req, res) => {
+    Asset.findById(req.params.id).then(foundAsset => {
+        if (foundAsset)
+            res.status(200).json({
+                message: 'Asset found!',
+                payload: foundAsset
+            })
+        else
+            res.status(404).json({ message: 'Asset not found!' });
+    })
+})
 
 app.put('/api/assets/:id', (req, res) => {
     const updatedAsset = {
@@ -104,7 +115,7 @@ app.put('/api/assets/:id', (req, res) => {
         currency: req.body.currency,
         purchaseDate: req.body.purchaseDate
     };
-    Asset.updateOne({id: req.body.id}, updatedAsset).then((updatedAsset) => {
+    Asset.updateOne({ id: req.body.id }, updatedAsset).then((updatedAsset) => {
         res.status(200).json({
             message: 'Asset updated successfully!',
             payload: updatedAsset
@@ -113,8 +124,8 @@ app.put('/api/assets/:id', (req, res) => {
 });
 
 app.delete('/api/delete/:id', (req, res) => {
-    Asset.deleteOne({_id: req.params.id}).then((done) => {
-        AssetRatio.deleteOne({assetId: req.params.id}).then(() => {
+    Asset.deleteOne({ _id: req.params.id }).then((done) => {
+        AssetRatio.deleteOne({ assetId: req.params.id }).then(() => {
             res.status(200).json(done);
         })
     }).catch($e => {
@@ -125,7 +136,7 @@ app.delete('/api/delete/:id', (req, res) => {
 ////// DETAILED RATIOS ///////////////////////////////////////////////////////////////////////////////////////////
 
 app.get('/api/detailed-ratios/:id', (req, res) => {
-    AssetRatio.find({assetId: req.params.id}).then((detailedRatios) => {
+    AssetRatio.find({ assetId: req.params.id }).then((detailedRatios) => {
         const newRatios = detailedRatios[0];
         res.status(200).json({
             message: 'Asset ratios retrieved successfully!',
@@ -138,7 +149,7 @@ app.get('/api/detailed-ratios/:id', (req, res) => {
 
 app.put('/api/detailed-ratios/:id', (req, res) => {
     AssetRatio.findById(req.body.assetId).then((data) => {
-        AssetRatio.updateOne({assetId: req.body.assetId}, req.body).then(resData => {
+        AssetRatio.updateOne({ assetId: req.body.assetId }, req.body).then(resData => {
             res.status(200).json({
                 message: 'Ratios updated correctly!',
                 payload: resData

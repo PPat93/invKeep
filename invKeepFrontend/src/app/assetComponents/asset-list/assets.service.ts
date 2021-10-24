@@ -50,13 +50,18 @@ export class AssetsService {
   }
 
   editAsset(assetItem: AssetRecord) {
-    this.http.put<{ message: string, assetId: string }>(`http://localhost:3000/api/assets/:id`, (assetItem))
+    this.http.put<{ message: string, assetId: string }>(`http://localhost:3000/api/assets/:id`, assetItem)
       .subscribe((responseData) => {
-        this.assetsArray.push(assetItem);
-        this.updateAssets.next([...this.assetsArray]);
-        this.router.navigate([`/`]).then(() => {
-          // placeholder
-        });
+        const editedAssets = [...this.assetsArray];
+        const oldAssetIndex = editedAssets.findIndex(asset => asset.id === assetItem.id);
+        editedAssets[oldAssetIndex] = assetItem;
+        this.assetsArray = editedAssets;
+        this.updateAssets.next([...this.assetsArray]); 
+        // this.assetsArray.push(assetItem);
+        // this.updateAssets.next([...this.assetsArray]);
+        // this.router.navigate([`/`]).then(() => {
+        //   // placeholder
+        // });
       })
   }
 
@@ -68,8 +73,8 @@ export class AssetsService {
     })
   }
 
-  getSingleAsset(id: string): AssetRecord {
-    return {...this.assetsArray.find(as => as.id === id)};
+  getSingleAsset(id: string){
+    return this.http.get<{message: string, payload: AssetRecord}>(`http://localhost:3000/api/assets/${id}`);
   }
 
   getAssetsUpdateListener(): Observable<AssetRecord[]> {
