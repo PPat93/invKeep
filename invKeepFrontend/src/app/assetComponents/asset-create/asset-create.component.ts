@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {NgForm} from "@angular/forms";
-import {AssetsService} from "../asset-list/assets.service";
-import {AssetRecord} from "../../shared/sharedTS";
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from "@angular/forms";
+import { AssetsService } from "../asset-list/assets.service";
+import { AssetRecord } from "../../shared/sharedTS";
+import { ActivatedRoute, ParamMap } from "@angular/router";
 
 @Component({
   selector: 'app-assets-create',
@@ -33,12 +33,15 @@ export class AssetCreateComponent implements OnInit {
         this.actionMode = CreateComponentMode.edit;
         this.assetButton = `Edit asset`;
         this.assetId = paramMap.get(`assetId`)
-        this.usedAsset = this.AssetsService.getSingleAsset(this.assetId);
-        this.usedAsset.purchaseDate = new Date(this.usedAsset.purchaseDate);
+        this.AssetsService.getSingleAsset(this.assetId).subscribe(singleAsset => {
+          this.usedAsset = singleAsset.payload;
+          this.usedAsset.purchaseDate = new Date(this.usedAsset.purchaseDate);
+        });
       } else {
         this.actionMode = CreateComponentMode.create;
         this.assetButton = `Add asset`;
         this.usedAsset = {
+          _id: ``,
           id: ``,
           assetName: ``,
           assetSymbol: ``,
@@ -56,6 +59,7 @@ export class AssetCreateComponent implements OnInit {
   onAssetSave(assetForm: NgForm): void {
     if (!assetForm.invalid) {
       let placeholderAsset = {
+        _id: ``,
         id: this.assetId,
         assetName: assetForm.value.fullName,
         assetSymbol: assetForm.value.symbol.toLocaleString().toUpperCase(),

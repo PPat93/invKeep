@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {AssetsService} from "../asset-list/assets.service";
-import {ActivatedRoute, ParamMap} from "@angular/router";
-import {AssetRecord, DetailedAssetRatios} from "../../shared/sharedTS";
-import {NgForm} from "@angular/forms";
-import {AssetRatiosService} from "./asset-ratios.service";
-import {Subscription} from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import { AssetsService } from "../asset-list/assets.service";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import { AssetRecord, DetailedAssetRatios } from "../../shared/sharedTS";
+import { NgForm } from "@angular/forms";
+import { AssetRatiosService } from "./asset-ratios.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-asset-details',
@@ -19,7 +19,7 @@ export class AssetDetailsComponent implements OnInit {
   detailedAssetRatios: DetailedAssetRatios = {
     assetId: ``,
     ratiosArray: [
-      {parameterName: ``, valueNum: null}
+      { parameterName: ``, valueNum: null }
     ]
   };
   ratiosColumns: string[] = [`parameterName`, `valueNum`];
@@ -31,7 +31,9 @@ export class AssetDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       this.assetId = paramMap.get(`assetId`);
-      this.assetMainDetails = this.AssetService.getSingleAsset(this.assetId);
+      this.AssetService.getSingleAsset(this.assetId).subscribe(singleAsset => {
+        this.assetMainDetails = singleAsset.payload;
+      });
     });
     this.AssetRatiosService.getDetailedRatios(this.assetId);
     this.ratiosSub = this.AssetRatiosService.getRatiosUpdateListener()
@@ -41,7 +43,7 @@ export class AssetDetailsComponent implements OnInit {
   }
 
   stockTotalCost(): string {
-    return (this.assetMainDetails.buyPrice * this.assetMainDetails.amount).toFixed(2);
+    return (this.assetMainDetails?.buyPrice * this.assetMainDetails?.amount).toFixed(2);
   }
 
   saveDetailedRatios(detailedRatios: NgForm): void {
