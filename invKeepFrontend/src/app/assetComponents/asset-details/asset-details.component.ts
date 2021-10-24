@@ -43,7 +43,7 @@ export class AssetDetailsComponent implements OnInit {
   }
 
   stockTotalCost(): string {
-    return (this.assetMainDetails.buyPrice * this.assetMainDetails.amount).toFixed(2);
+    return (this.assetMainDetails?.buyPrice * this.assetMainDetails?.amount).toFixed(2);
   }
 
   saveDetailedRatios(detailedRatios: NgForm): void {

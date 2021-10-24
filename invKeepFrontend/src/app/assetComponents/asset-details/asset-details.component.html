@@ -1,7 +1,7 @@
 <mat-card xmlns="http://www.w3.org/1999/html">
   <mat-card-title>
-    <span id="name">{{assetMainDetails.assetName}}</span>
-    <span id="symbol">{{assetMainDetails.assetSymbol}}</span>
+    <span id="name">{{assetMainDetails?.assetName}}</span>
+    <span id="symbol">{{assetMainDetails?.assetSymbol}}</span>
   </mat-card-title>
   <mat-divider></mat-divider>
   <br>
@@ -12,19 +12,19 @@
     <table>
       <tr id="amount">
         <td> Owned quantity:</td>
-        <td class="primary-values">{{assetMainDetails.amount}}</td>
+        <td class="primary-values">{{assetMainDetails?.amount}}</td>
       </tr>
       <tr id="price">
         <td>Price per share:</td>
-        <td class="primary-values">{{assetMainDetails.buyPrice}}&nbsp;{{assetMainDetails.currency}}</td>
+        <td class="primary-values">{{assetMainDetails?.buyPrice}}&nbsp;{{assetMainDetails?.currency}}</td>
       </tr>
       <tr id="total-price">
         <td>Total paid price:</td>
-        <td class="primary-values">{{stockTotalCost()}}&nbsp;{{assetMainDetails.currency}}</td>
+        <td class="primary-values">{{stockTotalCost()}}&nbsp;{{assetMainDetails?.currency}}</td>
       </tr>
       <tr id="date">
         <td>Purchase date:</td>
-        <td class="primary-values">{{assetMainDetails.purchaseDate}}</td>
+        <td class="primary-values">{{assetMainDetails?.purchaseDate}}</td>
       </tr>
     </table>
   </mat-card-content>
