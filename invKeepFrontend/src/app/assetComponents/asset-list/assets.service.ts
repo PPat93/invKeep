@@ -1,11 +1,11 @@
-import {AssetRecord} from '../../shared/sharedTS';
-import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {Router} from '@angular/router';
+import { AssetRecord } from '../../shared/sharedTS';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AssetsService {
 
   constructor(private http: HttpClient, private router: Router) {
@@ -56,7 +56,7 @@ export class AssetsService {
         const oldAssetIndex = editedAssets.findIndex(asset => asset.id === assetItem.id);
         editedAssets[oldAssetIndex] = assetItem;
         this.assetsArray = editedAssets;
-        this.updateAssets.next([...this.assetsArray]); 
+        this.updateAssets.next([...this.assetsArray]);
         // this.assetsArray.push(assetItem);
         // this.updateAssets.next([...this.assetsArray]);
         // this.router.navigate([`/`]).then(() => {
@@ -73,8 +73,8 @@ export class AssetsService {
     })
   }
 
-  getSingleAsset(id: string){
-    return this.http.get<{message: string, payload: AssetRecord}>(`http://localhost:3000/api/assets/${id}`);
+  getSingleAsset(id: string) {
+    return this.http.get<{ message: string, payload: AssetRecord }>(`http://localhost:3000/api/assets/${id}`);
   }
 
   getAssetsUpdateListener(): Observable<AssetRecord[]> {

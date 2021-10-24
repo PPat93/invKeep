@@ -1,7 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AssetRecord} from "../../shared/sharedTS";
-import {AssetsService} from "./assets.service";
-import {Subscription} from "rxjs";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AssetRecord } from "../../shared/sharedTS";
+import { AssetsService } from "./assets.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-asset-list',
