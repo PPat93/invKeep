@@ -44,7 +44,6 @@ export class AssetsService {
         this.assetsArray.push(assetItem);
         this.updateAssets.next([...this.assetsArray]);
         this.router.navigate([`/`]).then(() => {
-          // placeholder
         });
       })
   }
@@ -57,9 +56,8 @@ export class AssetsService {
         editedAssets[oldAssetIndex] = assetItem;
         this.assetsArray = editedAssets;
         this.updateAssets.next([...this.assetsArray]);
-        // this.router.navigate([`/`]).then(() => {
-        //   // placeholder
-        // });
+        this.router.navigate([`/`]).then(() => {
+        });
       })
   }
 

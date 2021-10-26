@@ -1,7 +1,8 @@
 <mat-card>
   <mat-card-title>Asset list:</mat-card-title>
   <mat-divider></mat-divider>
-  <div class="items" *ngIf="assetArray.length > 0">
+  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+  <div class="items" *ngIf="assetArray.length > 0 && !isLoading">
     <mat-expansion-panel #panel hideToggle="true" *ngFor="let oneRecord of assetArray">
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -33,8 +34,7 @@
       </mat-action-row>
     </mat-expansion-panel>
   </div>
-  <div class="items" *ngIf="assetArray.length <= 0">
-    <app-loading-spinner></app-loading-spinner>
+  <div class="items" *ngIf="assetArray.length <= 0 && !isLoading">
     <mat-card id="nothing-to-see">
       <p>No portfolio added.</p>
     </mat-card>
