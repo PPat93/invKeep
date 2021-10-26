@@ -57,8 +57,6 @@ export class AssetsService {
         editedAssets[oldAssetIndex] = assetItem;
         this.assetsArray = editedAssets;
         this.updateAssets.next([...this.assetsArray]);
-        // this.assetsArray.push(assetItem);
-        // this.updateAssets.next([...this.assetsArray]);
         // this.router.navigate([`/`]).then(() => {
         //   // placeholder
         // });
@@ -66,7 +64,7 @@ export class AssetsService {
   }
 
   deleteAsset(assetId: string) {
-    this.http.delete(`http://localhost:3000/api/delete/${assetId}`).subscribe(() => {
+    this.http.delete(`http://localhost:3000/api/assets/delete/${assetId}`).subscribe(() => {
       // update of asset list with filtering out freshly deleted asset
       this.assetsArray = this.assetsArray.filter(asset => asset.id !== assetId);
       this.updateAssets.next([...this.assetsArray]);
