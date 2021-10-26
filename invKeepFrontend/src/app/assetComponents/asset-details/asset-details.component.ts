@@ -22,22 +22,29 @@ export class AssetDetailsComponent implements OnInit {
       { parameterName: ``, valueNum: null }
     ]
   };
+  isLoading1: boolean = false;
+  isLoading2: boolean = false;
   ratiosColumns: string[] = [`parameterName`, `valueNum`];
+
   private ratiosSub: Subscription;
 
   constructor(public AssetService: AssetsService, public AssetRatiosService: AssetRatiosService, public route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.isLoading1 = true;
+    this.isLoading2 = true;
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       this.assetId = paramMap.get(`assetId`);
       this.AssetService.getSingleAsset(this.assetId).subscribe(singleAsset => {
+        this.isLoading1 = false;
         this.assetMainDetails = singleAsset.payload;
       });
     });
     this.AssetRatiosService.getDetailedRatios(this.assetId);
     this.ratiosSub = this.AssetRatiosService.getRatiosUpdateListener()
       .subscribe((ratiosSubscribed: DetailedAssetRatios) => {
+        this.isLoading2 = false;
         this.detailedAssetRatios = ratiosSubscribed;
       });
   }

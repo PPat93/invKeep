@@ -12,11 +12,11 @@ import { ActivatedRoute, ParamMap } from "@angular/router";
 
 export class AssetCreateComponent implements OnInit {
 
-  actionMode: CreateComponentMode;
-  assetId: string;
-  usedAsset: AssetRecord;
+  actionMode: CreateComponentMode;  
   assetButton: string;
-
+  assetId: string;
+  isLoading: boolean = false;
+  usedAsset: AssetRecord;
   validationPatterns = {
     fullName: `[a-zA-Z0-9,._ ()\-]{2,30}$`,
     symbol: `[a-zA-Z0-9.\-]{1,6}$`,
@@ -28,12 +28,14 @@ export class AssetCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isLoading = true;
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has(`assetId`)) {
         this.actionMode = CreateComponentMode.edit;
         this.assetButton = `Edit asset`;
         this.assetId = paramMap.get(`assetId`)
         this.AssetsService.getSingleAsset(this.assetId).subscribe(singleAsset => {
+          this.isLoading = false;
           this.usedAsset = singleAsset.payload;
           this.usedAsset.purchaseDate = new Date(this.usedAsset.purchaseDate);
         });
@@ -51,6 +53,7 @@ export class AssetCreateComponent implements OnInit {
           purchaseDate: ``
         };
         this.assetId = null;
+        this.isLoading = false;
       }
     });
   }
@@ -71,18 +74,24 @@ export class AssetCreateComponent implements OnInit {
 
       if (assetForm.value.date) {
         placeholderAsset.purchaseDate = assetForm.value.date.toLocaleString().split(`,`)[0];
+
       }
 
       switch (this.actionMode) {
         case CreateComponentMode.create:
+          this.isLoading = true;
           this.AssetsService.addAsset(placeholderAsset);
           assetForm.resetForm();
           break;
+
         case CreateComponentMode.edit:
+          this.isLoading = true;
           this.AssetsService.editAsset(placeholderAsset);
           break;
+          
         default:
       }
+      this.isLoading = false;
     }
   }
 

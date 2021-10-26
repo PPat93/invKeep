@@ -13,14 +13,17 @@ export class AssetListComponent implements OnInit, OnDestroy {
 
   assetArray: AssetRecord[] = [];
   private assetSub: Subscription;
-
+  isLoading: boolean = false;
+ 
   constructor(public AssetsService: AssetsService) {
   }
 
   ngOnInit() {
+    this.isLoading = true;
     this.AssetsService.getAssets();
     this.assetSub = this.AssetsService.getAssetsUpdateListener()
       .subscribe((assetsSubscribed: AssetRecord[]) => {
+        this.isLoading = false;
         this.assetArray = assetsSubscribed;
       })
   }
