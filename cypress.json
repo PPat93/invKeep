@@ -1,1 +1,8 @@
-{}
+{
+    "baseUrl": "https://localhost:4200/",
+    "supportFile": "cypress/support/index.js",
+    "env": {
+        
+    }
+
+}
