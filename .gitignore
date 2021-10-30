@@ -1,3 +1,6 @@
 node_modules
 .idea
 node_modules
+cypress/config/dev.json
+cypress/videos/**
+cypress/screenshots/**
