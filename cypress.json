@@ -1,6 +1,1 @@
-{
-    "testFiles": "**/*.feature",
-    "env": {
-        "TAGS": "not (@blocked or @wip)"
-    }
-}
+{}
