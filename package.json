@@ -24,12 +24,7 @@
     "typescript": "^4.4.4"
   },
   "devDependencies": {
-    "@types/cypress-cucumber-preprocessor": "^4.0.1",
     "cypress": "^8.7.0",
-    "cypress-cucumber-preprocessor": "^4.3.0",
     "nodemon": "^2.0.7"
-  },
-  "cypress-cucumber-preprocessor": {
-    "nonGlobalStepDefinitions": true
   }
 }
