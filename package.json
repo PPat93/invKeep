@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "cypress": "^8.7.0",
+    "fs-extra": "^10.0.0",
     "nodemon": "^2.0.7"
   }
 }
