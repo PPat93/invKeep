@@ -4,7 +4,7 @@
   <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
   <div class="items" *ngIf="assetArray.length > 0 && !isLoading">
     <mat-expansion-panel #panel hideToggle="true" *ngFor="let oneRecord of assetArray">
-      <mat-expansion-panel-header>
+      <mat-expansion-panel-header >
         <mat-panel-title>
           <span>Asset full name:&nbsp;<b>{{ oneRecord.assetName }}</b></span>
         </mat-panel-title>

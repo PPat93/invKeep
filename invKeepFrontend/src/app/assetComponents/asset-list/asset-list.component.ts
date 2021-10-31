@@ -14,7 +14,7 @@ export class AssetListComponent implements OnInit, OnDestroy {
   assetArray: AssetRecord[] = [];
   private assetSub: Subscription;
   isLoading: boolean = false;
- 
+
   constructor(public AssetsService: AssetsService) {
   }
 
@@ -27,7 +27,9 @@ export class AssetListComponent implements OnInit, OnDestroy {
         this.assetArray = assetsSubscribed;
       })
   }
-
+  setDataCy(element) {
+    element.setAttribute(`data-cy`, element.oneRecord.name);
+  }
   deleteAsset(assetId: string): void {
     this.AssetsService.deleteAsset(assetId);
   }
