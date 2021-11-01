@@ -27,9 +27,7 @@ export class AssetListComponent implements OnInit, OnDestroy {
         this.assetArray = assetsSubscribed;
       })
   }
-  setDataCy(element) {
-    element.setAttribute(`data-cy`, element.oneRecord.name);
-  }
+  
   deleteAsset(assetId: string): void {
     this.AssetsService.deleteAsset(assetId);
   }
