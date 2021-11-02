@@ -12,7 +12,7 @@ describe(`Asset creation`, () => {
 
     it(`Create asset`, () => {
 
-        let assetName = `Test Asset ${Date.now()}`;
+        let assetName = `TestAsset ${Date.now()}`;
 
         //  Arrange
         cy.getDataCyElement(Utils.createAssetBtn)
@@ -39,9 +39,7 @@ describe(`Asset creation`, () => {
             .click();
 
         //  Assert
-        cy.getDataCyElement(MainPageConsts.assetList)
-            .find(`mat-expansion-panel-header`)
+        cy.getDataCyElement(assetName.replace(` `, `-`).toLowerCase())
             .should(`contain.text`, assetName);
-
     })
 })
