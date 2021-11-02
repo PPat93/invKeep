@@ -24,4 +24,4 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import './commandsFE/mainPageCommands-fe'
+import './commandsFE/mainPageCommands-fe';

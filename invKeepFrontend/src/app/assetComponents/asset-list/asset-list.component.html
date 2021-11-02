@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card data-cy="asset=list">
   <mat-card-title>Asset list:</mat-card-title>
   <mat-divider></mat-divider>
   <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
@@ -29,8 +29,8 @@
         </tr>
       </table>
       <mat-action-row>
-        <a mat-stroked-button color="primary" [routerLink]="['edit', oneRecord.id]">Edit</a>
-        <button mat-stroked-button color="warn" (click)="deleteAsset(oneRecord.id)">Delete</button>
+        <a mat-stroked-button color="primary" data-cy="edit-button" [routerLink]="['edit', oneRecord.id]">Edit</a>
+        <button mat-stroked-button color="warn" data-cy="delete-button" (click)="deleteAsset(oneRecord.id)">Delete</button>
       </mat-action-row>
     </mat-expansion-panel>
   </div>

@@ -7,8 +7,8 @@
       <mat-form-field>
         <mat-label>Full asset name</mat-label>
         <input name="fullName" data-cy="full-name" matInput [pattern]="validationPatterns.fullName"
-          [ngModel]="usedAsset?.assetName" id="asset-name" required class="assetInput" #fullName="ngModel">
-        <mat-error *ngIf="fullName.invalid"> {{ getErrorMessage(fullName.name) }}</mat-error>
+          [ngModel]="usedAsset?.assetName" id="asset-name" r equired class="assetInput" #fullName="ngModel">
+        <mat-error *ngIf="fullName.invalid">{{ getErrorMessage(fullName.name) }}</mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Asset symbol</mat-label>
@@ -18,15 +18,17 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Amount of units (int)</mat-label>
-        <input name="amount" data-cy="amount" matInput [ngModel]="usedAsset?.amount" [pattern]="validationPatterns.amount"
-          id="asset-amount" required class="assetInput example-right-align" #amount="ngModel">
+        <input name="amount" data-cy="amount" matInput [ngModel]="usedAsset?.amount"
+          [pattern]="validationPatterns.amount" id="asset-amount" required class="assetInput example-right-align"
+          #amount="ngModel">
         <mat-error *ngIf="amount.invalid"> {{ getErrorMessage(amount.name) }}</mat-error>
         <span matSuffix>.00</span>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Price for one unit</mat-label>
-        <input name="price" data-cy="price" matInput [ngModel]="usedAsset?.buyPrice" [pattern]="validationPatterns.price"
-          id="asset-price" required class="assetInput example-right-align" #price="ngModel">
+        <input name="price" data-cy="price" matInput [ngModel]="usedAsset?.buyPrice"
+          [pattern]="validationPatterns.price" id="asset-price" required class="assetInput example-right-align"
+          #price="ngModel">
         <mat-error *ngIf="price.invalid"> {{ getErrorMessage(price.name) }}</mat-error>
       </mat-form-field>
       <mat-form-field>
@@ -41,14 +43,15 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Purchase Date:</mat-label>
-        <input name="date" data-cy="purchase-date" matInput [ngModel]="usedAsset?.purchaseDate" [matDatepicker]="picker" #date="ngModel">
+        <input name="date" data-cy="purchase-date" matInput [ngModel]="usedAsset?.purchaseDate" [matDatepicker]="picker"
+          #date="ngModel">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-error *ngIf="date.invalid"> {{ getErrorMessage(date.name) }}</mat-error>
       </mat-form-field>
     </div>
     <div class="create-buttons">
-      <button [disabled]=""data-cy="submit" mat-raised-button color="primary" type="submit">
+      <button [disabled]="" data-cy="submit" mat-raised-button color="primary" type="submit">
         {{assetButton}}
       </button>
       <button mat-raised-button data-cy="clear" color="warn" type="reset">Clear</button>
