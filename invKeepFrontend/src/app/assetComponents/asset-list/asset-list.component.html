@@ -3,7 +3,8 @@
   <mat-divider></mat-divider>
   <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
   <div class="items" *ngIf="assetArray.length > 0 && !isLoading">
-    <mat-expansion-panel #panel hideToggle="true" *ngFor="let oneRecord of assetArray" [attr.data-cy]="oneRecord.assetName.replace(' ', '-').toLowerCase()">
+    <mat-expansion-panel #panel hideToggle="true" *ngFor="let oneRecord of assetArray"
+      [attr.data-cy]="oneRecord.assetName.replace(' ', '-').toLowerCase()">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <span>Asset full name:&nbsp;<b>{{ oneRecord.assetName }}</b></span>
@@ -24,13 +25,19 @@
             <span>Purchase Date:&nbsp;<b>{{ oneRecord.purchaseDate }}</b></span><br>
           </td>
           <td>
-            <button class="details" mat-stroked-button [routerLink]="['details', oneRecord.id]">Details</button>
+            <button class="details" mat-stroked-button
+              [attr.data-cy]="oneRecord.assetName.replace(' ', '-').toLowerCase() + '-details'"
+              [routerLink]="['details', oneRecord.id]">Details</button>
           </td>
         </tr>
       </table>
       <mat-action-row>
-        <a mat-stroked-button color="primary" data-cy="edit-button" [routerLink]="['edit', oneRecord.id]">Edit</a>
-        <button mat-stroked-button color="warn" data-cy="delete-button" (click)="deleteAsset(oneRecord.id)">Delete</button>
+        <a mat-stroked-button color="primary"
+          [attr.data-cy]="oneRecord.assetName.replace(' ', '-').toLowerCase() + '-edit'"
+          [routerLink]="['edit', oneRecord.id]">Edit</a>
+        <button mat-stroked-button color="warn"
+          [attr.data-cy]="oneRecord.assetName.replace(' ', '-').toLowerCase() + '-delete'"
+          (click)="deleteAsset(oneRecord.id)">Delete</button>
       </mat-action-row>
     </mat-expansion-panel>
   </div>
