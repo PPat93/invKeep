@@ -1,4 +1,4 @@
-Cypress.Commands.add(`getDataCyElement`, (cyAttributeValue) => {
+Cypress.Commands.add(`getDataCyElement`, (cyAttributeValue, customTimeout: number = 4000) => {
 
-    return cy.get(`[data-cy="${cyAttributeValue}"]`);
+    return cy.get(`[data-cy="${cyAttributeValue}"]`, {timeout: customTimeout});
 })

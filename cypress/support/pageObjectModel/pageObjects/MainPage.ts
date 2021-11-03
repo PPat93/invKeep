@@ -7,8 +7,27 @@ import Utils from "../Utils/Utils";
  */
 class MainPage {
 
-    visitPage(pageUrl: string){
+    visitPage(pageUrl: string) {
         Utils.visitPage(pageUrl);
+    }
+
+    deleteAsset(assetToDeleteion: string) {
+
+        //  Arrange
+        let dataCyParam = `${assetToDeleteion.replace(` `, `-`).toLowerCase()}`;
+
+        cy.getDataCyElement(dataCyParam)
+            .click();
+        cy.getDataCyElement(`${dataCyParam}-delete`)
+            .should(`exist`);
+
+        //  Act
+        cy.getDataCyElement(`${dataCyParam}-delete`)
+            .click();
+
+        //  Assert    
+        cy.getDataCyElement(dataCyParam, 2000)
+            .should(`not.exist`);
     }
 }
 

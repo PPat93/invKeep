@@ -1,7 +1,7 @@
 declare namespace Cypress {
     interface Chainable<Subject = any> {
         
-        getDataCyElement(cyAttributeValue: string): Chainable<any>
+        getDataCyElement(cyAttributeValue: string, customTimeout?: number): Chainable<any>
     }
 }
 

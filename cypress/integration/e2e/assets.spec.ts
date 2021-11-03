@@ -4,15 +4,22 @@ import CreatePageConsts from "../../support/pageObjectModel/Utils/CreatePageCons
 import Utils from "../../support/pageObjectModel/Utils/Utils";
 
 describe(`Asset creation`, () => {
+    let assetName = ``;
 
     beforeEach(`Visit main page`, () => {
 
         MainPage.visitPage(MainPageConsts.mainPageUrl);
     });
 
+    afterEach(`Teardown`, () => {
+
+        MainPage.visitPage(MainPageConsts.mainPageUrl);
+        MainPage.deleteAsset(assetName);
+    })
+
     it(`Create asset`, () => {
 
-        let assetName = `TestAsset ${Date.now()}`;
+        assetName = `TestAsset ${Date.now()}`;
 
         //  Arrange
         cy.getDataCyElement(Utils.createAssetBtn)
@@ -39,7 +46,7 @@ describe(`Asset creation`, () => {
             .click();
 
         //  Assert
-        cy.getDataCyElement(assetName.replace(` `, `-`).toLowerCase())
+        cy.getDataCyElement(assetName.replace(` `, `-`).toLowerCase(), 4000)
             .should(`contain.text`, assetName);
     })
 })
