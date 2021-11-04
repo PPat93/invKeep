@@ -1,4 +1,3 @@
-import Utils from "../Utils/Utils";
 /**
  * 
  * Main page class containing all methods used on invKeep main page
@@ -6,10 +5,6 @@ import Utils from "../Utils/Utils";
  * 
  */
 class MainPage {
-
-    visitPage(pageUrl: string) {
-        Utils.visitPage(pageUrl);
-    }
 
     deleteAsset(assetToDeleteion: string) {
 
