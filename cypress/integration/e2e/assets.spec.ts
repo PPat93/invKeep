@@ -1,19 +1,19 @@
-import MainPageConsts from "../../support/pageObjectModel/Utils/MainPageConsts";
 import MainPage from "../../support/pageObjectModel/pageObjects/MainPage";
 import CreatePageConsts from "../../support/pageObjectModel/Utils/CreatePageConsts";
-import Utils from "../../support/pageObjectModel/Utils/Utils";
+import Utils, { AssetCurrency } from "../../support/pageObjectModel/Utils/Utils";
+import CreatePage from "../../support/pageObjectModel/pageObjects/CreatePage";
 
 describe(`Asset creation`, () => {
     let assetName = ``;
 
     beforeEach(`Visit main page`, () => {
 
-        MainPage.visitPage(MainPageConsts.mainPageUrl);
+        Utils.visitPage(Utils.mainPageUrl);
     });
 
     afterEach(`Teardown`, () => {
 
-        MainPage.visitPage(MainPageConsts.mainPageUrl);
+        Utils.visitPage(Utils.mainPageUrl);
         MainPage.deleteAsset(assetName);
     })
 
@@ -25,25 +25,12 @@ describe(`Asset creation`, () => {
         cy.getDataCyElement(Utils.createAssetBtn)
             .click();
         cy.url()
-            .should(`contain`, CreatePageConsts.createPageUrl);
-        cy.getDataCyElement(CreatePageConsts.createAssetForm);
+            .should(`contain`, Utils.createPageUrl);
+        cy.getDataCyElement(CreatePageConsts.createAssetForm)
+            .should(`be.visible`);
 
         //  Act
-        cy.getDataCyElement(CreatePageConsts.fullName)
-            .type(`${assetName}`);
-        cy.getDataCyElement(CreatePageConsts.symbol)
-            .type(`TASbl`);
-        cy.getDataCyElement(CreatePageConsts.amount)
-            .type(`${Date.now().toString().slice(10, 12)}`);
-        cy.getDataCyElement(CreatePageConsts.price)
-            .type(`1.45`);
-        cy.getDataCyElement(CreatePageConsts.currency)
-            .click()
-        cy.get(`mat-option`)
-            .contains(`€`)
-            .click({ force: true });
-        cy.getDataCyElement(CreatePageConsts.submitBtn)
-            .click();
+        CreatePage.createAsset(assetName, `TASbl`, parseInt(Date.now().toString().slice(10, 12)), 1.45, AssetCurrency.euro);
 
         //  Assert
         cy.getDataCyElement(assetName.replace(` `, `-`).toLowerCase(), 4000)
