@@ -6,18 +6,30 @@
  */
 class MainPage {
 
+    dataCyElementAsset(assetName: string){
+        return `${assetName.replace(/ /g, `-`).toLowerCase()}`;
+    }
+
+    dataCyElementEditBtn(assetName: string) {
+        return `${assetName.replace(/ /g, `-`).toLowerCase()}-edit`;
+    }
+
+    dataCyElementDeleteBtn(assetName: string) {
+        return `${assetName.replace(/ /g, `-`).toLowerCase()}-delete`;
+    }
+
     deleteAsset(assetToDeleteion: string) {
 
         //  Arrange
-        let dataCyParam = `${assetToDeleteion.replace(` `, `-`).toLowerCase()}`;
+        let dataCyParam = this.dataCyElementAsset(assetToDeleteion);
 
         cy.getDataCyElement(dataCyParam)
             .click();
-        cy.getDataCyElement(`${dataCyParam}-delete`)
+        cy.getDataCyElement(this.dataCyElementDeleteBtn(assetToDeleteion))
             .should(`exist`);
 
         //  Act
-        cy.getDataCyElement(`${dataCyParam}-delete`)
+        cy.getDataCyElement(this.dataCyElementDeleteBtn(assetToDeleteion))
             .click();
 
         //  Assert    

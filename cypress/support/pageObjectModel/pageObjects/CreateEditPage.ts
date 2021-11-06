@@ -1,22 +1,26 @@
-import CreatePageConsts from "../Utils/CreatePageConsts";
+import CreatePageConsts from "../Utils/CreateEditPageConsts";
 import { AssetCurrency } from "../Utils/Utils";
 /**
  * 
- * Create page class containing all methods used on invKeep create page
+ * Create/Edit page class containing all methods used on invKeep create or edit pages
  * @class
  * 
  */
-class CreatePage {
+class CreateEditpage {
 
-    createAsset(assetName: string, assetSymbol: string, amount: number, pricePerUnit: number, currency: AssetCurrency, purchaseDate?: Date) {
+    createEditAsset(assetName: string, assetSymbol: string, amount: number, pricePerUnit: number, currency: AssetCurrency, purchaseDate?: Date | string) {
 
         cy.getDataCyElement(CreatePageConsts.fullName)
+            .clear()
             .type(assetName);
         cy.getDataCyElement(CreatePageConsts.symbol)
+            .clear()
             .type(assetSymbol);
         cy.getDataCyElement(CreatePageConsts.amount)
+            .clear()
             .type(`${amount}`);
         cy.getDataCyElement(CreatePageConsts.price)
+            .clear()
             .type(`${pricePerUnit}`);
         cy.getDataCyElement(CreatePageConsts.currency)
             .click()
@@ -25,6 +29,7 @@ class CreatePage {
             .click({ force: true });
         if (purchaseDate !== undefined) {
             cy.getDataCyElement(CreatePageConsts.purchaseDate)
+                .clear()
                 .type(`${purchaseDate}`)
         }
         cy.getDataCyElement(CreatePageConsts.submitBtn)
@@ -32,4 +37,4 @@ class CreatePage {
     }
 }
 
-export default new CreatePage();
+export default new CreateEditpage();

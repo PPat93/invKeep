@@ -1,9 +1,9 @@
 import MainPageConsts from "../../support/pageObjectModel/Utils/MainPageConsts";
 import Utils, { AssetCurrency } from "../../support/pageObjectModel/Utils/Utils";
-import CreatePageConsts from "../../support/pageObjectModel/Utils/CreatePageConsts";
-import CreatePage from "../../support/pageObjectModel/pageObjects/CreatePage";
+import CreatePageConsts from "../../support/pageObjectModel/Utils/CreateEditPageConsts";
 import DetailsPageConsts from "../../support/pageObjectModel/Utils/DetailsPageConsts";
 import MainPage from "../../support/pageObjectModel/pageObjects/MainPage";
+import CreateEditPage from "../../support/pageObjectModel/pageObjects/CreateEditPage";
 
 describe(`Page displayments after direct access from URL`, () => {
 
@@ -46,7 +46,7 @@ describe(`Page displayments after direct access from URL`, () => {
 
         //  Arrange
         Utils.visitPage(Utils.createPageUrl);
-        CreatePage.createAsset(detailPageAssetName, `DetPg`, parseInt(Date.now().toString().slice(10, 12)), 1.45, AssetCurrency.euro);
+        CreateEditPage.createEditAsset(detailPageAssetName, `DetPg`, parseInt(Date.now().toString().slice(10, 12)), 1.45, AssetCurrency.euro);
         Utils.visitPage(Utils.mainPageUrl);
 
         //  Act

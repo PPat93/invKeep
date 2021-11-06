@@ -1,4 +1,3 @@
-import MainPageConsts from "./MainPageConsts";
 /**
  * 
  * CreatePageConsts class containing all consts used on invKeep create asset page
