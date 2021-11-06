@@ -10,7 +10,7 @@
           <span>Asset full name:&nbsp;<b>{{ oneRecord.assetName }}</b></span>
         </mat-panel-title>
         <mat-panel-description class="description">
-          <span>Asset symbol:&nbsp;<b class="symbol">{{ oneRecord.assetSymbol }}</b></span>
+          <span id="asset-symbol" data-cy="asset-symbol">Asset symbol:&nbsp;<b class="symbol">{{ oneRecord.assetSymbol }}</b></span>
         </mat-panel-description>
         <mat-icon *ngIf="panel.expanded else elseBlock" aria-hidden="false" aria-label="expand">expand_less</mat-icon>
         <ng-template #elseBlock>
