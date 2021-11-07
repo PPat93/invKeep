@@ -1,6 +1,6 @@
 import MainPageConsts from "../../support/pageObjectModel/Utils/MainPageConsts";
 import Utils, { AssetCurrency } from "../../support/pageObjectModel/Utils/Utils";
-import CreatePageConsts from "../../support/pageObjectModel/Utils/CreateEditPageConsts";
+import CreateEditPageConsts from "../../support/pageObjectModel/Utils/CreateEditPageConsts";
 import DetailsPageConsts from "../../support/pageObjectModel/Utils/DetailsPageConsts";
 import MainPage from "../../support/pageObjectModel/pageObjects/MainPage";
 import CreateEditPage from "../../support/pageObjectModel/pageObjects/CreateEditPage";
@@ -35,12 +35,13 @@ describe(`Page displayments after direct access from URL`, () => {
         //  Assert    
         cy.url()
             .should(`contain`, Utils.createPageUrl);
-        cy.getDataCyElement(CreatePageConsts.createAssetForm)
+        cy.getDataCyElement(CreateEditPageConsts.createAssetForm)
             .should(`be.visible`)
-            .and(`contain.text`, CreatePageConsts.createAssetFormHeader);
+            .and(`contain.text`, CreateEditPageConsts.createAssetFormHeader);
     })
 
     it(`Details Page displayment`, () => {
+
         let assetName = `DetailsPage${Date.now()}`;
 
         //  Arrange
@@ -65,5 +66,26 @@ describe(`Page displayments after direct access from URL`, () => {
         Utils.visitPage(Utils.mainPageUrl);
         MainPage.deleteAsset(assetName);
     })
-    // TODO edit page
+
+    it(`Edit Page displayment`, () => {
+
+        let assetName = `Edit asset ${Date.now()}`;
+
+        //  Arrange
+        cy.apiAssetCreation(assetName, `editPg`, 10, 11.2, AssetCurrency.pound);
+        cy.reload();
+        cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
+            .click();
+
+        //  Act
+        cy.getDataCyElement(MainPage.dataCyElementEditBtn(assetName))
+            .click();
+            cy.getDataCyElement(`loading-spinner`, 5000)
+            .should(`not.exist`);
+        //  Assert
+        // cy.url() //  TODO assertion to be fixed
+        //     .should(`contain.text`, Utils.editPageUrl);
+        cy.getDataCyElement(CreateEditPageConsts.createAssetForm)
+            .should(`be.visible`);
+    })
 })

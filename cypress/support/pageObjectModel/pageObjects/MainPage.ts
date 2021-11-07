@@ -6,7 +6,7 @@
  */
 class MainPage {
 
-    dataCyElementAsset(assetName: string){
+    dataCyElementAsset(assetName: string) {
         return `${assetName.replace(/ /g, `-`).toLowerCase()}`;
     }
 

@@ -1,9 +1,7 @@
 import { AssetCurrency } from "../../pageObjectModel/Utils/Utils";
 
 Cypress.Commands.add('apiAssetCreation', (assetName: string, assetSymbol: string, amount: number, pricePerUnit: number, currency: AssetCurrency, purchaseDate?: Date | string) => {
-    if (purchaseDate === undefined) {
-        purchaseDate = `-`;
-    }
+
     cy.request({
         method: `POST`,
         url: `${Cypress.env(`backendUrl`)}`,
@@ -19,7 +17,7 @@ Cypress.Commands.add('apiAssetCreation', (assetName: string, assetSymbol: string
             "amount": amount,
             "buyPrice": pricePerUnit,
             "currency": currency,
-            "purchaseDate": purchaseDate
+            "purchaseDate": (purchaseDate === undefined) ? `-` : purchaseDate
         },
     })
 })
