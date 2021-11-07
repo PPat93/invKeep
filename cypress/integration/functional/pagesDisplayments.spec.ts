@@ -63,7 +63,7 @@ describe(`Page displayments after direct access from URL`, () => {
 
         //  Teardown
         Utils.visitPage(Utils.mainPageUrl);
-        MainPage.deleteAsset(assetName);    
+        MainPage.deleteAsset(assetName);
     })
     // TODO edit page
 })

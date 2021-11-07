@@ -24,6 +24,8 @@ class Utils {
         cy.visit(pageUrl);
         cy.url()
             .should(`contain`, pageUrl);
+        cy.getDataCyElement(`loading-spinner`, 5000)
+            .should(`not.exist`);
     }
 }
 
