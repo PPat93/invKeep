@@ -41,18 +41,17 @@ describe(`Page displayments after direct access from URL`, () => {
     })
 
     it(`Details Page displayment`, () => {
-        let detailPageAssetName = `DetailsPage${Date.now()}`;
-        let detailPageAssetDataCy = detailPageAssetName.replace(` `, `-`).toLowerCase();
+        let assetName = `DetailsPage${Date.now()}`;
 
         //  Arrange
         Utils.visitPage(Utils.createPageUrl);
-        CreateEditPage.createEditAsset(detailPageAssetName, `DetPg`, parseInt(Date.now().toString().slice(10, 12)), 1.45, AssetCurrency.euro);
+        CreateEditPage.createEditAsset(assetName, `DetPg`, parseInt(Date.now().toString().slice(10, 12)), 1.45, AssetCurrency.euro);
         Utils.visitPage(Utils.mainPageUrl);
 
         //  Act
-        cy.getDataCyElement(detailPageAssetDataCy)
+        cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
             .click();
-        cy.getDataCyElement(`${detailPageAssetDataCy}-details`)
+        cy.getDataCyElement(MainPage.dataCyElementDetailsBtn(assetName))
             .click();
 
         //  Assert
@@ -60,11 +59,11 @@ describe(`Page displayments after direct access from URL`, () => {
             .should(`contain`, Utils.detailsPageUrl);
         cy.getDataCyElement(DetailsPageConsts.detailedRatiosCard)
             .should(`be.visible`)
-            .and(`contain.text`, detailPageAssetName);
+            .and(`contain.text`, assetName);
 
         //  Teardown
         Utils.visitPage(Utils.mainPageUrl);
-        MainPage.deleteAsset(detailPageAssetName);    
+        MainPage.deleteAsset(assetName);    
     })
     // TODO edit page
 })

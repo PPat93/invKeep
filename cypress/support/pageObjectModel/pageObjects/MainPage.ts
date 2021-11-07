@@ -18,6 +18,10 @@ class MainPage {
         return `${assetName.replace(/ /g, `-`).toLowerCase()}-delete`;
     }
 
+    dataCyElementDetailsBtn(assetName: string) {
+        return `${assetName.replace(/ /g, `-`).toLowerCase()}-details`;
+    }
+
     deleteAsset(assetToDeleteion: string) {
 
         //  Arrange

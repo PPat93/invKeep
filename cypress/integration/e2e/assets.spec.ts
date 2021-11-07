@@ -34,7 +34,7 @@ describe(`Asset creation`, () => {
         CreateEditPage.createEditAsset(assetName, `TASbl`, parseInt(Date.now().toString().slice(10, 12)), 1.45, AssetCurrency.euro);
 
         //  Assert
-        cy.getDataCyElement(assetName.replace(` `, `-`).toLowerCase(), 4000)
+        cy.getDataCyElement(MainPage.dataCyElementAsset(assetName), 4000)
             .should(`contain.text`, assetName);
     })
 
@@ -45,7 +45,7 @@ describe(`Asset creation`, () => {
         //  Arrange
         cy.apiAssetCreation(assetName, `TST`, parseInt(Date.now().toString().slice(10, 12)), 1.45, AssetCurrency.dollar);
         Utils.visitPage(Utils.mainPageUrl);
-        cy.getDataCyElement(assetName.replace(/ /g, `-`).toLowerCase(), 4000)
+        cy.getDataCyElement(MainPage.dataCyElementAsset(assetName), 4000)
             .click();
         cy.getDataCyElement(MainPage.dataCyElementEditBtn(assetName))
             .click();
@@ -65,7 +65,8 @@ describe(`Asset creation`, () => {
 
                 expect(editedAsset).to.contain(assetName);
                 expect(editedAsset).to.contain(`12.5 £`);
-                expect(editedAsset).to.contain(`Asset symbol: EdTST`);
-            })
+                expect(editedAsset).to.contain(`EDTST`);
+            });
+            // TODO - update button edit and delete get, fix tests to not step further until spinner disappeared
     })
 })
