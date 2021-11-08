@@ -80,12 +80,17 @@ describe(`Page displayments after direct access from URL`, () => {
         //  Act
         cy.getDataCyElement(MainPage.dataCyElementEditBtn(assetName))
             .click();
-            cy.getDataCyElement(`loading-spinner`, 5000)
+        cy.getDataCyElement(`loading-spinner`, 5000)
             .should(`not.exist`);
+
         //  Assert
-        // cy.url() //  TODO assertion to be fixed
-        //     .should(`contain.text`, Utils.editPageUrl);
+        cy.url()
+            .should(`contain`, Utils.editPageUrl);
         cy.getDataCyElement(CreateEditPageConsts.createAssetForm)
             .should(`be.visible`);
+
+        //  Teardown
+        Utils.visitPage(Utils.mainPageUrl);
+        MainPage.deleteAsset(assetName);
     })
 })

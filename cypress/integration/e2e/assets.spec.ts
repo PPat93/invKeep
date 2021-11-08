@@ -2,7 +2,6 @@ import MainPage from "../../support/pageObjectModel/pageObjects/MainPage";
 import CreatePageConsts from "../../support/pageObjectModel/Utils/CreateEditPageConsts";
 import Utils, { AssetCurrency } from "../../support/pageObjectModel/Utils/Utils";
 import CreateEditPage from "../../support/pageObjectModel/pageObjects/CreateEditPage";
-import MainPageConsts from "../../support/pageObjectModel/Utils/MainPageConsts";
 
 describe(`Asset creation`, () => {
     let assetName = ``;
@@ -67,6 +66,6 @@ describe(`Asset creation`, () => {
                 expect(editedAsset).to.contain(`12.5 £`);
                 expect(editedAsset).to.contain(`EDTST`);
             });
-        // TODO - update button edit and delete get, fix tests to not step further until spinner disappeared
+        // TODO -  fix tests to not step further until spinner disappeared
     })
 })
