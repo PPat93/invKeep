@@ -34,6 +34,7 @@ class CreateEditpage {
         }
         cy.getDataCyElement(CreatePageConsts.submitBtn)
             .click();
+        cy.wait(200); // TODO For some reason sometimes PUT request is interrupted if too fast moved out of page - TO BE INVESTIGATED
     }
 }
 
