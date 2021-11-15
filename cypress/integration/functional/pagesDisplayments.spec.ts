@@ -8,7 +8,6 @@ import CreateEditPage from "../../support/pageObjectModel/pageObjects/CreateEdit
 describe(`Page displayments after direct access from URL`, () => {
 
     it(`Main page displayment`, () => {
-
         //  Arrange & Act
         Utils.visitPage(Utils.mainPageUrl);
 
@@ -42,7 +41,7 @@ describe(`Page displayments after direct access from URL`, () => {
 
     it(`Details Page displayment`, () => {
 
-        let assetName = `DetailsPage${Date.now()}`;
+        let assetName = `TestAsset${Date.now()}`;
 
         //  Arrange
         Utils.visitPage(Utils.createPageUrl);
@@ -69,7 +68,7 @@ describe(`Page displayments after direct access from URL`, () => {
 
     it(`Edit Page displayment`, () => {
 
-        let assetName = `Edit asset ${Date.now()}`;
+        let assetName = `TestAsset${Date.now()}`;
 
         //  Arrange
         cy.apiAssetCreation(assetName, `editPg`, 10, 11.2, AssetCurrency.pound);

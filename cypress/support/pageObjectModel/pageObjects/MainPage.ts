@@ -1,3 +1,5 @@
+import MainPageConsts from "../Utils/MainPageConsts";
+
 /**
  * 
  * Main page class containing all methods used on invKeep main page
@@ -39,6 +41,27 @@ class MainPage {
         //  Assert    
         cy.getDataCyElement(dataCyParam, 2000)
             .should(`not.exist`);
+    }
+
+    assertAssetProperties(asset: object, assetName: string, assetSymbol: string, assetAmount: string, assetBuyPrice: string, assetPurchaseDate: string) {
+
+        cy.wrap(asset)
+            .click();
+        cy.wrap(asset)
+            .find(`mat-panel-title`)
+            .should(`contain.text`, assetName);
+        cy.wrap(asset)
+            .findNextDataCyElement(MainPageConsts.assetSymbol)
+            .should(`contain`, assetSymbol.toUpperCase());
+        cy.wrap(asset)
+            .findNextDataCyElement(MainPageConsts.assetAmount)
+            .should(`contain.text`, assetAmount);
+        cy.wrap(asset)
+            .findNextDataCyElement(MainPageConsts.assetBuyPrice)
+            .should(`contain.text`, assetBuyPrice);
+        cy.wrap(asset)
+            .findNextDataCyElement(MainPageConsts.assetPurchaseDate)
+            .should(`contain.text`, assetPurchaseDate);
     }
 }
 

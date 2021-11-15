@@ -2,7 +2,7 @@ import MainPage from "../../support/pageObjectModel/pageObjects/MainPage";
 import CreatePageConsts from "../../support/pageObjectModel/Utils/CreateEditPageConsts";
 import Utils, { AssetCurrency } from "../../support/pageObjectModel/Utils/Utils";
 import CreateEditPage from "../../support/pageObjectModel/pageObjects/CreateEditPage";
-import { moveSyntheticComments } from "typescript";
+import { create } from "cypress/types/lodash";
 
 describe(`Assets CE`, () => {
     let assetName = ``;
@@ -20,7 +20,7 @@ describe(`Assets CE`, () => {
 
     it(`Create asset without purchase date`, () => {
 
-        assetName = `TestAsset ${Date.now()}`;
+        assetName = `TestAsset${Date.now()}`;
 
         //  Arrange
         cy.getDataCyElement(Utils.createAssetBtn)
@@ -31,17 +31,16 @@ describe(`Assets CE`, () => {
             .should(`be.visible`);
 
         //  Act
-        CreateEditPage.createEditAsset(assetName, `TASbl`, parseInt(Date.now().toString().slice(10, 12)), 1.45, AssetCurrency.euro);
+        CreateEditPage.createEditAsset(assetName, `TASbl`, 19, 245.5, AssetCurrency.euro);
 
         //  Assert
-        cy.getDataCyElement(MainPage.dataCyElementAsset(assetName), 4000)
-            .should(`contain.text`, assetName);
-            
-            // TODO add more assertions
+        cy.getDataCyElement(MainPage.dataCyElementAsset(assetName), 4000).then(createdAsset => {
+            MainPage.assertAssetProperties(createdAsset, assetName, `TASbl`, `19`, `245.5 ${AssetCurrency.euro}`, `-`);
+        })
     })
 
     it(`Create asset with purchase date`, () => {
-        assetName = `TestAsset ${Date.now()}`;
+        assetName = `TestAsset${Date.now()}`;
 
         //  Arrange
         cy.getDataCyElement(Utils.createAssetBtn)
@@ -52,17 +51,18 @@ describe(`Assets CE`, () => {
             .should(`be.visible`);
 
         //  Act
-        CreateEditPage.createEditAsset(assetName, `TASbl`, parseInt(Date.now().toString().slice(10, 12)), 1.45, AssetCurrency.euro, `03/25/2015`);
+        CreateEditPage.createEditAsset(assetName, `TASbl`, 15, 1.45, AssetCurrency.euro, `03/25/2015`);
 
         //  Assert
-        cy.getDataCyElement(MainPage.dataCyElementAsset(assetName), 4000)
-            .should(`contain.text`, assetName);
-            // TODO add more assertions
+        cy.getDataCyElement(MainPage.dataCyElementAsset(assetName), 4000).then(createdAsset => {
+
+            MainPage.assertAssetProperties(createdAsset, assetName, `TASbl`, `15`, `1.45 ${AssetCurrency.euro}`, `25.03.2015`);
+        })
     })
 
     it(`Edit asset`, () => {
 
-        assetName = `${Date.now().toString().slice(10, 12)} TestEdit`;
+        assetName = `TestAsset${Date.now().toString().slice(10, 12)}`;
 
         //  Arrange
         cy.apiAssetCreation(assetName, `TST`, parseInt(Date.now().toString().slice(10, 12)), 1.45, AssetCurrency.dollar, `03/25/2015`);
@@ -73,7 +73,7 @@ describe(`Assets CE`, () => {
             .click();
 
         //  Act
-        assetName = `${assetName}Edited`
+        assetName = `${assetName}Edit`
         CreateEditPage.createEditAsset(assetName, `EdTST`, 123, 12.5, AssetCurrency.pound, `5/4/2020`);
 
         //  Assert
@@ -83,25 +83,10 @@ describe(`Assets CE`, () => {
         cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
             .click();
         cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
-            .find(`mat-expansion-panel-header`)
-            .then((assetHeader) => {
+            .then((asset) => {
 
-                expect(assetHeader).to.contain(assetName);
-                cy.wrap(assetHeader)
-                    .findNextDataCyElement(`asset-symbol`)
-                    .should(`contain`, `EDTST`);
+                MainPage.assertAssetProperties(asset, assetName, `EdTST`, `123`, `12.5 ${AssetCurrency.pound}`, `4.05.2020`);
             });
-        cy.getDataCyElement(MainPage.dataCyElementAsset(assetName)).then(editedAsset => {
-
-            cy.wrap(editedAsset).findNextDataCyElement(`asset-amount`)
-                .should(`contain.text`, `123`);
-            cy.wrap(editedAsset).findNextDataCyElement(`asset-buy-price`)
-                .should(`contain.text`, `12.5 £`);
-            cy.wrap(editedAsset).findNextDataCyElement(`asset-purchase-price`)
-                .should(`contain.text`, `4.05.2020`);
-        })
-        // TODO change input of date - currently inverted day and month, add prompt how date should be formatted
-
-
     })
+    // TODO change input of date - currently inverted day and month, add prompt how date should be formatted
 })
