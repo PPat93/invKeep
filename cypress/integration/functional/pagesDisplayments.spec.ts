@@ -15,7 +15,7 @@ describe(`Page displayments after direct access from URL`, () => {
         cy.getDataCyElement(MainPageConsts.assetList)
             .should(`be.visible`)
             .and(`contain.text`, MainPageConsts.assetListHeader);
-        cy.getDataCyElement(MainPageConsts.appName).then(logo => {
+        cy.getDataCyElement(Utils.appName).then(logo => {
             cy.wrap(logo)
                 .should(`be.visible`);
             expect(logo.text()).to.eq(`invKeep`);
@@ -79,7 +79,7 @@ describe(`Page displayments after direct access from URL`, () => {
         //  Act
         cy.getDataCyElement(MainPage.dataCyElementEditBtn(assetName))
             .click();
-        cy.getDataCyElement(`loading-spinner`, 5000)
+        cy.getDataCyElement(Utils.loadingSpinner, 5000)
             .should(`not.exist`);
 
         //  Assert
