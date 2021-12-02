@@ -18,6 +18,7 @@ class Utils {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //  SELECTORS                   ////////////////////////////////////////////////////////////////////////////////////////////////////////
     readonly createAssetBtn = `create-asset`;
+    readonly mainPageBtn = `home`;
     readonly appName = `app-name`;
     readonly loadingSpinner = `loading-spinner`;
 
@@ -28,7 +29,7 @@ class Utils {
         cy.visit(pageUrl);
         cy.url()
             .should(`contain`, pageUrl);
-        cy.getDataCyElement(`loading-spinner`, 5000)
+        cy.getDataCyElement(this.loadingSpinner, 5000)
             .should(`not.exist`);
     }
 }

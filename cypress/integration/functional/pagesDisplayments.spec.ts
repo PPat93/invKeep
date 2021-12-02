@@ -24,12 +24,8 @@ describe(`Page displayments after direct access from URL`, () => {
 
     it(`Create Page displayment`, () => {
 
-        //  Arrange
-        Utils.visitPage(Utils.mainPageUrl);
-
-        //  Act
-        cy.getDataCyElement(Utils.createAssetBtn)
-            .click();
+        //  Arrange & Act
+        Utils.visitPage(Utils.createPageUrl);
 
         //  Assert    
         cy.url()
@@ -39,6 +35,10 @@ describe(`Page displayments after direct access from URL`, () => {
             .and(`contain.text`, CreateEditPageConsts.createAssetFormHeader);
     })
 
+})
+
+describe(`Page displayments after button click access`, () => {
+    
     it(`Details Page displayment`, () => {
 
         let assetName = `TestAsset${Date.now()}`;

@@ -2,9 +2,8 @@ import MainPage from "../../support/pageObjectModel/pageObjects/MainPage";
 import CreatePageConsts from "../../support/pageObjectModel/Utils/CreateEditPageConsts";
 import Utils, { AssetCurrency } from "../../support/pageObjectModel/Utils/Utils";
 import CreateEditPage from "../../support/pageObjectModel/pageObjects/CreateEditPage";
-import { create } from "cypress/types/lodash";
 
-describe(`Assets CE`, () => {
+describe(`Assets CRU`, () => {
     let assetName = ``;
 
     beforeEach(`Visit main page`, () => {
@@ -60,7 +59,7 @@ describe(`Assets CE`, () => {
         })
     })
 
-    it(`Edit asset`, () => {
+    it(`Update asset`, () => {
 
         assetName = `TestAsset${Date.now().toString().slice(10, 12)}`;
 
@@ -89,4 +88,13 @@ describe(`Assets CE`, () => {
             });
     })
     // TODO change input of date - currently inverted day and month, add prompt how date should be formatted
+})
+
+describe(`Assets deletion`, () => {
+
+    it(`Delete existing asset `, () => {
+
+    })
+
+    // TODO it(`Delete non-existing asset`, () => {})
 })
