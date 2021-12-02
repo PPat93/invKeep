@@ -1,15 +1,16 @@
-<mat-card data-cy="asset=list">
+<mat-card data-cy="asset-list">
   <mat-card-title>Asset list:</mat-card-title>
   <mat-divider></mat-divider>
   <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
   <div class="items" *ngIf="assetArray.length > 0 && !isLoading">
-    <mat-expansion-panel #panel hideToggle="true" *ngFor="let oneRecord of assetArray" [attr.data-cy]="oneRecord.assetName.replace(' ', '-').toLowerCase()">
+    <mat-expansion-panel #panel hideToggle="true" *ngFor="let oneRecord of assetArray"
+      [attr.data-cy]="oneRecord.assetName.replaceAll(' ', '-').toLowerCase()">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <span>Asset full name:&nbsp;<b>{{ oneRecord.assetName }}</b></span>
         </mat-panel-title>
         <mat-panel-description class="description">
-          <span>Asset symbol:&nbsp;<b class="symbol">{{ oneRecord.assetSymbol }}</b></span>
+          <span id="asset-symbol" data-cy="asset-symbol">Asset symbol:&nbsp;<b class="symbol">{{ oneRecord.assetSymbol }}</b></span>
         </mat-panel-description>
         <mat-icon *ngIf="panel.expanded else elseBlock" aria-hidden="false" aria-label="expand">expand_less</mat-icon>
         <ng-template #elseBlock>
@@ -19,18 +20,24 @@
       <table>
         <tr>
           <td>
-            <span>Asset amount:&nbsp;<b>{{ oneRecord.amount }}</b></span><br>
-            <span>Asset buy price:&nbsp;<b>{{ oneRecord.buyPrice }} {{oneRecord.currency}}</b></span><br>
-            <span>Purchase Date:&nbsp;<b>{{ oneRecord.purchaseDate }}</b></span><br>
+            <span data-cy="asset-amount">Asset amount:&nbsp;<b>{{ oneRecord.amount }}</b></span><br>
+            <span data-cy="asset-buy-price">Asset buy price:&nbsp;<b>{{ oneRecord.buyPrice }} {{oneRecord.currency}}</b></span><br>
+            <span data-cy="asset-purchase-date">Purchase Date:&nbsp;<b>{{ oneRecord.purchaseDate }}</b></span><br>
           </td>
           <td>
-            <button class="details" mat-stroked-button [routerLink]="['details', oneRecord.id]">Details</button>
+            <button class="details" mat-stroked-button
+              [attr.data-cy]="oneRecord.assetName.replaceAll(' ', '-').toLowerCase() + '-details'"
+              [routerLink]="['details', oneRecord.id]">Details</button>
           </td>
         </tr>
       </table>
       <mat-action-row>
-        <a mat-stroked-button color="primary" data-cy="edit-button" [routerLink]="['edit', oneRecord.id]">Edit</a>
-        <button mat-stroked-button color="warn" data-cy="delete-button" (click)="deleteAsset(oneRecord.id)">Delete</button>
+        <a mat-stroked-button color="primary"
+          [attr.data-cy]="oneRecord.assetName.replaceAll(' ', '-').toLowerCase() + '-edit'"
+          [routerLink]="['edit', oneRecord.id]">Edit</a>
+        <button mat-stroked-button color="warn"
+          [attr.data-cy]="oneRecord.assetName.replaceAll(' ', '-').toLowerCase() + '-delete'"
+          (click)="deleteAsset(oneRecord.id)">Delete</button>
       </mat-action-row>
     </mat-expansion-panel>
   </div>

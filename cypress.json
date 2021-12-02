@@ -1,8 +1,7 @@
 {
-    "baseUrl": "https://localhost:4200/",
+    "baseUrl": "https://localhost:4200",
     "supportFile": "cypress/support/index.js",
     "env": {
-        
+        "backendUrl": "http://localhost:3000/api/assets"
     }
-
 }
