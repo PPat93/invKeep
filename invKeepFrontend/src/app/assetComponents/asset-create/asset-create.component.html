@@ -1,5 +1,5 @@
 <mat-card data-cy="create-form">
-  <form [formGroup]="form" (submit)="onAssetSave()" >
+  <form [formGroup]="assetForm" (submit)="onAssetSave()">
     <mat-card-title class="card-title">Create asset:</mat-card-title>
     <mat-divider></mat-divider>
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
