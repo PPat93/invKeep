@@ -26,11 +26,11 @@ export class AssetCreateComponent implements OnInit {
     this.assetForm = new FormGroup({
       _id: new FormControl(``),
       id: new FormControl(``),
-      assetName: new FormControl(``, { validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern(`[a-zA-Z0-9.\-]`)] }),
-      assetSymbol: new FormControl(``, { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern(`[a-zA-Z0-9,._ ()\-]`)] }),
-      amount: new FormControl(null, { validators: [Validators.minLength(1), Validators.maxLength(10), Validators.pattern(`^[0-9]*$`)] }),
-      buyPrice: new FormControl(null, { validators: [Validators.minLength(1), Validators.maxLength(10), Validators.pattern(`^[0-9]*[.][0-9]*$`)] }),
-      currency: new FormControl(``, { validators: [Validators.pattern(`^[¥€$£]$`)] }),
+      assetName: new FormControl(``, { validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern(`^[a-zA-Z0-9.\-]*$`)] }),
+      assetSymbol: new FormControl(``, { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern(`^[a-zA-Z0-9,._ ()\-]*$`)] }),
+      amount: new FormControl(null, { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(10), Validators.pattern(`^[0-9]*$`)] }),
+      buyPrice: new FormControl(null, { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(10), Validators.pattern(`^[0-9]*[.0-9]*$`)] }),
+      currency: new FormControl(``, { validators: [Validators.required, Validators.pattern(`^[¥€$£]$`)] }),
       purchaseDate: new FormControl(``)
     });
     this.isLoading = true;
@@ -71,16 +71,16 @@ export class AssetCreateComponent implements OnInit {
       let placeholderAsset = {
         _id: ``,
         id: this.assetId,
-        assetName: this.assetForm.value.fullName,
-        assetSymbol: this.assetForm.value.symbol.toLocaleString().toUpperCase(),
+        assetName: this.assetForm.value.assetName,
+        assetSymbol: this.assetForm.value.assetSymbol.toLocaleString().toUpperCase(),
         amount: Math.trunc(this.assetForm.value.amount),
-        buyPrice: Number(this.assetForm.value.price),
+        buyPrice: Number(this.assetForm.value.buyPrice),
         currency: this.assetForm.value.currency,
         purchaseDate: `-`
       }
 
-      if (this.assetForm.value.date) {
-        placeholderAsset.purchaseDate = this.assetForm.value.date.toLocaleString().split(`,`)[0];
+      if (this.assetForm.value.purchaseDate) {
+        placeholderAsset.purchaseDate = this.assetForm.value.purchaseDate.toLocaleString().split(`,`)[0];
 
       }
 
@@ -104,7 +104,7 @@ export class AssetCreateComponent implements OnInit {
 
   getErrorMessage(formName: string): string {
     switch (formName) {
-      case `fullName`:
+      case `assetName`:
         return `Please provide valid asset name.`;
       case `symbol`:
         return `Please provide valid asset symbol.`;
