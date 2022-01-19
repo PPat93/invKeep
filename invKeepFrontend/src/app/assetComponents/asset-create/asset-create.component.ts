@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AssetsService } from "../asset-list/assets.service";
 import { AssetRecord } from "../../shared/sharedTS";
 import { ActivatedRoute, ParamMap } from "@angular/router";
@@ -12,22 +12,27 @@ import { ActivatedRoute, ParamMap } from "@angular/router";
 
 export class AssetCreateComponent implements OnInit {
 
-  actionMode: CreateComponentMode;  
+  actionMode: CreateComponentMode;
   assetButton: string;
   assetId: string;
   isLoading: boolean = false;
   usedAsset: AssetRecord;
-  validationPatterns = {
-    fullName: `[a-zA-Z0-9,._ ()\-]{2,30}$`,
-    symbol: `[a-zA-Z0-9.\-]{1,6}$`,
-    amount: `[0-9]{1,10}$`,
-    price: `[0-9.]{1,10}`
-  }
+  assetForm: FormGroup;
 
   constructor(public AssetsService: AssetsService, public route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.assetForm = new FormGroup({
+      _id: new FormControl(``),
+      id: new FormControl(``),
+      assetName: new FormControl(``, { validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern(`^[a-zA-Z0-9.\-]*$`)] }),
+      assetSymbol: new FormControl(``, { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern(`^[a-zA-Z0-9,._ ()\-]*$`)] }),
+      amount: new FormControl(null, { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(10), Validators.pattern(`^[0-9]*$`)] }),
+      buyPrice: new FormControl(null, { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(10), Validators.pattern(`^[0-9]*[.0-9]*$`)] }),
+      currency: new FormControl(``, { validators: [Validators.required, Validators.pattern(`^[¥€$£]$`)] }),
+      purchaseDate: new FormControl(``)
+    });
     this.isLoading = true;
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has(`assetId`)) {
@@ -38,10 +43,12 @@ export class AssetCreateComponent implements OnInit {
           this.isLoading = false;
           this.usedAsset = singleAsset.payload;
           this.usedAsset.purchaseDate = new Date(this.usedAsset.purchaseDate);
+          this.assetForm.setValue(this.usedAsset);
         });
       } else {
         this.actionMode = CreateComponentMode.create;
         this.assetButton = `Add asset`;
+
         this.usedAsset = {
           _id: ``,
           id: ``,
@@ -59,21 +66,21 @@ export class AssetCreateComponent implements OnInit {
   }
 
   // Create asset object and send it to main app component
-  onAssetSave(assetForm: NgForm): void {
-    if (!assetForm.invalid) {
+  onAssetSave(): void {
+    if (!this.assetForm.invalid) {
       let placeholderAsset = {
         _id: ``,
         id: this.assetId,
-        assetName: assetForm.value.fullName,
-        assetSymbol: assetForm.value.symbol.toLocaleString().toUpperCase(),
-        amount: Math.trunc(assetForm.value.amount),
-        buyPrice: Number(assetForm.value.price),
-        currency: assetForm.value.currency,
+        assetName: this.assetForm.value.assetName,
+        assetSymbol: this.assetForm.value.assetSymbol.toLocaleString().toUpperCase(),
+        amount: Math.trunc(this.assetForm.value.amount),
+        buyPrice: Number(this.assetForm.value.buyPrice),
+        currency: this.assetForm.value.currency,
         purchaseDate: `-`
       }
 
-      if (assetForm.value.date) {
-        placeholderAsset.purchaseDate = assetForm.value.date.toLocaleString().split(`,`)[0];
+      if (this.assetForm.value.purchaseDate) {
+        placeholderAsset.purchaseDate = this.assetForm.value.purchaseDate.toLocaleString().split(`,`)[0];
 
       }
 
@@ -81,14 +88,14 @@ export class AssetCreateComponent implements OnInit {
         case CreateComponentMode.create:
           this.isLoading = true;
           this.AssetsService.addAsset(placeholderAsset);
-          assetForm.resetForm();
+          this.assetForm.reset();
           break;
 
         case CreateComponentMode.edit:
           this.isLoading = true;
           this.AssetsService.editAsset(placeholderAsset);
           break;
-          
+
         default:
       }
       this.isLoading = false;
@@ -97,7 +104,7 @@ export class AssetCreateComponent implements OnInit {
 
   getErrorMessage(formName: string): string {
     switch (formName) {
-      case `fullName`:
+      case `assetName`:
         return `Please provide valid asset name.`;
       case `symbol`:
         return `Please provide valid asset symbol.`;
