@@ -31,10 +31,8 @@ function searchObject(ratiosArray, searchedNameObj) {
   for (let a = 0; a < ratiosArray.length; a++) {
     if (ratiosArray[a].parameterName === searchedNameObj) {
       return ratiosArray[a];
-    } else {
-      return null;
     }
   }
 }
 
-module.exports = {RatiosNames, searchObject, RatingObject};
+module.exports = { RatiosNames, searchObject, RatingObject };
