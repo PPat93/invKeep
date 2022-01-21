@@ -7,7 +7,7 @@ module.exports = class BasicRatio {
     additionalDetails = [];
     coAnalysis = [];
     ratioName = ``;
-    intervalsData = [{name: `${this.ratioName}`, verbalRating: ``, summary: ``, numberRating: 0}];
+    intervalsData = [{ name: `${this.ratioName}`, verbalRating: ``, summary: ``, numberRating: 0 }];
     intervals = [[-Infinity, 0], [0, Infinity]];
 
     constructor(ratio = 0, msg = ``) {
@@ -16,11 +16,22 @@ module.exports = class BasicRatio {
     }
 
     determineProfitability(ratioValue, intervals = this.intervals, intervalsData = this.intervalsData) {
-        let wholeDataStruct = {intervals: intervals, data: intervalsData};
+        let wholeDataStruct = { intervals: intervals, data: intervalsData };
         for (let i = 0; i < wholeDataStruct.intervals.length; i++) {
             if (ratioValue > wholeDataStruct.intervals[i][0] && ratioValue <= wholeDataStruct.intervals[i][1]) {
                 return wholeDataStruct.data[i]
             }
         }
+    }
+
+    returnAlldata() {
+        return [
+            this.ratioName,
+            this.coAnalysis,
+            this.description,
+            this.additionalDetails,
+            this.finalValue,
+            this.intervalsData
+        ]
     }
 }

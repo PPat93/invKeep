@@ -65,16 +65,6 @@ module.exports = class CAPERatio extends BasicRatio {
         this.intervals = [[-Infinity, 0], [0, 10], [10, 15], [15, 20], [20, 25], [25, 30], [30, Infinity]];
     }
 
-    returnAlldata() {
-        return  [
-            this.ratioName,
-            this.coAnalysis,
-            this.description,
-            this.additionalDetails,
-            this.finalValue,
-            this.intervalsData
-        ]
-    }
 
 
     // calculate() { // future ratio more precise analysis method
