@@ -45,13 +45,24 @@ module.exports = class AllRatios {
         this.objPSRatio = new PSRatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.ps_ratio)).valueNum);
         this.objROCERatio = new ROCERatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.roce_ratio)).valueNum);
         this.objROERatio = new ROERatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.roe_ratio)).valueNum);
-     }
+    }
 
-    analyzeData(detailedRatiosArray) {
-       
+    analyzeData() {
         return [
-            this.CAPERatio.determineProfitability(this.CAPERatio.finalValue, this.CAPERatio.intervals, this.CAPERatio.intervalsData),
-            this.objDERatio.returnAlldata()
+            this.CAPERatio.returnAllAnalyzedData(),
+            this.objDERatio.returnAllAnalyzedData(),
+            this.objDividendYieldRatio.returnAllAnalyzedData(),
+            this.objDPRRatio.returnAllAnalyzedData(),
+            this.objEPSRatio.returnAllAnalyzedData(),
+            this.objEVEBITDARatio.returnAllAnalyzedData(),
+            this.objEVEBITRatio.returnAllAnalyzedData(),
+            this.objGrahamNum.returnAllAnalyzedData(),
+            this.objPBRatio.returnAllAnalyzedData(),
+            this.objPEGRatio.returnAllAnalyzedData(),
+            this.objPERatio.returnAllAnalyzedData(),
+            this.objPSRatio.returnAllAnalyzedData(),
+            this.objROCERatio.returnAllAnalyzedData(),
+            this.objROERatio.returnAllAnalyzedData()
         ]
     }
 }

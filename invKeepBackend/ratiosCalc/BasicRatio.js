@@ -15,23 +15,24 @@ module.exports = class BasicRatio {
         this.description = msg;
     }
 
-    determineProfitability(ratioValue, intervals = this.intervals, intervalsData = this.intervalsData) {
+    determineProfitability(intervals = this.intervals, intervalsData = this.intervalsData) {
         let wholeDataStruct = { intervals: intervals, data: intervalsData };
         for (let i = 0; i < wholeDataStruct.intervals.length; i++) {
-            if (ratioValue > wholeDataStruct.intervals[i][0] && ratioValue <= wholeDataStruct.intervals[i][1]) {
+            if (this.finalValue > wholeDataStruct.intervals[i][0] && this.finalValue <= wholeDataStruct.intervals[i][1]) {
                 return wholeDataStruct.data[i]
             }
         }
     }
 
-    returnAlldata() {
-        return [
-            this.ratioName,
-            this.coAnalysis,
-            this.description,
-            this.additionalDetails,
-            this.finalValue,
-            this.intervalsData
-        ]
+    returnAllAnalyzedData() {
+
+        return {
+            name: this.ratioName,
+            value: this.finalValue,
+            description: this.description,
+            shortly: this.additionalDetails,
+            coanalysis: this.coAnalysis,
+            intervals: this.determineProfitability(),
+        }
     }
 }
