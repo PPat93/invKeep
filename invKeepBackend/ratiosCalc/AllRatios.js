@@ -15,7 +15,6 @@ const ROERatio = require('./ratiosClasses/ROERatio');
 const CAPERatio = require('./ratiosClasses/CAPERatio')
 
 module.exports = class AllRatios {
-
     CAPERatio;
     objDERatio;
     objDividendYieldRatio;
@@ -31,9 +30,7 @@ module.exports = class AllRatios {
     objROCERatio;
     objROERatio;
 
-    constructor() { }
-
-    createRatiosObjects(detailedRatiosArray) {
+    constructor(detailedRatiosArray) {
         this.CAPERatio = new CAPERatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.cape_ratio)).valueNum);
         this.objDERatio = new DERatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.de_ratio)).valueNum);
         this.objDividendYieldRatio = new DividendYieldRatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.dividend_yield)).valueNum);
@@ -48,12 +45,13 @@ module.exports = class AllRatios {
         this.objPSRatio = new PSRatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.ps_ratio)).valueNum);
         this.objROCERatio = new ROCERatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.roce_ratio)).valueNum);
         this.objROERatio = new ROERatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.roe_ratio)).valueNum);
-    }
+     }
 
     analyzeData(detailedRatiosArray) {
-        this.createRatiosObjects(detailedRatiosArray)
+       
         return [
-            this.CAPERatio.returnAlldata(),
-            this.objDERatio.returnAlldata()]
+            this.CAPERatio.determineProfitability(this.CAPERatio.finalValue, this.CAPERatio.intervals, this.CAPERatio.intervalsData),
+            this.objDERatio.returnAlldata()
+        ]
     }
 }
