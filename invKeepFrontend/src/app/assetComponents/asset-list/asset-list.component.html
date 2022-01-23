@@ -10,7 +10,8 @@
           <span>Asset full name:&nbsp;<b>{{ oneRecord.assetName }}</b></span>
         </mat-panel-title>
         <mat-panel-description class="description">
-          <span id="asset-symbol" data-cy="asset-symbol">Asset symbol:&nbsp;<b class="symbol">{{ oneRecord.assetSymbol }}</b></span>
+          <span id="asset-symbol" data-cy="asset-symbol">Asset symbol:&nbsp;<b class="symbol">
+              {{ oneRecord.assetSymbol }}</b></span>
         </mat-panel-description>
         <mat-icon *ngIf="panel.expanded else elseBlock" aria-hidden="false" aria-label="expand">expand_less</mat-icon>
         <ng-template #elseBlock>
@@ -21,7 +22,8 @@
         <tr>
           <td>
             <span data-cy="asset-amount">Asset amount:&nbsp;<b>{{ oneRecord.amount }}</b></span><br>
-            <span data-cy="asset-buy-price">Asset buy price:&nbsp;<b>{{ oneRecord.buyPrice }} {{oneRecord.currency}}</b></span><br>
+            <span data-cy="asset-buy-price">Asset buy price:&nbsp;<b>{{ oneRecord.buyPrice }}
+                {{oneRecord.currency}}</b></span><br>
             <span data-cy="asset-purchase-date">Purchase Date:&nbsp;<b>{{ oneRecord.purchaseDate }}</b></span><br>
           </td>
           <td>
