@@ -22,6 +22,19 @@ export class AssetDetailsComponent implements OnInit {
       { parameterName: ``, valueNum: null }
     ]
   };
+  analyzedDetailedAssetRatios = {
+    coanalysis: [],
+    description: ``,
+    intervals: {
+      name: ``,
+      numberRating: 0,
+      summary: ``,
+      verbalRating: ``
+    },
+    name: ``,
+    shortly: [],
+    value: 0
+  }
   isLoading1: boolean = false;
   isLoading2: boolean = false;
   ratiosColumns: string[] = [`parameterName`, `valueNum`];

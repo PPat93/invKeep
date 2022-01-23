@@ -17,7 +17,8 @@ mat-card-actions {
   height: 20px;
 }
 
-.edit, button {
+.edit,
+button {
   display: inline-block;
   float: right;
   margin-right: 10px !important;
@@ -47,4 +48,14 @@ mat-card-actions {
 
 tr:hover {
   background-color: #eeeaf1;
+}
+
+.ratios-column {
+  width: 50%;
+  display: inline-block;
+}
+
+.ratio-analysis {
+  float: right;
+  width: 50%;
 }

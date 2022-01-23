@@ -38,7 +38,7 @@
     Stock ratios
   </mat-card-subtitle>
   <app-loading-spinner *ngIf="isLoading2"></app-loading-spinner>
-  <mat-card-content *ngIf="!isLoading2">
+  <mat-card-content class="ratios-column" *ngIf="!isLoading2">
     <form (submit)="saveDetailedRatios(ratiosInput)" ngForm #ratiosInput="ngForm" class="asset-ratios-table"
       name="detailed-ratios">
       <table mat-table [dataSource]="detailedAssetRatios.ratiosArray">
@@ -61,5 +61,19 @@
         <button mat-raised-button color="primary" type="submit">Save</button>
       </mat-card-actions>
     </form>
+  </mat-card-content>
+  <mat-card-content class="ratio-analysis">
+    some data 
+    <!-- <table mat-table [dataSource]="detailedAssetRatios.ratiosArray">
+      <ng-container matColumnDef="valueAnalysis">
+        <th mat-header-cell *matHeaderCellDef>Analysis</th>
+        <td mat-cell *matCellDef="let ratio">
+          <mat-form-field class="parameter-analysis">
+            somedata
+            <textarea>jo</textarea>
+          </mat-form-field>
+        </td>
+      </ng-container>
+    </table> -->
   </mat-card-content>
 </mat-card>
