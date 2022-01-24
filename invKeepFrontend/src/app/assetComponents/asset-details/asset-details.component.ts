@@ -16,6 +16,7 @@ export class AssetDetailsComponent implements OnInit {
 
   assetId: string;
   assetMainDetails: AssetRecord;
+
   detailedAssetRatios: DetailedAssetRatiosAnalyzed = {
     assetId: ``,
     ratiosArray: [
@@ -35,6 +36,7 @@ export class AssetDetailsComponent implements OnInit {
       value: 0
     }]
   };
+
   analyzedDetailedAssetRatios: AnalyzedData[] = [{
     coanalysis: [``],
     description: ``,
@@ -47,11 +49,13 @@ export class AssetDetailsComponent implements OnInit {
     name: ``,
     shortly: [``],
     value: 0
-  }]
+  }];
+
   isLoading1: boolean = false;
   isLoading2: boolean = false;
+
   ratiosColumns: string[] = Object.keys(this.detailedAssetRatios.ratiosArray[0])
-  ratiosAnalysisColumns: string[] = [`name`, `description`, `shortly`,  `value`, `intervals`]
+  ratiosAnalysisColumns: string[] = [`name`, `description`, `shortly`, `value`, `intervals`]
 
   private ratiosSub: Subscription;
 

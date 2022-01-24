@@ -49,6 +49,19 @@ button {
 tr:hover {
   background-color: #eeeaf1;
 }
+
+ul {
+  margin: 2px;
+}
+
+.value {
+  justify-content: center;
+}
+
+#descriptionAnalysis {
+  width: 400px;
+}
+
 tr.mat-row {
   height: 200px;
 }

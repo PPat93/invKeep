@@ -13,7 +13,7 @@ export class AssetRatiosService {
   ratiosReturn: {
     assetId: string,
     ratiosArray: { parameterName: any; valueNum: number; }[],
-    analyzedData
+    analyzedData: AnalyzedData[]
   };
 
   constructor(private http: HttpClient) {
