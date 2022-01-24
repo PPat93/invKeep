@@ -82,17 +82,19 @@
           <td id="descriptionAnalysis" class="parameter-description" mat-cell *matCellDef="let analysis">
             {{analysis.description}}</td>
         </ng-container>
-        <ng-container matColumnDef="coanalysis">
-          <th mat-header-cell *matHeaderCellDef>Co-Analysis</th>
-          <td class="parameter-coanalysis" mat-cell *matCellDef="let analysis">{{analysis.coanalysis}}</td>
-        </ng-container>
         <ng-container matColumnDef="intervals">
           <th mat-header-cell *matHeaderCellDef>Intervals</th>
           <td class="parameter-intervals" mat-cell *matCellDef="let analysis">{{analysis.intervals}}</td>
         </ng-container>
         <ng-container matColumnDef="shortly">
           <th mat-header-cell *matHeaderCellDef>Short Sum-up</th>
-          <td class="parameter-shortly" mat-cell *matCellDef="let analysis">{{analysis.shortly}}</td>
+          <td class="parameter-shortly" mat-cell *matCellDef="let analysis">
+            <ul *ngFor="let item of analysis.shortly">
+              <li>
+                {{item}}
+              </li>
+            </ul>
+          </td>
         </ng-container>
         <mat-expansion-panel hideToggle="true">
           <tr mat-header-row *matHeaderRowDef="ratiosAnalysisColumns"></tr>

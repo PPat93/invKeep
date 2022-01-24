@@ -49,6 +49,9 @@ button {
 tr:hover {
   background-color: #eeeaf1;
 }
+tr.mat-row {
+  height: 200px;
+}
 
 .ratios-column {
   width: 20%;

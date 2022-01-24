@@ -51,7 +51,7 @@ export class AssetDetailsComponent implements OnInit {
   isLoading1: boolean = false;
   isLoading2: boolean = false;
   ratiosColumns: string[] = Object.keys(this.detailedAssetRatios.ratiosArray[0])
-  ratiosAnalysisColumns: string[] = Object.keys(this.analyzedDetailedAssetRatios[0])
+  ratiosAnalysisColumns: string[] = [`name`, `description`, `shortly`,  `value`, `intervals`]
 
   private ratiosSub: Subscription;
 
