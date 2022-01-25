@@ -63,7 +63,7 @@
         </mat-card-actions>
       </form>
     </mat-card-content>
-    
+
     <mat-card-content class="ratio-analysis">
       <table mat-table [dataSource]="detailedAssetRatios.analyzedData">
         <ng-container matColumnDef="name">
@@ -81,7 +81,15 @@
         </ng-container>
         <ng-container matColumnDef="intervals">
           <th mat-header-cell *matHeaderCellDef>Intervals</th>
-          <td class="parameter-intervals" mat-cell *matCellDef="let analysis">{{analysis.intervals}}</td>
+          <td class="parameter-intervals" mat-cell *matCellDef="let analysis">
+
+            <mat-progress-bar color="red"
+            value="5"
+            mode="determine"
+            max="10">
+            </mat-progress-bar>
+            {{analysis.intervals}}
+          </td>
         </ng-container>
         <ng-container matColumnDef="shortly">
           <th mat-header-cell *matHeaderCellDef>Short Sum-up</th>
