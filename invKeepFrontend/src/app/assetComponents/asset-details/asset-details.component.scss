@@ -17,17 +17,19 @@ mat-card-actions {
   height: 20px;
 }
 
+.analysis-table {
+  width: 100% !important;
+}
+
 .edit,
 button {
   display: inline-block;
-  float: right;
   margin-right: 10px !important;
   font-size: large;
 }
 
 #symbol {
   display: inline-block;
-  float: right;
   color: grey;
 }
 
@@ -46,6 +48,14 @@ button {
   width: 100px !important;
 }
 
+.parameter-intervals {
+  width: 50%;
+}
+
+.parameter-description {
+  float: right;
+}
+
 tr:hover {
   background-color: #eeeaf1;
 }
@@ -58,12 +68,8 @@ ul {
   justify-content: center;
 }
 
-#descriptionAnalysis {
-  width: 400px;
-}
-
 tr.mat-row {
-  height: 200px;
+  height: 100px;
 }
 
 .ratios-column {
