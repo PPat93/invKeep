@@ -38,10 +38,11 @@ module.exports = class DPRRatio extends BasicRatio {
                 verbalRating: SharedJS.RatingObject.rather_bad,
                 summary: `That high dividend is usually unsustainable. Returning more money to shareholders than a company 
                 earns indicates that dividend will be lowered or even stopped. It may lead to share price decreasing or 
-                investors losing faith in company.` ,
+                investors losing faith in company.`,
                 numberRating: 2
             }];
         this.intervals = [[0, 35], [35, 55], [55, 100]];
+        // TODO add below 0 interval - going below zero breaks table dislayment
     }
 
     // calculate(){ // future ratio more precise analysis method
