@@ -76,15 +76,26 @@
         </ng-container>
         <ng-container matColumnDef="intervals">
           <th mat-header-cell *matHeaderCellDef>Intervals</th>
-          <td class="parameter-intervals" mat-cell *matCellDef="let analysis"> <div> {{analysis.intervals.verbalRating}} </div>
-           <div> <mat-progress-bar value="50" mode="determine" max="10"> </mat-progress-bar></div>
+          <td class="parameter-intervals" mat-cell *matCellDef="let analysis">
+            <div> {{analysis.intervals.verbalRating}} </div>
+            <div [ngClass]="{
+              'terrible' : analysis.intervals.numberRating === 1,
+              'rather-bad' : analysis.intervals.numberRating === 2,
+              'neutral' : analysis.intervals.numberRating === 3,
+              'ok' : analysis.intervals.numberRating === 4,
+              'rather-good' : analysis.intervals.numberRating === 5,
+              'outstanding' : analysis.intervals.numberRating === 6
+            }">
+              <mat-progress-bar value="{{analysis.intervals.numberRating*100/6}}" mode="determine">
+              </mat-progress-bar>
+            </div>
           </td>
         </ng-container>
         <ng-container matColumnDef="description">
           <th mat-header-cell *matHeaderCellDef>Additional Info</th>
           <td class="info-button-column" mat-cell *matCellDef="let analysis">
             <button class="details-button" mat-raised-button color="accent">Ratio Details</button>
-            </td>
+          </td>
         </ng-container>
         <!-- <ng-container matColumnDef="shortly">
           <th mat-header-cell *matHeaderCellDef>Short Sum-up</th>
