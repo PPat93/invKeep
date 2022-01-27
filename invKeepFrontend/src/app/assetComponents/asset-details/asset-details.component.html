@@ -77,7 +77,8 @@
         <ng-container matColumnDef="intervals">
           <th mat-header-cell *matHeaderCellDef>Intervals</th>
           <td class="parameter-intervals" mat-cell *matCellDef="let analysis">
-            <div> {{analysis.intervals.verbalRating}} </div>
+            <div><b>{{analysis.intervals.verbalRating}}</b></div>
+            <div>{{analysis.intervals.summary}}</div>
             <div [ngClass]="{
               'terrible' : analysis.intervals.numberRating === 1,
               'rather-bad' : analysis.intervals.numberRating === 2,
@@ -97,16 +98,6 @@
             <button class="details-button" mat-raised-button color="accent">Ratio Details</button>
           </td>
         </ng-container>
-        <!-- <ng-container matColumnDef="shortly">
-          <th mat-header-cell *matHeaderCellDef>Short Sum-up</th>
-          <td class="parameter-shortly" mat-cell *matCellDef="let analysis">
-            <ul *ngFor="let item of analysis.shortly">
-              <li>
-                {{item}}
-              </li>
-            </ul>
-          </td>
-        </ng-container> -->
         <tr mat-header-row *matHeaderRowDef="ratiosAnalysisColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: ratiosAnalysisColumns"></tr>
       </table>
