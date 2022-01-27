@@ -64,7 +64,7 @@
       </form>
     </mat-card-content>
 
-    <mat-card-content class="ratio-analysis">
+    <mat-card-content *ngIf="!isLoading2" class="ratio-analysis">
       <table class="analysis-table" mat-table [dataSource]="detailedAssetRatios.analyzedData">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -76,14 +76,14 @@
         </ng-container>
         <ng-container matColumnDef="intervals">
           <th mat-header-cell *matHeaderCellDef>Intervals</th>
-          <td class="parameter-intervals" mat-cell *matCellDef="let analysis"> {{analysis.intervals}} 
-            <mat-progress-bar value="50" mode="determine" max="10"> </mat-progress-bar>
+          <td class="parameter-intervals" mat-cell *matCellDef="let analysis"> <div> {{analysis.intervals.verbalRating}} </div>
+           <div> <mat-progress-bar value="50" mode="determine" max="10"> </mat-progress-bar></div>
           </td>
         </ng-container>
-        <ng-container  matColumnDef="description">
+        <ng-container matColumnDef="description">
           <th mat-header-cell *matHeaderCellDef>Additional Info</th>
-          <td  mat-cell *matCellDef="let analysis">
-            <button mat-raised-button color="accent">Ratio Details</button>
+          <td class="info-button-column" mat-cell *matCellDef="let analysis">
+            <button class="details-button" mat-raised-button color="accent">Ratio Details</button>
             </td>
         </ng-container>
         <!-- <ng-container matColumnDef="shortly">

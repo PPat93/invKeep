@@ -21,15 +21,31 @@ mat-card-actions {
   width: 100% !important;
 }
 
+.analysis-table td {
+  padding: 0 1%;
+}
+
+.info-button-column {
+  width: 110px;
+  align-content: center;
+}
+
 .edit,
 button {
   display: inline-block;
   margin-right: 10px !important;
+  float: right;
   font-size: large;
+}
+
+.details-button {
+  display: block;
+  margin: auto;
 }
 
 #symbol {
   display: inline-block;
+  float: right;
   color: grey;
 }
 
