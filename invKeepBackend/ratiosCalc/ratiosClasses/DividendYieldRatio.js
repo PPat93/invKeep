@@ -40,7 +40,7 @@ module.exports = class DividendYieldRatio extends BasicRatio {
                 summary: `Interval between 2% and 6% is considered to be safe. Also it indicates that company probably 
                 does not have problems with declining stock price. However, it is dependent from many more factors, so 
                 must not be the only decision-determining ratio.`,
-                numberRating: 4
+                numberRating: 6
             },
             {
                 name: `${this.ratioName}`,
