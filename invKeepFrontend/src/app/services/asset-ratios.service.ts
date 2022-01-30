@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { AnalyzedData, DetailedAssetRatios, DetailedAssetRatiosAnalyzed } from "../../shared/sharedTS";
-import { RatiosNames } from "../../shared/sharedJS";
+import { AnalyzedData, DetailedAssetRatios, DetailedAssetRatiosAnalyzed } from "../shared/sharedTS";
+import { RatiosNames } from "../shared/sharedJS";
 import { map } from "rxjs/operators";
 import { Observable, Subject } from "rxjs";
 

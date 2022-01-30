@@ -3,7 +3,7 @@ import { AssetsService } from "../../services/assets.service";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { AnalyzedData, AssetRecord, DetailedAssetRatiosAnalyzed } from "../../shared/sharedTS";
 import { NgForm } from "@angular/forms";
-import { AssetRatiosService } from "./asset-ratios.service";
+import { AssetRatiosService } from "../../services/asset-ratios.service";
 import { Subscription } from "rxjs";
 
 @Component({
