@@ -1,0 +1,104 @@
+mat-card {
+  width: 90%;
+  margin: 20px auto;
+}
+
+mat-card-title {
+  height: 30px;
+}
+
+.subtitle {
+  font-size: 20px;
+}
+
+mat-card-actions {
+  display: block;
+  margin-bottom: 20px;
+  height: 20px;
+}
+
+.analysis-table {
+  width: 100% !important;
+}
+
+.analysis-table td {
+  padding: 0 1%;
+}
+
+.info-button-column {
+  width: 110px;
+  align-content: center;
+}
+
+.edit,
+button {
+  display: inline-block;
+  margin-right: 10px !important;
+  float: right;
+  font-size: large;
+}
+
+.details-button {
+  display: block;
+  margin: auto;
+}
+
+#symbol {
+  display: inline-block;
+  float: right;
+  color: grey;
+}
+
+.primary-details {
+  size: 20px;
+}
+
+.primary-values {
+  font-weight: bold;
+}
+
+.parameter-name {
+  width: 100px;
+}
+.parameter-value {
+  width: 100px !important;
+}
+
+.parameter-intervals {
+  width: 50%;
+}
+
+.parameter-description {
+  float: right;
+}
+
+tr:hover {
+  background-color: #eeeaf1;
+}
+
+ul {
+  margin: 2px;
+}
+
+.value {
+  justify-content: center;
+}
+
+tr.mat-row {
+  height: 100px;
+}
+
+.ratios-column {
+  width: 20%;
+  display: inline-block;
+}
+
+.ratio-analysis {
+  float: right;
+  width: 80%;
+}
+
+mat-progress-bar {
+  height: 10px !important;
+  border-radius: 5px;
+}

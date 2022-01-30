@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { AssetsService } from "../asset-list/assets.service";
+import { AssetsService } from "../../services/assets.service";
 import { AssetRecord } from "../../shared/sharedTS";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 
@@ -26,7 +26,7 @@ export class AssetCreateComponent implements OnInit {
     this.assetForm = new FormGroup({
       _id: new FormControl(``),
       id: new FormControl(``),
-      assetName: new FormControl(``, { validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern(`^[a-zA-Z0-9.\-]*$`)] }),
+      assetName: new FormControl(``, { validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern(`^[a-zA-Z0-9 .\-]*$`)] }),
       assetSymbol: new FormControl(``, { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern(`^[a-zA-Z0-9,._ ()\-]*$`)] }),
       amount: new FormControl(null, { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(10), Validators.pattern(`^[0-9]*$`)] }),
       buyPrice: new FormControl(null, { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(10), Validators.pattern(`^[0-9]*[.0-9]*$`)] }),

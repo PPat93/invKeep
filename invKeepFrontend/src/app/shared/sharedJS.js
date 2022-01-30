@@ -17,24 +17,22 @@ const RatiosNames = Object.freeze({
 
 const RatingObject = Object.freeze({
   undetermined: `Undetermined`,
-  error: `Error`,
-  depends: `Depends`,
-  terrible: `Terrible`,
-  rather_bad: `Rather bad`,
-  neutral: `Neutral`,
-  ok: `OK`,
-  rather_good: `Rather good`,
-  outstanding: `Outstanding`
+  error: `Error`, // 0
+  depends: `Depends`, // 3
+  terrible: `Terrible`, // 1
+  rather_bad: `Rather bad`, // 2
+  neutral: `Neutral`, // 3
+  ok: `OK`, // 4
+  rather_good: `Rather good`, // 5
+  outstanding: `Outstanding` // 6
 });
 
 function searchObject(ratiosArray, searchedNameObj) {
   for (let a = 0; a < ratiosArray.length; a++) {
     if (ratiosArray[a].parameterName === searchedNameObj) {
       return ratiosArray[a];
-    } else {
-      return null;
     }
   }
 }
 
-module.exports = {RatiosNames, searchObject, RatingObject};
+module.exports = { RatiosNames, searchObject, RatingObject };

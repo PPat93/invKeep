@@ -1,61 +1,61 @@
 [{
   "_id": {
-    "$oid": "60c90702263f8d13a49bad06"
+    "$oid": "61edbfe64b544f099484c52f"
   },
-  "id": "60c90702263f8d13a49bad06",
+  "id": "61edbfe64b544f099484c52f",
   "assetName": "Rolls Royce",
   "assetSymbol": "RR.L",
-  "amount": 86,
+  "amount": 122,
   "buyPrice": 1.12,
   "currency": "£",
-  "purchaseDate": "6/2/2021",
+  "purchaseDate": "10.12.2019",
   "__v": 0
 },{
   "_id": {
-    "$oid": "60c90736263f8d13a49bad16"
+    "$oid": "61edc0264b544f099484c546"
   },
-  "id": "60c90736263f8d13a49bad16",
-  "assetName": "Comerica",
-  "assetSymbol": "CMA",
-  "amount": 11,
-  "buyPrice": 58.46,
-  "currency": "$",
-  "purchaseDate": "3/10/2021",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "60c90773263f8d13a49bad26"
-  },
-  "id": "60c90773263f8d13a49bad26",
+  "id": "61edc0264b544f099484c546",
   "assetName": "Apple",
   "assetSymbol": "AAPL",
-  "amount": 10,
-  "buyPrice": 356.94,
+  "amount": 23,
+  "buyPrice": 1258,
   "currency": "$",
-  "purchaseDate": "1/5/2021",
+  "purchaseDate": "10.03.2021",
   "__v": 0
 },{
   "_id": {
-    "$oid": "60c90783263f8d13a49bad36"
+    "$oid": "61edc0384b544f099484c55a"
   },
-  "id": "60c90783263f8d13a49bad36",
-  "assetName": "Nio",
-  "assetSymbol": "NIO",
-  "amount": 45,
-  "buyPrice": 18.54,
-  "currency": "¥",
-  "purchaseDate": "-",
+  "id": "61edc0384b544f099484c55a",
+  "assetName": "Comerica",
+  "assetSymbol": "CMA",
+  "amount": 54,
+  "buyPrice": 78,
+  "currency": "$",
+  "purchaseDate": "10.12.2019",
   "__v": 0
 },{
   "_id": {
-    "$oid": "60c9079e263f8d13a49bad46"
+    "$oid": "61edc0514b544f099484c56e"
   },
-  "id": "60c9079e263f8d13a49bad46",
+  "id": "61edc0514b544f099484c56e",
   "assetName": "Chesapeak Energy",
   "assetSymbol": "CHK",
-  "amount": 45,
-  "buyPrice": 0.38,
+  "amount": 123,
+  "buyPrice": 0.78,
   "currency": "$",
-  "purchaseDate": "6/2/2021",
+  "purchaseDate": "13.10.2020",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61edc0674b544f099484c582"
+  },
+  "id": "61edc0674b544f099484c582",
+  "assetName": "Nio",
+  "assetSymbol": "NIO",
+  "amount": 85,
+  "buyPrice": 5.12,
+  "currency": "¥",
+  "purchaseDate": "19.04.2021",
   "__v": 0
 }]

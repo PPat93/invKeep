@@ -24,7 +24,7 @@ module.exports = class PEGRatio extends BasicRatio {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_bad,
                 summary: `Company is shrinking or not creating any profits. Definitely needs more analysis.`,
-                numberRating: 3
+                numberRating: 2
             },
             {
                 name: `${this.ratioName}`,

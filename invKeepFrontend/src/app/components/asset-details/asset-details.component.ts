@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AssetsService } from "../asset-list/assets.service";
+import { AssetsService } from "../../services/assets.service";
 import { ActivatedRoute, ParamMap } from "@angular/router";
-import { AssetRecord, DetailedAssetRatios } from "../../shared/sharedTS";
+import { AnalyzedData, AssetRecord, DetailedAssetRatiosAnalyzed } from "../../shared/sharedTS";
 import { NgForm } from "@angular/forms";
-import { AssetRatiosService } from "./asset-ratios.service";
+import { AssetRatiosService } from "../../services/asset-ratios.service";
 import { Subscription } from "rxjs";
 
 @Component({
@@ -16,15 +16,46 @@ export class AssetDetailsComponent implements OnInit {
 
   assetId: string;
   assetMainDetails: AssetRecord;
-  detailedAssetRatios: DetailedAssetRatios = {
+
+  detailedAssetRatios: DetailedAssetRatiosAnalyzed = {
     assetId: ``,
     ratiosArray: [
       { parameterName: ``, valueNum: null }
-    ]
+    ],
+    analyzedData: [{
+      coanalysis: [``],
+      description: ``,
+      intervals: {
+        name: ``,
+        numberRating: 0,
+        summary: ``,
+        verbalRating: ``
+      },
+      name: ``,
+      shortly: [],
+      value: 0
+    }]
   };
+
+  analyzedDetailedAssetRatios: AnalyzedData[] = [{
+    coanalysis: [``],
+    description: ``,
+    intervals: {
+      name: ``,
+      numberRating: 0,
+      summary: ``,
+      verbalRating: ``
+    },
+    name: ``,
+    shortly: [``],
+    value: 0
+  }];
+
   isLoading1: boolean = false;
   isLoading2: boolean = false;
-  ratiosColumns: string[] = [`parameterName`, `valueNum`];
+
+  ratiosColumns: string[] = Object.keys(this.detailedAssetRatios.ratiosArray[0])
+  ratiosAnalysisColumns: string[] = [`name`, `value`, `intervals`, `description`]
 
   private ratiosSub: Subscription;
 
@@ -43,9 +74,10 @@ export class AssetDetailsComponent implements OnInit {
     });
     this.AssetRatiosService.getDetailedRatios(this.assetId);
     this.ratiosSub = this.AssetRatiosService.getRatiosUpdateListener()
-      .subscribe((ratiosSubscribed: DetailedAssetRatios) => {
+      .subscribe((ratiosSubscribed: DetailedAssetRatiosAnalyzed) => {
         this.isLoading2 = false;
         this.detailedAssetRatios = ratiosSubscribed;
+        this.analyzedDetailedAssetRatios = ratiosSubscribed.analyzedData;
       });
   }
 

@@ -66,6 +66,7 @@ module.exports = class CAPERatio extends BasicRatio {
     }
 
 
+
     // calculate() { // future ratio more precise analysis method
     //     let stockPrice, 10yearInflationAdjusted;
     //     // here external def of above values for calculation

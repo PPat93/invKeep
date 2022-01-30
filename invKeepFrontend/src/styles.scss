@@ -17,3 +17,45 @@ body {
   top: 50%;
   transform: translate(-50%, 0%);
 }
+
+.terrible .mat-progress-bar-buffer {
+  background-color: #ffb1b1 !important;
+}
+.terrible .mat-progress-bar-fill::after {
+  background-color: #ff0000 !important;
+}
+
+.rather-bad .mat-progress-bar-buffer {
+  background-color: #ffb788 !important;
+}
+.rather-bad .mat-progress-bar-fill::after {
+  background-color: #ff9100 !important;
+}
+
+.neutral .mat-progress-bar-buffer {
+  background-color: #dfdfdf !important;
+}
+.neutral .mat-progress-bar-fill::after {
+  background-color: #707070 !important;
+}
+
+.ok .mat-progress-bar-buffer {
+  background-color: #fff99f !important;
+}
+.ok .mat-progress-bar-fill::after {
+  background-color: #fbff00 !important;
+}
+
+.rather-good .mat-progress-bar-buffer {
+  background-color: #d8ff90 !important;
+}
+.rather-good .mat-progress-bar-fill::after {
+  background-color: #d0ff00 !important;
+}
+
+.outstanding .mat-progress-bar-buffer {
+  background-color: #66b963 !important;
+}
+.outstanding .mat-progress-bar-fill::after {
+  background-color: #16bd00 !important;
+}

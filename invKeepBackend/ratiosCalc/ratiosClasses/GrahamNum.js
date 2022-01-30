@@ -14,7 +14,7 @@ module.exports = class GrahamNum extends BasicRatio {
             `Determines fair value of stock.`,
             `Stock price below ${this.ratioName} is considered as undervalued.`,
             `Different for every company.`,
-            `Must be considered separately from anothers companies or averages.`
+            `Must be considered separately from anothers companies or averages.`,
             `Analyze with: ${this.coAnalysis}`
         ];
         this.finalValue = GrahamNum;

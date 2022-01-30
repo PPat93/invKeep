@@ -43,7 +43,7 @@ module.exports = class PERatio extends BasicRatio {
                 verbalRating: SharedJS.RatingObject.neutral,
                 summary: `Close to average, still may be worth attention (compared to average of american stocks from 
                 last 200 years - 15).`,
-                numberRating: 4
+                numberRating: 3
             },
             {
                 name: `${this.ratioName}`,

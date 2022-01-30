@@ -28,13 +28,13 @@ module.exports = class EPSRatio extends BasicRatio {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_bad,
                 summary: `Significantly below average (counted as average of S&P500 from last 20 years).`,
-                numberRating: 3
+                numberRating: 2
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.neutral,
                 summary: `Slightly below average (counted as average of S&P500 from last 20 years).`,
-                numberRating: 4
+                numberRating: 3
             },
             {
                 name: `${this.ratioName}`,
@@ -50,7 +50,6 @@ module.exports = class EPSRatio extends BasicRatio {
             }];
         this.intervals = [[-Infinity, 0], [0, 13], [13, 26], [26, 39], [39, Infinity]];
     }
-
 
     // calculate() { // future ratio more precise analysis method
     //     let netIncome, prefDividends, endShareOutstand;

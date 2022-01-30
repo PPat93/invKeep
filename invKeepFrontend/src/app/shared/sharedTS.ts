@@ -14,6 +14,38 @@ export interface DetailedAssetRatios {
   ratiosArray: { parameterName: string, valueNum: number }[]
 }
 
+export interface DetailedAssetRatiosAnalyzed {
+  assetId: string,
+  ratiosArray: { parameterName: string, valueNum: number }[],
+  analyzedData: {
+    coanalysis: string[],
+    description: string,
+    intervals: {
+      name: string,
+      numberRating: number,
+      summary: string,
+      verbalRating: string
+    },
+    name: string,
+    shortly: string[],
+    value: number
+  }[]
+}
+
+export interface AnalyzedData {
+  coanalysis: string[],
+  description: string,
+  intervals: {
+    name: string,
+    numberRating: number,
+    summary: string,
+    verbalRating: string
+  },
+  name: string,
+  shortly: string[],
+  value: number
+}
+
 export let welcomeMsg = {
   "title": "Welcome!",
   "msg": "I'm glad you chose invKeep to keep your assets and analyze them (in the future). App is intuitive, simple and I will do my best to keep it like that."
