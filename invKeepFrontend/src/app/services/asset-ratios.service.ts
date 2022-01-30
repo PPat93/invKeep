@@ -9,10 +9,10 @@ import { Observable, Subject } from "rxjs";
 
 export class AssetRatiosService {
 
-  private updateAssetRatios = new Subject<DetailedAssetRatiosAnalyzed>();
+  private updateAssetRatios = new Subject<DetailedAssetRatios>();
   ratiosReturn: {
     assetId: string,
-    ratiosArray: { parameterName: any; valueNum: number; }[],
+    ratiosArray: { parameterName: string; valueNum: number; }[],
     analyzedData: AnalyzedData[]
   };
 
@@ -59,11 +59,12 @@ export class AssetRatiosService {
   saveDetailedRatios(assetId: string, detailedRatios) {
     this.http.put<{ message: string, retrievedRatios: any }>(`http://localhost:3000/api/detailed-ratios/${assetId}`, detailedRatios)
       .subscribe(responseData => {
-        //placeholder for later toastr
+        let assetsRatiosArray = this.ratiosReturn.ratiosArray.filter(valueNum => valueNum !== responseData.retrievedRatios.valueNum)
+        this.updateAssetRatios["ratiosArray"].next(assetsRatiosArray);
       })
   }
 
-  getRatiosUpdateListener(): Observable<DetailedAssetRatiosAnalyzed> {
+  getRatiosUpdateListener(): Observable<DetailedAssetRatios> {
     return this.updateAssetRatios.asObservable()
   }
 }
