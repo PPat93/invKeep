@@ -18,11 +18,10 @@ body {
   transform: translate(-50%, 0%);
 }
 
-
 .terrible .mat-progress-bar-buffer {
   background-color: #ffb1b1 !important;
 }
-.terrible .mat-progress-bar-fill::after  {
+.terrible .mat-progress-bar-fill::after {
   background-color: #ff0000 !important;
 }
 
