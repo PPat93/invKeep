@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AssetsService } from "../asset-list/assets.service";
+import { AssetsService } from "../../services/assets.service";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { AnalyzedData, AssetRecord, DetailedAssetRatiosAnalyzed } from "../../shared/sharedTS";
 import { NgForm } from "@angular/forms";

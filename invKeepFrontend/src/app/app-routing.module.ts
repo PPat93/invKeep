@@ -1,9 +1,9 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 
-import {AssetCreateComponent} from "./assetComponents/asset-create/asset-create.component";
-import {HomePageComponent} from "./home-page/home-page.component";
-import {AssetDetailsComponent} from "./assetComponents/asset-details/asset-details.component";
+import {AssetCreateComponent} from "./components/asset-create/asset-create.component";
+import {HomePageComponent} from "./components/home-page/home-page.component";
+import {AssetDetailsComponent} from "./components/asset-details/asset-details.component";
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},

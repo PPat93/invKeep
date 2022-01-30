@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { AssetsService } from "../asset-list/assets.service";
+import { AssetsService } from "../../services/assets.service";
 import { AssetRecord } from "../../shared/sharedTS";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 

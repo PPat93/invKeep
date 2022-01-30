@@ -19,14 +19,14 @@ import { NgModule } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
-import { AssetCreateComponent } from './assetComponents/asset-create/asset-create.component';
-import { AssetDetailsComponent } from './assetComponents/asset-details/asset-details.component';
-import { AssetListComponent } from './assetComponents/asset-list/asset-list.component';
+import { AssetCreateComponent } from './components/asset-create/asset-create.component';
+import { AssetDetailsComponent } from './components/asset-details/asset-details.component';
+import { AssetListComponent } from './components/asset-list/asset-list.component';
 import { LoadingSpinnerComponent } from './utils/spinner/loading-spinner.component';
-import { MenuComponent } from './menu/menu.component';
-import { MessageDisplayComponent } from './message-display/message-display.component';
-import { ToolbarMenuComponent } from './toolbar/toolbar.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { MessageDisplayComponent } from './components/message-display/message-display.component';
+import { ToolbarMenuComponent } from './components/toolbar/toolbar.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 @NgModule({
   declarations: [
