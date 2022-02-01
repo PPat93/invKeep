@@ -21,8 +21,15 @@ module.exports = class DPRRatio extends BasicRatio {
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.depends,
+                summary: `Company is not paying their earnings to shareholders and reinvests all in order to grow. It 
+                may be good future of the company. However it strongly depends from management and industry itself.`,
+                numberRating: 3
+            },
+            {
+                name: `${this.ratioName}`,
+                verbalRating: SharedJS.RatingObject.depends,
                 summary: `Company is paying less than half of their earnings to shareholders and reinvests rest in order 
-                to grow. It is may be good future of the company. However it strongly depends from management and industry 
+                to grow. It may be good future of the company. However it strongly depends from management and industry 
                 itself.`,
                 numberRating: 3
             },
@@ -41,8 +48,7 @@ module.exports = class DPRRatio extends BasicRatio {
                 investors losing faith in company.`,
                 numberRating: 2
             }];
-        this.intervals = [[0, 35], [35, 55], [55, 100]];
-        // TODO add below 0 interval - going below zero breaks table dislayment
+        this.intervals = [[-Infinity, 0], [0, 35], [35, 55], [55, 100]];
     }
 
     // calculate(){ // future ratio more precise analysis method
