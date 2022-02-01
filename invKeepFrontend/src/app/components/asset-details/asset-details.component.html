@@ -51,7 +51,10 @@
             <th mat-header-cell *matHeaderCellDef>Value</th>
             <td mat-cell *matCellDef="let ratio">
               <mat-form-field class="parameter-value">
-                <input name="r{{ratio.parameterName}}" matInput [ngModel]="ratio.valueNum" value="{{ratio.valueNum}}">
+                <input class="single-detailed-ratio"
+                  [attr.data-cy]="ratio.parameterName.replaceAll(' ', '-').toLowerCase()" name="r{{ratio.parameterName}}"
+                  matInput [ngModel]="ratio.valueNum" value="{{ratio.valueNum}}">
+                  <!-- DO NOT REMOVE ABOVE "r" letter from "name" parameter, it breaks detailed ratios save functionality -->
               </mat-form-field>
             </td>
           </ng-container>
@@ -59,7 +62,7 @@
           <tr mat-row *matRowDef="let row; columns: ratiosColumns"></tr>
         </table>
         <mat-card-actions>
-          <button mat-raised-button color="primary" type="submit">Save</button>
+          <button data-cy="save" mat-raised-button color="primary" type="submit">Save</button>
         </mat-card-actions>
       </form>
     </mat-card-content>
