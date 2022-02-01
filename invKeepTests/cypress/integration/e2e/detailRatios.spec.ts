@@ -32,13 +32,13 @@ describe(`Analysis Ratios`, () => {
         })
 
         cy.getDataCyElement(DetailsPageConsts.detailedRatiosButton)
-            .click({force:true});
+            .click({ force: true });
 
         cy.reload();
-            
+
         cy.get(`.single-detailed-ratio`).each(ratio => {
             cy.wrap(ratio)
-                .should(`contain.text`,`1`);
+                .should(`have.value`, `1`);
         })
     })
 })
