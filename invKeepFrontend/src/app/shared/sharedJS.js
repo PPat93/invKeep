@@ -16,7 +16,7 @@ const RatiosNames = Object.freeze({
 });
 
 const RatingObject = Object.freeze({
-  undetermined: `Undetermined`,
+  undetermined: `Undetermined`, // 0
   error: `Error`, // 0
   depends: `Depends`, // 3
   terrible: `Terrible`, // 1

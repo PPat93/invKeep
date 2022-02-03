@@ -20,10 +20,10 @@ module.exports = class DPRRatio extends BasicRatio {
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
-                verbalRating: SharedJS.RatingObject.depends,
+                verbalRating: SharedJS.RatingObject.undetermined,
                 summary: `Company is not paying their earnings to shareholders and reinvests all in order to grow. It 
                 may be good future of the company. However it strongly depends from management and industry itself.`,
-                numberRating: 3
+                numberRating: 0
             },
             {
                 name: `${this.ratioName}`,
@@ -47,8 +47,13 @@ module.exports = class DPRRatio extends BasicRatio {
                 earns indicates that dividend will be lowered or even stopped. It may lead to share price decreasing or 
                 investors losing faith in company.`,
                 numberRating: 2
+            }, {
+                name: `${this.ratioName}`,
+                verbalRating: SharedJS.RatingObject.error,
+                summary: `Probably an error, 100% is maximum possible value.`,
+                numberRating: 0
             }];
-        this.intervals = [[-Infinity, 0], [0, 35], [35, 55], [55, 100]];
+        this.intervals = [[-Infinity, 0], [0, 35], [35, 55], [55, 100], [100, Infinity]];
     }
 
     // calculate(){ // future ratio more precise analysis method
