@@ -15,6 +15,12 @@ const RatiosNames = Object.freeze({
   ev_ebitda_ratio: `EV/EBITDA Ratio`
 });
 
+const RatiosUnits = Object.freeze({
+  currency: `[Cur]`,
+  unidentified_unit: `[U]`,
+  percentage: `[%]`
+});
+
 const RatingObject = Object.freeze({
   undetermined: `Undetermined`, // 0
   error: `Error`, // 0
@@ -35,4 +41,4 @@ function searchObject(ratiosArray, searchedNameObj) {
   }
 }
 
-module.exports = { RatiosNames, searchObject, RatingObject };
+module.exports = { RatiosNames, searchObject, RatingObject, RatiosUnits };
