@@ -10,7 +10,7 @@ module.exports = class DERatio extends BasicRatio {
         this.description = `Debt to Equity Ratio allows to compare total company debt with company equity. It shows level 
         of the leverage used by a firm. ${this.ratioName} is highly dependent from industry type and it's average - "normal" size.
         May be hard to compare stocks among different sectors. The higher ${this.ratioName} is, the more risky stock probably is. 
-        E.g. if D/E = 1.5$ it means that on every 1$ stock has 1.5$ debt.`;
+        E.g. if D/E = 1.5 it means that on every 1$ stock has 1.5$ debt.`;
         this.additionalDetails = [
             `The higher the riskier.`,
             `Compares company's debt with equity.`,
@@ -42,7 +42,7 @@ module.exports = class DERatio extends BasicRatio {
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_bad,
-                summary: `Debt is significantly higher than equity. High risk exists. Better not to buy.`,
+                summary: `Debt is significantly higher than equity. Probably highly risky.`,
                 numberRating: 2
             }];
         this.intervals = [[-Infinity, 0], [0, 1], [1, 2], [2, Infinity]];

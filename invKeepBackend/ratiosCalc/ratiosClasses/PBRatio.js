@@ -31,19 +31,19 @@ module.exports = class PBRatio extends BasicRatio {
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.outstanding,
-                summary: `Stock is probably undervalued. Good opportunity.`,
+                summary: `Stock is probably undervalued. May indicate a good opportunity.`,
                 numberRating: 6
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.ok,
-                summary: `Stock is probably still under or about fair value. It is definitely worth consideration.`,
+                summary: `Stock is probably still under or about fair value. Definately should be considered.`,
                 numberRating: 4
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_bad,
-                summary: `Stock is overvalued. It is too expensive, should not be taken into account.`,
+                summary: `Stock is overvalued. It is too expensive and it may not be profitable.`,
                 numberRating: 2
             }];
         this.intervals = [[-Infinity, 0], [0, 1], [1, 3], [3, Infinity]];

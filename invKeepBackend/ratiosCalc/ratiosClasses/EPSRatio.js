@@ -21,7 +21,7 @@ module.exports = class EPSRatio extends BasicRatio {
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.terrible,
-                summary: `Negative value indicates loss, 0 indicates no profits.`,
+                summary: `Negative value indicates a loss, 0 indicates no profits.`,
                 numberRating: 1
             },
             {

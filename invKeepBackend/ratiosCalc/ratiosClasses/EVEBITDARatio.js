@@ -45,7 +45,7 @@ module.exports = class EVEBITDARatio extends BasicRatio {
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.terrible,
-                summary: `Too big value indicates unstable and unsecure company. Not worth of wasting time.`,
+                summary: `Too high value indicates unstable and unsecure company. Probably not worth of wasting time.`,
                 numberRating: 1
             }];
         this.intervals = [[-Infinity, 0], [0, 10], [10, 18], [18, Infinity]];
