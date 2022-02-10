@@ -24,20 +24,21 @@ router.post('', (req, res) => {
     const assetRatiosPlaceholder = new AssetRatio({
         id: '',
         ratiosArray: [
-            { parameterName: `EPS Ratio`, valueNum: 0 },
-            { parameterName: `P/E Ratio`, valueNum: 0 },
-            { parameterName: `PEG Ratio`, valueNum: 0 },
-            { parameterName: `CAPE Ratio`, valueNum: 0 },
-            { parameterName: `P/B Ratio`, valueNum: 0 },
-            { parameterName: `D/E Ratio`, valueNum: 0 },
-            { parameterName: `ROE Ratio`, valueNum: 0 },
-            { parameterName: `ROCE Ratio`, valueNum: 0 },
-            { parameterName: `Dividend Yield`, valueNum: 0 },
-            { parameterName: `DPR Ratio`, valueNum: 0 },
-            { parameterName: `P/S Ratio`, valueNum: 0 },
-            { parameterName: `Graham Number`, valueNum: 0 },
-            { parameterName: `EV/EBIT Ratio`, valueNum: 0 },
-            { parameterName: `EV/EBITDA Ratio`, valueNum: 0 }
+            
+            { parameterName: RatiosNames.RatiosNames.cape_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.unitless },
+            { parameterName: RatiosNames.RatiosNames.de_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.unitless },
+            { parameterName: RatiosNames.RatiosNames.dividend_yield, valueNum: 0, unit: RatiosNames.RatiosUnits.percentage },
+            { parameterName: RatiosNames.RatiosNames.dpr_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.percentage },
+            { parameterName: RatiosNames.RatiosNames.eps_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.currency },
+            { parameterName: RatiosNames.RatiosNames.ev_ebitda_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.unitless },
+            { parameterName: RatiosNames.RatiosNames.ev_ebit_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.unitless },
+            { parameterName: RatiosNames.RatiosNames.graham_num, valueNum: 0, unit: RatiosNames.RatiosUnits.currency },
+            { parameterName: RatiosNames.RatiosNames.pb_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.unitless },
+            { parameterName: RatiosNames.RatiosNames.peg_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.unitless },
+            { parameterName: RatiosNames.RatiosNames.pe_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.unitless },
+            { parameterName: RatiosNames.RatiosNames.ps_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.unitless },
+            { parameterName: RatiosNames.RatiosNames.roce_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.percentage },
+            { parameterName: RatiosNames.RatiosNames.roe_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.percentage }
         ]
     });
 
