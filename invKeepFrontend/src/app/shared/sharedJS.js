@@ -17,7 +17,7 @@ const RatiosNames = Object.freeze({
 
 const RatiosUnits = Object.freeze({
   percentage: '%',
-  unitlesss: '-',
+  unitless: '-',
   currency: 'curr'
 });
 

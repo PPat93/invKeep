@@ -11,12 +11,12 @@ export interface AssetRecord {
 
 export interface DetailedAssetRatios {
   assetId: string,
-  ratiosArray: { parameterName: string, valueNum: number }[]
+  ratiosArray: { parameterName: string, valueNum: number, unit: string}[]
 }
 
 export interface DetailedAssetRatiosAnalyzed {
   assetId: string,
-  ratiosArray: { parameterName: string, valueNum: number }[],
+  ratiosArray: { parameterName: string, valueNum: number, unit: string}[],
   analyzedData: {
     coanalysis: string[],
     description: string,

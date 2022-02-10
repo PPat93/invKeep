@@ -58,6 +58,10 @@
               </mat-form-field>
             </td>
           </ng-container>
+          <ng-container matColumnDef="unit">
+            <th mat-header-cell *matHeaderCellDef>Unit</th>
+            <td class="parameter-unit" mat-cell *matCellDef="let ratio"> {{setUnit(ratio.unit)}}</td>
+          </ng-container>
           <tr mat-header-row *matHeaderRowDef="ratiosColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: ratiosColumns"></tr>
         </table>
