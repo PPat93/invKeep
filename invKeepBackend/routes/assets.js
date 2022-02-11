@@ -24,7 +24,6 @@ router.post('', (req, res) => {
     const assetRatiosPlaceholder = new AssetRatio({
         id: '',
         ratiosArray: [
-            
             { parameterName: RatiosNames.RatiosNames.cape_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.unitless },
             { parameterName: RatiosNames.RatiosNames.de_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.unitless },
             { parameterName: RatiosNames.RatiosNames.dividend_yield, valueNum: 0, unit: RatiosNames.RatiosUnits.percentage },

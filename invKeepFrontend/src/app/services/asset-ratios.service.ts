@@ -12,7 +12,7 @@ export class AssetRatiosService {
   private updateAssetRatios = new Subject<DetailedAssetRatiosAnalyzed>();
   ratiosReturn: {
     assetId: string,
-    ratiosArray: { parameterName: any; valueNum: number; unit: string}[],
+    ratiosArray: { parameterName: any; valueNum: number; unit: string }[],
     analyzedData: AnalyzedData[]
   };
 
@@ -26,6 +26,7 @@ export class AssetRatiosService {
           assetId: returnedRatios.retrievedRatios.assetId,
           ratiosArray: returnedRatios.retrievedRatios.ratiosArray.map((ratios) => {
             return [
+              // TODO add dynamic for loop for each ratio instead of forced way
               { parameterName: returnedRatios.retrievedRatios.ratiosArray[0].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[0].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[0].unit },
               { parameterName: returnedRatios.retrievedRatios.ratiosArray[1].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[1].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[1].unit },
               { parameterName: returnedRatios.retrievedRatios.ratiosArray[2].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[2].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[2].unit },
@@ -59,7 +60,8 @@ export class AssetRatiosService {
   saveDetailedRatios(assetId: string, detailedRatios) {
     this.http.put<{ message: string, retrievedRatios: any }>(`http://localhost:3000/api/detailed-ratios/${assetId}`, detailedRatios)
       .subscribe(responseData => {
-        //placeholder for later toastr
+        // TODO add toastr after successfull/failed save
+        // TODO detiled ratios automatic update after saving
       })
   }
 
