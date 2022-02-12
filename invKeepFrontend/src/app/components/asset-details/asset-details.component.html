@@ -51,7 +51,6 @@
             <th mat-header-cell *matHeaderCellDef>Value</th>
             <td class="input-detailed-ratio" mat-cell *matCellDef="let ratio">
               <mat-form-field class="input-detailed-ratio">
-                <!-- TODO reduce the width of input field, center items in first ratios columns -->
                 <input class="single-detailed-ratio"
                   [attr.data-cy]="ratio.parameterName.replaceAll(' ', '-').toLowerCase()"
                   name="r{{ratio.parameterName}}" matInput [ngModel]="ratio.valueNum" value="{{ratio.valueNum}}">
@@ -85,9 +84,9 @@
         <ng-container matColumnDef="intervals">
           <th mat-header-cell *matHeaderCellDef>Intervals</th>
           <td class="parameter-intervals" mat-cell *matCellDef="let analysis">
-            <div><b>{{analysis.intervals.verbalRating}}</b></div>
-            <div>{{analysis.intervals.summary}}</div>
-            <div [ngClass]="{
+            <div class="interval-verbal-rating"><b>{{analysis.intervals.verbalRating}}</b></div>
+            <div class="interval-summary">{{analysis.intervals.summary}}</div>
+            <div class="interval-number-rating" [ngClass]="{
               'terrible' : analysis.intervals.numberRating === 1,
               'rather-bad' : analysis.intervals.numberRating === 2,
               'neutral' : analysis.intervals.numberRating === 3,
@@ -107,7 +106,7 @@
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="ratiosAnalysisColumns"></tr>
-        <tr class="table-row " mat-row *matRowDef="let row; columns: ratiosAnalysisColumns"></tr>
+        <tr class="table-row" mat-row *matRowDef="let row; columns: ratiosAnalysisColumns"></tr>
       </table>
     </mat-card-content>
   </div>

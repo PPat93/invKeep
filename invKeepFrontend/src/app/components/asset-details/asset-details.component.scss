@@ -8,9 +8,23 @@ mat-card-title {
 }
 
 th {
+  color:black;
   font-size: 20px;
   padding-right: 5px !important;
   align-content: left !important;
+}
+
+.interval-summary{
+  max-width: 600px; /* feel free to include any other value */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.interval-summary:hover{
+  overflow:auto;
+  text-overflow:unset;
+  white-space:normal;
 }
 
 .subtitle {
@@ -78,6 +92,7 @@ button {
 
 .parameter-intervals {
   width: 50%;
+  max-width: 50%;
 }
 
 .parameter-description {
