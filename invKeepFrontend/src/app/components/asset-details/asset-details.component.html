@@ -49,13 +49,13 @@
           </ng-container>
           <ng-container matColumnDef="valueNum">
             <th mat-header-cell *matHeaderCellDef>Value</th>
-            <td mat-cell *matCellDef="let ratio">
-              <mat-form-field class="parameter-value">
+            <td class="input-detailed-ratio" mat-cell *matCellDef="let ratio">
+              <mat-form-field class="input-detailed-ratio">
                 <!-- TODO reduce the width of input field, center items in first ratios columns -->
                 <input class="single-detailed-ratio"
-                  [attr.data-cy]="ratio.parameterName.replaceAll(' ', '-').toLowerCase()" name="r{{ratio.parameterName}}"
-                  matInput [ngModel]="ratio.valueNum" value="{{ratio.valueNum}}">
-                  <!-- DO NOT REMOVE ABOVE "r" letter from "name" parameter, it breaks detailed ratios save functionality -->
+                  [attr.data-cy]="ratio.parameterName.replaceAll(' ', '-').toLowerCase()"
+                  name="r{{ratio.parameterName}}" matInput [ngModel]="ratio.valueNum" value="{{ratio.valueNum}}">
+                <!-- DO NOT REMOVE ABOVE "r" letter from "name" parameter, it breaks detailed ratios save functionality -->
               </mat-form-field>
             </td>
           </ng-container>
@@ -64,7 +64,7 @@
             <td class="parameter-unit" mat-cell *matCellDef="let ratio"> {{setUnit(ratio.unit)}}</td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="ratiosColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: ratiosColumns"></tr>
+          <tr class="table-row " mat-row *matRowDef="let row; columns: ratiosColumns"></tr>
         </table>
         <mat-card-actions>
           <button data-cy="save" mat-raised-button color="primary" type="submit">Save</button>
@@ -107,7 +107,7 @@
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="ratiosAnalysisColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: ratiosAnalysisColumns"></tr>
+        <tr class="table-row " mat-row *matRowDef="let row; columns: ratiosAnalysisColumns"></tr>
       </table>
     </mat-card-content>
   </div>

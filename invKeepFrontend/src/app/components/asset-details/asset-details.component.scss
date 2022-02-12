@@ -7,6 +7,12 @@ mat-card-title {
   height: 30px;
 }
 
+th {
+  font-size: 20px;
+  padding-right: 5px !important;
+  align-content: left !important;
+}
+
 .subtitle {
   font-size: 20px;
 }
@@ -58,10 +64,16 @@ button {
 }
 
 .parameter-name {
+  text-align: left !important;
   width: 100px;
 }
 .parameter-value {
   width: 100px !important;
+}
+
+.parameter-unit {
+  width: 30px !important;
+  font-weight: bold;
 }
 
 .parameter-intervals {
@@ -84,8 +96,8 @@ ul {
   justify-content: center;
 }
 
-tr.mat-row {
-  height: 100px;
+.table-row {
+  height: 100px !important;
 }
 
 .ratios-column {
@@ -101,4 +113,9 @@ tr.mat-row {
 mat-progress-bar {
   height: 10px !important;
   border-radius: 5px;
+}
+
+.input-detailed-ratio,
+.single-detailed-ratio {
+  max-width: 35px;
 }
