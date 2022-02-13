@@ -38,7 +38,7 @@ describe(`Page displayments after direct access from URL`, () => {
 })
 
 describe(`Page displayments after button click access`, () => {
-    
+
     it(`Details Page displayment`, () => {
 
         let assetName = `TestAsset${Date.now()}`;
@@ -71,7 +71,7 @@ describe(`Page displayments after button click access`, () => {
         let assetName = `TestAsset${Date.now()}`;
 
         //  Arrange
-        cy.apiAssetCreation(assetName, `editPg`, 10, 11.2, AssetCurrency.pound);
+        cy.apiCreateAsset(assetName, `editPg`, 10, 11.2, AssetCurrency.pound);
         cy.reload();
         cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
             .click();
@@ -91,5 +91,33 @@ describe(`Page displayments after button click access`, () => {
         //  Teardown
         Utils.visitPage(Utils.mainPageUrl);
         MainPage.deleteAsset(assetName);
+    })
+})
+
+describe(`Visibility of Detailed Page elements`, () => {
+
+    let assetName = `TestAsset${Date.now()}`;
+
+    beforeEach(`Create asset`, () => {
+        cy.apiCreateAsset(assetName, `itemVis`, 10, 1.21, AssetCurrency.dollar);
+        cy.visit(Utils.mainPageUrl);
+        cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
+            .click();
+        cy.getDataCyElement(MainPage.dataCyElementDetailsBtn(assetName))
+            .click();
+    })
+
+    it(`Detailed ratios inputs visibility`, () => {
+
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosNameCell).then(allCells => {
+            cy.wrap(allCells)
+                .should(`have.length`, 14);
+        })
+        cy.getDataCyElement(DetailsPageConsts.detailRatiosInputTable).then(inputTable => {
+            cy.wrap(inputTable)
+                .findNextDataCyElement(DetailsPageConsts.detailedRatiosNameCell).each(singleCell => {
+                    expect(singleCell.text().length).to.be.greaterThan(1);
+                })
+        })
     })
 })

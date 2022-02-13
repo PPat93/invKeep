@@ -1,17 +1,18 @@
 import MainPage from "../../support/pageObjectModel/pageObjects/MainPage";
 import Utils, { AssetCurrency } from "../../support/pageObjectModel/Utils/Utils";
-import CreateEditPage from "../../support/pageObjectModel/pageObjects/CreateEditPage";
 import DetailsPageConsts from "../../support/pageObjectModel/Utils/DetailsPageConsts";
 
 describe(`Analysis Ratios`, () => {
 
-    let assetName = `TestAsset${Date.now()}`;
+    let assetName = ``;
     let ratiosValues = [1, 3.4, 23.95]
 
     beforeEach(`Create test asset`, () => {
 
-        cy.visit(Utils.createPageUrl);
-        CreateEditPage.createEditAsset(assetName, `TASbl`, 19, 245.5, AssetCurrency.euro);
+        assetName = `TestAsset${Date.now()}`;
+
+        cy.apiCreateAsset(assetName, `TASbl`, 19, 245.5, AssetCurrency.euro);
+        cy.visit(Utils.mainPageUrl);
     });
 
     ratiosValues.forEach(singleRatioVal => {
