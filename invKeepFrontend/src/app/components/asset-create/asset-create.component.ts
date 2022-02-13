@@ -43,7 +43,7 @@ export class AssetCreateComponent implements OnInit {
           this.isLoading = false;
           this.usedAsset = singleAsset.payload;
           this.usedAsset.purchaseDate = new Date(this.usedAsset.purchaseDate);
-          this.assetForm.setValue(this.usedAsset);
+          this.assetForm.patchValue(this.usedAsset);
         });
       } else {
         this.actionMode = CreateComponentMode.create;
