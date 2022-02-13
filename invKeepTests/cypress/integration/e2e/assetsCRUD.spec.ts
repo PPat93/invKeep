@@ -65,7 +65,7 @@ describe(`Assets CRU`, () => {
         assetName = `TestAsset${Date.now().toString().slice(10, 12)}`;
 
         //  Arrange
-        cy.apiAssetCreation(assetName, `TST`, parseInt(Date.now().toString().slice(10, 12)), 1.45, AssetCurrency.dollar, `03/25/2015`);
+        cy.apiCreateAsset(assetName, `TST`, parseInt(Date.now().toString().slice(10, 12)), 1.45, AssetCurrency.dollar, `03/25/2015`);
         Utils.visitPage(Utils.mainPageUrl);
         cy.getDataCyElement(MainPage.dataCyElementAsset(assetName), 4000)
             .click();
@@ -91,11 +91,20 @@ describe(`Assets CRU`, () => {
     // TODO change input of date - currently inverted day and month, add prompt how date should be formatted
 })
 
-describe(`Assets deletion`, () => {
+describe(`Assets D`, () => {
 
     it(`Delete existing asset `, () => {
 
+        //   Arrange
+        let assetName = `TestAsset${Date.now().toString().slice(10, 12)}`;
+
+        cy.apiCreateAsset(assetName, `DelAs`, 12, 10.12, AssetCurrency.euro);
+        cy.reload();
+
+        //  Act & Assert
+        MainPage.deleteAsset(assetName);
     })
 
     // TODO it(`Delete non-existing asset`, () => {})
+    // TODO it(`Delete already deleted asset`, () => {})
 })
