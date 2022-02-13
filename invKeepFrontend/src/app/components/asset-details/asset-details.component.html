@@ -44,7 +44,7 @@
         name="detailed-ratios">
         <table mat-table [dataSource]="detailedAssetRatios.ratiosArray">
           <ng-container matColumnDef="parameterName">
-            <th mat-header-cell *matHeaderCellDef>Parameter</th>
+            <th mat-header-cell *matHeaderCellDef>Ratio</th>
             <td class="parameter-name" mat-cell *matCellDef="let ratio"> {{ratio.parameterName}}</td>
           </ng-container>
           <ng-container matColumnDef="valueNum">
@@ -60,7 +60,7 @@
           </ng-container>
           <ng-container matColumnDef="unit">
             <th mat-header-cell *matHeaderCellDef>Unit</th>
-            <td class="parameter-unit" mat-cell *matCellDef="let ratio"> {{setUnit(ratio.unit)}}</td>
+            <td class="parameter-unit" mat-cell *matCellDef="let ratio">{{setUnit(ratio.unit)}}</td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="ratiosColumns"></tr>
           <tr class="table-row " mat-row *matRowDef="let row; columns: ratiosColumns"></tr>
@@ -75,7 +75,7 @@
       <table class="analysis-table" mat-table [dataSource]="detailedAssetRatios.analyzedData">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td class="parameter-name" mat-cell *matCellDef="let analysis"> {{analysis.name}}</td>
+          <td class="parameter-name" mat-cell *matCellDef="let analysis">{{analysis.name}}</td>
         </ng-container>
         <ng-container matColumnDef="value">
           <th mat-header-cell *matHeaderCellDef>Value</th>
