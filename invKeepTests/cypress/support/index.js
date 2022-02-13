@@ -16,5 +16,16 @@
 // Import commands.js using ES2015 syntax:
 import './commands/commands';
 
+
+after(`Teardown`, () => {
+    cy.apiGetAsset().then(res => {
+        res.body.payload.forEach(singleItem =>{
+            if (singleItem.assetName.match(`TestAsset`)){
+                cy.apiDeleteAsset(singleItem.id);
+            }
+        })
+    })
+})
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

@@ -11,7 +11,11 @@ declare global {
             findNextDataCyElement(nextDataCyValue: string, customTimeout?: number): Chainable<any>,
 
             //  Backend  /////////////////////////////////////////////////////////////////////////////////////////
-            apiAssetCreation(assetName: string, assetSymbol: string, amount: number, pricePerUnit: number, currency: AssetCurrency, purchaseDate?: Date|string): Chainable<any>
+            apiCreateAsset(assetName: string, assetSymbol: string, amount: number, pricePerUnit: number, currency: AssetCurrency, purchaseDate?: Date | string): Chainable<any>
+
+            apiDeleteAsset(assetId: string): Chainable<any>,
+
+            apiGetAsset(): Chainable<any>,
         }
     }
 }
