@@ -24,7 +24,7 @@ module.exports = class PSRatio extends BasicRatio {
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.terrible,
-                summary: `Negative value indicates that revenue of the company is also negative (not likely). However, 
+                summary: `Negative value indicates that revenue of the company is also negative (rather unlikely case). However, 
                 in this kind of situation - avoid at all cost!`,
                 numberRating: 1
             },
@@ -53,7 +53,7 @@ module.exports = class PSRatio extends BasicRatio {
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_bad,
-                summary: `Stock is most likely overvalued. Over 0.25 $ of revenue per one dollar price does not indicate 
+                summary: `Stock is most likely overvalued. Over 0.25$ of revenue per 1$ price does not indicate 
                 a good opportunity. Definitely avoid.`,
                 numberRating: 2
             }];

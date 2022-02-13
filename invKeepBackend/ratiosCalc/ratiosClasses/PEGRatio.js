@@ -29,13 +29,13 @@ module.exports = class PEGRatio extends BasicRatio {
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.outstanding,
-                summary: `Stock is probably undervalued. Good opportunity.`,
+                summary: `Stock is probably undervalued. May be a good opportunity.`,
                 numberRating: 6
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.terrible,
-                summary: `Stock is probably overvalued. One unit is too expensive to be considered.`,
+                summary: `Stock is overvalued. One unit is is too expensive. Probably not be a good opportunity.`,
                 numberRating: 1
             }];
         this.intervals = [[-Infinity, 0], [0, 1], [1, Infinity]];

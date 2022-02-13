@@ -37,7 +37,7 @@ module.exports = class DPRRatio extends BasicRatio {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.outstanding,
                 summary: `Company is returning about half of earnings to shareholders and half is reinvested in order to
-                grow. This level of dividend allows to predict that company have sustainable dividend`,
+                grow. This level of dividend allows to predict that company have sustainable dividend.`,
                 numberRating: 6
             },
             {

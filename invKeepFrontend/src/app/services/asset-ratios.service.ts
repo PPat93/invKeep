@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { AnalyzedData, DetailedAssetRatios, DetailedAssetRatiosAnalyzed } from "../shared/sharedTS";
-import { RatiosNames } from "../shared/sharedJS";
+import { RatiosNames, RatiosUnits } from "../shared/sharedJS";
 import { map } from "rxjs/operators";
 import { Observable, Subject } from "rxjs";
 
@@ -12,7 +12,7 @@ export class AssetRatiosService {
   private updateAssetRatios = new Subject<DetailedAssetRatiosAnalyzed>();
   ratiosReturn: {
     assetId: string,
-    ratiosArray: { parameterName: any; valueNum: number; }[],
+    ratiosArray: { parameterName: any; valueNum: number; unit: string }[],
     analyzedData: AnalyzedData[]
   };
 
@@ -26,20 +26,21 @@ export class AssetRatiosService {
           assetId: returnedRatios.retrievedRatios.assetId,
           ratiosArray: returnedRatios.retrievedRatios.ratiosArray.map((ratios) => {
             return [
-              { parameterName: RatiosNames.cape_ratio, valueNum: returnedRatios.retrievedRatios.ratiosArray[0].valueNum },
-              { parameterName: RatiosNames.de_ratio, valueNum: returnedRatios.retrievedRatios.ratiosArray[1].valueNum },
-              { parameterName: RatiosNames.dividend_yield, valueNum: returnedRatios.retrievedRatios.ratiosArray[2].valueNum },
-              { parameterName: RatiosNames.dpr_ratio, valueNum: returnedRatios.retrievedRatios.ratiosArray[3].valueNum },
-              { parameterName: RatiosNames.eps_ratio, valueNum: returnedRatios.retrievedRatios.ratiosArray[4].valueNum },
-              { parameterName: RatiosNames.ev_ebitda_ratio, valueNum: returnedRatios.retrievedRatios.ratiosArray[5].valueNum },
-              { parameterName: RatiosNames.ev_ebit_ratio, valueNum: returnedRatios.retrievedRatios.ratiosArray[6].valueNum },
-              { parameterName: RatiosNames.graham_num, valueNum: returnedRatios.retrievedRatios.ratiosArray[7].valueNum },
-              { parameterName: RatiosNames.pb_ratio, valueNum: returnedRatios.retrievedRatios.ratiosArray[8].valueNum },
-              { parameterName: RatiosNames.peg_ratio, valueNum: returnedRatios.retrievedRatios.ratiosArray[9].valueNum },
-              { parameterName: RatiosNames.pe_ratio, valueNum: returnedRatios.retrievedRatios.ratiosArray[10].valueNum },
-              { parameterName: RatiosNames.ps_ratio, valueNum: returnedRatios.retrievedRatios.ratiosArray[11].valueNum },
-              { parameterName: RatiosNames.roce_ratio, valueNum: returnedRatios.retrievedRatios.ratiosArray[12].valueNum },
-              { parameterName: RatiosNames.roe_ratio, valueNum: returnedRatios.retrievedRatios.ratiosArray[13].valueNum },
+              // TODO add dynamic for loop for each ratio instead of forced way
+              { parameterName: returnedRatios.retrievedRatios.ratiosArray[0].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[0].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[0].unit },
+              { parameterName: returnedRatios.retrievedRatios.ratiosArray[1].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[1].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[1].unit },
+              { parameterName: returnedRatios.retrievedRatios.ratiosArray[2].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[2].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[2].unit },
+              { parameterName: returnedRatios.retrievedRatios.ratiosArray[3].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[3].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[3].unit },
+              { parameterName: returnedRatios.retrievedRatios.ratiosArray[4].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[4].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[4].unit },
+              { parameterName: returnedRatios.retrievedRatios.ratiosArray[5].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[5].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[5].unit },
+              { parameterName: returnedRatios.retrievedRatios.ratiosArray[6].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[6].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[6].unit },
+              { parameterName: returnedRatios.retrievedRatios.ratiosArray[7].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[7].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[7].unit },
+              { parameterName: returnedRatios.retrievedRatios.ratiosArray[8].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[8].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[8].unit },
+              { parameterName: returnedRatios.retrievedRatios.ratiosArray[9].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[9].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[9].unit },
+              { parameterName: returnedRatios.retrievedRatios.ratiosArray[10].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[10].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[10].unit },
+              { parameterName: returnedRatios.retrievedRatios.ratiosArray[11].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[11].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[11].unit },
+              { parameterName: returnedRatios.retrievedRatios.ratiosArray[12].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[12].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[12].unit },
+              { parameterName: returnedRatios.retrievedRatios.ratiosArray[13].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[13].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[13].unit }
             ]
           }),
           analyzedData: returnedRatios.analyzedData
@@ -59,7 +60,8 @@ export class AssetRatiosService {
   saveDetailedRatios(assetId: string, detailedRatios) {
     this.http.put<{ message: string, retrievedRatios: any }>(`http://localhost:3000/api/detailed-ratios/${assetId}`, detailedRatios)
       .subscribe(responseData => {
-        //placeholder for later toastr
+        // TODO add toastr after successfull/failed save
+        // TODO detiled ratios automatic update after saving
       })
   }
 

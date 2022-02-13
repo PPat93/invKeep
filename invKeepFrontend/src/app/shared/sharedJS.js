@@ -16,9 +16,9 @@ const RatiosNames = Object.freeze({
 });
 
 const RatiosUnits = Object.freeze({
-  currency: `[Cur]`,
-  unidentified_unit: `[U]`,
-  percentage: `[%]`
+  percentage: '%',
+  unitless: '-',
+  currency: 'curr'
 });
 
 const RatingObject = Object.freeze({

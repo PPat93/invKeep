@@ -22,8 +22,9 @@ module.exports = class GrahamNum extends BasicRatio {
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.depends,
-                summary: `Graham number has no real intervals of values. Each case must be analyzed individually. Maximum profitable Graham Number consists of 
-                15 times P/E ratio multiplied by 1.5 times P/B ratio. Above that value, stock most likely won't be able to bring any profits.`,
+                summary: `${this.ratioName} has no real intervals of values. Each case must be analyzed individually compared with current share price. 
+                Maximum profitable ${this.ratioName} is a square root of multiplication 22,5 times P/E ratio and 1.5 times P/B ratio. Above that value 
+                stock most likely won't be able to bring any profits.`,
                 numberRating: 3
             }];
         this.intervals = [[-Infinity, Infinity]];

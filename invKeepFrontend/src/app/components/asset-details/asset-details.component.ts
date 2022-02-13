@@ -17,10 +17,11 @@ export class AssetDetailsComponent implements OnInit {
   assetId: string;
   assetMainDetails: AssetRecord;
 
+  // TODO clean below multiple variables that are messed and probably redundant
   detailedAssetRatios: DetailedAssetRatiosAnalyzed = {
     assetId: ``,
     ratiosArray: [
-      { parameterName: ``, valueNum: null }
+      { parameterName: ``, valueNum: null, unit: `` }
     ],
     analyzedData: [{
       coanalysis: [``],
@@ -83,6 +84,10 @@ export class AssetDetailsComponent implements OnInit {
 
   stockTotalCost(): string {
     return (this.assetMainDetails?.buyPrice * this.assetMainDetails?.amount).toFixed(2);
+  }
+
+  setUnit(unit: string) {
+    return (unit === 'curr') ? this.assetMainDetails.currency : unit;
   }
 
   saveDetailedRatios(detailedRatios: NgForm): void {

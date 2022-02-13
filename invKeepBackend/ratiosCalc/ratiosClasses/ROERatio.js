@@ -26,29 +26,29 @@ module.exports = class ROERatio extends BasicRatio {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.depends,
                 summary: `Negative ROE is probably a consequence of loosing money by company. However some actions - like 
-                restructuring - may make ROE negative despite business is profitable. (Long term average ${this.ratioName} for S&P500 
+                restructuring - may make ROE negative despite business is profitable (long term average ${this.ratioName} for S&P500 
                 is 14%).`,
                 numberRating: 3
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_bad,
-                summary: `Ratio significantly below industry average indicates that company is not doing good. Better not 
-                to buy. (Long term average ${this.ratioName} for S&P500 is 14%).`,
+                summary: `Ratio significantly below industry average indicates that company is not doing good. Better do 
+                close investigation before buying (long term average ${this.ratioName} for S&P500 is 14%).`,
                 numberRating: 2
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.ok,
-                summary: `Value just about industry average is considered as ok. Ratio above average indicates good stock.
-                (Long term average ${this.ratioName} for S&P500 is 14%).`,
+                summary: `Value just about industry average is considered as ok. Ratio above average probably indicates a good stock
+                (long term average ${this.ratioName} for S&P500 is 14%).`,
                 numberRating: 4
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_good,
                 summary: `Be cautious. It may be great opportunity as the higher ${this.ratioName} the better. However, inconsistent 
-                profits influence the ratio (Long term average ${this.ratioName} for S&P500 is 14%).`,
+                profits influence the ratio (long term average ${this.ratioName} for S&P500 is 14%).`,
                 numberRating: 5
             }];
         this.intervals = [[-Infinity, 0], [0, 12], [12, 16], [16, Infinity]];
