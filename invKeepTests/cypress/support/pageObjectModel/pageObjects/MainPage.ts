@@ -24,18 +24,18 @@ class MainPage {
         return `${assetName.replace(/ /g, `-`).toLowerCase()}-details`;
     }
 
-    deleteAsset(assetToDeleteion: string) {
+    deleteAsset(assetToDeletion: string) {
 
         //  Arrange
-        let dataCyParam = this.dataCyElementAsset(assetToDeleteion);
+        let dataCyParam = this.dataCyElementAsset(assetToDeletion);
 
         cy.getDataCyElement(dataCyParam)
             .click();
-        cy.getDataCyElement(this.dataCyElementDeleteBtn(assetToDeleteion))
+        cy.getDataCyElement(this.dataCyElementDeleteBtn(assetToDeletion))
             .should(`exist`);
 
         //  Act
-        cy.getDataCyElement(this.dataCyElementDeleteBtn(assetToDeleteion))
+        cy.getDataCyElement(this.dataCyElementDeleteBtn(assetToDeletion))
             .click();
 
         //  Assert    
