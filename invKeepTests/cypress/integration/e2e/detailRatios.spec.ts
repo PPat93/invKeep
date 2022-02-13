@@ -15,6 +15,10 @@ describe(`Analysis Ratios`, () => {
         cy.visit(Utils.mainPageUrl);
     });
 
+    afterEach(`Little teardown`, () => {
+        Utils.teardownAssets(`TestAsset`);
+    })
+
     ratiosValues.forEach(singleRatioVal => {
         it(`Save detailed ratios - ${singleRatioVal} value`, () => {
 

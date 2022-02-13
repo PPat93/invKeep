@@ -39,13 +39,17 @@ describe(`Page displayments after direct access from URL`, () => {
 
 describe(`Page displayments after button click access`, () => {
 
+    afterEach(`Little teardown`, () => {
+        Utils.teardownAssets(`TestAsset`);
+    })
+
     it(`Details Page displayment`, () => {
 
         let assetName = `TestAsset${Date.now()}`;
 
         //  Arrange
         Utils.visitPage(Utils.createPageUrl);
-        CreateEditPage.createEditAsset(assetName, `DetPg`, parseInt(Date.now().toString().slice(10, 12)), 1.45, AssetCurrency.euro);
+        cy.apiCreateAsset(assetName, `DetPg`, parseInt(Date.now().toString().slice(10, 12)), 1.45, AssetCurrency.euro);
         Utils.visitPage(Utils.mainPageUrl);
 
         //  Act
@@ -60,10 +64,6 @@ describe(`Page displayments after button click access`, () => {
         cy.getDataCyElement(DetailsPageConsts.detailedRatiosCard)
             .should(`be.visible`)
             .and(`contain.text`, assetName);
-
-        //  Teardown
-        Utils.visitPage(Utils.mainPageUrl);
-        MainPage.deleteAsset(assetName);
     })
 
     it(`Edit Page displayment`, () => {
@@ -72,7 +72,7 @@ describe(`Page displayments after button click access`, () => {
 
         //  Arrange
         cy.apiCreateAsset(assetName, `editPg`, 10, 11.2, AssetCurrency.pound);
-        cy.reload();
+        cy.visit(Utils.mainPageUrl);
         cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
             .click();
 
@@ -87,10 +87,6 @@ describe(`Page displayments after button click access`, () => {
             .should(`contain`, Utils.editPageUrl);
         cy.getDataCyElement(CreateEditPageConsts.createAssetForm)
             .should(`be.visible`);
-
-        //  Teardown
-        Utils.visitPage(Utils.mainPageUrl);
-        MainPage.deleteAsset(assetName);
     })
 })
 
@@ -99,7 +95,10 @@ describe(`Visibility of Detailed Page elements`, () => {
     let assetName = `TestAsset${Date.now()}`;
 
     beforeEach(`Create asset`, () => {
-        cy.apiCreateAsset(assetName, `itemVis`, 10, 1.21, AssetCurrency.dollar);
+        cy.apiCreateAsset(assetName, `itemVis`, 10, 1.21, AssetCurrency.dollar).then(res => {
+            if (res.status === 201)
+                Cypress.env("assetItem").set(assetName, res.body.assetId);
+        });
         cy.visit(Utils.mainPageUrl);
         cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
             .click();
@@ -107,8 +106,15 @@ describe(`Visibility of Detailed Page elements`, () => {
             .click();
     })
 
-    it(`Detailed ratios inputs visibility`, () => {
+    afterEach(`Teardown after each test`, () => {
+        Cypress.env("assetItem").forEach(singleAsset => {
+            cy.apiDeleteAsset(singleAsset);
+        })
+    })
 
+    it(`Detailed ratios input table displayment`, () => {
+
+        // Arrange, Act & Assert
         cy.getDataCyElement(DetailsPageConsts.detailedRatiosNameCell).then(allCells => {
             cy.wrap(allCells)
                 .should(`have.length`, 14);

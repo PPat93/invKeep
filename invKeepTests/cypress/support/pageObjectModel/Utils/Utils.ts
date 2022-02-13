@@ -35,6 +35,16 @@ class Utils {
         cy.getDataCyElement(this.loadingSpinner, 5000)
             .should(`not.exist`);
     }
+
+    teardownAssets(assetTemp: string) {
+        cy.apiGetAsset().then(res => {
+            res.body.payload.forEach(singleItem => {
+                if (singleItem.assetName.match(assetTemp)) {
+                    cy.apiDeleteAsset(singleItem.id);
+                }
+            })
+        })
+    }
 }
 
 export default new Utils();

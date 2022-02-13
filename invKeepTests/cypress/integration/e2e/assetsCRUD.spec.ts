@@ -11,6 +11,11 @@ describe(`Assets CRU`, () => {
         Utils.visitPage(Utils.mainPageUrl);
     });
 
+    afterEach(`Little teardown`, () => {
+
+        Utils.teardownAssets(`TestAsset`);
+    })
+
     it(`Create asset without purchase date`, () => {
 
         assetName = `TestAsset${Date.now()}`;
@@ -33,6 +38,7 @@ describe(`Assets CRU`, () => {
     })
 
     it(`Create asset with purchase date`, () => {
+
         assetName = `TestAsset${Date.now()}`;
 
         //  Arrange
