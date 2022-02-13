@@ -31,10 +31,13 @@ describe(`Analysis Ratios`, () => {
                 .type(`{backspace}1`);
         })
 
+        cy.intercept(`PUT`, `/api/detailed-ratios/*`).as(`updateRatios`)
         cy.getDataCyElement(DetailsPageConsts.detailedRatiosButton)
-            .click({ force: true });
+            .click({ force: true })
+        cy.wait(`@updateRatios`).then(() => {
 
-        cy.reload();
+            cy.reload();
+        })
 
         cy.get(`.single-detailed-ratio`).each(ratio => {
             cy.wrap(ratio)

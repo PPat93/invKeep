@@ -15,6 +15,7 @@ describe(`Assets CRU`, () => {
 
         Utils.visitPage(Utils.mainPageUrl);
         MainPage.deleteAsset(assetName);
+        // TODO modify to delete all assets starting with "TestAsset[numbers]" at the end of each tests so there won't be any leftovers
     })
 
     it(`Create asset without purchase date`, () => {
