@@ -1,10 +1,10 @@
 /**
  * 
- * CreatePageConsts class containing all consts used on invKeep create asset page
+ * DetailsPageConsts class containing all consts used on invKeep create asset page
  * @class
  * 
  */
-class CreatePageConsts {
+class DetailsPageConsts {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //  SELECTORS                   ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -20,4 +20,4 @@ class CreatePageConsts {
 
 }
 
-export default new CreatePageConsts();
+export default new DetailsPageConsts();

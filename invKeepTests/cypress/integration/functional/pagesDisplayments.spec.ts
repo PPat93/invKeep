@@ -3,7 +3,6 @@ import Utils, { AssetCurrency } from "../../support/pageObjectModel/Utils/Utils"
 import CreateEditPageConsts from "../../support/pageObjectModel/Utils/CreateEditPageConsts";
 import DetailsPageConsts from "../../support/pageObjectModel/Utils/DetailsPageConsts";
 import MainPage from "../../support/pageObjectModel/pageObjects/MainPage";
-import CreateEditPage from "../../support/pageObjectModel/pageObjects/CreateEditPage";
 
 describe(`Page displayments after direct access from URL`, () => {
 

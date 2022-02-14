@@ -2,7 +2,7 @@ import MainPage from "../../support/pageObjectModel/pageObjects/MainPage";
 import Utils, { AssetCurrency } from "../../support/pageObjectModel/Utils/Utils";
 import DetailsPageConsts from "../../support/pageObjectModel/Utils/DetailsPageConsts";
 
-describe(`Analysis Ratios`, () => {
+describe(`Analysis Ratios saving`, () => {
 
     let assetName = ``;
     let ratiosValues = [1, 3.4, 23.95]

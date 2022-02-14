@@ -1,5 +1,3 @@
-import { contains } from "cypress/types/jquery";
-
 /**
  * 
  * Utility class containing all methods and variables used across diferent invKeep pages

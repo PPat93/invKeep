@@ -1,5 +1,5 @@
 import MainPage from "../../support/pageObjectModel/pageObjects/MainPage";
-import CreatePageConsts from "../../support/pageObjectModel/Utils/CreateEditPageConsts";
+import CreateEditPageConsts from "../../support/pageObjectModel/Utils/CreateEditPageConsts";
 import Utils, { AssetCurrency } from "../../support/pageObjectModel/Utils/Utils";
 import CreateEditPage from "../../support/pageObjectModel/pageObjects/CreateEditPage";
 
@@ -25,7 +25,7 @@ describe(`Assets CRU`, () => {
             .click();
         cy.url()
             .should(`contain`, Utils.createPageUrl);
-        cy.getDataCyElement(CreatePageConsts.createAssetForm)
+        cy.getDataCyElement(CreateEditPageConsts.createAssetForm)
             .should(`be.visible`);
 
         //  Act
@@ -46,7 +46,7 @@ describe(`Assets CRU`, () => {
             .click();
         cy.url()
             .should(`contain`, Utils.createPageUrl);
-        cy.getDataCyElement(CreatePageConsts.createAssetForm)
+        cy.getDataCyElement(CreateEditPageConsts.createAssetForm)
             .should(`be.visible`);
 
         //  Act
