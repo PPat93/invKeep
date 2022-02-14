@@ -12,8 +12,26 @@ class DetailsPageConsts {
     readonly detailedRatiosButton = `save`;
     readonly detailedRatiosInputsClass = `.single-detailed-ratio`;
 
-    readonly detailedRatiosNameCell = `input-ratio-name-cell`;
+    //-------------------------------------------------------------------------------------------------------------------------------------
+    //  INPUT TABLE -----------------------------------------------------------------------------------------------------------------------
+    readonly detailedRatiosInputRow = `input-ratios-items-row`;
     readonly detailRatiosInputTable = `ratios-input-table`;
+
+    //  Input Cells
+    readonly detailedRatiosInputNameCell = `input-ratios-name-cell`;
+    readonly detailedRatiosInputValueCell = `input-ratios-value-cell`;
+    readonly detailedRatiosInputUnitCell = `input-ratios-unit-cell`;
+    
+    //  ANALYSIS TABLE  -------------------------------------------------------------------------------------------------------------------
+    readonly detailedRatiosAnalysisRow = `analysis-ratios-items-row`;
+    readonly detailRatiosAnalysisTable = `ratios-analysis-table`;
+
+    //  Analysis Cells
+    readonly detailedRatiosAnalysisNameCell = `analysis-ratios-name-cell`;
+    readonly detailedRatiosAnalysisValueCell = `analysis-ratios-value-cell`;
+
+
+    //-------------------------------------------------------------------------------------------------------------------------------------
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //  TEXTS                       ////////////////////////////////////////////////////////////////////////////////////////////////////////

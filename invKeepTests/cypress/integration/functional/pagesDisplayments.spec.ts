@@ -111,18 +111,70 @@ describe(`Visibility of Detailed Page elements`, () => {
         })
     })
 
-    it(`Detailed ratios input table displayment`, () => {
+    it(`Detailed ratios input table displayment - Name column`, () => {
 
         // Arrange, Act & Assert
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosNameCell).then(allCells => {
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosInputNameCell).then(allCells => {
             cy.wrap(allCells)
                 .should(`have.length`, 14);
         })
-        cy.getDataCyElement(DetailsPageConsts.detailRatiosInputTable).then(inputTable => {
-            cy.wrap(inputTable)
-                .findNextDataCyElement(DetailsPageConsts.detailedRatiosNameCell).each(singleCell => {
-                    expect(singleCell.text().length).to.be.greaterThan(1);
-                })
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosInputNameCell).each(singleCell => {
+            expect(singleCell.text().length).to.be.greaterThan(1);
+        })
+    })
+
+    it(`Detailed ratios input table displayment - Input column`, () => {
+
+        // Arrange, Act & Assert
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosInputValueCell).then(allCells => {
+            cy.wrap(allCells)
+                .should(`have.length`, 14);
+        })
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosInputValueCell).each(singleCell => {
+            cy.wrap(singleCell)
+                .find(`input`)
+                .should(`be.visible`);
+        })
+    })
+
+    it(`Detailed ratios input table displayment - Unit column`, () => {
+
+        let units = [`%`, `-`, `€`, `$`, `¥`, `£`];
+
+        // Arrange, Act & Assert
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosInputUnitCell).then(allCells => {
+            cy.wrap(allCells)
+                .should(`have.length`, 14);
+        })
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosInputUnitCell).each(singleCell => {
+            expect(units).includes(singleCell.text().trim());
+        })
+    })
+
+    it(`Detailed ratios analysis table displayment - Name column`, () => {
+
+        // Arrange, Act & Assert
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisNameCell).then(allCells => {
+            cy.wrap(allCells)
+                .should(`have.length`, 14);
+        })
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisNameCell).each(singleCell => {
+            expect(singleCell.text().length).to.be.greaterThan(1);
+        })
+    })
+
+    it(`Detailed ratios analysis table displayment - Value column`, () => {
+
+        // Arrange, Act & Assert
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisValueCell).then(allCells => {
+            cy.wrap(allCells)
+                .should(`have.length`, 14);
+        })
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisValueCell).each(singleCell => {
+
+            let ratioValue;
+            ratioValue = parseFloat(singleCell.text());
+            expect(isNaN(ratioValue)).to.be.false;
         })
     })
 })

@@ -45,7 +45,7 @@
         <table data-cy="ratios-input-table" mat-table [dataSource]="detailedAssetRatios.ratiosArray">
           <ng-container matColumnDef="parameterName">
             <th data-cy="input-ratios-name-header" mat-header-cell *matHeaderCellDef>Ratio</th>
-            <td data-cy="input-ratio-name-cell" class="parameter-name" mat-cell *matCellDef="let ratio">
+            <td data-cy="input-ratios-name-cell" class="parameter-name" mat-cell *matCellDef="let ratio">
               {{ratio.parameterName}}</td>
           </ng-container>
           <ng-container matColumnDef="valueNum">
@@ -75,26 +75,26 @@
     </mat-card-content>
 
     <mat-card-content *ngIf="!isLoading2" class="ratio-analysis">
-      <table class="analysis-table" mat-table [dataSource]="detailedAssetRatios.analyzedData">
+      <table data-cy="ratios-analysis-table" class="analysis-table" mat-table [dataSource]="detailedAssetRatios.analyzedData">
         <ng-container matColumnDef="name">
-          <th data-cy="input-ratios-name-header" mat-header-cell *matHeaderCellDef>Name</th>
-          <td data-cy="analysis-ratio-name-cell" class="parameter-name" mat-cell *matCellDef="let analysis">
+          <th data-cy="analysis-ratios-name-header" mat-header-cell *matHeaderCellDef>Name</th>
+          <td data-cy="analysis-ratios-name-cell" class="parameter-name" mat-cell *matCellDef="let analysis">
             {{analysis.name}}</td>
         </ng-container>
         <ng-container matColumnDef="value">
-          <th data-cy="input-ratios-value-header" mat-header-cell *matHeaderCellDef>Value</th>
-          <td data-cy="analysis-ratio-value-cell" class="parameter-value" mat-cell *matCellDef="let analysis">
+          <th data-cy="analysis-ratios-value-header" mat-header-cell *matHeaderCellDef>Value</th>
+          <td data-cy="analysis-ratios-value-cell" class="parameter-value" mat-cell *matCellDef="let analysis">
             {{analysis.value}}</td>
         </ng-container>
         <ng-container matColumnDef="intervals">
-          <th data-cy="input-ratios-intervals-header" mat-header-cell *matHeaderCellDef>Intervals</th>
-          <td data-cy="analysis-ratio-intervals-cell" class="parameter-intervals" mat-cell *matCellDef="let analysis">
-            <div data-cy="analysis-ratio-intervals-cell-verbal-rating" class="interval-verbal-rating">
+          <th data-cy="analysis-ratios-intervals-header" mat-header-cell *matHeaderCellDef>Intervals</th>
+          <td data-cy="analysis-ratios-intervals-cell" class="parameter-intervals" mat-cell *matCellDef="let analysis">
+            <div data-cy="analysis-ratios-intervals-cell-verbal-rating" class="interval-verbal-rating">
               <b>{{analysis.intervals.verbalRating}}</b>
             </div>
-            <div data-cy="analysis-ratio-intervals-cell-summary" class="interval-summary">{{analysis.intervals.summary}}
+            <div data-cy="analysis-ratios-intervals-cell-summary" class="interval-summary">{{analysis.intervals.summary}}
             </div>
-            <div data-cy="analysis-ratio-intervals-cell-number-rating" class="interval-number-rating" [ngClass]="{
+            <div data-cy="analysis-ratios-intervals-cell-number-rating" class="interval-number-rating" [ngClass]="{
               'terrible' : analysis.intervals.numberRating === 1,
               'rather-bad' : analysis.intervals.numberRating === 2,
               'neutral' : analysis.intervals.numberRating === 3,
@@ -102,22 +102,22 @@
               'rather-good' : analysis.intervals.numberRating === 5,
               'outstanding' : analysis.intervals.numberRating === 6
             }">
-              <mat-progress-bar data-cy="analysis-ratio-intervals-cell-progress-bar"
+              <mat-progress-bar data-cy="analysis-ratios-intervals-cell-progress-bar"
                 value="{{analysis.intervals.numberRating*100/6}}" mode="determine">
               </mat-progress-bar>
             </div>
           </td>
         </ng-container>
         <ng-container matColumnDef="description">
-          <th data-cy="input-ratios-additional-info-header" mat-header-cell *matHeaderCellDef>Additional Info</th>
-          <td data-cy="analysis-ratio-additional-info-cell" class="info-button-column" mat-cell
+          <th data-cy="analysis-ratios-additional-info-header" mat-header-cell *matHeaderCellDef>Additional Info</th>
+          <td data-cy="analysis-ratios-additional-info-cell" class="info-button-column" mat-cell
             *matCellDef="let analysis">
             <button data-cy="details-button" class="details-button" mat-raised-button color="accent">Ratio
               Details</button>
           </td>
         </ng-container>
-        <tr data-cy="analysis-ratio-header-row" mat-header-row *matHeaderRowDef="ratiosAnalysisColumns"></tr>
-        <tr data-cy="analysis-ratio-items-row" class="table-row" mat-row
+        <tr data-cy="analysis-ratios-header-row" mat-header-row *matHeaderRowDef="ratiosAnalysisColumns"></tr>
+        <tr data-cy="analysis-ratios-items-row" class="table-row" mat-row
           *matRowDef="let row; columns: ratiosAnalysisColumns"></tr>
       </table>
     </mat-card-content>
