@@ -13,6 +13,10 @@ describe(`Analysis Ratios saving`, () => {
 
         cy.apiCreateAsset(assetName, `TASbl`, 19, 245.5, AssetCurrency.euro);
         cy.visit(Utils.mainPageUrl);
+        cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
+            .click();
+        cy.getDataCyElement(MainPage.dataCyElementDetailsBtn(assetName))
+            .click();
     });
 
     afterEach(`Little teardown`, () => {
@@ -22,13 +26,7 @@ describe(`Analysis Ratios saving`, () => {
     ratiosValues.forEach(singleRatioVal => {
         it(`Save detailed ratios - ${singleRatioVal} value`, () => {
 
-            //  Arrage 
-            cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
-                .click();
-            cy.getDataCyElement(MainPage.dataCyElementDetailsBtn(assetName))
-                .click();
-
-            //  Act
+            //  Arrage & Act
             cy.get(DetailsPageConsts.detailedRatiosInputsClass).each(ratio => {
                 cy.wrap(ratio)
                     .type(`{backspace}${singleRatioVal}`);
