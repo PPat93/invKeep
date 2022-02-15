@@ -178,13 +178,23 @@ describe(`Visibility of Detailed Page elements`, () => {
         })
     })
 
-    it(`Detailed ratios analysis table displayment - Analysis column - Verbal Rating`, () => {
+    it(`Detailed ratios analysis table displayment - Analysis column`, () => {
 
         // Arrange, Act & Assert
         cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell).then(allCells => {
             cy.wrap(allCells)
                 .should(`have.length`, 14);
         })
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell).each(singleCell => {
+
+            cy.wrap(singleCell)
+                .should(`be.visible`);
+        })
+    })
+
+    it(`Detailed ratios analysis table displayment - Analysis column - Verbal Rating`, () => {
+
+        // Arrange, Act & Assert
         cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell).each(singleCell => {
 
             cy.wrap(singleCell)
@@ -203,10 +213,6 @@ describe(`Visibility of Detailed Page elements`, () => {
     it(`Detailed ratios analysis table displayment - Analysis column - Summary`, () => {
 
         // Arrange, Act & Assert
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell).then(allCells => {
-            cy.wrap(allCells)
-                .should(`have.length`, 14);
-        })
         cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell).each(singleCell => {
 
             cy.wrap(singleCell).then(singleSummary => {
@@ -221,10 +227,6 @@ describe(`Visibility of Detailed Page elements`, () => {
     it(`Detailed ratios analysis table displayment - Analysis column - Progress Bar`, () => {
 
         // Arrange, Act & Assert
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell).then(allCells => {
-            cy.wrap(allCells)
-                .should(`have.length`, 14);
-        })
         cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell).each(singleCell => {
 
             cy.wrap(singleCell)
@@ -232,6 +234,26 @@ describe(`Visibility of Detailed Page elements`, () => {
                 .findNextDataCyElement(DetailsPageConsts.intervalsProgressBar)
                 .should(`be.visible`)
                 .and(`have.attr`, `aria-valuenow`);
+        })
+    })
+
+    it(`Detailed ratios analysis table displayment - Aditional info column`, () => {
+
+        // Arrange, Act & Assert
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisAdditionalData).then(allCells => {
+            cy.wrap(allCells)
+                .should(`have.length`, 14);
+        })
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisAdditionalData).each(singleCell => {
+
+            cy.wrap(singleCell)
+                .findNextDataCyElement(DetailsPageConsts.additionalDataDetailsButton)
+                .should(`be.visible`)
+                .and(`have.attr`, `color`, `accent`);
+            cy.wrap(singleCell)
+                .findNextDataCyElement(DetailsPageConsts.additionalDataDetailsButton)
+                .find(`span`)
+                .should(`contain.text`, `Ratio Details`);
         })
     })
 })

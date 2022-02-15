@@ -34,7 +34,8 @@ class DetailsPageConsts {
     readonly intervalsCellSummary = `analysis-ratios-intervals-cell-summary`;
     readonly intervalsNumberRating = `analysis-ratios-intervals-cell-number-rating`;
     readonly intervalsProgressBar = `analysis-ratios-intervals-cell-progress-bar`;
-
+    readonly detailedRatiosAnalysisAdditionalData = `analysis-ratios-additional-info-cell`;
+    readonly additionalDataDetailsButton = `details-button`;
 
     //-------------------------------------------------------------------------------------------------------------------------------------
 
