@@ -177,4 +177,61 @@ describe(`Visibility of Detailed Page elements`, () => {
             expect(isNaN(ratioValue)).to.be.false;
         })
     })
+
+    it(`Detailed ratios analysis table displayment - Analysis column - Verbal Rating`, () => {
+
+        // Arrange, Act & Assert
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell).then(allCells => {
+            cy.wrap(allCells)
+                .should(`have.length`, 14);
+        })
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell).each(singleCell => {
+
+            cy.wrap(singleCell)
+                .findNextDataCyElement(DetailsPageConsts.intervalsCellVerbalRating)
+                .should(`be.visible`);
+            cy.wrap(singleCell).then(singleSummary => {
+                cy.wrap(singleSummary)
+                    .findNextDataCyElement(DetailsPageConsts.intervalsCellVerbalRating)
+                    .find(`b`)
+                    .invoke(`text`)
+                    .should(`not.be.empty`);
+            })
+        })
+    })
+
+    it(`Detailed ratios analysis table displayment - Analysis column - Summary`, () => {
+
+        // Arrange, Act & Assert
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell).then(allCells => {
+            cy.wrap(allCells)
+                .should(`have.length`, 14);
+        })
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell).each(singleCell => {
+
+            cy.wrap(singleCell).then(singleSummary => {
+                cy.wrap(singleSummary)
+                    .findNextDataCyElement(DetailsPageConsts.intervalsCellSummary)
+                    .invoke(`text`)
+                    .should(`not.be.empty`);
+            })
+        })
+    })
+
+    it(`Detailed ratios analysis table displayment - Analysis column - Progress Bar`, () => {
+
+        // Arrange, Act & Assert
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell).then(allCells => {
+            cy.wrap(allCells)
+                .should(`have.length`, 14);
+        })
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell).each(singleCell => {
+
+            cy.wrap(singleCell)
+                .findNextDataCyElement(DetailsPageConsts.intervalsNumberRating)
+                .findNextDataCyElement(DetailsPageConsts.intervalsProgressBar)
+                .should(`be.visible`)
+                .and(`have.attr`, `aria-valuenow`);
+        })
+    })
 })
