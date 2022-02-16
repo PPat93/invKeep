@@ -4,7 +4,7 @@ import Utils, { AssetCurrency } from "../../support/pageObjectModel/Utils/Utils"
 import CreateEditPage from "../../support/pageObjectModel/pageObjects/CreateEditPage";
 
 describe(`Assets CRU`, () => {
-    let assetName = ``;
+    let assetName: string = ``;
 
     beforeEach(`Visit main page`, () => {
 
@@ -95,7 +95,7 @@ describe(`Assets D`, () => {
     it(`Delete existing asset `, () => {
 
         //   Arrange
-        let assetName = `TestAsset${Date.now().toString().slice(10, 12)}`;
+        let assetName: string = `TestAsset${Date.now().toString().slice(10, 12)}`;
 
         cy.apiCreateAsset(assetName, `DelAs`, 12, 10.12, AssetCurrency.euro);
         cy.reload();

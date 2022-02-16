@@ -44,7 +44,7 @@ describe(`Page displayments after button click access`, () => {
 
     it(`Details Page displayment`, () => {
 
-        let assetName = `TestAsset${Date.now()}`;
+        let assetName: string = `TestAsset${Date.now()}`;
 
         //  Arrange
         Utils.visitPage(Utils.createPageUrl);
@@ -67,7 +67,7 @@ describe(`Page displayments after button click access`, () => {
 
     it(`Edit Page displayment`, () => {
 
-        let assetName = `TestAsset${Date.now()}`;
+        let assetName: string = `TestAsset${Date.now()}`;
 
         //  Arrange
         cy.apiCreateAsset(assetName, `editPg`, 10, 11.2, AssetCurrency.pound);
@@ -91,7 +91,7 @@ describe(`Page displayments after button click access`, () => {
 
 describe(`Visibility of Detailed Page elements`, () => {
 
-    let assetName = `TestAsset${Date.now()}`;
+    let assetName: string = `TestAsset${Date.now()}`;
 
     beforeEach(`Create asset`, () => {
         cy.apiCreateAsset(assetName, `itemVis`, 10, 1.21, AssetCurrency.dollar).then(res => {
@@ -139,7 +139,7 @@ describe(`Visibility of Detailed Page elements`, () => {
 
     it(`Detailed ratios input table displayment - Unit column`, () => {
 
-        let units = [`%`, `-`, `€`, `$`, `¥`, `£`];
+        let units: string[] = [`%`, `-`, `€`, `$`, `¥`, `£`];
 
         // Arrange, Act & Assert
         cy.getDataCyElement(DetailsPageConsts.detailedRatiosInputUnitCell).then(allCells => {
@@ -172,7 +172,7 @@ describe(`Visibility of Detailed Page elements`, () => {
         })
         cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisValueCell).each(singleCell => {
 
-            let ratioValue;
+            let ratioValue: number;
             ratioValue = parseFloat(singleCell.text());
             expect(isNaN(ratioValue)).to.be.false;
         })

@@ -4,8 +4,8 @@ import DetailsPageConsts from "../../support/pageObjectModel/Utils/DetailsPageCo
 
 describe(`Analysis Ratios saving`, () => {
 
-    let assetName = ``;
-    let ratiosValues = [1, 3.4, 23.95]
+    let assetName: string = ``;
+    let ratiosValues: number[] = [1, 3.4, 23.95]
 
     beforeEach(`Create test asset`, () => {
 
@@ -48,8 +48,8 @@ describe(`Analysis Ratios saving`, () => {
 
     it(`Detailed ratios Analysis Table each ratio value is equal to corresponding Input Table value`, () => {
 
-        let analysisParsed = [];
-        let inputParsed = [];
+        let analysisParsed: number[] = [];
+        let inputParsed: number[] = [];
 
         //  Arrange
         cy.get(DetailsPageConsts.detailedRatiosInputsClass).each((ratio, index) => {

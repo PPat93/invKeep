@@ -24,6 +24,11 @@ class CreateEditPageConsts {
     readonly createAssetFormHeader = `Create asset:`;
 
     readonly fullNameError = `Please provide valid asset name.`;
+    readonly symbolError = `Please provide valid asset symbol.`;
+    readonly amountError = `Please provide valid whole number amount.`;
+    readonly priceError = `Please provide valid price.`;
+    readonly currencyError = `Please select valid currency.`;
+    readonly dateError = `Provided date is invalid.`;
 }
 
 export default new CreateEditPageConsts();
