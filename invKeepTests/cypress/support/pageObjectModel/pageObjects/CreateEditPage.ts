@@ -36,6 +36,16 @@ class CreateEditpage {
             .click();
         cy.wait(500); // TODO For some reason sometimes PUT request is interrupted if too fast moved out of page - TO BE INVESTIGATED
     }
+
+    checkErrorField(field: string, error: string) {
+
+        cy.getDataCyElement(field)
+            .parentsUntil(`mat-form-field`)
+            .find(`mat-error`)
+            .should(`contain.text`, error)
+            .and(`have.attr`, `role`, `alert`)
+            .and(`be.visible`);
+    }
 }
 
 export default new CreateEditpage();

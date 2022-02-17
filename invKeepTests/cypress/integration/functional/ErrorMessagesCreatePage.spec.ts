@@ -1,3 +1,4 @@
+import CreateEditPage from "../../support/pageObjectModel/pageObjects/CreateEditPage";
 import CreateEditPageConsts from "../../support/pageObjectModel/Utils/CreateEditPageConsts";
 import Utils from "../../support/pageObjectModel/Utils/Utils"
 
@@ -23,29 +24,25 @@ describe(`Error messages - Create Asset form - empty required`, () => {
             //  Arrange & Act
             cy.getDataCyElement(singleField[0])
                 .focus().then(focusedItem => {
-                    cy.wrap(focusedItem)
-                        .blur();
-                })
+                    cy.wrap(focusedItem).then(() => {
+                        cy.getDataCyElement(CreateEditPageConsts.submitBtn)
+                            .click();
+                    })
 
-            //  Assert
-            cy.getDataCyElement(singleField[0])
-                .parentsUntil(`mat-form-field`)
-                .find(`mat-error`)
-                .should(`contain.text`, singleField[1])
-                .and(`have.attr`, `role`, `alert`)
-                .and(`be.visible`);
+                    //  Assert
+                    CreateEditPage.checkErrorField(singleField[0], singleField[1]);
+                })
         })
     })
 })
-
 describe(`Error messages - Create Asset form - special chars`, () => {
 
-   let fullNameWrongData: string[] = [`,`, `/`, `;`, `[`, `]`, `\\`, `<`, `>`, `?`, `:`, `"`, `{`, `}`, `|`, `+`, `=`, `)`, `(`, `*`, `&`, `^`, `%`, `$`, `#`, `@`, `!`, `'`];
+    let fullNameWrongData: string[] = [`,`, `/`, `;`, `[`, `]`, `\\`, `<`, `>`, `?`, `:`, `"`, `{`, `}`, `|`, `+`, `=`, `)`, `(`, `*`, `&`, `^`, `%`, `$`, `#`, `@`, `!`, `'`];
     let symbolWrongData: string[] = [`/`, `;`, `[`, `]`, `\\`, `<`, `>`, `?`, `:`, `"`, `{`, `}`, `|`, `+`, `=`, `*`, `&`, `^`, `%`, `$`, `#`, `@`, `!`, `'`];
-    let amountWrongData: string[] = [ `.`, `-`, `,`, `/`, `;`, `[`, `]`, `\\`, `<`, `>`, `?`, `:`, `"`, `{`, `}`, `|`, `+`, `=`, `)`, `(`, `*`, `&`, `^`, `%`, `$`, `#`, `@`, `!`, `'`]
+    let amountWrongData: string[] = [`.`, `-`, `,`, `/`, `;`, `[`, `]`, `\\`, `<`, `>`, `?`, `:`, `"`, `{`, `}`, `|`, `+`, `=`, `)`, `(`, `*`, `&`, `^`, `%`, `$`, `#`, `@`, `!`, `'`]
     let priceWrongData: string[] = [`-`, `,`, `/`, `;`, `[`, `]`, `\\`, `<`, `>`, `?`, `:`, `"`, `{`, `}`, `|`, `+`, `=`, `)`, `(`, `*`, `&`, `^`, `%`, `$`, `#`, `@`, `!`, `'`]
     let purchaseDateWrongData: string[] = [`.`, `-`, `,`, `/`, `;`, `[`, `]`, `\\`, `<`, `>`, `?`, `:`, `"`, `{`, `}`, `|`, `+`, `=`, `)`, `(`, `*`, `&`, `^`, `%`, `$`, `#`, `@`, `!`, `'`];
-    
+
     beforeEach(`Visit Create asset page`, () => {
 
         cy.visit(Utils.createPageUrl);
@@ -53,112 +50,201 @@ describe(`Error messages - Create Asset form - special chars`, () => {
 
     fullNameWrongData.forEach(singleValue => {
 
-        it(`Error message for invalid value "Name${singleValue}" - full name field`, () => {
+        it(`Error message for special chars "Name${singleValue}" - full name field`, () => {
 
             //  Arrange & Act
             cy.getDataCyElement(CreateEditPageConsts.fullName)
                 .then(focusedItem => {
                     cy.wrap(focusedItem)
-                        .type(`Name${singleValue}`)
-                        .blur();
+                        .type(`Name${singleValue}`).then(() => {
+                            cy.getDataCyElement(CreateEditPageConsts.submitBtn)
+                                .click();
+                        })
                 })
 
             //  Assert
-            cy.getDataCyElement(CreateEditPageConsts.fullName)
-                .parentsUntil(`mat-form-field`)
-                .find(`mat-error`)
-                .should(`contain.text`, CreateEditPageConsts.fullNameError)
-                .and(`have.attr`, `role`, `alert`)
-                .and(`be.visible`);
+            CreateEditPage.checkErrorField(CreateEditPageConsts.fullName, CreateEditPageConsts.fullNameError);
         })
     })
 
     symbolWrongData.forEach(singleValue => {
 
-        it(`Error message for invalid value "${singleValue}" - symbol field`, () => {
+        it(`Error message for special chars "${singleValue}" - symbol field`, () => {
 
             //  Arrange & Act
             cy.getDataCyElement(CreateEditPageConsts.symbol)
                 .then(focusedItem => {
                     cy.wrap(focusedItem)
-                        .type(`${singleValue}`)
-                        .blur();
+                        .type(`${singleValue}`).then(() => {
+                            cy.getDataCyElement(CreateEditPageConsts.submitBtn)
+                                .click();
+                        })
                 })
 
             //  Assert
-            cy.getDataCyElement(CreateEditPageConsts.symbol)
-                .parentsUntil(`mat-form-field`)
-                .find(`mat-error`)
-                .should(`contain.text`, CreateEditPageConsts.symbolError)
-                .and(`have.attr`, `role`, `alert`)
-                .and(`be.visible`);
+            CreateEditPage.checkErrorField(CreateEditPageConsts.symbol, CreateEditPageConsts.symbolError);
         })
     })
 
     amountWrongData.forEach(singleValue => {
 
-        it(`Error message for invalid value "${singleValue}" - amount field`, () => {
+        it(`Error message for special chars "${singleValue}" - amount field`, () => {
 
             //  Arrange & Act
             cy.getDataCyElement(CreateEditPageConsts.amount)
                 .then(focusedItem => {
                     cy.wrap(focusedItem)
-                        .type(`${singleValue}`)
-                        .blur();
+                        .type(`${singleValue}`).then(() => {
+                            cy.getDataCyElement(CreateEditPageConsts.submitBtn)
+                                .click();
+                        })
                 })
 
             //  Assert
-            cy.getDataCyElement(CreateEditPageConsts.amount)
-                .parentsUntil(`mat-form-field`)
-                .find(`mat-error`)
-                .should(`contain.text`, CreateEditPageConsts.amountError)
-                .and(`have.attr`, `role`, `alert`)
-                .and(`be.visible`);
+            CreateEditPage.checkErrorField(CreateEditPageConsts.amount, CreateEditPageConsts.amountError);
         })
     })
 
     priceWrongData.forEach(singleValue => {
 
-        it(`Error message for invalid value "${singleValue}" - price field`, () => {
+        it(`Error message for special chars "${singleValue}" - price field`, () => {
 
             //  Arrange & Act
             cy.getDataCyElement(CreateEditPageConsts.price)
                 .then(focusedItem => {
                     cy.wrap(focusedItem)
-                        .type(`${singleValue}`)
-                        .blur();
+                        .type(`${singleValue}`).then(() => {
+                            cy.getDataCyElement(CreateEditPageConsts.submitBtn)
+                                .click();
+                        })
                 })
 
             //  Assert
-            cy.getDataCyElement(CreateEditPageConsts.price)
-                .parentsUntil(`mat-form-field`)
-                .find(`mat-error`)
-                .should(`contain.text`, CreateEditPageConsts.priceError)
-                .and(`have.attr`, `role`, `alert`)
-                .and(`be.visible`);
+            CreateEditPage.checkErrorField(CreateEditPageConsts.price, CreateEditPageConsts.priceError);
         })
     })
-    
+
     purchaseDateWrongData.forEach(singleValue => {
 
-        it(`Error message for invalid value "${singleValue}" - purchase date field`, () => {
+        it(`Error message for special chars "${singleValue}" - purchase date field`, () => {
 
             //  Arrange & Act
             cy.getDataCyElement(CreateEditPageConsts.purchaseDate)
                 .then(focusedItem => {
                     cy.wrap(focusedItem)
-                        .type(singleValue)
-                        .blur();
+                        .type(singleValue).then(() => {
+                            cy.getDataCyElement(CreateEditPageConsts.submitBtn)
+                                .click();
+                        })
                 })
 
             //  Assert
-            cy.getDataCyElement(CreateEditPageConsts.purchaseDate)
-                .parentsUntil(`mat-form-field`)
-                .find(`mat-error`)
-                .should(`contain.text`, CreateEditPageConsts.dateError)
-                .and(`have.attr`, `role`, `alert`)
-                .and(`be.visible`);
+            CreateEditPage.checkErrorField(CreateEditPageConsts.purchaseDate, CreateEditPageConsts.dateError);
         })
     })
-
 })
+
+describe(`Error messages - Create Asset form - too short/long value`, () => {
+
+    beforeEach(`Visit Create asset page`, () => {
+
+        cy.visit(Utils.createPageUrl);
+    })
+
+    it(`Error message for too short value (1) - full name field`, () => {
+
+        //  Arrange & Act
+        cy.getDataCyElement(CreateEditPageConsts.fullName)
+            .then(focusedItem => {
+                cy.wrap(focusedItem)
+                    .type(`a`).then(() => {
+                        cy.getDataCyElement(CreateEditPageConsts.submitBtn)
+                            .click();
+                    })
+            })
+
+        //  Assert
+        CreateEditPage.checkErrorField(CreateEditPageConsts.fullName, CreateEditPageConsts.fullNameError);
+    })
+
+
+    it(`Error message for too long value (31) - full name field`, () => {
+
+        //  Arrange & Act
+        cy.getDataCyElement(CreateEditPageConsts.fullName)
+            .then(focusedItem => {
+                cy.wrap(focusedItem)
+                    .type(`aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa`).then(() => {
+                        cy.getDataCyElement(CreateEditPageConsts.submitBtn)
+                            .click();
+                    })
+            })
+
+        //  Assert
+        CreateEditPage.checkErrorField(CreateEditPageConsts.fullName, CreateEditPageConsts.fullNameError);
+    })
+
+    it(`Error message for too long value (7) - symbol field`, () => {
+
+        //  Arrange & Act
+        cy.getDataCyElement(CreateEditPageConsts.fullName)
+            .then(focusedItem => {
+                cy.wrap(focusedItem)
+                    .type(`aaaaaaa`).then(() => {
+                        cy.getDataCyElement(CreateEditPageConsts.submitBtn)
+                            .click();
+                    })
+            })
+
+        //  Assert
+        CreateEditPage.checkErrorField(CreateEditPageConsts.symbol, CreateEditPageConsts.symbolError);
+    })
+
+    it(`Error message for too long value (11) - amount field`, () => {
+
+        //  Arrange & Act
+        cy.getDataCyElement(CreateEditPageConsts.amount)
+            .then(focusedItem => {
+                cy.wrap(focusedItem)
+                    .type(`11111111111`).then(() => {
+                        cy.getDataCyElement(CreateEditPageConsts.submitBtn)
+                            .click();
+                    })
+            })
+
+        //  Assert
+        CreateEditPage.checkErrorField(CreateEditPageConsts.amount, CreateEditPageConsts.amountError);
+    })
+
+    it(`Error message for too long value (11) - price field`, () => {
+
+        //  Arrange & Act
+        cy.getDataCyElement(CreateEditPageConsts.price)
+            .then(focusedItem => {
+                cy.wrap(focusedItem)
+                    .type(`11111111111`).then(() => {
+                        cy.getDataCyElement(CreateEditPageConsts.submitBtn)
+                            .click();
+                    })
+            })
+
+        //  Assert
+        CreateEditPage.checkErrorField(CreateEditPageConsts.price, CreateEditPageConsts.priceError);
+    })
+
+    it(`Error message for too long value (7) - purchase date field`, () => {
+
+        //  Arrange & Act
+        cy.getDataCyElement(CreateEditPageConsts.purchaseDate)
+            .then(focusedItem => {
+                cy.wrap(focusedItem)
+                    .type(`1212121`).then(() => {
+                        cy.getDataCyElement(CreateEditPageConsts.submitBtn)
+                            .click();
+                    })
+            })
+
+        //  Assert
+        CreateEditPage.checkErrorField(CreateEditPageConsts.purchaseDate, CreateEditPageConsts.dateError);
+    })
+}) 
