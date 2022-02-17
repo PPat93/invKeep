@@ -35,13 +35,14 @@ describe(`Error messages - Create Asset form - empty required`, () => {
         })
     })
 })
-describe(`Error messages - Create Asset form - special chars`, () => {
+
+describe(`Error messages - Create Asset form - wrong chars`, () => {
 
     let fullNameWrongData: string[] = [`,`, `/`, `;`, `[`, `]`, `\\`, `<`, `>`, `?`, `:`, `"`, `{`, `}`, `|`, `+`, `=`, `)`, `(`, `*`, `&`, `^`, `%`, `$`, `#`, `@`, `!`, `'`];
     let symbolWrongData: string[] = [`/`, `;`, `[`, `]`, `\\`, `<`, `>`, `?`, `:`, `"`, `{`, `}`, `|`, `+`, `=`, `*`, `&`, `^`, `%`, `$`, `#`, `@`, `!`, `'`];
-    let amountWrongData: string[] = [`.`, `-`, `,`, `/`, `;`, `[`, `]`, `\\`, `<`, `>`, `?`, `:`, `"`, `{`, `}`, `|`, `+`, `=`, `)`, `(`, `*`, `&`, `^`, `%`, `$`, `#`, `@`, `!`, `'`]
-    let priceWrongData: string[] = [`-`, `,`, `/`, `;`, `[`, `]`, `\\`, `<`, `>`, `?`, `:`, `"`, `{`, `}`, `|`, `+`, `=`, `)`, `(`, `*`, `&`, `^`, `%`, `$`, `#`, `@`, `!`, `'`]
-    let purchaseDateWrongData: string[] = [`.`, `-`, `,`, `/`, `;`, `[`, `]`, `\\`, `<`, `>`, `?`, `:`, `"`, `{`, `}`, `|`, `+`, `=`, `)`, `(`, `*`, `&`, `^`, `%`, `$`, `#`, `@`, `!`, `'`];
+    let amountWrongData: string[] = [`a`, `.`, `-`, `,`, `/`, `;`, `[`, `]`, `\\`, `<`, `>`, `?`, `:`, `"`, `{`, `}`, `|`, `+`, `=`, `)`, `(`, `*`, `&`, `^`, `%`, `$`, `#`, `@`, `!`, `'`]
+    let priceWrongData: string[] = [`a`, `-`, `,`, `/`, `;`, `[`, `]`, `\\`, `<`, `>`, `?`, `:`, `"`, `{`, `}`, `|`, `+`, `=`, `)`, `(`, `*`, `&`, `^`, `%`, `$`, `#`, `@`, `!`, `'`]
+    let purchaseDateWrongData: string[] = [`a`, `.`, `-`, `,`, `/`, `;`, `[`, `]`, `\\`, `<`, `>`, `?`, `:`, `"`, `{`, `}`, `|`, `+`, `=`, `)`, `(`, `*`, `&`, `^`, `%`, `$`, `#`, `@`, `!`, `'`];
 
     beforeEach(`Visit Create asset page`, () => {
 
@@ -166,7 +167,6 @@ describe(`Error messages - Create Asset form - too short/long value`, () => {
         //  Assert
         CreateEditPage.checkErrorField(CreateEditPageConsts.fullName, CreateEditPageConsts.fullNameError);
     })
-
 
     it(`Error message for too long value (31) - full name field`, () => {
 
