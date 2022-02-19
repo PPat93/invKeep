@@ -257,3 +257,65 @@ describe(`Visibility of Detailed Page elements`, () => {
         })
     })
 })
+
+describe.only(`Displayment of asset data on asset edition`, () => {
+    
+    let assetName = `TestAsset${Date.now()}`;
+
+    let assetFullName: string[] = [`TestAsset`, `TestAsset-`, `TestAsset.`];
+    let assetSymbol: string[] = [`Sym`, `Sym,m`, `Sym.m`,`Sym_m`,`Sym(m`,`Sym)m`,`Sym-m`,];
+
+    afterEach(`Teardown after each test`, () => {
+        Cypress.env("assetItem").forEach(singleAsset => {
+            cy.apiDeleteAsset(singleAsset);
+        })
+    })
+
+    assetFullName.forEach(singleAssetName => {
+
+        it(`Asset data full name is shown correctly on its edition - ${singleAssetName} value`, () => {
+
+            //  Arrange
+            cy.apiCreateAsset(singleAssetName, `editVis`, 10, 1.21, AssetCurrency.dollar).then(res => {
+                if (res.status === 201)
+                    Cypress.env("assetItem").set(singleAssetName, res.body.assetId);
+            });
+            cy.visit(Utils.mainPageUrl);
+
+            cy.getDataCyElement(MainPage.dataCyElementAsset(singleAssetName))
+                .click();
+            cy.getDataCyElement(MainPage.dataCyElementEditBtn(singleAssetName))
+                .click();
+
+            //  Act & Assert
+            cy.getDataCyElement(CreateEditPageConsts.fullName)
+                .invoke(`val`).then(text => {
+                    expect(text).to.be.equal(singleAssetName)
+                })
+        })
+    })
+
+    assetSymbol.forEach(singleSymbol => {
+
+        it(`Asset data symbol is shown correctly on its edition - ${singleSymbol} value`, () => {
+
+            //  Arrange
+            cy.apiCreateAsset(assetName, singleSymbol, 10, 1.21, AssetCurrency.dollar).then(res => {
+                if (res.status === 201)
+                    Cypress.env("assetItem").set(assetName, res.body.assetId);
+            });
+            cy.visit(Utils.mainPageUrl);
+
+            cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
+                .click();
+            cy.getDataCyElement(MainPage.dataCyElementEditBtn(assetName))
+                .click();
+
+            //  Act & Assert
+            cy.getDataCyElement(CreateEditPageConsts.symbol)
+                .invoke(`val`).then(text => {
+                    expect(text).to.be.equal(singleSymbol.toUpperCase());
+                })
+        })
+    })
+})
