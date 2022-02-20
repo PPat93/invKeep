@@ -71,7 +71,7 @@ describe(`Page displayments after button click access`, () => {
 
         //  Arrange
         cy.apiCreateAsset(assetName, `editPg`, 10, 11.2, AssetCurrency.pound);
-        cy.visit(Utils.mainPageUrl);
+        Utils.visitPage(Utils.mainPageUrl);
         cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
             .click();
 
@@ -98,7 +98,7 @@ describe(`Visibility of Detailed Page elements`, () => {
             if (res.status === 201)
                 Cypress.env("assetItem").set(assetName, res.body.assetId);
         });
-        cy.visit(Utils.mainPageUrl);
+        Utils.visitPage(Utils.mainPageUrl);
         cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
             .click();
         cy.getDataCyElement(MainPage.dataCyElementDetailsBtn(assetName))
@@ -283,7 +283,7 @@ describe(`Displayment of asset data on asset edition`, () => {
                 if (res.status === 201)
                     Cypress.env("assetItem").set(singleAssetName, res.body.assetId);
             });
-            cy.visit(Utils.mainPageUrl);
+            Utils.visitPage(Utils.mainPageUrl);
 
             cy.getDataCyElement(MainPage.dataCyElementAsset(singleAssetName))
                 .click();
@@ -307,7 +307,7 @@ describe(`Displayment of asset data on asset edition`, () => {
                 if (res.status === 201)
                     Cypress.env("assetItem").set(assetName, res.body.assetId);
             });
-            cy.visit(Utils.mainPageUrl);
+            Utils.visitPage(Utils.mainPageUrl);
 
             cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
                 .click();
@@ -329,7 +329,7 @@ describe(`Displayment of asset data on asset edition`, () => {
             if (res.status === 201)
                 Cypress.env("assetItem").set(assetName, res.body.assetId);
         });
-        cy.visit(Utils.mainPageUrl);
+        Utils.visitPage(Utils.mainPageUrl);
 
         cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
             .click();
@@ -352,7 +352,7 @@ describe(`Displayment of asset data on asset edition`, () => {
                 if (res.status === 201)
                     Cypress.env("assetItem").set(assetName, res.body.assetId);
             });
-            cy.visit(Utils.mainPageUrl);
+            Utils.visitPage(Utils.mainPageUrl);
 
             cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
                 .click();
@@ -376,7 +376,7 @@ describe(`Displayment of asset data on asset edition`, () => {
                 if (res.status === 201)
                     Cypress.env("assetItem").set(assetName, res.body.assetId);
             });
-            cy.visit(Utils.mainPageUrl);
+            Utils.visitPage(Utils.mainPageUrl);
 
             cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
                 .click();
@@ -399,7 +399,7 @@ describe(`Displayment of asset data on asset edition`, () => {
                 if (res.status === 201)
                     Cypress.env("assetItem").set(assetName, res.body.assetId);
             });
-            cy.visit(Utils.mainPageUrl);
+            Utils.visitPage(Utils.mainPageUrl);
 
             cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
                 .click();

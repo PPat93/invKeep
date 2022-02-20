@@ -12,7 +12,7 @@ describe(`Analysis Ratios saving`, () => {
         assetName = `TestAsset${Date.now()}`;
 
         cy.apiCreateAsset(assetName, `TASbl`, 19, 245.5, AssetCurrency.euro);
-        cy.visit(Utils.mainPageUrl);
+        Utils.visitPage(Utils.mainPageUrl);
         cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
             .click();
         cy.getDataCyElement(MainPage.dataCyElementDetailsBtn(assetName))

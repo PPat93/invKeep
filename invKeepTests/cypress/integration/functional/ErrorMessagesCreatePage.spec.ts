@@ -14,7 +14,7 @@ describe(`Error messages - Create Asset form - empty required`, () => {
 
     beforeEach(`Visit Create asset page`, () => {
 
-        cy.visit(Utils.createPageUrl);
+        Utils.visitPage(Utils.createPageUrl);
     })
 
     inputFieldsArray.forEach(singleField => {
@@ -46,7 +46,7 @@ describe(`Error messages - Create Asset form - wrong chars`, () => {
 
     beforeEach(`Visit Create asset page`, () => {
 
-        cy.visit(Utils.createPageUrl);
+        Utils.visitPage(Utils.createPageUrl);
     })
 
     fullNameWrongData.forEach(singleValue => {
@@ -149,7 +149,7 @@ describe(`Error messages - Create Asset form - too short/long value`, () => {
 
     beforeEach(`Visit Create asset page`, () => {
 
-        cy.visit(Utils.createPageUrl);
+        Utils.visitPage(Utils.createPageUrl);
     })
 
     it(`Error message for too short value (1) - full name field`, () => {
