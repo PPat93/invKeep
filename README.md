@@ -45,4 +45,14 @@ Above steps is enough to run the app - create and load assets.
 
 After invKeep main page refresh, all imported assets should be displayed.
 
+## Tests
+
+Running tests:
+- Move to `invKeepTests` folder.
+- Run `npx cypress open` command.
+- Select spec files that need to be run
+
+![invKeepTests](https://user-images.githubusercontent.com/45639693/154859149-80098d2f-86fd-4efa-9117-c735e8c9fb2c.png)
+
+![cypressMenu](https://user-images.githubusercontent.com/45639693/154859400-9206f093-1f99-4c96-80df-777dccd69c49.png)
 
