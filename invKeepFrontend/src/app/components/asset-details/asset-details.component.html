@@ -1,8 +1,8 @@
 <mat-card xmlns="http://www.w3.org/1999/html" data-cy="detailed-ratios">
   <div>
     <mat-card-title>
-      <span id="name">{{assetMainDetails?.assetName}}</span>
-      <span id="symbol">{{assetMainDetails?.assetSymbol}}</span>
+      <span data-cy="name" id="name">{{assetMainDetails?.assetName}}</span>
+      <span data-cy="symbol" id="symbol">{{assetMainDetails?.assetSymbol}}</span>
     </mat-card-title>
     <mat-divider></mat-divider>
     <br>
@@ -10,28 +10,28 @@
       Main details
     </mat-card-subtitle>
     <app-loading-spinner *ngIf="isLoading1"></app-loading-spinner>
-    <mat-card-content class="primary-details" *ngIf="!isLoading1">
+    <mat-card-content data-cy="asset-details-section" class="primary-details" *ngIf="!isLoading1">
       <table>
-        <tr id="amount">
+        <tr data-cy="amount" id="amount">
           <td> Owned quantity:</td>
           <td class="primary-values">{{assetMainDetails?.amount}}</td>
         </tr>
-        <tr id="price">
+        <tr data-cy="price" id="price">
           <td>Price per share:</td>
           <td class="primary-values">{{assetMainDetails?.buyPrice}}&nbsp;{{assetMainDetails?.currency}}</td>
         </tr>
-        <tr id="total-price">
+        <tr data-cy="total-price" id="total-price">
           <td>Total paid price:</td>
           <td class="primary-values">{{stockTotalCost()}}&nbsp;{{assetMainDetails?.currency}}</td>
         </tr>
-        <tr id="date">
+        <tr data-cy="date" id="date">
           <td>Purchase date:</td>
           <td class="primary-values">{{assetMainDetails?.purchaseDate}}</td>
         </tr>
       </table>
     </mat-card-content>
     <mat-card-actions>
-      <a class="edit" mat-stroked-button color="primary" [routerLink]="['/edit', assetId]">Edit</a>
+      <a class="edit" data-cy="edit" mat-stroked-button color="primary" [routerLink]="['/edit', assetId]">Edit</a>
     </mat-card-actions>
     <mat-divider></mat-divider>
     <br>
@@ -39,31 +39,34 @@
       Stock ratios
     </mat-card-subtitle>
     <app-loading-spinner *ngIf="isLoading2"></app-loading-spinner>
-    <mat-card-content class="ratios-column" *ngIf="!isLoading2">
-      <form (submit)="saveDetailedRatios(ratiosInput)" ngForm #ratiosInput="ngForm" class="asset-ratios-table"
-        name="detailed-ratios">
-        <table mat-table [dataSource]="detailedAssetRatios.ratiosArray">
+    <mat-card-content data-cy="ratios-section" class="ratios-column" *ngIf="!isLoading2">
+      <form data-cy="ratios-inputs" (submit)="saveDetailedRatios(ratiosInput)" ngForm #ratiosInput="ngForm"
+        class="asset-ratios-table" name="detailed-ratios">
+        <table data-cy="ratios-input-table" mat-table [dataSource]="detailedAssetRatios.ratiosArray">
           <ng-container matColumnDef="parameterName">
-            <th mat-header-cell *matHeaderCellDef>Ratio</th>
-            <td class="parameter-name" mat-cell *matCellDef="let ratio"> {{ratio.parameterName}}</td>
+            <th data-cy="input-ratios-name-header" mat-header-cell *matHeaderCellDef>Ratio</th>
+            <td data-cy="input-ratios-name-cell" class="parameter-name" mat-cell *matCellDef="let ratio">
+              {{ratio.parameterName}}</td>
           </ng-container>
           <ng-container matColumnDef="valueNum">
-            <th mat-header-cell *matHeaderCellDef>Value</th>
-            <td class="input-detailed-ratio" mat-cell *matCellDef="let ratio">
+            <th data-cy="input-ratios-value-header" mat-header-cell *matHeaderCellDef>Value</th>
+            <td data-cy="input-ratios-value-cell" class="input-detailed-ratio" mat-cell *matCellDef="let ratio">
               <mat-form-field class="input-detailed-ratio">
                 <input class="single-detailed-ratio"
-                  [attr.data-cy]="ratio.parameterName.replaceAll(' ', '-').toLowerCase()"
+                  [attr.data-cy]="ratio.parameterName.replaceAll(' ', '-').toLowerCase() + '-input'"
                   name="r{{ratio.parameterName}}" matInput [ngModel]="ratio.valueNum" value="{{ratio.valueNum}}">
                 <!-- DO NOT REMOVE ABOVE "r" letter from "name" parameter, it breaks detailed ratios save functionality -->
               </mat-form-field>
             </td>
           </ng-container>
           <ng-container matColumnDef="unit">
-            <th mat-header-cell *matHeaderCellDef>Unit</th>
-            <td class="parameter-unit" mat-cell *matCellDef="let ratio">{{setUnit(ratio.unit)}}</td>
+            <th data-cy="input-ratios-unit-header" mat-header-cell *matHeaderCellDef>Unit</th>
+            <td data-cy="input-ratios-unit-cell" class="parameter-unit" mat-cell *matCellDef="let ratio">
+              {{setUnit(ratio.unit)}}</td>
           </ng-container>
-          <tr mat-header-row *matHeaderRowDef="ratiosColumns"></tr>
-          <tr class="table-row " mat-row *matRowDef="let row; columns: ratiosColumns"></tr>
+          <tr data-cy="input-ratios-header-row" mat-header-row *matHeaderRowDef="ratiosColumns"></tr>
+          <tr data-cy="input-ratios-items-row" class="table-row " mat-row *matRowDef="let row; columns: ratiosColumns">
+          </tr>
         </table>
         <mat-card-actions>
           <button data-cy="save" mat-raised-button color="primary" type="submit">Save</button>
@@ -72,21 +75,26 @@
     </mat-card-content>
 
     <mat-card-content *ngIf="!isLoading2" class="ratio-analysis">
-      <table class="analysis-table" mat-table [dataSource]="detailedAssetRatios.analyzedData">
+      <table data-cy="ratios-analysis-table" class="analysis-table" mat-table [dataSource]="detailedAssetRatios.analyzedData">
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td class="parameter-name" mat-cell *matCellDef="let analysis">{{analysis.name}}</td>
+          <th data-cy="analysis-ratios-name-header" mat-header-cell *matHeaderCellDef>Name</th>
+          <td data-cy="analysis-ratios-name-cell" class="parameter-name" mat-cell *matCellDef="let analysis">
+            {{analysis.name}}</td>
         </ng-container>
         <ng-container matColumnDef="value">
-          <th mat-header-cell *matHeaderCellDef>Value</th>
-          <td class="parameter-value" mat-cell *matCellDef="let analysis">{{analysis.value}}</td>
+          <th data-cy="analysis-ratios-value-header" mat-header-cell *matHeaderCellDef>Value</th>
+          <td data-cy="analysis-ratios-value-cell" class="parameter-value" mat-cell *matCellDef="let analysis">
+            {{analysis.value}}</td>
         </ng-container>
         <ng-container matColumnDef="intervals">
-          <th mat-header-cell *matHeaderCellDef>Intervals</th>
-          <td class="parameter-intervals" mat-cell *matCellDef="let analysis">
-            <div class="interval-verbal-rating"><b>{{analysis.intervals.verbalRating}}</b></div>
-            <div class="interval-summary">{{analysis.intervals.summary}}</div>
-            <div class="interval-number-rating" [ngClass]="{
+          <th data-cy="analysis-ratios-intervals-header" mat-header-cell *matHeaderCellDef>Analysis</th>
+          <td data-cy="analysis-ratios-intervals-cell" class="parameter-intervals" mat-cell *matCellDef="let analysis">
+            <div data-cy="analysis-ratios-intervals-cell-verbal-rating" class="interval-verbal-rating">
+              <b>{{analysis.intervals.verbalRating}}</b>
+            </div>
+            <div data-cy="analysis-ratios-intervals-cell-summary" class="interval-summary">{{analysis.intervals.summary}}
+            </div>
+            <div data-cy="analysis-ratios-intervals-cell-number-rating" class="interval-number-rating" [ngClass]="{
               'terrible' : analysis.intervals.numberRating === 1,
               'rather-bad' : analysis.intervals.numberRating === 2,
               'neutral' : analysis.intervals.numberRating === 3,
@@ -94,19 +102,23 @@
               'rather-good' : analysis.intervals.numberRating === 5,
               'outstanding' : analysis.intervals.numberRating === 6
             }">
-              <mat-progress-bar value="{{analysis.intervals.numberRating*100/6}}" mode="determine">
+              <mat-progress-bar data-cy="analysis-ratios-intervals-cell-progress-bar"
+                value="{{analysis.intervals.numberRating*100/6}}" mode="determine">
               </mat-progress-bar>
             </div>
           </td>
         </ng-container>
         <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef>Additional Info</th>
-          <td class="info-button-column" mat-cell *matCellDef="let analysis">
-            <button class="details-button" mat-raised-button color="accent">Ratio Details</button>
+          <th data-cy="analysis-ratios-additional-info-header" mat-header-cell *matHeaderCellDef>Additional Info</th>
+          <td data-cy="analysis-ratios-additional-info-cell" class="info-button-column" mat-cell
+            *matCellDef="let analysis">
+            <button data-cy="details-button" class="details-button" mat-raised-button color="accent">Ratio
+              Details</button>
           </td>
         </ng-container>
-        <tr mat-header-row *matHeaderRowDef="ratiosAnalysisColumns"></tr>
-        <tr class="table-row" mat-row *matRowDef="let row; columns: ratiosAnalysisColumns"></tr>
+        <tr data-cy="analysis-ratios-header-row" mat-header-row *matHeaderRowDef="ratiosAnalysisColumns"></tr>
+        <tr data-cy="analysis-ratios-items-row" class="table-row" mat-row
+          *matRowDef="let row; columns: ratiosAnalysisColumns"></tr>
       </table>
     </mat-card-content>
   </div>

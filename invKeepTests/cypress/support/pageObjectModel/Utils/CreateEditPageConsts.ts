@@ -1,10 +1,10 @@
 /**
  * 
- * CreatePageConsts class containing all consts used on invKeep create asset page
+ * CreateEditPageConsts class containing all consts used on invKeep create asset page
  * @class
  * 
  */
-class CreatePageConsts {
+class CreateEditPageConsts {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //  SELECTORS                   ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,6 +22,13 @@ class CreatePageConsts {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //  TEXTS                       ////////////////////////////////////////////////////////////////////////////////////////////////////////
     readonly createAssetFormHeader = `Create asset:`;
+
+    readonly fullNameError = `Please provide valid asset name.`;
+    readonly symbolError = `Please provide valid asset symbol.`;
+    readonly amountError = `Please provide valid whole number amount.`;
+    readonly priceError = `Please provide valid price.`;
+    readonly currencyError = `Please select valid currency.`;
+    readonly dateError = `Provided date is invalid.`;
 }
 
-export default new CreatePageConsts();
+export default new CreateEditPageConsts();

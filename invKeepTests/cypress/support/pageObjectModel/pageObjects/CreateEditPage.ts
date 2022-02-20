@@ -1,4 +1,4 @@
-import CreatePageConsts from "../Utils/CreateEditPageConsts";
+import CreateEditPageConsts from "../Utils/CreateEditPageConsts";
 import { AssetCurrency } from "../Utils/Utils";
 /**
  * 
@@ -10,31 +10,41 @@ class CreateEditpage {
 
     createEditAsset(assetName: string, assetSymbol: string, amount: number, pricePerUnit: number, currency: AssetCurrency, purchaseDate?: Date | string) {
 
-        cy.getDataCyElement(CreatePageConsts.fullName)
+        cy.getDataCyElement(CreateEditPageConsts.fullName)
             .clear()
             .type(assetName);
-        cy.getDataCyElement(CreatePageConsts.symbol)
+        cy.getDataCyElement(CreateEditPageConsts.symbol)
             .clear()
             .type(assetSymbol);
-        cy.getDataCyElement(CreatePageConsts.amount)
+        cy.getDataCyElement(CreateEditPageConsts.amount)
             .clear()
             .type(`${amount}`);
-        cy.getDataCyElement(CreatePageConsts.price)
+        cy.getDataCyElement(CreateEditPageConsts.price)
             .clear()
             .type(`${pricePerUnit}`);
-        cy.getDataCyElement(CreatePageConsts.currency)
+        cy.getDataCyElement(CreateEditPageConsts.currency)
             .click()
         cy.get(`mat-option`)
             .contains(currency)
             .click({ force: true });
         if (purchaseDate !== undefined) {
-            cy.getDataCyElement(CreatePageConsts.purchaseDate)
+            cy.getDataCyElement(CreateEditPageConsts.purchaseDate)
                 .clear()
                 .type(`${purchaseDate}`)
         }
-        cy.getDataCyElement(CreatePageConsts.submitBtn)
+        cy.getDataCyElement(CreateEditPageConsts.submitBtn)
             .click();
         cy.wait(500); // TODO For some reason sometimes PUT request is interrupted if too fast moved out of page - TO BE INVESTIGATED
+    }
+
+    checkErrorField(field: string, error: string) {
+
+        cy.getDataCyElement(field)
+            .parentsUntil(`mat-form-field`)
+            .find(`mat-error`)
+            .should(`contain.text`, error)
+            .and(`have.attr`, `role`, `alert`)
+            .and(`be.visible`);
     }
 }
 
