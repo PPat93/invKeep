@@ -19,7 +19,7 @@ export class AssetRatiosService {
   constructor(private http: HttpClient) {
   }
 
-  getDetailedRatios(assetId: string): DetailedAssetRatiosAnalyzed {
+  getDetailedRatios(assetId: string): Subject<DetailedAssetRatiosAnalyzed> {
     this.http.get<{ message: string, retrievedRatios: DetailedAssetRatios, analyzedData: AnalyzedData[] }>(`http://localhost:3000/api/detailed-ratios/${assetId}`)
       .pipe(map((returnedRatios) => {
         return {
@@ -54,7 +54,7 @@ export class AssetRatiosService {
         }
         this.updateAssetRatios.next(this.ratiosReturn);
       })
-    return this.ratiosReturn;
+    return this.updateAssetRatios;
   }
 
   saveDetailedRatios(assetId: string, detailedRatios) {
