@@ -100,6 +100,12 @@ export class AssetDetailsComponent implements OnInit {
     }
     this.detailedAssetRatios.assetId = this.assetId;
     this.AssetRatiosService.saveDetailedRatios(this.assetId, this.detailedAssetRatios);
+    this.ratiosSub = this.AssetRatiosService.getRatiosAnalysisListener()
+    .subscribe((ratiosSubscribed: DetailedAssetRatiosAnalyzed) => {
+      this.isLoading2 = false;
+      this.detailedAssetRatios = ratiosSubscribed;
+      this.analyzedDetailedAssetRatios = ratiosSubscribed.analyzedData;
+    });
   }
 
   ngOnDestroy() {

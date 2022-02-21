@@ -75,7 +75,7 @@
     </mat-card-content>
 
     <mat-card-content *ngIf="!isLoading2" class="ratio-analysis">
-      <table data-cy="ratios-analysis-table" class="analysis-table" mat-table [dataSource]="detailedAssetRatios.analyzedData">
+      <table data-cy="ratios-analysis-table" class="analysis-table" mat-table [dataSource]="analyzedDetailedAssetRatios">
         <ng-container matColumnDef="name">
           <th data-cy="analysis-ratios-name-header" mat-header-cell *matHeaderCellDef>Name</th>
           <td data-cy="analysis-ratios-name-cell" class="parameter-name" mat-cell *matCellDef="let analysis">

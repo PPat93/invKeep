@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { AnalyzedData, DetailedAssetRatios, DetailedAssetRatiosAnalyzed } from "../shared/sharedTS";
-import { RatiosNames, RatiosUnits } from "../shared/sharedJS";
 import { map } from "rxjs/operators";
 import { Observable, Subject } from "rxjs";
 
@@ -10,6 +9,12 @@ import { Observable, Subject } from "rxjs";
 export class AssetRatiosService {
 
   private updateAssetRatios = new Subject<DetailedAssetRatiosAnalyzed>();
+  private ratiosAnalysisReturn = new Subject<DetailedAssetRatiosAnalyzed>();
+  ratiosReturn2: {
+    assetId: string,
+    ratiosArray: { parameterName: any; valueNum: number; unit: string }[],
+    analyzedData: AnalyzedData[]
+  };
   ratiosReturn: {
     assetId: string,
     ratiosArray: { parameterName: any; valueNum: number; unit: string }[],
@@ -19,7 +24,7 @@ export class AssetRatiosService {
   constructor(private http: HttpClient) {
   }
 
-  getDetailedRatios(assetId: string): Subject<DetailedAssetRatiosAnalyzed> {
+  getDetailedRatios(assetId: string) {
     this.http.get<{ message: string, retrievedRatios: DetailedAssetRatios, analyzedData: AnalyzedData[] }>(`http://localhost:3000/api/detailed-ratios/${assetId}`)
       .pipe(map((returnedRatios) => {
         return {
@@ -67,5 +72,9 @@ export class AssetRatiosService {
 
   getRatiosUpdateListener(): Observable<DetailedAssetRatiosAnalyzed> {
     return this.updateAssetRatios.asObservable()
+  }
+
+  getRatiosAnalysisListener(): Observable<DetailedAssetRatiosAnalyzed> {
+    return this.ratiosAnalysisReturn.asObservable()
   }
 }
