@@ -63,11 +63,14 @@ export class AssetRatiosService {
   }
 
   saveDetailedRatios(assetId: string, detailedRatios) {
-    this.http.put<{ message: string, retrievedRatios: any }>(`http://localhost:3000/api/detailed-ratios/${assetId}`, detailedRatios)
+    this.http.put<{ message: string, updatedAsset: any }>(`http://localhost:3000/api/detailed-ratios/${assetId}`, detailedRatios)
       .subscribe(responseData => {
-        // TODO add toastr after successfull/failed save
-        // TODO detiled ratios automatic update after saving
+        
+        //NEXT - HERE TO BE ADJUSTED
+        this.ratiosReturn2 = responseData.updatedAsset;
+        this.ratiosAnalysisReturn.next(this.ratiosReturn2);
       })
+    return this.ratiosReturn2;
   }
 
   getRatiosUpdateListener(): Observable<DetailedAssetRatiosAnalyzed> {

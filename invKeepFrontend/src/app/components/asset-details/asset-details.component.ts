@@ -76,7 +76,12 @@ export class AssetDetailsComponent implements OnInit {
     this.AssetRatiosService.getDetailedRatios(this.assetId);
     this.ratiosSub = this.AssetRatiosService.getRatiosUpdateListener()
       .subscribe((ratiosSubscribed: DetailedAssetRatiosAnalyzed) => {
+
+        //NEXT - HERE TO BE ADJUSTED
         this.isLoading2 = false;
+        console.log(`ratiosSubscribed`)
+        console.log(ratiosSubscribed)
+        
         this.detailedAssetRatios = ratiosSubscribed;
         this.analyzedDetailedAssetRatios = ratiosSubscribed.analyzedData;
       });
@@ -100,11 +105,12 @@ export class AssetDetailsComponent implements OnInit {
     }
     this.detailedAssetRatios.assetId = this.assetId;
     this.AssetRatiosService.saveDetailedRatios(this.assetId, this.detailedAssetRatios);
+    this.isLoading2 = true;
     this.ratiosSub = this.AssetRatiosService.getRatiosAnalysisListener()
-    .subscribe((ratiosSubscribed: DetailedAssetRatiosAnalyzed) => {
+    .subscribe((analysisReturned: DetailedAssetRatiosAnalyzed) => {
       this.isLoading2 = false;
-      this.detailedAssetRatios = ratiosSubscribed;
-      this.analyzedDetailedAssetRatios = ratiosSubscribed.analyzedData;
+      this.detailedAssetRatios = analysisReturned;
+      this.analyzedDetailedAssetRatios = analysisReturned.analyzedData;
     });
   }
 
