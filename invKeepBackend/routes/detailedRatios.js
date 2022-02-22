@@ -4,19 +4,21 @@ const router = express.Router();
 const AssetRatio = require('../models/assetRatio');
 const RatiosAnalysis = require('../ratiosCalc/AllRatios');
 
+function analyzeAssetProfitability(detailedRatios) {
+    let newRatios = detailedRatios[0];
+    let RatiosClassInstance = new RatiosAnalysis(newRatios.ratiosArray);
 
+    let analyzedRatios = RatiosClassInstance.analyzeData(newRatios.ratiosArray);
+    return [newRatios, analyzedRatios];
+}
 
 router.get('/:id', (req, res) => {
     AssetRatio.find({ assetId: req.params.id }).then((detailedRatios) => {
-        const newRatios = detailedRatios[0];
-        let RatiosClassInstance = new RatiosAnalysis(newRatios.ratiosArray);
-        
-        analyzedData = RatiosClassInstance.analyzeData(newRatios.ratiosArray)
-        
+        let analyzedData = analyzeAssetProfitability(detailedRatios);
         res.status(200).json({
             message: 'Asset ratios retrieved successfully!',
-            retrievedRatios: newRatios,
-            analyzedData: analyzedData
+            retrievedRatios: analyzedData[0],
+            analyzedData: analyzedData[1]
         });
     }).catch($e => {
         console.log('Error while detailed ratios retrieval. Error: ' + $e);
@@ -24,14 +26,17 @@ router.get('/:id', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-    AssetRatio.findById(req.body.assetId).then((data) => {
-        AssetRatio.updateOne({ assetId: req.body.assetId }, req.body).then(resData => {
-            
+    AssetRatio.updateOne({ assetId: req.body.assetId }, req.body).then(resData => {
+        AssetRatio.find({ assetId: req.body.assetId }).then(foundAssetRatios => {
+            console.log(foundAssetRatios)
+            let analyzedData = analyzeAssetProfitability(foundAssetRatios);
             res.status(200).json({
+
                 message: 'Ratios updated correctly!',
-                retrievedRatios: resData
+                updatedRatios: foundAssetRatios.ratiosArray,
+                analyzedData: analyzedData[1]
             });
-        });
+        })
     }).catch($e => {
         console.log('Error with detailed ratios save. Error: ' + $e);
     });
