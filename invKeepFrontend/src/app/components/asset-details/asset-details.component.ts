@@ -76,12 +76,7 @@ export class AssetDetailsComponent implements OnInit {
     this.AssetRatiosService.getDetailedRatios(this.assetId);
     this.ratiosSub = this.AssetRatiosService.getRatiosUpdateListener()
       .subscribe((ratiosSubscribed: DetailedAssetRatiosAnalyzed) => {
-
-        //NEXT - HERE TO BE ADJUSTED
         this.isLoading2 = false;
-        console.log(`ratiosSubscribed`)
-        console.log(ratiosSubscribed)
-        
         this.detailedAssetRatios = ratiosSubscribed;
         this.analyzedDetailedAssetRatios = ratiosSubscribed.analyzedData;
       });
@@ -98,7 +93,8 @@ export class AssetDetailsComponent implements OnInit {
   saveDetailedRatios(detailedRatios: NgForm): void {
     for (let ratio in this.detailedAssetRatios.ratiosArray) {
       for (let newRatio in detailedRatios.form.value) {
-        if (this.detailedAssetRatios.ratiosArray[ratio].parameterName === (newRatio.substring(1))) // because of error that appears if input field has name set only by
+        if (this.detailedAssetRatios.ratiosArray[ratio].parameterName === (newRatio.substring(1))) 
+          // because of error that appears if input field has name set only by
           // two way binding it was needed to add a letter that is not dynamic. Here I remove it.
           this.detailedAssetRatios.ratiosArray[ratio].valueNum = Number(detailedRatios.form.value[newRatio]);
       }
@@ -108,9 +104,10 @@ export class AssetDetailsComponent implements OnInit {
     this.isLoading2 = true;
     this.ratiosSub = this.AssetRatiosService.getRatiosAnalysisListener()
     .subscribe((analysisReturned: DetailedAssetRatiosAnalyzed) => {
-      this.isLoading2 = false;
-      this.detailedAssetRatios = analysisReturned;
-      this.analyzedDetailedAssetRatios = analysisReturned.analyzedData;
+      // //NEXT - HERE TO BE ADJUSTED
+      // this.isLoading2 = false;
+      // this.detailedAssetRatios = analysisReturned;
+      // this.analyzedDetailedAssetRatios = analysisReturned.analyzedData;
     });
   }
 

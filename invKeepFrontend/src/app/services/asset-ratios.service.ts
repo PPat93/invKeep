@@ -65,9 +65,8 @@ export class AssetRatiosService {
   saveDetailedRatios(assetId: string, detailedRatios) {
     this.http.put<{ message: string, updatedAsset: any }>(`http://localhost:3000/api/detailed-ratios/${assetId}`, detailedRatios)
       .subscribe(responseData => {
-        
-        //NEXT - HERE TO BE ADJUSTED
         this.ratiosReturn2 = responseData.updatedAsset;
+        this.updateAssetRatios.next(this.ratiosReturn);
         this.ratiosAnalysisReturn.next(this.ratiosReturn2);
       })
     return this.ratiosReturn2;
