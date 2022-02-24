@@ -9,7 +9,7 @@ import { Observable, Subject } from "rxjs";
 export class AssetRatiosService {
 
   private updateAssetRatios = new Subject<DetailedAssetRatiosAnalyzed>();
-  private ratiosAnalysisReturn = new Subject<DetailedAssetRatiosAnalyzed>();
+  private ratiosAnalysisEdit = new Subject<AnalyzedData[]>();
   ratiosReturn2: {
     assetId: string,
     ratiosArray: { parameterName: any; valueNum: number; unit: string }[],
@@ -63,20 +63,18 @@ export class AssetRatiosService {
   }
 
   saveDetailedRatios(assetId: string, detailedRatios) {
-    this.http.put<{ message: string, updatedAsset: any }>(`http://localhost:3000/api/detailed-ratios/${assetId}`, detailedRatios)
+    this.http.put<{ message: string, analyzedData: any }>(`http://localhost:3000/api/detailed-ratios/${assetId}`, detailedRatios)
       .subscribe(responseData => {
-        this.ratiosReturn2 = responseData.updatedAsset;
-        this.updateAssetRatios.next(this.ratiosReturn);
-        this.ratiosAnalysisReturn.next(this.ratiosReturn2);
+        this.updateAssetRatios.next(responseData.analyzedData);
       })
-    return this.ratiosReturn2;
+    return this.updateAssetRatios;
   }
 
   getRatiosUpdateListener(): Observable<DetailedAssetRatiosAnalyzed> {
     return this.updateAssetRatios.asObservable()
   }
 
-  getRatiosAnalysisListener(): Observable<DetailedAssetRatiosAnalyzed> {
-    return this.ratiosAnalysisReturn.asObservable()
+  getRatiosAnalysisListener(): Observable<AnalyzedData[]> {
+    return this.ratiosAnalysisEdit.asObservable()
   }
 }
