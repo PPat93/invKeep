@@ -32,7 +32,7 @@ describe(`Analysis Ratios saving`, () => {
                     .type(`{backspace}${singleRatioVal}`);
             });
             cy.intercept(`PUT`, `${Utils.detailedRatiosUri}/*`).as(`updateRatios`)
-            cy.getDataCyElement(DetailsPageConsts.detailedRatiosButton)
+            cy.getDataCyElement(DetailsPageConsts.saveBtn)
                 .click({ force: true })
             cy.wait(`@updateRatios`).then(() => {
                 cy.reload();
@@ -57,7 +57,7 @@ describe(`Analysis Ratios saving`, () => {
                 .type(`{backspace}${index}`);
         });
         cy.intercept(`PUT`, `${Utils.detailedRatiosUri}/*`).as(`updateRatios`)
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosButton)
+        cy.getDataCyElement(DetailsPageConsts.saveBtn)
             .click({ force: true })
         cy.wait(`@updateRatios`).then(() => {
             cy.reload();
