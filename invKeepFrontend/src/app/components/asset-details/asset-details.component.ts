@@ -93,6 +93,7 @@ export class AssetDetailsComponent implements OnInit {
   }
 
   saveDetailedRatios(detailedRatios: NgForm): void {
+    // TODO add handling of comma and dot ratios 
     for (let ratio in this.detailedAssetRatios.ratiosArray) {
       for (let newRatio in detailedRatios.form.value) {
         if (this.detailedAssetRatios.ratiosArray[ratio].parameterName === (newRatio.substring(1)))

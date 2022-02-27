@@ -1,6 +1,7 @@
 import MainPage from "../../support/pageObjectModel/pageObjects/MainPage";
 import Utils, { AssetCurrency } from "../../support/pageObjectModel/Utils/Utils";
 import DetailsPageConsts from "../../support/pageObjectModel/Utils/DetailsPageConsts";
+import DetailsPage from "../../support/pageObjectModel/pageObjects/DetailsPage";
 
 describe(`Analysis Ratios saving`, () => {
 
@@ -81,6 +82,28 @@ describe(`Analysis Ratios saving`, () => {
                 expect(item).to.be.equal(inputParsed[index]);
             })
         })
+    })
 
+    it(`Detailed ratios Analysis Table each ratio value is updated after Input Table is saved`, () => {
+
+        let selectedRatio = `P/E Ratio`;
+        let singleRatioValue = 12.54;
+
+        //  Arrange
+        DetailsPage.setSingleRatioInput(selectedRatio, singleRatioValue);
+
+        //  Act 
+        cy.getDataCyElement(DetailsPageConsts.saveBtn)
+            .click({ force: true });
+
+        cy.getDataCyElement(Utils.loadingSpinner)
+            .should(`not.exist`);
+
+        //  Assert
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisRow)
+            .contains(selectedRatio)
+            .parent()
+            .findNextDataCyElement(DetailsPageConsts.detailedRatiosAnalysisValueCell)
+            .should(`contain.text`, singleRatioValue);
     })
 })

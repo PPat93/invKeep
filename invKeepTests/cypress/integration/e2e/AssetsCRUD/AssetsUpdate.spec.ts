@@ -45,7 +45,7 @@ describe(`Assets edition`, () => {
             });
     })
 
-    it.only(`Update asset rom detailed page`, () => {
+    it(`Update asset rom detailed page`, () => {
 
         assetName = `TestAsset${Date.now().toString().slice(10, 12)}`;
 
