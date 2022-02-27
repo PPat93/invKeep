@@ -65,9 +65,9 @@ export class AssetRatiosService {
   saveDetailedRatios(assetId: string, detailedRatios) {
     this.http.put<{ message: string, analyzedData: any }>(`http://localhost:3000/api/detailed-ratios/${assetId}`, detailedRatios)
       .subscribe(responseData => {
-        this.updateAssetRatios.next(responseData.analyzedData);
+        this.ratiosAnalysisEdit.next(responseData.analyzedData);
       })
-    return this.updateAssetRatios;
+    return this.ratiosAnalysisEdit;
   }
 
   getRatiosUpdateListener(): Observable<DetailedAssetRatiosAnalyzed> {

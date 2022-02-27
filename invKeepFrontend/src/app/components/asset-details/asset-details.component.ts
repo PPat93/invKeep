@@ -105,7 +105,6 @@ export class AssetDetailsComponent implements OnInit {
     this.isLoading2 = true;
     this.ratiosAnalysisSub = this.AssetRatiosService.getRatiosAnalysisListener()
       .subscribe((analysisReturned) => {
-        // //NEXT - HERE TO BE ADJUSTED
         this.analyzedDetailedAssetRatios = analysisReturned;
         this.isLoading2 = false;
       });
