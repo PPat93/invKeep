@@ -1,8 +1,8 @@
-import MainPageConsts from "../../support/pageObjectModel/Utils/MainPageConsts";
-import Utils, { AssetCurrency } from "../../support/pageObjectModel/Utils/Utils";
-import CreateEditPageConsts from "../../support/pageObjectModel/Utils/CreateEditPageConsts";
-import DetailsPageConsts from "../../support/pageObjectModel/Utils/DetailsPageConsts";
-import MainPage from "../../support/pageObjectModel/pageObjects/MainPage";
+import MainPageConsts from "../../../support/pageObjectModel/Utils/MainPageConsts";
+import Utils, { AssetCurrency } from "../../../support/pageObjectModel/Utils/Utils";
+import CreateEditPageConsts from "../../../support/pageObjectModel/Utils/CreateEditPageConsts";
+import DetailsPageConsts from "../../../support/pageObjectModel/Utils/DetailsPageConsts";
+import MainPage from "../../../support/pageObjectModel/pageObjects/MainPage";
 
 describe(`Page displayments after direct access from URL`, () => {
 

@@ -1,7 +1,7 @@
-import MainPage from "../../support/pageObjectModel/pageObjects/MainPage";
-import Utils, { AssetCurrency } from "../../support/pageObjectModel/Utils/Utils";
-import DetailsPageConsts from "../../support/pageObjectModel/Utils/DetailsPageConsts";
-import DetailsPage from "../../support/pageObjectModel/pageObjects/DetailsPage";
+import MainPage from "../../../support/pageObjectModel/pageObjects/MainPage";
+import Utils, { AssetCurrency } from "../../../support/pageObjectModel/Utils/Utils";
+import DetailsPageConsts from "../../../support/pageObjectModel/Utils/DetailsPageConsts";
+import DetailsPage from "../../../support/pageObjectModel/pageObjects/DetailsPage";
 
 describe(`Analysis Ratios saving`, () => {
 
