@@ -224,6 +224,22 @@ describe(`Visibility of Detailed Page elements`, () => {
         })
     })
 
+    it.only(`Detailed ratios analysis table displayment - Analysis column - Summary have hidden overflow`, () => {
+
+        // Arrange, Act & Assert
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell)
+            .findNextDataCyElement(DetailsPageConsts.intervalsCellSummary)
+            .contains(`Graham Number has no real intervals of values. Each case must be analyzed individually`)
+            .then(grahamSummary => {
+                cy.wrap(grahamSummary)
+                    .scrollIntoView()
+                    .should(`be.visible`)
+                    .and(`have.css`, `overflow`, `hidden`)
+                    .and(`have.css`, `text-overflow`, `ellipsis`)
+                    .and(`have.css`, `white-space`, `nowrap`);
+            })
+    })
+
     it(`Detailed ratios analysis table displayment - Analysis column - Progress Bar`, () => {
 
         // Arrange, Act & Assert

@@ -106,4 +106,5 @@ describe(`Analysis Ratios saving`, () => {
             .findNextDataCyElement(DetailsPageConsts.detailedRatiosAnalysisValueCell)
             .should(`contain.text`, singleRatioValue);
     })
+    // NEXT TO ADD ANALYSIS TABLE CELLS UPDATE AFTER RATIOS SAVE
 })
