@@ -224,7 +224,7 @@ describe(`Visibility of Detailed Page elements`, () => {
         })
     })
 
-    it.only(`Detailed ratios analysis table displayment - Analysis column - Summary have hidden overflow`, () => {
+    it(`Detailed ratios analysis table displayment - Analysis column - Summary have hidden overflow`, () => {
 
         // Arrange, Act & Assert
         cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell)
