@@ -84,7 +84,7 @@ describe(`Analysis Ratios saving`, () => {
         })
     })
 
-    it(`Detailed ratios Analysis Table each ratio value is updated after Input Table is saved`, () => {
+    it(`Detailed ratios Analysis Table ratio value is updated after Input Table is saved`, () => {
 
         let selectedRatio = `P/E Ratio`;
         let singleRatioValue = 12.54;
@@ -106,5 +106,32 @@ describe(`Analysis Ratios saving`, () => {
             .findNextDataCyElement(DetailsPageConsts.detailedRatiosAnalysisValueCell)
             .should(`contain.text`, singleRatioValue);
     })
-    // NEXT TO ADD ANALYSIS TABLE CELLS UPDATE AFTER RATIOS SAVE
+
+    it(`Detailed ratios Analysis Table Analysis cell values are updated after Input Table is saved`, () => {
+
+        let summaryText = `Amazing earnings with really low price (compared to average of american stocks from last`;
+        let verbalRating = `Outstanding`;
+        let selectedRatio = `P/E Ratio`;
+        let singleRatioValue = 0.54;
+
+        //  Arrange
+        DetailsPage.setSingleRatioInput(selectedRatio, singleRatioValue);
+
+        //  Act 
+        cy.getDataCyElement(DetailsPageConsts.saveBtn)
+            .click({ force: true });
+
+        cy.getDataCyElement(Utils.loadingSpinner)
+            .should(`not.exist`);
+
+        //  Assert
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisRow)
+            .contains(selectedRatio)
+            .parent().then(analysisRow => {
+                cy.wrap(analysisRow).findNextDataCyElement(DetailsPageConsts.intervalsCellSummary)
+                    .should(`contain.text`, summaryText);
+                cy.wrap(analysisRow).findNextDataCyElement(DetailsPageConsts.intervalsCellVerbalRating)
+                    .should(`contain.text`, verbalRating);
+            })
+    })
 })
