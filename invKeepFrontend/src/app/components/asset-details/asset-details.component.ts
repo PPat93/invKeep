@@ -59,6 +59,8 @@ export class AssetDetailsComponent implements OnInit {
   ratiosAnalysisColumns: string[] = [`name`, `value`, `intervals`, `description`]
 
   private ratiosSub: Subscription;
+  private ratiosAnalysisSub: Subscription;
+  private ratiosWereSavedInd: boolean = false;
 
   constructor(public AssetService: AssetsService, public AssetRatiosService: AssetRatiosService, public route: ActivatedRoute) {
   }
@@ -91,18 +93,30 @@ export class AssetDetailsComponent implements OnInit {
   }
 
   saveDetailedRatios(detailedRatios: NgForm): void {
+    // TODO add handling of comma and dot ratios 
     for (let ratio in this.detailedAssetRatios.ratiosArray) {
       for (let newRatio in detailedRatios.form.value) {
-        if (this.detailedAssetRatios.ratiosArray[ratio].parameterName === (newRatio.substring(1))) // because of error that appears if input field has name set only by
+        if (this.detailedAssetRatios.ratiosArray[ratio].parameterName === (newRatio.substring(1)))
+          // because of error that appears if input field has name set only by
           // two way binding it was needed to add a letter that is not dynamic. Here I remove it.
           this.detailedAssetRatios.ratiosArray[ratio].valueNum = Number(detailedRatios.form.value[newRatio]);
       }
     }
     this.detailedAssetRatios.assetId = this.assetId;
     this.AssetRatiosService.saveDetailedRatios(this.assetId, this.detailedAssetRatios);
+    this.isLoading2 = true;
+    this.ratiosAnalysisSub = this.AssetRatiosService.getRatiosAnalysisListener()
+      .subscribe((analysisReturned) => {
+        this.analyzedDetailedAssetRatios = analysisReturned;
+        this.isLoading2 = false;
+        this.ratiosWereSavedInd = true;
+      });
   }
 
   ngOnDestroy() {
     this.ratiosSub.unsubscribe();
+    if (this.ratiosWereSavedInd) {
+      this.ratiosAnalysisSub.unsubscribe();
+    }
   }
 }

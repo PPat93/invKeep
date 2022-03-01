@@ -1,8 +1,8 @@
-import MainPageConsts from "../../support/pageObjectModel/Utils/MainPageConsts";
-import Utils, { AssetCurrency } from "../../support/pageObjectModel/Utils/Utils";
-import CreateEditPageConsts from "../../support/pageObjectModel/Utils/CreateEditPageConsts";
-import DetailsPageConsts from "../../support/pageObjectModel/Utils/DetailsPageConsts";
-import MainPage from "../../support/pageObjectModel/pageObjects/MainPage";
+import MainPageConsts from "../../../support/pageObjectModel/Utils/MainPageConsts";
+import Utils, { AssetCurrency } from "../../../support/pageObjectModel/Utils/Utils";
+import CreateEditPageConsts from "../../../support/pageObjectModel/Utils/CreateEditPageConsts";
+import DetailsPageConsts from "../../../support/pageObjectModel/Utils/DetailsPageConsts";
+import MainPage from "../../../support/pageObjectModel/pageObjects/MainPage";
 
 describe(`Page displayments after direct access from URL`, () => {
 
@@ -222,6 +222,22 @@ describe(`Visibility of Detailed Page elements`, () => {
                     .should(`not.be.empty`);
             })
         })
+    })
+
+    it(`Detailed ratios analysis table displayment - Analysis column - Summary have hidden overflow`, () => {
+
+        // Arrange, Act & Assert
+        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell)
+            .findNextDataCyElement(DetailsPageConsts.intervalsCellSummary)
+            .contains(`Graham Number has no real intervals of values. Each case must be analyzed individually`)
+            .then(grahamSummary => {
+                cy.wrap(grahamSummary)
+                    .scrollIntoView()
+                    .should(`be.visible`)
+                    .and(`have.css`, `overflow`, `hidden`)
+                    .and(`have.css`, `text-overflow`, `ellipsis`)
+                    .and(`have.css`, `white-space`, `nowrap`);
+            })
     })
 
     it(`Detailed ratios analysis table displayment - Analysis column - Progress Bar`, () => {
