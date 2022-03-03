@@ -5,6 +5,7 @@ import { AnalyzedData, AssetRecord, DetailedAssetRatiosAnalyzed } from "../../sh
 import { NgForm } from "@angular/forms";
 import { AssetRatiosService } from "../../services/asset-ratios.service";
 import { Subscription } from "rxjs";
+import { RatioDetailsService } from 'src/app/services/ratio-details.service';
 
 @Component({
   selector: 'app-asset-details',
@@ -62,7 +63,7 @@ export class AssetDetailsComponent implements OnInit {
   private ratiosAnalysisSub: Subscription;
   private ratiosWereSavedInd: boolean = false;
 
-  constructor(public AssetService: AssetsService, public AssetRatiosService: AssetRatiosService, public route: ActivatedRoute) {
+  constructor(public AssetService: AssetsService, public AssetRatiosService: AssetRatiosService, public RatioDetailsService: RatioDetailsService, public route: ActivatedRoute) {
   }
 
   ngOnInit() {
