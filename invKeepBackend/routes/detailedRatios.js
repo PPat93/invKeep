@@ -43,7 +43,22 @@ router.put('/:id', (req, res) => {
         })
     }).catch($e => {
         console.log('Error with detailed ratios save. Error: ' + $e);
+    })
+})
+
+router.get('/:id/details', (req, res) => {
+    AssetRatio.find({ assetId: req.params.id }).then((detailedRatios) => {
+
+        let analyzedData = analyzeAssetProfitability(detailedRatios);
+
+        res.status(200).json({
+
+            message: 'Asset ratios details retrieved!',
+            detailedInfos: analyzedData[1]
+        });
+    }).catch($e => {
+        console.log('Error while detailed ratios info retrieval. Error: ' + $e);
     });
-});
+})
 
 module.exports = router;

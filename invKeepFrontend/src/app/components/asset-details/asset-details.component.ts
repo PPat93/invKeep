@@ -61,7 +61,7 @@ export class AssetDetailsComponent implements OnInit {
 
   private ratiosSub: Subscription;
   private ratiosAnalysisSub: Subscription;
-  private ratiosWereSavedInd: boolean = false;
+  private ratiosWereSavedIndicator: boolean = false;
 
   constructor(public AssetService: AssetsService, public AssetRatiosService: AssetRatiosService, public RatioDetailsService: RatioDetailsService, public route: ActivatedRoute) {
   }
@@ -110,13 +110,13 @@ export class AssetDetailsComponent implements OnInit {
       .subscribe((analysisReturned) => {
         this.analyzedDetailedAssetRatios = analysisReturned;
         this.isLoading2 = false;
-        this.ratiosWereSavedInd = true;
+        this.ratiosWereSavedIndicator = true;
       });
   }
 
   ngOnDestroy() {
     this.ratiosSub.unsubscribe();
-    if (this.ratiosWereSavedInd) {
+    if (this.ratiosWereSavedIndicator) {
       this.ratiosAnalysisSub.unsubscribe();
     }
   }

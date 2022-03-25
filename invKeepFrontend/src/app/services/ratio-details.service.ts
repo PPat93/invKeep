@@ -1,18 +1,21 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
+import { AnalyzedData } from "../shared/sharedTS";
 
 @Injectable({ providedIn: 'root' })
 
-export class RatioDetailsService implements OnInit {
+export class RatioDetailsService {
 
-    constructor(private http: HttpClient, private router: Router) { }
+    private detailedRatiosInfos = new Subject<AnalyzedData[]>();
 
-    ngOnInit(): void {
+    constructor(private http: HttpClient) { }
 
-    }
-
-    getRatiosDetails(ratioName) {
-
+    getRatiosDetails(assetId: string) {
+        this.http.get<{ message: string, detailedInfos: any }>(`http://localhost:3000/api/detailed-ratios/${assetId}/details`)
+            .subscribe(responseData => {
+                this.detailedRatiosInfos.next(responseData.detailedInfos);
+            })
+        return this.detailedRatiosInfos;
     }
 }
