@@ -6,6 +6,8 @@ import { NgForm } from "@angular/forms";
 import { AssetRatiosService } from "../../services/asset-ratios.service";
 import { Subscription } from "rxjs";
 import { RatioDetailsService } from 'src/app/services/ratio-details.service';
+import { MatDialog } from '@angular/material/dialog';
+import { RatioDetailsDialogComponent } from '../ratio-details-dialog/ratio-details-dialog.component';
 
 @Component({
   selector: 'app-asset-details',
@@ -63,7 +65,8 @@ export class AssetDetailsComponent implements OnInit {
   private ratiosAnalysisSub: Subscription;
   private ratiosWereSavedIndicator: boolean = false;
 
-  constructor(public AssetService: AssetsService, public AssetRatiosService: AssetRatiosService, public RatioDetailsService: RatioDetailsService, public route: ActivatedRoute) {
+  constructor(public AssetService: AssetsService, public AssetRatiosService: AssetRatiosService,
+    public RatioDetailsService: RatioDetailsService, public route: ActivatedRoute, public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -119,5 +122,11 @@ export class AssetDetailsComponent implements OnInit {
     if (this.ratiosWereSavedIndicator) {
       this.ratiosAnalysisSub.unsubscribe();
     }
+  }
+
+  openRatioDetails() {
+    this.dialog.open(RatioDetailsDialogComponent, {
+      data: { placeholder: `somePlaceholder` },
+    })
   }
 }
