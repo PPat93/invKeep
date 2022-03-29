@@ -15,18 +15,22 @@ export class RatioDetailsDialogComponent implements OnInit {
     assetId: string;
     ratiosInfos: AnalyzedData[];
     isLoading: boolean = true;
+    placeholderItem: string;
 
     constructor(public route: ActivatedRoute, public RatioDetailsService: RatioDetailsService,
-        public dialogRef: MatDialogRef<RatioDetailsDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: AnalyzedData) { }
-
-    ngOnInit() {
-        this.route.paramMap.subscribe((paramMap: ParamMap) => {
-            this.assetId = paramMap.get(`assetId`);
-            this.RatioDetailsService.getRatiosDetails(this.assetId).subscribe(ratiosDetailedInfos => {
-                this.isLoading = false;
-                this.ratiosInfos = ratiosDetailedInfos;
-            });
-        })
+        public dialogRef: MatDialogRef<RatioDetailsDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any /* TODO any only for experiments*/) {
+        if (data) {
+            this.placeholderItem = data.placeholder;
+        }
     }
 
+    ngOnInit() {
+        // this.route.paramMap.subscribe((paramMap: ParamMap) => {
+        //     this.assetId = paramMap.get(`assetId`);
+        //     this.RatioDetailsService.getRatiosDetails(this.assetId).subscribe(ratiosDetailedInfos => {
+        //         this.isLoading = false;
+        //         this.ratiosInfos = ratiosDetailedInfos;
+        //     });
+        // })
+    }
 }
