@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from "@angular/core";
-import { ActivatedRoute, ParamMap } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { RatioDetailsService } from "src/app/services/ratio-details.service";
 import { AnalyzedData } from "src/app/shared/sharedTS";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
@@ -15,12 +15,12 @@ export class RatioDetailsDialogComponent implements OnInit {
     assetId: string;
     ratiosInfos: AnalyzedData[];
     isLoading: boolean = true;
-    placeholderItem: string;
+    ratioName: string;
 
     constructor(public route: ActivatedRoute, public RatioDetailsService: RatioDetailsService,
-        public dialogRef: MatDialogRef<RatioDetailsDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any /* TODO any only for experiments*/) {
+        public dialogRef: MatDialogRef<RatioDetailsDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: AnalyzedData /* TODO any only for experiments*/) {
         if (data) {
-            this.placeholderItem = data.placeholder;
+            this.ratioName = data.name;
         }
     }
 

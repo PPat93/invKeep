@@ -1,16 +1,18 @@
-<!-- <mat-card class="additional-details-dialog">
-    <mat-card-title class="ratio-name">
-
-    </mat-card-title>
-    <mat-card-content class="description-text">
-
-    </mat-card-content>
-    <mat-card-content class="detailed-points">
-
-    </mat-card-content>
-    <mat-card-content class="formula">
-
-    </mat-card-content>
-</mat-card> -->
-
-<p>{{placeholderItem}}</p>
+<div class="additional-details-dialog">
+    <h2 mat-dialog-title class="ratio-name">
+        Additional info on <b>{{ratioName}}</b>
+    </h2>
+    <div mat-dialog-content class="description-text">
+        some desc
+    </div>
+    <div mat-dialog-content class="detailed-points">
+        <ol>
+            <li>some point</li>
+            <li>next point</li>
+            <li>other point</li>
+        </ol>
+    </div>
+    <div mat-dialog-content class="formula">
+        2+2=22
+    </div>
+</div>
