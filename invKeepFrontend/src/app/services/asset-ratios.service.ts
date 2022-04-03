@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { AnalyzedData, DetailedAssetRatios, DetailedAssetRatiosAnalyzed } from "../shared/sharedTS";
+import { AnalyzedData, AssetRatiosValues, AssetAndIndicatorsAnlysis } from "../shared/sharedTS";
 import { map } from "rxjs/operators";
 import { Observable, Subject } from "rxjs";
 
@@ -8,7 +8,7 @@ import { Observable, Subject } from "rxjs";
 
 export class AssetRatiosService {
 
-  private updateAssetRatios = new Subject<DetailedAssetRatiosAnalyzed>();
+  private updateAssetRatios = new Subject<AssetAndIndicatorsAnlysis>();
   private ratiosAnalysisEdit = new Subject<AnalyzedData[]>();
   ratiosReturn2: {
     assetId: string,
@@ -24,8 +24,8 @@ export class AssetRatiosService {
   constructor(private http: HttpClient) {
   }
 
-  getDetailedRatios(assetId: string) {
-    this.http.get<{ message: string, retrievedRatios: DetailedAssetRatios, analyzedData: AnalyzedData[] }>(`http://localhost:3000/api/detailed-ratios/${assetId}`)
+  getAssetRatiosValues(assetId: string) {
+    this.http.get<{ message: string, retrievedRatios: AssetRatiosValues, analyzedData: AnalyzedData[] }>(`http://localhost:3000/api/ratio-analysis/${assetId}`)
       .pipe(map((returnedRatios) => {
         return {
           assetId: returnedRatios.retrievedRatios.assetId,
@@ -62,15 +62,15 @@ export class AssetRatiosService {
     return this.updateAssetRatios;
   }
 
-  saveDetailedRatios(assetId: string, detailedRatios) {
-    this.http.put<{ message: string, analyzedData: any }>(`http://localhost:3000/api/detailed-ratios/${assetId}`, detailedRatios)
+  saveRatiosValues(assetId: string, ratiosValues) {
+    this.http.put<{ message: string, analyzedData: any }>(`http://localhost:3000/api/ratio-analysis/${assetId}`, ratiosValues)
       .subscribe(responseData => {
         this.ratiosAnalysisEdit.next(responseData.analyzedData);
       })
     return this.ratiosAnalysisEdit;
   }
 
-  getRatiosUpdateListener(): Observable<DetailedAssetRatiosAnalyzed> {
+  getRatiosUpdateListener(): Observable<AssetAndIndicatorsAnlysis> {
     return this.updateAssetRatios.asObservable()
   }
 

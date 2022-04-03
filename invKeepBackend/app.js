@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const assetRoutes = require('./routes/assets');
-const detailedRatiosRoutes = require('./routes/detailedRatios');
+const ratiosAnalysisRoutes = require('./routes/ratiosAnalysis');
 
 const app = express();
 
@@ -29,6 +29,6 @@ app.use((req, res, next) => {
 })
 
 app.use('/api/assets', assetRoutes);
-app.use('/api/detailed-ratios', detailedRatiosRoutes);
+app.use('/api/ratio-analysis', ratiosAnalysisRoutes);
 
 module.exports = app;

@@ -11,7 +11,7 @@ module.exports = class PEGRatio extends BasicRatio {
         earnings growth in specified period of time. This factor is a great addition for P/E Ratio. It is dependent from 
         industry or company type, so should be analyzed in connection with it. It is important to know that EPS growth 
         period is used.`;
-        this.additionalDetails = [
+        this.bulletPointSummary = [
             `Complementary to PE Ratio.`,
             `Is believed to be a true stock's value.`,
             `The higher value the worse.`,

@@ -13,7 +13,7 @@ module.exports = class DPRRatio extends BasicRatio {
         It adds new value to analysis, can affect it, but definitely should not be decision-defining ratio.
         Shows how much net earnings are paid as dividends, while Dividend Yields Ratio is a simple rate of return in 
         cash dividends to shareholders.`;
-        this.additionalDetails = [
+        this.bulletPointSummary = [
             `Analyze with: ${this.coAnalysis}`
         ];
         this.finalValue = DPRRatio;

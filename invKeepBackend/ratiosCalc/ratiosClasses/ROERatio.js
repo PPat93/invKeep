@@ -12,7 +12,7 @@ module.exports = class ROERatio extends BasicRatio {
         dependant on what is average for company's industry. Usually counted on last financial year, however it is 
         important to check base period. It may be influenced by inconsistent profits e.g.: if company is unprofitable 
         for several years and suddenly gains profits - ${this.ratioName} will skyrocket. Represented in %.`;
-        this.additionalDetails = [
+        this.bulletPointSummary = [
             `The higher, the better - above industry average is considered as good.`,
             `Allows to calculate company financial performance.`,
             `Highly dependant on industry average.`,

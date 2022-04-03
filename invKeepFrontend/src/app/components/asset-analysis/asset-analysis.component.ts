@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { AssetsService } from "../../services/assets.service";
 import { ActivatedRoute, ParamMap } from "@angular/router";
-import { AnalyzedData, AssetRecord, DetailedAssetRatiosAnalyzed } from "../../shared/sharedTS";
+import { AnalyzedData, AssetRecord, AssetAndIndicatorsAnlysis } from "../../shared/sharedTS";
 import { NgForm } from "@angular/forms";
 import { AssetRatiosService } from "../../services/asset-ratios.service";
 import { Subscription } from "rxjs";
 
 @Component({
-  selector: 'app-asset-details',
-  templateUrl: 'asset-details.component.html',
-  styleUrls: ['asset-details.component.scss']
+  selector: 'app-asset-analysis',
+  templateUrl: 'asset-analysis.component.html',
+  styleUrls: ['asset-analysis.component.scss']
 })
 
-export class AssetDetailsComponent implements OnInit {
+export class AssetAnalysisComponent implements OnInit {
 
   assetId: string;
   assetMainDetails: AssetRecord;
 
   // TODO clean below multiple variables that are messed and probably redundant
-  detailedAssetRatios: DetailedAssetRatiosAnalyzed = {
+  assetAnalysis: AssetAndIndicatorsAnlysis = {
     assetId: ``,
     ratiosArray: [
       { parameterName: ``, valueNum: null, unit: `` }
@@ -33,12 +33,12 @@ export class AssetDetailsComponent implements OnInit {
         verbalRating: ``
       },
       name: ``,
-      shortly: [],
+      bulletPointSummary: [],
       value: 0
     }]
   };
 
-  analyzedDetailedAssetRatios: AnalyzedData[] = [{
+  analyzedAssetRatios: AnalyzedData[] = [{
     coanalysis: [``],
     description: ``,
     intervals: {
@@ -48,14 +48,14 @@ export class AssetDetailsComponent implements OnInit {
       verbalRating: ``
     },
     name: ``,
-    shortly: [``],
+    bulletPointSummary: [``],
     value: 0
   }];
 
   isLoading1: boolean = false;
   isLoading2: boolean = false;
 
-  ratiosColumns: string[] = Object.keys(this.detailedAssetRatios.ratiosArray[0])
+  ratiosColumns: string[] = Object.keys(this.assetAnalysis.ratiosArray[0])
   ratiosAnalysisColumns: string[] = [`name`, `value`, `intervals`, `description`]
 
   private ratiosSub: Subscription;
@@ -75,12 +75,12 @@ export class AssetDetailsComponent implements OnInit {
         this.assetMainDetails = singleAsset.payload;
       });
     });
-    this.AssetRatiosService.getDetailedRatios(this.assetId);
+    this.AssetRatiosService.getAssetRatiosValues(this.assetId);
     this.ratiosSub = this.AssetRatiosService.getRatiosUpdateListener()
-      .subscribe((ratiosSubscribed: DetailedAssetRatiosAnalyzed) => {
+      .subscribe((ratiosSubscribed: AssetAndIndicatorsAnlysis) => {
         this.isLoading2 = false;
-        this.detailedAssetRatios = ratiosSubscribed;
-        this.analyzedDetailedAssetRatios = ratiosSubscribed.analyzedData;
+        this.assetAnalysis = ratiosSubscribed;
+        this.analyzedAssetRatios = ratiosSubscribed.analyzedData;
       });
   }
 
@@ -92,22 +92,22 @@ export class AssetDetailsComponent implements OnInit {
     return (unit === 'curr') ? this.assetMainDetails.currency : unit;
   }
 
-  saveDetailedRatios(detailedRatios: NgForm): void {
+  saveRatiosValues(ratiosValues: NgForm): void {
     // TODO add handling of comma and dot ratios 
-    for (let ratio in this.detailedAssetRatios.ratiosArray) {
-      for (let newRatio in detailedRatios.form.value) {
-        if (this.detailedAssetRatios.ratiosArray[ratio].parameterName === (newRatio.substring(1)))
+    for (let ratio in this.assetAnalysis.ratiosArray) {
+      for (let newRatio in ratiosValues.form.value) {
+        if (this.assetAnalysis.ratiosArray[ratio].parameterName === (newRatio.substring(1)))
           // because of error that appears if input field has name set only by
           // two way binding it was needed to add a letter that is not dynamic. Here I remove it.
-          this.detailedAssetRatios.ratiosArray[ratio].valueNum = Number(detailedRatios.form.value[newRatio]);
+          this.assetAnalysis.ratiosArray[ratio].valueNum = Number(ratiosValues.form.value[newRatio]);
       }
     }
-    this.detailedAssetRatios.assetId = this.assetId;
-    this.AssetRatiosService.saveDetailedRatios(this.assetId, this.detailedAssetRatios);
+    this.assetAnalysis.assetId = this.assetId;
+    this.AssetRatiosService.saveRatiosValues(this.assetId, this.assetAnalysis);
     this.isLoading2 = true;
     this.ratiosAnalysisSub = this.AssetRatiosService.getRatiosAnalysisListener()
       .subscribe((analysisReturned) => {
-        this.analyzedDetailedAssetRatios = analysisReturned;
+        this.analyzedAssetRatios = analysisReturned;
         this.isLoading2 = false;
         this.ratiosWereSavedInd = true;
       });

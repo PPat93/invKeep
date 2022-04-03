@@ -1,7 +1,7 @@
 import MainPageConsts from "../../../support/pageObjectModel/Utils/MainPageConsts";
 import Utils, { AssetCurrency } from "../../../support/pageObjectModel/Utils/Utils";
 import CreateEditPageConsts from "../../../support/pageObjectModel/Utils/CreateEditPageConsts";
-import DetailsPageConsts from "../../../support/pageObjectModel/Utils/DetailsPageConsts";
+import AnalysisPageConsts from "../../../support/pageObjectModel/Utils/AnalysisPageConsts";
 import MainPage from "../../../support/pageObjectModel/pageObjects/MainPage";
 
 describe(`Page displayments after direct access from URL`, () => {
@@ -42,7 +42,7 @@ describe(`Page displayments after button click access`, () => {
         Utils.teardownAssets(`TestAsset`);
     })
 
-    it(`Details Page displayment`, () => {
+    it(`Analysis Page displayment`, () => {
 
         let assetName: string = `TestAsset${Date.now()}`;
 
@@ -59,8 +59,8 @@ describe(`Page displayments after button click access`, () => {
 
         //  Assert
         cy.url()
-            .should(`contain`, Utils.detailsPageUrl);
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosCard)
+            .should(`contain`, Utils.analysisPageUrl);
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisCard)
             .should(`be.visible`)
             .and(`contain.text`, assetName);
     })
@@ -89,7 +89,7 @@ describe(`Page displayments after button click access`, () => {
     })
 })
 
-describe(`Visibility of Detailed Page elements`, () => {
+describe(`Visibility of Analysis Page elements`, () => {
 
     let assetName: string = `TestAsset${Date.now()}`;
 
@@ -111,66 +111,66 @@ describe(`Visibility of Detailed Page elements`, () => {
         })
     })
 
-    it(`Detailed ratios input table displayment - Name column`, () => {
+    it(`Ratios Analysis - input table displayment - Name column`, () => {
 
         // Arrange, Act & Assert
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosInputNameCell).then(allCells => {
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisInputNameCell).then(allCells => {
             cy.wrap(allCells)
                 .should(`have.length`, 14);
         })
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosInputNameCell).each(singleCell => {
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisInputNameCell).each(singleCell => {
             expect(singleCell.text().length).to.be.greaterThan(1);
         })
     })
 
-    it(`Detailed ratios input table displayment - Input column`, () => {
+    it(`Ratios Analysis - input table displayment - Input column`, () => {
 
         // Arrange, Act & Assert
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosInputValueCell).then(allCells => {
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisInputValueCell).then(allCells => {
             cy.wrap(allCells)
                 .should(`have.length`, 14);
         })
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosInputValueCell).each(singleCell => {
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisInputValueCell).each(singleCell => {
             cy.wrap(singleCell)
                 .find(`input`)
                 .should(`be.visible`);
         })
     })
 
-    it(`Detailed ratios input table displayment - Unit column`, () => {
+    it(`Ratios Analysis - input table displayment - Unit column`, () => {
 
         let units: string[] = [`%`, `-`, `€`, `$`, `¥`, `£`];
 
         // Arrange, Act & Assert
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosInputUnitCell).then(allCells => {
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisInputUnitCell).then(allCells => {
             cy.wrap(allCells)
                 .should(`have.length`, 14);
         })
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosInputUnitCell).each(singleCell => {
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisInputUnitCell).each(singleCell => {
             expect(units).includes(singleCell.text().trim());
         })
     })
 
-    it(`Detailed ratios analysis table displayment - Name column`, () => {
+    it(`Ratios Analysis - analysis table displayment - Name column`, () => {
 
         // Arrange, Act & Assert
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisNameCell).then(allCells => {
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisNameCell).then(allCells => {
             cy.wrap(allCells)
                 .should(`have.length`, 14);
         })
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisNameCell).each(singleCell => {
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisNameCell).each(singleCell => {
             expect(singleCell.text().length).to.be.greaterThan(1);
         })
     })
 
-    it(`Detailed ratios analysis table displayment - Value column`, () => {
+    it(`Ratios Analysis - analysis table displayment - Value column`, () => {
 
         // Arrange, Act & Assert
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisValueCell).then(allCells => {
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisValueCell).then(allCells => {
             cy.wrap(allCells)
                 .should(`have.length`, 14);
         })
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisValueCell).each(singleCell => {
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisValueCell).each(singleCell => {
 
             let ratioValue: number;
             ratioValue = parseFloat(singleCell.text());
@@ -178,31 +178,31 @@ describe(`Visibility of Detailed Page elements`, () => {
         })
     })
 
-    it(`Detailed ratios analysis table displayment - Analysis column`, () => {
+    it(`Ratios Analysis - analysis table displayment - Analysis column`, () => {
 
         // Arrange, Act & Assert
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell).then(allCells => {
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisIntervalsCell).then(allCells => {
             cy.wrap(allCells)
                 .should(`have.length`, 14);
         })
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell).each(singleCell => {
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisIntervalsCell).each(singleCell => {
 
             cy.wrap(singleCell)
                 .should(`be.visible`);
         })
     })
 
-    it(`Detailed ratios analysis table displayment - Analysis column - Verbal Rating`, () => {
+    it(`Ratios Analysis - analysis table displayment - Analysis column - Verbal Rating`, () => {
 
         // Arrange, Act & Assert
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell).each(singleCell => {
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisIntervalsCell).each(singleCell => {
 
             cy.wrap(singleCell)
-                .findNextDataCyElement(DetailsPageConsts.intervalsCellVerbalRating)
+                .findNextDataCyElement(AnalysisPageConsts.intervalsCellVerbalRating)
                 .should(`be.visible`);
             cy.wrap(singleCell).then(singleSummary => {
                 cy.wrap(singleSummary)
-                    .findNextDataCyElement(DetailsPageConsts.intervalsCellVerbalRating)
+                    .findNextDataCyElement(AnalysisPageConsts.intervalsCellVerbalRating)
                     .find(`b`)
                     .invoke(`text`)
                     .should(`not.be.empty`);
@@ -210,25 +210,25 @@ describe(`Visibility of Detailed Page elements`, () => {
         })
     })
 
-    it(`Detailed ratios analysis table displayment - Analysis column - Summary`, () => {
+    it(`Ratios Analysis - analysis table displayment - Analysis column - Summary`, () => {
 
         // Arrange, Act & Assert
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell).each(singleCell => {
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisIntervalsCell).each(singleCell => {
 
             cy.wrap(singleCell).then(singleSummary => {
                 cy.wrap(singleSummary)
-                    .findNextDataCyElement(DetailsPageConsts.intervalsCellSummary)
+                    .findNextDataCyElement(AnalysisPageConsts.intervalsCellSummary)
                     .invoke(`text`)
                     .should(`not.be.empty`);
             })
         })
     })
 
-    it(`Detailed ratios analysis table displayment - Analysis column - Summary have hidden overflow`, () => {
+    it(`Ratios Analysis - analysis table displayment - Analysis column - Summary have hidden overflow`, () => {
 
         // Arrange, Act & Assert
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell)
-            .findNextDataCyElement(DetailsPageConsts.intervalsCellSummary)
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisIntervalsCell)
+            .findNextDataCyElement(AnalysisPageConsts.intervalsCellSummary)
             .contains(`Graham Number has no real intervals of values. Each case must be analyzed individually`)
             .then(grahamSummary => {
                 cy.wrap(grahamSummary)
@@ -240,34 +240,34 @@ describe(`Visibility of Detailed Page elements`, () => {
             })
     })
 
-    it(`Detailed ratios analysis table displayment - Analysis column - Progress Bar`, () => {
+    it(`Ratios Analysis - analysis table displayment - Analysis column - Progress Bar`, () => {
 
         // Arrange, Act & Assert
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisIntervalsCell).each(singleCell => {
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisIntervalsCell).each(singleCell => {
 
             cy.wrap(singleCell)
-                .findNextDataCyElement(DetailsPageConsts.intervalsNumberRating)
-                .findNextDataCyElement(DetailsPageConsts.intervalsProgressBar)
+                .findNextDataCyElement(AnalysisPageConsts.intervalsNumberRating)
+                .findNextDataCyElement(AnalysisPageConsts.intervalsProgressBar)
                 .should(`be.visible`)
                 .and(`have.attr`, `aria-valuenow`);
         })
     })
 
-    it(`Detailed ratios analysis table displayment - Aditional info column`, () => {
+    it(`Ratios Analysis - analysis table displayment - Aditional info column`, () => {
 
         // Arrange, Act & Assert
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisAdditionalData).then(allCells => {
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisAdditionalData).then(allCells => {
             cy.wrap(allCells)
                 .should(`have.length`, 14);
         })
-        cy.getDataCyElement(DetailsPageConsts.detailedRatiosAnalysisAdditionalData).each(singleCell => {
+        cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisAdditionalData).each(singleCell => {
 
             cy.wrap(singleCell)
-                .findNextDataCyElement(DetailsPageConsts.additionalDataDetailsButton)
+                .findNextDataCyElement(AnalysisPageConsts.additionalDataDetailsButton)
                 .should(`be.visible`)
                 .and(`have.attr`, `color`, `accent`);
             cy.wrap(singleCell)
-                .findNextDataCyElement(DetailsPageConsts.additionalDataDetailsButton)
+                .findNextDataCyElement(AnalysisPageConsts.additionalDataDetailsButton)
                 .find(`span`)
                 .should(`contain.text`, `Ratio Details`);
         })
