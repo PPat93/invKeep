@@ -6,7 +6,7 @@ import AnalysisPage from "../../../support/pageObjectModel/pageObjects/AnalysisP
 describe(`Analysis Ratios saving`, () => {
 
     let assetName: string = ``;
-    let ratiosValues: number[] = [1, 3.4, 23.95]
+    let ratiosValues: number[] = [1, 3.4, 23.95];
 
     beforeEach(`Create test asset`, () => {
 
