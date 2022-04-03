@@ -11,7 +11,7 @@ module.exports = class DERatio extends BasicRatio {
         of the leverage used by a firm. ${this.ratioName} is highly dependent from industry type and it's average - "normal" size.
         May be hard to compare stocks among different sectors. The higher ${this.ratioName} is, the more risky stock probably is. 
         E.g. if D/E = 1.5 it means that on every 1$ stock has 1.5$ debt.`;
-        this.additionalDetails = [
+        this.bulletPointSummary = [
             `The higher the riskier.`,
             `Compares company's debt with equity.`,
             `Highly dependant on average industry debt.`,

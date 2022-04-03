@@ -12,7 +12,7 @@ module.exports = class PSRatio extends BasicRatio {
         more money than it costs. On the other hand, if ratio is greater than 1, it shows that stock is probably overvalued. 
         This factor takes into account only price and revenue. ALl other data is omitted, what can cause some serious mistakes. 
         It is worth to compare company with other ones from an industry.`;
-        this.additionalDetails = [
+        this.bulletPointSummary = [
             `The lower, the better.`,
             `Works great in comparison with other industry companies.`,
             `Does not take into account debt, earnings etc.`,

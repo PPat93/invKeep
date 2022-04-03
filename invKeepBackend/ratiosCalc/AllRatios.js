@@ -30,21 +30,21 @@ module.exports = class AllRatios {
     objROCERatio;
     objROERatio;
 
-    constructor(detailedRatiosArray) {
-        this.CAPERatio = new CAPERatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.cape_ratio)).valueNum);
-        this.objDERatio = new DERatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.de_ratio)).valueNum);
-        this.objDividendYieldRatio = new DividendYieldRatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.dividend_yield)).valueNum);
-        this.objDPRRatio = new DPRRatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.dpr_ratio)).valueNum);
-        this.objEPSRatio = new EPSRatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.eps_ratio)).valueNum);
-        this.objEVEBITDARatio = new EVEBITDARatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.ev_ebitda_ratio)).valueNum);
-        this.objEVEBITRatio = new EVEBITRatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.ev_ebit_ratio)).valueNum);
-        this.objGrahamNum = new GrahamNum((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.graham_num)).valueNum);
-        this.objPBRatio = new PBRatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.pb_ratio)).valueNum);
-        this.objPEGRatio = new PEGRatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.peg_ratio)).valueNum);
-        this.objPERatio = new PERatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.pe_ratio)).valueNum);
-        this.objPSRatio = new PSRatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.ps_ratio)).valueNum);
-        this.objROCERatio = new ROCERatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.roce_ratio)).valueNum);
-        this.objROERatio = new ROERatio((sharedJS.searchObject(detailedRatiosArray, sharedJS.RatiosNames.roe_ratio)).valueNum);
+    constructor(ratiosAnalysisArray) {
+        this.CAPERatio = new CAPERatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.cape_ratio)).valueNum);
+        this.objDERatio = new DERatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.de_ratio)).valueNum);
+        this.objDividendYieldRatio = new DividendYieldRatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.dividend_yield)).valueNum);
+        this.objDPRRatio = new DPRRatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.dpr_ratio)).valueNum);
+        this.objEPSRatio = new EPSRatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.eps_ratio)).valueNum);
+        this.objEVEBITDARatio = new EVEBITDARatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.ev_ebitda_ratio)).valueNum);
+        this.objEVEBITRatio = new EVEBITRatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.ev_ebit_ratio)).valueNum);
+        this.objGrahamNum = new GrahamNum((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.graham_num)).valueNum);
+        this.objPBRatio = new PBRatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.pb_ratio)).valueNum);
+        this.objPEGRatio = new PEGRatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.peg_ratio)).valueNum);
+        this.objPERatio = new PERatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.pe_ratio)).valueNum);
+        this.objPSRatio = new PSRatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.ps_ratio)).valueNum);
+        this.objROCERatio = new ROCERatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.roce_ratio)).valueNum);
+        this.objROERatio = new ROERatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.roe_ratio)).valueNum);
     }
 
     analyzeData() {

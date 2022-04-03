@@ -11,7 +11,7 @@ module.exports = class CAPERatio extends BasicRatio {
         to asses company's capabilities of making profits during the economic cycle. Considers economy fluctuations - 
         recessions/expansions and makes easier to analyze company without them. The lower, the better. However, it does 
         not involve accounting changes.`;
-        this.additionalDetails = [
+        this.bulletPointSummary = [
             `Adjusted to economic cycles.`,
             `Shows if stock is over or under valued.`,
             `The higher value the worse.`,

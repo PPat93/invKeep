@@ -1,4 +1,4 @@
-<mat-card xmlns="http://www.w3.org/1999/html" data-cy="detailed-ratios">
+<mat-card xmlns="http://www.w3.org/1999/html" data-cy="ratio-analysis">
   <div>
     <mat-card-title>
       <span data-cy="name" id="name">{{assetMainDetails?.assetName}}</span>
@@ -10,7 +10,7 @@
       Main details
     </mat-card-subtitle>
     <app-loading-spinner *ngIf="isLoading1"></app-loading-spinner>
-    <mat-card-content data-cy="asset-details-section" class="primary-details" *ngIf="!isLoading1">
+    <mat-card-content data-cy="asset-analysis-section" class="primary-details" *ngIf="!isLoading1">
       <table>
         <tr data-cy="amount" id="amount">
           <td> Owned quantity:</td>
@@ -40,9 +40,9 @@
     </mat-card-subtitle>
     <app-loading-spinner *ngIf="isLoading2"></app-loading-spinner>
     <mat-card-content data-cy="ratios-section" class="ratios-column" *ngIf="!isLoading2">
-      <form data-cy="ratios-inputs" (submit)="saveDetailedRatios(ratiosInput)" ngForm #ratiosInput="ngForm"
-        class="asset-ratios-table" name="detailed-ratios">
-        <table data-cy="ratios-input-table" mat-table [dataSource]="detailedAssetRatios.ratiosArray">
+      <form data-cy="ratios-inputs" (submit)="saveRatiosValues(ratiosInput)" ngForm #ratiosInput="ngForm"
+        class="asset-ratios-table" name="ratio-analysis">
+        <table data-cy="ratios-input-table" mat-table [dataSource]="assetAnalysis.ratiosArray">
           <ng-container matColumnDef="parameterName">
             <th data-cy="input-ratios-name-header" mat-header-cell *matHeaderCellDef>Ratio</th>
             <td data-cy="input-ratios-name-cell" class="parameter-name" mat-cell *matCellDef="let ratio">
@@ -50,14 +50,14 @@
           </ng-container>
           <ng-container matColumnDef="valueNum">
             <th data-cy="input-ratios-value-header" mat-header-cell *matHeaderCellDef>Value</th>
-            <td data-cy="input-ratios-value-cell" class="input-detailed-ratio" mat-cell *matCellDef="let ratio">
-              <mat-form-field class="input-detailed-ratio">
-                <input class="single-detailed-ratio"
+            <td data-cy="input-ratios-value-cell" class="input-ratio-value" mat-cell *matCellDef="let ratio">
+              <mat-form-field class="input-ratio-value">
+                <input class="single-asset-ratio"
                   [attr.data-cy]="ratio.parameterName.replaceAll(' ', '-').toLowerCase() + '-input'"
                   name="r{{ratio.parameterName}}" matInput [ngModel]="ratio.valueNum" value="{{ratio.valueNum}}">
-                <!-- DO NOT REMOVE ABOVE "r" letter from "name" parameter, it breaks detailed ratios save functionality
+                <!-- DO NOT REMOVE ABOVE "r" letter from "name" parameter, it breaks Ratios Analysis - save functionality
                    because of error that appears if input field has name set only by
-                   two way binding it was needed to add a letter that is not dynamic. Here I remove it.it is removed in saveDetailedRatios -->
+                   two way binding it was needed to add a letter that is not dynamic. Here I add it -> it is removed in saveRatiosValues -->
               </mat-form-field>
             </td>
           </ng-container>
@@ -78,7 +78,7 @@
 
     <mat-card-content *ngIf="!isLoading2" class="ratio-analysis">
       <table data-cy="ratios-analysis-table" class="analysis-table" mat-table
-        [dataSource]="analyzedDetailedAssetRatios">
+        [dataSource]="analyzedAssetRatios">
         <ng-container matColumnDef="name">
           <th data-cy="analysis-ratios-name-header" mat-header-cell *matHeaderCellDef>Name</th>
           <td data-cy="analysis-ratios-name-cell" class="parameter-name" mat-cell *matCellDef="let analysis">
