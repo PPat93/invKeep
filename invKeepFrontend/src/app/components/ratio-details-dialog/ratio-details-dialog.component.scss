@@ -1,0 +1,18 @@
+span {
+    display: inline-block;
+}
+
+.close-dialog-btn {
+    border: none;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    font-size: large;
+    color: grey;
+    vertical-align: -5px;
+}
+
+h2.ratio-name-header-dialog {
+    padding-right: 50px;
+}

@@ -1,7 +1,16 @@
 <div class="additional-details-dialog">
-    <h2 mat-dialog-title class="ratio-name">
-        Additional info on <b>{{ratioName}}</b>
-    </h2>
+    <div class="header">
+        <span>
+            <h2 mat-dialog-title class="ratio-name-header-dialog">
+                Additional info on <b>{{ratioName}}</b>
+            </h2>
+        </span>
+        <span>
+            <button mat-button mat-raised-button (click)="closeDialog()" class="close-dialog-btn">
+                <span>x</span>
+            </button>
+        </span>
+    </div>
     <div mat-dialog-content class="description-text">
         some desc
     </div>

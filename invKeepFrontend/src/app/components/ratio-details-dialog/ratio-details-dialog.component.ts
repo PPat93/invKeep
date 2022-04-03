@@ -33,4 +33,7 @@ export class RatioDetailsDialogComponent implements OnInit {
             this.testBackendDataDisplay=this.ratiosInfos[0].shortly[0]
         })
     }
+    closeDialog(){
+        this.dialogRef.close()
+    }
 }
