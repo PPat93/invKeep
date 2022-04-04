@@ -26,8 +26,8 @@ export class RatioDetailsDialogComponent implements OnInit {
     }
 
     ngOnInit() {
-        let assetId = this.router.url.split(`s/`)
-        this.RatioDetailsService.getRatiosDetails(assetId[1]).subscribe(ratiosDetailedInfos => {
+        this.RatioDetailsService.getRatiosDetails(this.ratioName).subscribe(ratiosDetailedInfos => {
+            console.log(this.ratioName)
             this.isLoading = false;
             this.ratiosInfos = ratiosDetailedInfos;
             this.testBackendDataDisplay=this.ratiosInfos[0].bulletPointSummary[0]

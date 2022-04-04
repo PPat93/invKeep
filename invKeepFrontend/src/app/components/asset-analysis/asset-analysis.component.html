@@ -116,7 +116,7 @@
           <th data-cy="analysis-ratios-additional-info-header" mat-header-cell *matHeaderCellDef>Additional Info</th>
           <td data-cy="analysis-ratios-additional-info-cell" class="info-button-column" mat-cell
             *matCellDef="let analysis">
-            <button data-cy="details-button" class="details-button" mat-raised-button (click)="openRatioDetails(analysis)" color="accent">Ratio
+            <button data-cy="details-button" class="details-button" mat-raised-button (click)="openRatioDetails(analysis.name)" color="accent">Ratio
               Details</button>
           </td>
         </ng-container>

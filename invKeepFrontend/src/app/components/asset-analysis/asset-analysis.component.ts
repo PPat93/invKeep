@@ -124,9 +124,9 @@ export class AssetAnalysisComponent implements OnInit {
     }
   }
 
-  openRatioDetails(ratioRow: AnalyzedData) {
+  openRatioDetails(ratioName: AnalyzedData) {
     this.dialog.open(RatioDetailsDialogComponent, {
-      data: { name: ratioRow.name },
+      data: { name: ratioName },
     })
   }
 }
