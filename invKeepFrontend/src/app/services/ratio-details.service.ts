@@ -12,7 +12,7 @@ export class RatioDetailsService {
     constructor(private http: HttpClient) { }
 
     getRatiosDetails(assetId: string) {
-        this.http.get<{ message: string, detailedInfos: any }>(`http://localhost:3000/api/detailed-ratios/${assetId}/details`)
+        this.http.get<{ message: string, detailedInfos: any }>(`http://localhost:3000/api/ratio-analysis/${assetId}/details`)
             .subscribe(responseData => {
                 this.detailedRatiosInfos.next(responseData.detailedInfos);
             })

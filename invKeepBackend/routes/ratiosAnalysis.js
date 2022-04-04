@@ -46,10 +46,11 @@ router.put('/:id', (req, res) => {
     })
 })
 
+// temp for experiments -> to be changed for real separate  ratios details retrieval
 router.get('/:id/details', (req, res) => {
-    AssetRatio.find({ assetId: req.params.id }).then((detailedRatios) => {
+    AssetRatio.find({ assetId: req.params.id }).then((foundAssetRatios) => {
 
-        let analyzedData = analyzeAssetProfitability(detailedRatios);
+        let analyzedData = analyzeAssetProfitability(foundAssetRatios);
 
         res.status(200).json({
 
