@@ -1,42 +1,43 @@
 /**
  * 
- * DetailsPageConsts class containing all consts used on invKeep create asset page
+ * AnalysisPageConsts class containing all consts used on invKeep create asset page
  * @class
  * 
  */
-class DetailsPageConsts {
+class AnalysisPageConsts {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //  SELECTORS                   ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    readonly detailedRatiosCard = `detailed-ratios`;
-    readonly detailedRatiosInputsClass = `.single-detailed-ratio`;
+    readonly ratiosAnalysisCard = `ratio-analysis`;
+    readonly assetRatiosInputsClass = `.single-asset-ratio`;
     
     readonly editBtn = `edit`;
     readonly saveBtn = `save`;
 
     //-------------------------------------------------------------------------------------------------------------------------------------
     //  INPUT TABLE -----------------------------------------------------------------------------------------------------------------------
-    readonly detailedRatiosInputRow = `input-ratios-items-row`;
-    readonly detailRatiosInputTable = `ratios-input-table`;
+    readonly ratiosAnalysisInputRow = `input-ratios-items-row`;
+    readonly ratiosAnalysisInputTable = `ratios-input-table`;
 
     //  Input Cells
-    readonly detailedRatiosInputNameCell = `input-ratios-name-cell`;
-    readonly detailedRatiosInputValueCell = `input-ratios-value-cell`;
-    readonly detailedRatiosInputUnitCell = `input-ratios-unit-cell`;
+    readonly ratiosAnalysisInputNameCell = `input-ratios-name-cell`;
+    readonly ratiosAnalysisInputValueCell = `input-ratios-value-cell`;
+    readonly ratiosAnalysisInputUnitCell = `input-ratios-unit-cell`;
 
+    //-------------------------------------------------------------------------------------------------------------------------------------
     //  ANALYSIS TABLE  -------------------------------------------------------------------------------------------------------------------
-    readonly detailedRatiosAnalysisRow = `analysis-ratios-items-row`;
-    readonly detailRatiosAnalysisTable = `ratios-analysis-table`;
+    readonly ratiosAnalysisAnalysisRow = `analysis-ratios-items-row`;
+    readonly ratiosAnalysisAnalysisTable = `ratios-analysis-table`;
 
     //  Analysis Cells
-    readonly detailedRatiosAnalysisNameCell = `analysis-ratios-name-cell`;
-    readonly detailedRatiosAnalysisValueCell = `analysis-ratios-value-cell`;
-    readonly detailedRatiosAnalysisIntervalsCell = `analysis-ratios-intervals-cell`;
+    readonly ratiosAnalysisAnalysisNameCell = `analysis-ratios-name-cell`;
+    readonly ratiosAnalysisAnalysisValueCell = `analysis-ratios-value-cell`;
+    readonly ratiosAnalysisAnalysisIntervalsCell = `analysis-ratios-intervals-cell`;
     readonly intervalsCellVerbalRating = `analysis-ratios-intervals-cell-verbal-rating`;
     readonly intervalsCellSummary = `analysis-ratios-intervals-cell-summary`;
     readonly intervalsNumberRating = `analysis-ratios-intervals-cell-number-rating`;
     readonly intervalsProgressBar = `analysis-ratios-intervals-cell-progress-bar`;
-    readonly detailedRatiosAnalysisAdditionalData = `analysis-ratios-additional-info-cell`;
+    readonly ratiosAnalysisAnalysisAdditionalData = `analysis-ratios-additional-info-cell`;
     readonly additionalDataDetailsButton = `details-button`;
 
     //-------------------------------------------------------------------------------------------------------------------------------------
@@ -46,4 +47,4 @@ class DetailsPageConsts {
 
 }
 
-export default new DetailsPageConsts();
+export default new AnalysisPageConsts();

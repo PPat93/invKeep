@@ -1,10 +1,10 @@
 /**
  * 
- * Details page class containing all methods used on invKeep details page
+ * Analysis page class containing all methods used on invKeep analysis page
  * @class
  * 
  */
-class DetailsPage {
+class AnalysisPage {
 
     setSingleRatioInput(ratioName: string, value: number){
         let inputFieldDataCy = ratioName.replace(' ', '-').toLowerCase() + '-input';
@@ -14,4 +14,4 @@ class DetailsPage {
     }
 }
 
-export default new DetailsPage();
+export default new AnalysisPage();

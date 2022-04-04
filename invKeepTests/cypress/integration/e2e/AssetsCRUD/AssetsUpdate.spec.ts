@@ -1,7 +1,7 @@
 import MainPage from "../../../support/pageObjectModel/pageObjects/MainPage";
 import Utils, { AssetCurrency } from "../../../support/pageObjectModel/Utils/Utils";
 import CreateEditPage from "../../../support/pageObjectModel/pageObjects/CreateEditPage";
-import DetailsPageConsts from "../../../support/pageObjectModel/Utils/DetailsPageConsts";
+import AnalysisPageConsts from "../../../support/pageObjectModel/Utils/AnalysisPageConsts";
 
 describe(`Assets edition`, () => {
     let assetName: string = ``;
@@ -45,7 +45,7 @@ describe(`Assets edition`, () => {
             });
     })
 
-    it(`Update asset rom detailed page`, () => {
+    it(`Update asset from analysis page`, () => {
 
         assetName = `TestAsset${Date.now().toString().slice(10, 12)}`;
 
@@ -59,7 +59,7 @@ describe(`Assets edition`, () => {
         cy.getDataCyElement(Utils.loadingSpinner)
             .should(`not.exist`);
 
-        cy.getDataCyElement(DetailsPageConsts.editBtn)
+        cy.getDataCyElement(AnalysisPageConsts.editBtn)
             .click();
         cy.getDataCyElement(Utils.loadingSpinner)
             .should(`not.exist`);

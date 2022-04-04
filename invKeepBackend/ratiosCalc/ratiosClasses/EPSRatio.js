@@ -10,7 +10,7 @@ module.exports = class EPSRatio extends BasicRatio {
         this.description = `Earnings per share (EPS) is calculated as a company\'s profit divided by the outstanding shares 
             of its common stock. The resulting number serves as an indicator of a company\'s profitability. It is common 
             for a company to report EPS that is adjusted for extraordinary items and potential share dilution. `;
-        this.additionalDetails = [
+        this.bulletPointSummary = [
             `One of the most important metrics.`,
             `Shows how much company earns on most basic level.`,
             `The higher value the better.`,

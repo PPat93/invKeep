@@ -30,7 +30,7 @@ export class RatioDetailsDialogComponent implements OnInit {
         this.RatioDetailsService.getRatiosDetails(assetId[1]).subscribe(ratiosDetailedInfos => {
             this.isLoading = false;
             this.ratiosInfos = ratiosDetailedInfos;
-            this.testBackendDataDisplay=this.ratiosInfos[0].shortly[0]
+            this.testBackendDataDisplay=this.ratiosInfos[0].bulletPointSummary[0]
         })
     }
     closeDialog(){

@@ -21,7 +21,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { AssetCreateComponent } from './components/asset-create/asset-create.component';
-import { AssetDetailsComponent } from './components/asset-details/asset-details.component';
+import { AssetAnalysisComponent } from './components/asset-analysis/asset-analysis.component';
 import { AssetListComponent } from './components/asset-list/asset-list.component';
 import { LoadingSpinnerComponent } from './utils/spinner/loading-spinner.component';
 import { MenuComponent } from './components/menu/menu.component';
@@ -33,7 +33,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
   declarations: [
     AppComponent,
     AssetCreateComponent,
-    AssetDetailsComponent,
+    AssetAnalysisComponent,
     AssetListComponent,
     LoadingSpinnerComponent,
     MenuComponent,

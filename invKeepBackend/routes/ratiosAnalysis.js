@@ -4,9 +4,9 @@ const router = express.Router();
 const AssetRatio = require('../models/assetRatio');
 const RatiosAnalysis = require('../ratiosCalc/AllRatios');
 
-function analyzeAssetProfitability(detailedRatios) {
+function analyzeAssetProfitability(ratiosForAnalysis) {
 
-    let newRatios = detailedRatios[0];
+    let newRatios = ratiosForAnalysis[0];
     let RatiosClassInstance = new RatiosAnalysis(newRatios.ratiosArray);
 
     let analyzedRatios = RatiosClassInstance.analyzeData(newRatios.ratiosArray);
@@ -15,9 +15,9 @@ function analyzeAssetProfitability(detailedRatios) {
 }
 
 router.get('/:id', (req, res) => {
-    AssetRatio.find({ assetId: req.params.id }).then((detailedRatios) => {
+    AssetRatio.find({ assetId: req.params.id }).then((ratiosForAnalysis) => {
 
-        let analyzedData = analyzeAssetProfitability(detailedRatios);
+        let analyzedData = analyzeAssetProfitability(ratiosForAnalysis);
 
         res.status(200).json({
             message: 'Asset ratios retrieved successfully!',
@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
             analyzedData: analyzedData[1]
         });
     }).catch($e => {
-        console.log('Error while detailed ratios retrieval. Error: ' + $e);
+        console.log('Error during ratio analysis retrieval. Error: ' + $e);
     });
 })
 
@@ -57,7 +57,7 @@ router.get('/:id/details', (req, res) => {
             detailedInfos: analyzedData[1]
         });
     }).catch($e => {
-        console.log('Error while detailed ratios info retrieval. Error: ' + $e);
+        console.log('Error during indicators saving. Error: ' + $e);
     });
 })
 

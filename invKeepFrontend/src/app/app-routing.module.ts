@@ -3,13 +3,13 @@ import {RouterModule, Routes} from "@angular/router";
 
 import {AssetCreateComponent} from "./components/asset-create/asset-create.component";
 import {HomePageComponent} from "./components/home-page/home-page.component";
-import {AssetDetailsComponent} from "./components/asset-details/asset-details.component";
+import {AssetAnalysisComponent} from "./components/asset-analysis/asset-analysis.component";
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'create', component: AssetCreateComponent},
   {path: 'edit/:assetId', component: AssetCreateComponent},
-  {path: 'details/:assetId', component: AssetDetailsComponent}
+  {path: 'analysis/:assetId', component: AssetAnalysisComponent}
 ]
 
 @NgModule({
