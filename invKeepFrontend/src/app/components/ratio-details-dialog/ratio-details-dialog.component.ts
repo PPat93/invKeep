@@ -27,9 +27,10 @@ export class RatioDetailsDialogComponent implements OnInit {
 
     ngOnInit() {
         this.RatioDetailsService.getRatiosDetails(this.ratioName).subscribe(ratiosDetailedInfos => {
-            this.isLoading = false;
-            this.ratiosInfos = ratiosDetailedInfos;
-            this.testBackendDataDisplay=this.ratiosInfos[0].bulletPointSummary[0]
+            // aassigning backend retrieved ratios to front variables and display those in Dialog
+            // this.isLoading = false;
+            // this.ratiosInfos = ratiosDetailedInfos;
+            // this.testBackendDataDisplay=this.ratiosInfos[0].bulletPointSummary[0]
         })
     }
     closeDialog(){
