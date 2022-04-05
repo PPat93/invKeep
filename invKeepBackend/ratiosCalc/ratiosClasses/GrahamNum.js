@@ -10,7 +10,7 @@ module.exports = class GrahamNum extends BasicRatio {
         this.description = `${this.ratioName} responds to the question - What is the maximum value of the stock that is 
         allowed to pay by investor? Usually, every value below ${this.ratioName} is considered as a good opportunity to 
         buy. Basically numbers shouldn't be higher than P/E Value < 15x and P/B Value < 1.5x`;
-        this.additionalDetails = [
+        this.bulletPointSummary = [
             `Determines fair value of stock.`,
             `Stock price below ${this.ratioName} is considered as undervalued.`,
             `Different for every company.`,
@@ -22,8 +22,9 @@ module.exports = class GrahamNum extends BasicRatio {
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.depends,
-                summary: `Graham number has no real intervals of values. Each case must be analyzed individually. Maximum profitable Graham Number consists of 
-                15 times P/E ratio multiplied by 1.5 times P/B ratio. Above that value, stock most likely won't be able to bring any profits.`,
+                summary: `${this.ratioName} has no real intervals of values. Each case must be analyzed individually compared with current share price. 
+                Maximum profitable ${this.ratioName} is a square root of multiplication 22,5 times P/E ratio and 1.5 times P/B ratio. Above that value 
+                stock most likely won't be able to bring any profits.`,
                 numberRating: 3
             }];
         this.intervals = [[-Infinity, Infinity]];

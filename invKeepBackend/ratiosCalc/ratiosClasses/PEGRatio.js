@@ -11,7 +11,7 @@ module.exports = class PEGRatio extends BasicRatio {
         earnings growth in specified period of time. This factor is a great addition for P/E Ratio. It is dependent from 
         industry or company type, so should be analyzed in connection with it. It is important to know that EPS growth 
         period is used.`;
-        this.additionalDetails = [
+        this.bulletPointSummary = [
             `Complementary to PE Ratio.`,
             `Is believed to be a true stock's value.`,
             `The higher value the worse.`,
@@ -29,13 +29,13 @@ module.exports = class PEGRatio extends BasicRatio {
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.outstanding,
-                summary: `Stock is probably undervalued. Good opportunity.`,
+                summary: `Stock is probably undervalued. May be a good opportunity.`,
                 numberRating: 6
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.terrible,
-                summary: `Stock is probably overvalued. One unit is too expensive to be considered.`,
+                summary: `Stock is overvalued. One unit is is too expensive. Probably not be a good opportunity.`,
                 numberRating: 1
             }];
         this.intervals = [[-Infinity, 0], [0, 1], [1, Infinity]];

@@ -3,9 +3,11 @@
 An application on which I am enhancing my coding skills. \
 Angular with TypeScript + Node.js with Express.js + MongoDB.
 
-![invKeepMain](https://user-images.githubusercontent.com/45639693/120713631-7b85d500-c4c2-11eb-9eba-e456e93fca1e.PNG)
+![invKeepMain](https://user-images.githubusercontent.com/45639693/153066939-3a40c1a7-8f1a-4e28-8b58-8a034c02267f.png)
 
-![invKeepCreate](https://user-images.githubusercontent.com/45639693/118302344-6087fc80-b4e4-11eb-8434-c57f3890f355.PNG)
+![invKeepAnalysis](https://user-images.githubusercontent.com/45639693/153066687-66b96d1b-5bb8-4ef9-af91-afc28458602b.png)
+
+![invKeepCreate](https://user-images.githubusercontent.com/45639693/153067065-60d49fa6-dc56-40e3-a82c-3803a6581b0d.png)
 
 ## Before everything
 
@@ -43,4 +45,14 @@ Above steps is enough to run the app - create and load assets.
 
 After invKeep main page refresh, all imported assets should be displayed.
 
+## Tests
+
+Running tests:
+- Move to `invKeepTests` folder.
+- Run `npx cypress open` command.
+- Select spec files that need to be run
+
+![invKeepTests](https://user-images.githubusercontent.com/45639693/154859149-80098d2f-86fd-4efa-9117-c735e8c9fb2c.png)
+
+![cypressMenu](https://user-images.githubusercontent.com/45639693/154859400-9206f093-1f99-4c96-80df-777dccd69c49.png)
 

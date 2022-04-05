@@ -13,16 +13,23 @@ module.exports = class DPRRatio extends BasicRatio {
         It adds new value to analysis, can affect it, but definitely should not be decision-defining ratio.
         Shows how much net earnings are paid as dividends, while Dividend Yields Ratio is a simple rate of return in 
         cash dividends to shareholders.`;
-        this.additionalDetails = [
+        this.bulletPointSummary = [
             `Analyze with: ${this.coAnalysis}`
         ];
         this.finalValue = DPRRatio;
         this.intervalsData = [
             {
                 name: `${this.ratioName}`,
+                verbalRating: SharedJS.RatingObject.undetermined,
+                summary: `Company is not paying their earnings to shareholders and reinvests all in order to grow. It 
+                may be good future of the company. However it strongly depends from management and industry itself.`,
+                numberRating: 0
+            },
+            {
+                name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.depends,
                 summary: `Company is paying less than half of their earnings to shareholders and reinvests rest in order 
-                to grow. It is may be good future of the company. However it strongly depends from management and industry 
+                to grow. It may be good future of the company. However it strongly depends from management and industry 
                 itself.`,
                 numberRating: 3
             },
@@ -30,7 +37,7 @@ module.exports = class DPRRatio extends BasicRatio {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.outstanding,
                 summary: `Company is returning about half of earnings to shareholders and half is reinvested in order to
-                grow. This level of dividend allows to predict that company have sustainable dividend`,
+                grow. This level of dividend allows to predict that company have sustainable dividend.`,
                 numberRating: 6
             },
             {
@@ -40,9 +47,13 @@ module.exports = class DPRRatio extends BasicRatio {
                 earns indicates that dividend will be lowered or even stopped. It may lead to share price decreasing or 
                 investors losing faith in company.`,
                 numberRating: 2
+            }, {
+                name: `${this.ratioName}`,
+                verbalRating: SharedJS.RatingObject.error,
+                summary: `Probably an error, 100% is maximum possible value.`,
+                numberRating: 0
             }];
-        this.intervals = [[0, 35], [35, 55], [55, 100]];
-        // TODO add below 0 interval - going below zero breaks table dislayment
+        this.intervals = [[-Infinity, 0], [0, 35], [35, 55], [55, 100], [100, Infinity]];
     }
 
     // calculate(){ // future ratio more precise analysis method

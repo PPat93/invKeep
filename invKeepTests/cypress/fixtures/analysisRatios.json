@@ -1,0 +1,16 @@
+[
+    {"name": "EPS Ratio"},
+    {"name": "P/E Ratio"},
+    {"name": "PEG Ratio"},
+    {"name": "CAPE Ratio"},
+    {"name": "P/B Ratio"},
+    {"name": "D/E Ratio"},
+    {"name": "ROE Ratio"},
+    {"name": "ROCE Ratio"},
+    {"name": "Dividend Yield"},
+    {"name": "DPR Ratio"},
+    {"name": "P/S Ratio"},
+    {"name": "Graham Number"},
+    {"name": "EV/EBIT Ratio"},
+    {"name": "EV/EBITDA Ratio"}
+]

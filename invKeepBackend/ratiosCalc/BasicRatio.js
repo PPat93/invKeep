@@ -4,7 +4,7 @@ module.exports = class BasicRatio {
 
     finalValue = 0;
     description = ``
-    additionalDetails = [];
+    bulletPointSummary = [];
     coAnalysis = [];
     ratioName = ``;
     intervalsData = [{ name: `${this.ratioName}`, verbalRating: ``, summary: ``, numberRating: 0 }];
@@ -30,7 +30,7 @@ module.exports = class BasicRatio {
             name: this.ratioName,
             value: this.finalValue,
             description: this.description,
-            shortly: this.additionalDetails,
+            bulletPointSummary: this.bulletPointSummary,
             coanalysis: this.coAnalysis,
             intervals: this.determineProfitability(),
         }

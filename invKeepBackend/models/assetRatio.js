@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const subDetails = new mongoose.Schema({
     parameterName: String,
-    valueNum: Number
+    valueNum: Number,
+    unit: String
 });
 
 const assetRatioSchema = new mongoose.Schema({

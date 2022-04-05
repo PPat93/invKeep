@@ -12,7 +12,7 @@ module.exports = class EVEBITDARatio extends BasicRatio {
             is compared  with company's earnings with debt and amortization before taxes and interests. Varies 
             dependently from industry. Is higher for high-grown and probably overvalued companies and lower for 
             slow-growing, probably undervalued enterprises.`;
-        this.additionalDetails = [
+        this.bulletPointSummary = [
             `The lower the better, the higher the worse.`,
             `Varies dependently from industry and should be analyzed on industry average basis.`,
             `Shows how economical value of business corresponds wth estimatied value.`,
@@ -45,7 +45,7 @@ module.exports = class EVEBITDARatio extends BasicRatio {
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.terrible,
-                summary: `Too big value indicates unstable and unsecure company. Not worth of wasting time.`,
+                summary: `Too high value indicates unstable and unsecure company. Probably not worth of wasting time.`,
                 numberRating: 1
             }];
         this.intervals = [[-Infinity, 0], [0, 10], [10, 18], [18, Infinity]];

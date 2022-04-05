@@ -9,14 +9,14 @@ export interface AssetRecord {
   purchaseDate: Date | string
 }
 
-export interface DetailedAssetRatios {
+export interface AssetRatiosValues {
   assetId: string,
-  ratiosArray: { parameterName: string, valueNum: number }[]
+  ratiosArray: { parameterName: string, valueNum: number, unit: string }[]
 }
-
-export interface DetailedAssetRatiosAnalyzed {
+// TODO clean up below AssetAndIndicatorsAnlysis and AnalyzedData interfaces that are probably redundant
+export interface AssetAndIndicatorsAnlysis {
   assetId: string,
-  ratiosArray: { parameterName: string, valueNum: number }[],
+  ratiosArray: { parameterName: string, valueNum: number, unit: string }[],
   analyzedData: {
     coanalysis: string[],
     description: string,
@@ -27,7 +27,7 @@ export interface DetailedAssetRatiosAnalyzed {
       verbalRating: string
     },
     name: string,
-    shortly: string[],
+    bulletPointSummary: string[],
     value: number
   }[]
 }
@@ -42,7 +42,7 @@ export interface AnalyzedData {
     verbalRating: string
   },
   name: string,
-  shortly: string[],
+  bulletPointSummary: string[],
   value: number
 }
 
