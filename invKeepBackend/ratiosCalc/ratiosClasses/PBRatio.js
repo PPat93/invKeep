@@ -5,6 +5,7 @@ module.exports = class PBRatio extends BasicRatio {
 
     constructor(PBRatio) {
         super();
+        this.url = `pbratio`;
         this.ratioName = `P/B Ratio`;
         this.coAnalysis = [`NEVER ALONE!, ROE Ratio`];
         this.description = `The Price/Book Ratio allows to see how much it is needed to pay for one share of business

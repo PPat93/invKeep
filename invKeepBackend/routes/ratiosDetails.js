@@ -3,7 +3,8 @@ const router = express.Router();
 
 router.get('/:ratioName', (req, res) => {
 
-    let retrievedInfo; // TODO to be defined
+    let retrievedInfo = req.params.ratioName; // TODO to be defined
+    console.log(retrievedInfo)
     res.status(200).json({
 
         message: req.params.ratioName + ' details succesfully retrieved!',

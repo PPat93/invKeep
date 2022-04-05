@@ -5,6 +5,7 @@ module.exports = class GrahamNum extends BasicRatio {
 
     constructor(GrahamNum) {
         super();
+        this.url = `grahamnumber`;
         this.ratioName = `Graham Number`;
         this.coAnalysis = [``];
         this.description = `${this.ratioName} responds to the question - What is the maximum value of the stock that is 

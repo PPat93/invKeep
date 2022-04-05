@@ -9,6 +9,7 @@ module.exports = class BasicRatio {
     ratioName = ``;
     intervalsData = [{ name: `${this.ratioName}`, verbalRating: ``, summary: ``, numberRating: 0 }];
     intervals = [[-Infinity, 0], [0, Infinity]];
+    url = ``;
 
     constructor(ratio = 0, msg = ``) {
         this.finalValue = ratio;

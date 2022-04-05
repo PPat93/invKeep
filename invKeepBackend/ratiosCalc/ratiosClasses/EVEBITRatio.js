@@ -5,6 +5,7 @@ module.exports = class EVEBITRatio extends BasicRatio {
 
     constructor(EVEBITRatio) {
         super();
+        this.url = `evebitratio`;
         this.ratioName = `EV/EBIT Ratio`;
         this.coAnalysis = [`EV/EBITDA Ratio`];
         this.description = `It is more powerfull P/E Ratio. Whole enterprise value is compared with company's earnings

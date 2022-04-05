@@ -5,6 +5,7 @@ module.exports = class PEGRatio extends BasicRatio {
 
     constructor(PEGRatio) {
         super();
+        this.url = `pegratio`;
         this.ratioName = `PEG Ratio`;
         this.coAnalysis = [`P/E Ratio`];
         this.description = `The Price/Earnings-to-Growth ratio allows to compare one stock relative value with it's 

@@ -5,6 +5,7 @@ module.exports = class EVEBITDARatio extends BasicRatio {
 
     constructor(EVEBITDARatio) {
         super();
+        this.url = `evebitdaratio`;
         this.ratioName = `EV/EBITDA Ratio`;
         this.coAnalysis = [`EV/EBIT Ratio`];
         this.description = `Other name is Enterprise multiple. Shows economic value of business. Might look

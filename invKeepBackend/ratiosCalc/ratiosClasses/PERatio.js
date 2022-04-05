@@ -5,6 +5,7 @@ module.exports = class PERatio extends BasicRatio {
 
     constructor(PERatio) {
         super();
+        this.url = `peratio`;
         this.ratioName = `P/E Ratio`;
         this.coAnalysis = [`EPS Ratio`, `PEG Ratio`];
         this.description = `The price-to-earnings ratio is the ratio for valuing a company that measures 

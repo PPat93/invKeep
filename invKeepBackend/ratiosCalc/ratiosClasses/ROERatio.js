@@ -5,6 +5,7 @@ module.exports = class ROERatio extends BasicRatio {
 
     constructor(ROERatio) {
         super();
+        this.url = `roeratio`;
         this.ratioName = `ROE Ratio`;
         this.coAnalysis = [`P/B Ratio`];
         this.description = `Return on Equity ratio allows to calculate company financial performance. Basically, the 

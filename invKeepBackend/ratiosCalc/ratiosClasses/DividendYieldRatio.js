@@ -5,6 +5,7 @@ module.exports = class DividendYieldRatio extends BasicRatio {
 
     constructor(DividendYieldRatio) {
         super();
+        this.url = `dividendyieldratio`;
         this.ratioName = `Dividend Yield Ratio`;
         this.coAnalysis = [`DPR Ratio`];
         this.description = `${this.ratioName} is a percentage financial ratio showing how much is paid each year 

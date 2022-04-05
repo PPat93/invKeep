@@ -5,6 +5,7 @@ module.exports = class DPRRatio extends BasicRatio {
 
     constructor(DPRRatio) {
         super();
+        this.url = `dprratio`;
         this.ratioName = `DPR Ratio`;
         this.coAnalysis = [`Dividend Yield Ratio`];
         this.description = `Dividend Payout Ratio shows comparison of total dividend pay out to net company income. 

@@ -5,6 +5,7 @@ module.exports = class CAPERatio extends BasicRatio {
 
     constructor(CAPERatio = 0) {
         super();
+        this.url = `caperatio`;
         this.ratioName = `CAPE Ratio`;
         this.coAnalysis = [`-`];
         this.description = `Cyclically-Adjusted Price-to-Earnings Ratio is variation on P/E Ratio (Shiller P/E). Allows

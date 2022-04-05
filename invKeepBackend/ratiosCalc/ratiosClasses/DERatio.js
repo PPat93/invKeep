@@ -5,6 +5,7 @@ module.exports = class DERatio extends BasicRatio {
 
     constructor(DERatio) {
         super();
+        this.url = `deratio`;
         this.ratioName = `D/E Ratio`;
         this.coAnalysis = [`With other same industry companies debts ratios`];
         this.description = `Debt to Equity Ratio allows to compare total company debt with company equity. It shows level 

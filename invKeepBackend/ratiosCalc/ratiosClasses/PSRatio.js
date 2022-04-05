@@ -5,6 +5,7 @@ module.exports = class PSRatio extends BasicRatio {
 
     constructor(PSRatio) {
         super();
+        this.url = `psratio`;
         this.ratioName = `P/S Ratio`;
         this.coAnalysis = [`D/E Ratio, EPS Ratio, P/B Ratio, P/E Ratio`];
         this.description = `Price-to-Sales Ratio compares company stock price with revenues. It illustrate how much 

@@ -1,0 +1,58 @@
+[
+    {
+        "name": "EPS Ratio",
+        "url": "epsratio"
+    },
+    {
+        "name": "P/E Ratio",
+        "url": "peratio"
+    },
+    {
+        "name": "PEG Ratio",
+        "url": "pegratio"
+    },
+    {
+        "name": "CAPE Ratio",
+        "url": "caperatio"
+    },
+    {
+        "name": "P/B Ratio",
+        "url": "pbratio"
+    },
+    {
+        "name": "D/E Ratio",
+        "url": "deratio"
+    },
+    {
+        "name": "ROE Ratio",
+        "url": "roeratio"
+    },
+    {
+        "name": "ROCE Ratio",
+        "url": "roceratio"
+    },
+    {
+        "name": "Dividend Yield",
+        "url": "dividenyield"
+    },
+    {
+        "name": "DPR Ratio",
+        "url": "dprratio"
+    },
+    {
+        "name": "P/S Ratio",
+        "url": "psratio"
+    },
+    {
+        "name": "Graham Number",
+        "url": "grahamnumber"
+    },
+    {
+        "name": "EV/EBIT Ratio",
+        "url": "evebitratio"
+    },
+    {
+        "name": "EV/EBITDA Ratio",
+        "url": "evebitdaratio"
+    }
+]

@@ -5,6 +5,7 @@ module.exports = class EPSRatio extends BasicRatio {
 
     constructor(EPSRatio = 0) {
         super();
+        this.url = `epsratio`;
         this.ratioName = `EPS Ratio`;
         this.coAnalysis = [`P/E Ratio`];
         this.description = `Earnings per share (EPS) is calculated as a company\'s profit divided by the outstanding shares 

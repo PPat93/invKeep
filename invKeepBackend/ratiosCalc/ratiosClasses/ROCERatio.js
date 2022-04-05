@@ -5,6 +5,7 @@ module.exports = class ROCERatio extends BasicRatio {
 
     constructor(ROCERatio) {
         super();
+        this.url = `roceratio`;
         this.ratioName = `ROCE Ratio`;
         this.coAnalysis = [`ROA, ROE, ROIC`];
         this.description = `Return On Capital Employed Ratio allows for analysis of company profitability on its capital.
