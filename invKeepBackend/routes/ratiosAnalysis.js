@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const AssetRatio = require('../models/assetRatio');
-const RatiosAnalysis = require('../ratiosCalc/AllRatios');
+const RatiosAnalysis = require('../ratios/AllRatios');
 
 function analyzeAssetProfitability(ratiosForAnalysis) {
 

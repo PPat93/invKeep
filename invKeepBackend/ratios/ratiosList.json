@@ -1,58 +1,72 @@
 [
     {
         "name": "EPS Ratio",
+        "className": "EPSRatio",
         "url": "epsratio"
     },
     {
         "name": "P/E Ratio",
+        "className": "PERatio",
         "url": "peratio"
     },
     {
         "name": "PEG Ratio",
+        "className": "PEGRatio",
         "url": "pegratio"
     },
     {
         "name": "CAPE Ratio",
+        "className": "CAPERatio",
         "url": "caperatio"
     },
     {
         "name": "P/B Ratio",
+        "className": "PBRatio",
         "url": "pbratio"
     },
     {
         "name": "D/E Ratio",
+        "className": "DERatio",
         "url": "deratio"
     },
     {
         "name": "ROE Ratio",
+        "className": "ROERatio",
         "url": "roeratio"
     },
     {
         "name": "ROCE Ratio",
+        "className": "ROCERatio",
         "url": "roceratio"
     },
     {
         "name": "Dividend Yield",
+        "className": "DividendYieldRatio",
         "url": "dividenyield"
     },
     {
         "name": "DPR Ratio",
+        "className": "DPRRatio",
         "url": "dprratio"
     },
     {
         "name": "P/S Ratio",
+        "className": "PSRatio",
         "url": "psratio"
     },
     {
         "name": "Graham Number",
+        "className": "GrahamNum",
         "url": "grahamnumber"
     },
     {
         "name": "EV/EBIT Ratio",
+        "className": "EVEBITRatio",
         "url": "evebitratio"
     },
     {
         "name": "EV/EBITDA Ratio",
+        "className": "EVEBITDARatio",
         "url": "evebitdaratio"
     }
 ]

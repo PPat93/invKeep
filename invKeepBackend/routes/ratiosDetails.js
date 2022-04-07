@@ -1,10 +1,12 @@
 const express = require('express');
+const RatiosDetails = require('../ratios/RatiosDetails');
 const router = express.Router();
 
 router.get('/:ratioName', (req, res) => {
 
+    let siema = new RatiosDetails('CAPERatio');
+    console.log(siema)
     let retrievedInfo = req.params.ratioName; // TODO to be defined
-    console.log(retrievedInfo)
     res.status(200).json({
 
         message: req.params.ratioName + ' details succesfully retrieved!',
