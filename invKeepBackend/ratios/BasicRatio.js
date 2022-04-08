@@ -11,7 +11,8 @@ module.exports = class BasicRatio {
     intervals = [[-Infinity, 0], [0, Infinity]];
 
     extensiveDescription = ``;
-
+    formula = ``;
+    
     constructor(ratio = 0, msg = ``) {
         this.finalValue = ratio;
         this.shortDescription = msg;

@@ -13,6 +13,7 @@ module.exports = class ROERatio extends BasicRatio {
             important to check base period. It may be influenced by inconsistent profits e.g.: if company is unprofitable 
             for several years and suddenly gains profits - ${this.ratioName} will skyrocket. Represented in %.`;
         this.extensiveDescription = ``;
+        this.formula = ``;
         this.bulletPointSummary = [
             `The higher, the better - above industry average is considered as good.`,
             `Allows to calculate company financial performance.`,

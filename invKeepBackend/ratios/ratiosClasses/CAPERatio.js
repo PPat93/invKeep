@@ -12,6 +12,7 @@ module.exports = class CAPERatio extends BasicRatio {
             recessions/expansions and makes easier to analyze company without them. The lower, the better. However, it does 
             not involve accounting changes.`;
         this.extensiveDescription = ``;
+        this.formula = ``;
         this.bulletPointSummary = [
             `Adjusted to economic cycles.`,
             `Shows if stock is over or under valued.`,

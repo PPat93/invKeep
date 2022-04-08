@@ -12,6 +12,7 @@ module.exports = class DERatio extends BasicRatio {
             May be hard to compare stocks among different sectors. The higher ${this.ratioName} is, the more risky stock probably is. 
             E.g. if D/E = 1.5 it means that on every 1$ stock has 1.5$ debt.`;
         this.extensiveDescription = ``;
+        this.formula = ``;
         this.bulletPointSummary = [
             `The higher the riskier.`,
             `Compares company's debt with equity.`,

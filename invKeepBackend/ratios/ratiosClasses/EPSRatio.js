@@ -11,6 +11,7 @@ module.exports = class EPSRatio extends BasicRatio {
             of its common stock. The resulting number serves as an indicator of a company\'s profitability. It is common 
             for a company to report EPS that is adjusted for extraordinary items and potential share dilution. `;
         this.extensiveDescription = ``;
+        this.formula = ``;
         this.bulletPointSummary = [
             `One of the most important metrics.`,
             `Shows how much company earns on most basic level.`,
