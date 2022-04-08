@@ -5,14 +5,14 @@ module.exports = class ROCERatio extends BasicRatio {
 
     constructor(ROCERatio) {
         super();
-        this.url = `roceratio`;
         this.ratioName = `ROCE Ratio`;
         this.coAnalysis = [`ROA, ROE, ROIC`];
-        this.description = `Return On Capital Employed Ratio allows for analysis of company profitability on its capital.
-         It is especially useful for performance comparison of firms in capital-sensitive branch sectors, e.g. telecoms 
-         or utilities. Takes into account debt and equity. All in all it shows how many profit is generated per 1$. The 
-         the higher the value, the better profitability of the company is. Usually investor prefers companies with stable
-         ROCE instead of volatile one. Can be affected by high cash resources. In this app is presented in %`;
+        this.shortDescription = `Return On Capital Employed Ratio allows for analysis of company profitability on its capital.
+            It is especially useful for performance comparison of firms in capital-sensitive branch sectors, e.g. telecoms 
+            or utilities. Takes into account debt and equity. All in all it shows how many profit is generated per 1$. The 
+            the higher the value, the better profitability of the company is. Usually investor prefers companies with stable
+            ROCE instead of volatile one. Can be affected by high cash resources. In this app is presented in %`;
+        this.extensiveDescription = ``;
         this.bulletPointSummary = [
             `The higher, the better.`,
             `Allows comparison between capital-sensitive industry companies.`,

@@ -5,14 +5,14 @@ module.exports = class PSRatio extends BasicRatio {
 
     constructor(PSRatio) {
         super();
-        this.url = `psratio`;
         this.ratioName = `P/S Ratio`;
         this.coAnalysis = [`D/E Ratio, EPS Ratio, P/B Ratio, P/E Ratio`];
-        this.description = `Price-to-Sales Ratio compares company stock price with revenues. It illustrate how much 
-        investors are willing to pay for one dollar of company sales. Ratio below one indicates that company generates 
-        more money than it costs. On the other hand, if ratio is greater than 1, it shows that stock is probably overvalued. 
-        This factor takes into account only price and revenue. ALl other data is omitted, what can cause some serious mistakes. 
-        It is worth to compare company with other ones from an industry.`;
+        this.shortDescription = `Price-to-Sales Ratio compares company stock price with revenues. It illustrate how much 
+            investors are willing to pay for one dollar of company sales. Ratio below one indicates that company generates 
+            more money than it costs. On the other hand, if ratio is greater than 1, it shows that stock is probably overvalued. 
+            This factor takes into account only price and revenue. ALl other data is omitted, what can cause some serious mistakes. 
+            It is worth to compare company with other ones from an industry.`;
+        this.extensiveDescription = ``;
         this.bulletPointSummary = [
             `The lower, the better.`,
             `Works great in comparison with other industry companies.`,

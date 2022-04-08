@@ -5,14 +5,14 @@ module.exports = class EVEBITDARatio extends BasicRatio {
 
     constructor(EVEBITDARatio) {
         super();
-        this.url = `evebitdaratio`;
         this.ratioName = `EV/EBITDA Ratio`;
         this.coAnalysis = [`EV/EBIT Ratio`];
-        this.description = `Other name is Enterprise multiple. Shows economic value of business. Might look
+        this.shortDescription = `Other name is Enterprise multiple. Shows economic value of business. Might look
             similar to EV/EBIT, however it also get rid of debt and amortization. Whole enterprise value 
             is compared  with company's earnings with debt and amortization before taxes and interests. Varies 
             dependently from industry. Is higher for high-grown and probably overvalued companies and lower for 
             slow-growing, probably undervalued enterprises.`;
+        this.extensiveDescription = ``;
         this.bulletPointSummary = [
             `The lower the better, the higher the worse.`,
             `Varies dependently from industry and should be analyzed on industry average basis.`,

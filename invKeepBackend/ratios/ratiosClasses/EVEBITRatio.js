@@ -5,13 +5,13 @@ module.exports = class EVEBITRatio extends BasicRatio {
 
     constructor(EVEBITRatio) {
         super();
-        this.url = `evebitratio`;
         this.ratioName = `EV/EBIT Ratio`;
         this.coAnalysis = [`EV/EBITDA Ratio`];
-        this.description = `It is more powerfull P/E Ratio. Whole enterprise value is compared with company's earnings
+        this.shortDescription = `It is more powerfull P/E Ratio. Whole enterprise value is compared with company's earnings
             before taxes and interests. The bigger earnings the better - whole ratio would be lower. Low ${this.ratioName}
             indicates stable and secure company. Allows easy comparison of two firms with similar operating profiles. 
             The difference between EV/EBITDA is ${this.ratioName} do not incorporates depreciation and amortization.`;
+        this.extensiveDescription = ``;
         this.bulletPointSummary = [
             `Show stability and security of company.`,
             `aries dependently from industry and should be analyzed on industry average basis.`,

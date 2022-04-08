@@ -3,17 +3,18 @@ const SharedJS = require('../../invKeepFrontend/src/app/shared/sharedJS');
 module.exports = class BasicRatio {
 
     finalValue = 0;
-    description = ``
+    shortDescription = ``;
     bulletPointSummary = [];
     coAnalysis = [];
     ratioName = ``;
     intervalsData = [{ name: `${this.ratioName}`, verbalRating: ``, summary: ``, numberRating: 0 }];
     intervals = [[-Infinity, 0], [0, Infinity]];
-    url = ``;
+
+    extensiveDescription = ``;
 
     constructor(ratio = 0, msg = ``) {
         this.finalValue = ratio;
-        this.description = msg;
+        this.shortDescription = msg;
     }
 
     determineProfitability(intervals = this.intervals, intervalsData = this.intervalsData) {
@@ -30,10 +31,25 @@ module.exports = class BasicRatio {
         return {
             name: this.ratioName,
             value: this.finalValue,
-            description: this.description,
+            shortDescription: this.shortDescription,
             bulletPointSummary: this.bulletPointSummary,
             coanalysis: this.coAnalysis,
             intervals: this.determineProfitability(),
         }
+    }
+
+    returnaAllRatioInfos() {
+        let allInfoObject = {
+            name: this.ratioName,
+            shortDescription: this.shortDescription,
+            coanalysis: this.coAnalysis,
+            bulletPointSummary: this.bulletPointSummary,
+            intervals: {
+                data: this.intervalsData,
+                values: this.intervals
+            },
+            extensiveDescription: this.extensiveDescription
+        };
+        return allInfoObject;
     }
 }

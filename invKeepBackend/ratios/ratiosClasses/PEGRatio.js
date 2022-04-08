@@ -5,13 +5,13 @@ module.exports = class PEGRatio extends BasicRatio {
 
     constructor(PEGRatio) {
         super();
-        this.url = `pegratio`;
         this.ratioName = `PEG Ratio`;
         this.coAnalysis = [`P/E Ratio`];
-        this.description = `The Price/Earnings-to-Growth ratio allows to compare one stock relative value with it's 
-        earnings growth in specified period of time. This factor is a great addition for P/E Ratio. It is dependent from 
-        industry or company type, so should be analyzed in connection with it. It is important to know that EPS growth 
-        period is used.`;
+        this.shortDescription = `The Price/Earnings-to-Growth ratio allows to compare one stock relative value with it's 
+            earnings growth in specified period of time. This factor is a great addition for P/E Ratio. It is dependent from 
+            industry or company type, so should be analyzed in connection with it. It is important to know that EPS growth 
+            period is used.`;
+        this.extensiveDescription = ``;
         this.bulletPointSummary = [
             `Complementary to PE Ratio.`,
             `Is believed to be a true stock's value.`,

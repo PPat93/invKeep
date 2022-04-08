@@ -5,14 +5,14 @@ module.exports = class ROERatio extends BasicRatio {
 
     constructor(ROERatio) {
         super();
-        this.url = `roeratio`;
         this.ratioName = `ROE Ratio`;
         this.coAnalysis = [`P/B Ratio`];
-        this.description = `Return on Equity ratio allows to calculate company financial performance. Basically, the 
-        higher, the better - above industry average is considered as good. As it takes debt  into account, it is 
-        dependant on what is average for company's industry. Usually counted on last financial year, however it is 
-        important to check base period. It may be influenced by inconsistent profits e.g.: if company is unprofitable 
-        for several years and suddenly gains profits - ${this.ratioName} will skyrocket. Represented in %.`;
+        this.shortDescription = `Return on Equity ratio allows to calculate company financial performance. Basically, the 
+            higher, the better - above industry average is considered as good. As it takes debt  into account, it is 
+            dependant on what is average for company's industry. Usually counted on last financial year, however it is 
+            important to check base period. It may be influenced by inconsistent profits e.g.: if company is unprofitable 
+            for several years and suddenly gains profits - ${this.ratioName} will skyrocket. Represented in %.`;
+        this.extensiveDescription = ``;
         this.bulletPointSummary = [
             `The higher, the better - above industry average is considered as good.`,
             `Allows to calculate company financial performance.`,
