@@ -28,7 +28,7 @@ export class AssetAnalysisComponent implements OnInit {
     ],
     analyzedData: [{
       coanalysis: [``],
-      description: ``,
+      shortDescription: ``,
       intervals: {
         name: ``,
         numberRating: 0,
@@ -43,7 +43,7 @@ export class AssetAnalysisComponent implements OnInit {
 
   analyzedAssetRatios: AnalyzedData[] = [{
     coanalysis: [``],
-    description: ``,
+    shortDescription: ``,
     intervals: {
       name: ``,
       numberRating: 0,
@@ -59,7 +59,7 @@ export class AssetAnalysisComponent implements OnInit {
   isLoading2: boolean = false;
 
   ratiosColumns: string[] = Object.keys(this.assetAnalysis.ratiosArray[0])
-  ratiosAnalysisColumns: string[] = [`name`, `value`, `intervals`, `description`]
+  ratiosAnalysisColumns: string[] = [`name`, `value`, `intervals`, `shortDescription`]
 
   private ratiosSub: Subscription;
   private ratiosAnalysisSub: Subscription;

@@ -19,7 +19,7 @@ export interface AssetAndIndicatorsAnlysis {
   ratiosArray: { parameterName: string, valueNum: number, unit: string }[],
   analyzedData: {
     coanalysis: string[],
-    description: string,
+    shortDescription: string,
     intervals: {
       name: string,
       numberRating: number,
@@ -34,7 +34,7 @@ export interface AssetAndIndicatorsAnlysis {
 
 export interface AnalyzedData {
   coanalysis: string[],
-  description: string,
+  shortDescription: string,
   intervals: {
     name: string,
     numberRating: number,
