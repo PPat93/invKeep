@@ -20,15 +20,14 @@ const CAPERatio = require('./ratiosClasses/CAPERatio');
 
 module.exports = class RatiosDetails {
 
-    retrievedInfo;
+    toBeRetrievedRatioDetailsClass;
 
     constructor(ratioName) {
         // make sure it is running appropriate class, not any script from frontend
         // TODO add some better sanitization  
         ratiosList.forEach(ratio => {
             if (ratio.className === ratioName) {
-                console.log('found')
-                this.retrievedInfo = eval('new ' + ratioName + '(0)');
+                this.toBeRetrievedRatioDetailsClass = eval('new ' + ratioName + '()');
             }
         })
     }
