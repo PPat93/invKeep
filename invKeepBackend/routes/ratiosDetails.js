@@ -4,11 +4,12 @@ const router = express.Router();
 
 router.get('/:ratioName', (req, res) => {
 
-    let retrievedInfo = new RatiosDetails(req.params.ratioName);
+    let retrieveInfoClass = new RatiosDetails(req.params.ratioName);
+    let retrievedInfo = retrieveInfoClass.getAllRatioInfo();
 
     res.status(200).json({
 
-        message: req.params.ratioName + " details succesfully retrieved!",
+        message: retrievedInfo.name + " details succesfully retrieved!",
         detailedInfos: retrievedInfo
     })
     // .catch(e => {

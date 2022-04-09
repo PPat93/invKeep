@@ -20,15 +20,27 @@ const CAPERatio = require('./ratiosClasses/CAPERatio');
 
 module.exports = class RatiosDetails {
 
+
+    allRatioInfoRetrieved;
     toBeRetrievedRatioDetailsClass;
 
     constructor(ratioName) {
         // make sure it is running appropriate class, not any script from frontend
         // TODO add some better sanitization  
-        ratiosList.forEach(ratio => {
-            if (ratio.className === ratioName) {
-                this.toBeRetrievedRatioDetailsClass = eval('new ' + ratioName + '()');
+        ratiosList.some(ratio => {
+
+            // let sanitizedRatioName =  TODO
+
+            if (ratio.url === ratioName) {
+                this.toBeRetrievedRatioDetailsClass = eval('new ' + ratio.className + '()');
+                return true;
             }
+            // TODO add some error handling if item was not found
         })
+    }
+
+    getAllRatioInfo() {
+
+        return this.allRatioInfoRetrieved = this.toBeRetrievedRatioDetailsClass.returnaAllRatioInfos();
     }
 }
