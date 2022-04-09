@@ -1,4 +1,4 @@
-const BasicRatio = require('../BasicRatio');
+const BasicRatio = require('./BasicRatio');
 const SharedJS = require('../../../invKeepFrontend/src/app/shared/sharedJS');
 
 module.exports = class DividendYieldRatio extends BasicRatio {
