@@ -14,6 +14,7 @@ module.exports = class EVEBITDARatio extends BasicRatio {
             slow-growing, probably undervalued enterprises.`;
         this.extensiveDescription = ``;
         this.formula = ``;
+        this.example = ``;
         this.bulletPointSummary = [
             `The lower the better, the higher the worse.`,
             `Varies dependently from industry and should be analyzed on industry average basis.`,

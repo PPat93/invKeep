@@ -14,6 +14,7 @@ module.exports = class DividendYieldRatio extends BasicRatio {
             to shareholders, while DPR shows how much net earnings are paid as dividends.`;
         this.extensiveDescription = ``;
         this.formula = ``;
+        this.example = ``;
         this.bulletPointSummary = [
             `The higher, the better.`,
             `Declining stock price may falsely rise the ratio.`,

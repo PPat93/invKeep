@@ -13,6 +13,7 @@ module.exports = class DERatio extends BasicRatio {
             E.g. if D/E = 1.5 it means that on every 1$ stock has 1.5$ debt.`;
         this.extensiveDescription = ``;
         this.formula = ``;
+        this.example = ``;
         this.bulletPointSummary = [
             `The higher the riskier.`,
             `Compares company's debt with equity.`,

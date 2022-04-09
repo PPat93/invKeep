@@ -13,6 +13,7 @@ module.exports = class EVEBITRatio extends BasicRatio {
             The difference between EV/EBITDA is ${this.ratioName} do not incorporates depreciation and amortization.`;
         this.extensiveDescription = ``;
         this.formula = ``;
+        this.example = ``;
         this.bulletPointSummary = [
             `Show stability and security of company.`,
             `aries dependently from industry and should be analyzed on industry average basis.`,

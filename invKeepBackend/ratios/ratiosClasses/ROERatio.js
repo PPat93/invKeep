@@ -14,6 +14,7 @@ module.exports = class ROERatio extends BasicRatio {
             for several years and suddenly gains profits - ${this.ratioName} will skyrocket. Represented in %.`;
         this.extensiveDescription = ``;
         this.formula = ``;
+        this.example = ``;
         this.bulletPointSummary = [
             `The higher, the better - above industry average is considered as good.`,
             `Allows to calculate company financial performance.`,

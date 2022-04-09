@@ -12,6 +12,7 @@ module.exports = class EPSRatio extends BasicRatio {
             for a company to report EPS that is adjusted for extraordinary items and potential share dilution. `;
         this.extensiveDescription = ``;
         this.formula = ``;
+        this.example = ``;
         this.bulletPointSummary = [
             `One of the most important metrics.`,
             `Shows how much company earns on most basic level.`,

@@ -14,6 +14,7 @@ module.exports = class PSRatio extends BasicRatio {
             It is worth to compare company with other ones from an industry.`;
         this.extensiveDescription = ``;
         this.formula = ``;
+        this.example = ``;
         this.bulletPointSummary = [
             `The lower, the better.`,
             `Works great in comparison with other industry companies.`,

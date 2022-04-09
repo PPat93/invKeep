@@ -13,6 +13,7 @@ module.exports = class PBRatio extends BasicRatio {
             low ratio may indicate that company performance is poor. Includes all liabilities and assets of the company.`;
         this.extensiveDescription = ``;
         this.formula = ``;
+        this.example = ``;
         this.bulletPointSummary = [
             `Shows if company is over- or under-valued.`,
             `Low value may indicate company's poor performance.`,

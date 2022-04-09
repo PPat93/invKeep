@@ -15,6 +15,7 @@ module.exports = class DPRRatio extends BasicRatio {
             cash dividends to shareholders.`;
         this.extensiveDescription = ``;
         this.formula = ``;
+        this.example = ``;
         this.bulletPointSummary = [
             `Analyze with: ${this.coAnalysis}`
         ];

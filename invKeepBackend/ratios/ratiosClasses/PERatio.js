@@ -12,6 +12,7 @@ module.exports = class PERatio extends BasicRatio {
             shares in an apples-to-apples comparison. Constant negative ratio may indicate a risk of bankruptcy.`;
         this.extensiveDescription = ``;
         this.formula = ``;
+        this.example = ``;
         this.bulletPointSummary = [
             `One of the most important metrics.`,
             `Shows how is the price of one share compared to company earnings per one share.`,

@@ -14,6 +14,7 @@ module.exports = class ROCERatio extends BasicRatio {
             ROCE instead of volatile one. Can be affected by high cash resources. In this app is presented in %`;
         this.extensiveDescription = ``;
         this.formula = ``;
+        this.example = ``;
         this.bulletPointSummary = [
             `The higher, the better.`,
             `Allows comparison between capital-sensitive industry companies.`,

@@ -13,6 +13,7 @@ module.exports = class PEGRatio extends BasicRatio {
             period is used.`;
         this.extensiveDescription = ``;
         this.formula = ``;
+        this.example = ``;
         this.bulletPointSummary = [
             `Complementary to PE Ratio.`,
             `Is believed to be a true stock's value.`,

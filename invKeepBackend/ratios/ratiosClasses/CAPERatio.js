@@ -13,6 +13,7 @@ module.exports = class CAPERatio extends BasicRatio {
             not involve accounting changes.`;
         this.extensiveDescription = ``;
         this.formula = ``;
+        this.example = ``;
         this.bulletPointSummary = [
             `Adjusted to economic cycles.`,
             `Shows if stock is over or under valued.`,
