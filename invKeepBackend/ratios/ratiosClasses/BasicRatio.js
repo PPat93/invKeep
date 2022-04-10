@@ -3,7 +3,7 @@ const SharedJS = require('../../../invKeepFrontend/src/app/shared/sharedJS');
 module.exports = class BasicRatio {
 
     ratioName = `Default Name`;
-    coAnalysis = [`First default coanalysis ratio name`, `Second default coanalysis ratio name`];
+    coAnalysis = [`First default coAnalysis ratio name`, `Second default coAnalysis ratio name`];
     shortDescription = `Default short ratio description about the ratio`;
     extensiveDescription = `Default long, extensive ratio description that is going on and on and on. Details and more...`;
     formula = `(default formula value) = a + b/2`;
@@ -37,7 +37,7 @@ module.exports = class BasicRatio {
             value: this.finalValue,
             shortDescription: this.shortDescription,
             bulletPointSummary: this.bulletPointSummary,
-            coanalysis: this.coAnalysis,
+            coAnalysis: this.coAnalysis,
             intervals: this.determineProfitability(),
         }
     }
@@ -46,13 +46,15 @@ module.exports = class BasicRatio {
         let allInfoObject = {
             name: this.ratioName,
             shortDescription: this.shortDescription,
-            coanalysis: this.coAnalysis,
+            extensiveDescription: this.extensiveDescription,
+            formula: this.formula,
+            example: this.example,
+            coAnalysis: this.coAnalysis,
             bulletPointSummary: this.bulletPointSummary,
             intervals: {
                 data: this.intervalsData,
                 values: this.intervals
             },
-            extensiveDescription: this.extensiveDescription
         };
         return allInfoObject;
     }

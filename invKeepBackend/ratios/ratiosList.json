@@ -42,7 +42,7 @@
     {
         "name": "Dividend Yield",
         "className": "DividendYieldRatio",
-        "url": "dividenyield"
+        "url": "dividendyieldratio"
     },
     {
         "name": "DPR Ratio",
