@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AssetsService } from "../../services/assets.service";
 import { ActivatedRoute, ParamMap } from "@angular/router";
-import { AnalyzedData, AssetRecord, AssetAndIndicatorsAnlysis } from "../../shared/sharedTS";
+import { AnalyzedData, AssetRecord, AssetAndIndicatorsAnlysis, RatioInfoObject } from "../../shared/sharedTS";
 import { NgForm } from "@angular/forms";
 import { AssetRatiosService } from "../../services/asset-ratios.service";
 import { Subscription } from "rxjs";
@@ -27,7 +27,7 @@ export class AssetAnalysisComponent implements OnInit {
       { parameterName: ``, valueNum: null, unit: `` }
     ],
     analyzedData: [{
-      coanalysis: [``],
+      coAnalysis: [``],
       shortDescription: ``,
       intervals: {
         name: ``,
@@ -42,7 +42,7 @@ export class AssetAnalysisComponent implements OnInit {
   };
 
   analyzedAssetRatios: AnalyzedData[] = [{
-    coanalysis: [``],
+    coAnalysis: [``],
     shortDescription: ``,
     intervals: {
       name: ``,
@@ -124,9 +124,9 @@ export class AssetAnalysisComponent implements OnInit {
     }
   }
 
-  openRatioDetails(ratioName: AnalyzedData) {
+  openRatioDetails(ratioName: string) {
     this.dialog.open(RatioDetailsDialogComponent, {
-      data: { name: ratioName },
+      data: ratioName
     })
   }
 }

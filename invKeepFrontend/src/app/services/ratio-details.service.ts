@@ -1,13 +1,13 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
-import { AnalyzedData } from "../shared/sharedTS";
+import { RatioInfoObject } from "../shared/sharedTS";
 
 @Injectable({ providedIn: 'root' })
 
 export class RatioDetailsService {
 
-    private detailedRatiosInfos = new Subject<AnalyzedData[]>();
+    private detailedRatiosInfos = new Subject<RatioInfoObject>();
 
     constructor(private http: HttpClient) { }
 
