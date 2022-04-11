@@ -11,17 +11,19 @@
             </button>
         </span>
     </div>
-    <div mat-dialog-content class="description-text">
-        some desc
-    </div>
-    <div mat-dialog-content class="detailed-points">
-        <ol>
-            <li>some point</li>
-            <li>next point</li>
-            <li>other point</li>
-        </ol>
-    </div>
-    <div mat-dialog-content class="formula">
-        
+    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+    <div class="dialog-body-content" *ngIf="!isLoading">
+        <div mat-dialog-content class="description-text">
+            some desc
+        </div>
+        <div mat-dialog-content class="detailed-points">
+            <ol>
+                <li>some point</li>
+                <li>next point</li>
+                <li>other point</li>
+            </ol>
+        </div>
+        <div mat-dialog-content class="formula">
+        </div>
     </div>
 </div>

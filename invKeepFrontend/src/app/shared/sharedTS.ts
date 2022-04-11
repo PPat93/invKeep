@@ -59,7 +59,7 @@ export interface RatioInfoObject {
         summary: string,
         verbalRating: string
       },
-      values: [number[]]
+      values: number[][]
   },
 };
 

@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { RatioInfoObject } from "../shared/sharedTS";
 
 @Injectable({ providedIn: 'root' })
@@ -18,5 +18,9 @@ export class RatioDetailsService {
                 this.detailedRatiosInfos.next(responseData.detailedInfos);
             })
         return this.detailedRatiosInfos;
+    }
+
+    getRatiosDetailsListener(): Observable<RatioInfoObject>{
+        return this.detailedRatiosInfos.asObservable()
     }
 }

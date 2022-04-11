@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { RatioDetailsService } from "src/app/services/ratio-details.service";
 import { RatioInfoObject } from "src/app/shared/sharedTS";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { Subscription } from "rxjs";
 
 @Component({
     selector: 'ratio-details-dialog',
@@ -12,8 +13,29 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 export class RatioDetailsDialogComponent implements OnInit {
 
+    private ratiosInfosUpdateSub: Subscription;
+
+
     assetId: string;
-    ratiosInfos: RatioInfoObject;
+    ratiosInfos: RatioInfoObject = {
+        name: ``,
+        coAnalysis: [``],
+        shortDescription: ``,
+        extensiveDescription: [``],
+        formula: ``,
+        example: ``,
+        bulletPointSummary: [``],
+        intervals: {
+            data: {
+                name: ``,
+                numberRating: 0,
+                summary: ``,
+                verbalRating: ``
+            },
+            values: [[0], [0]]
+        }
+    };
+
     isLoading: boolean = true;
     ratioName: string;
 
@@ -25,9 +47,16 @@ export class RatioDetailsDialogComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.RatioDetailsService.getRatiosDetails(this.ratioName).subscribe(ratiosDetailedInfos => {
-            this.ratiosInfos = ratiosDetailedInfos;
-        })
+        this.RatioDetailsService.getRatiosDetails(this.ratioName)
+            .subscribe(ratiosDetailedInfos => {
+                this.ratiosInfos = ratiosDetailedInfos;
+            })
+
+        this.ratiosInfosUpdateSub = this.RatioDetailsService.getRatiosDetailsListener()
+            .subscribe(ratiosDetails => {
+                this.ratiosInfos = ratiosDetails;
+                this.isLoading = false;
+            })
     }
 
     closeDialog() {

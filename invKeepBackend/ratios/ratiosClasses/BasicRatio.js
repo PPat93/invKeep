@@ -25,7 +25,7 @@ module.exports = class BasicRatio {
         let wholeDataStruct = { intervals: intervals, data: intervalsData };
         for (let i = 0; i < wholeDataStruct.intervals.length; i++) {
             if (this.finalValue > wholeDataStruct.intervals[i][0] && this.finalValue <= wholeDataStruct.intervals[i][1]) {
-                return wholeDataStruct.data[i]
+                return wholeDataStruct.data[i];
             }
         }
     }
