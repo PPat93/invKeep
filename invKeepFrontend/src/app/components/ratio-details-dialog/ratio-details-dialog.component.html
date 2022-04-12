@@ -1,9 +1,7 @@
 <mat-card class="additional-details-dialog">
     <mat-card-title class="header">
-        <span>
-            <h2 mat-dialog-title class="ratio-name-header-dialog">
-                Additional info on <b>{{ratioName}}</b>
-            </h2>
+        <span mat-dialog-title class="ratio-name-header-dialog">
+            Additional info on <b>{{ratioName}}</b>
         </span>
         <span class="close-dialog-btn">
             <button mat-button mat-raised-button (click)="closeDialog()" class="close-dialog-btn">
@@ -11,35 +9,26 @@
             </button>
         </span>
     </mat-card-title>
+    <mat-divider></mat-divider>
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-    <mat-card-content class="dialog-body-content" *ngIf="!isLoading">
-        <mat-card-content mat-dialog-content class="description-text">
+    <mat-card-content class="dialog-body" *ngIf="!isLoading">
+        <mat-card-title class="extensive-description-title dialog-body-content">Description</mat-card-title>
+        <mat-card-content mat-dialog-content class="description-text dialog-body-content">
             some desc
         </mat-card-content>
-        <mat-card-content mat-dialog-content class="detailed-points">
+        <mat-divider></mat-divider>
+        <mat-card-title class="bullet-point-summary-header dialog-body-content">Bullet point summary</mat-card-title>
+        <mat-card-content mat-dialog-content class="bullet-point-summary-content dialog-body-content">
             <ol>
                 <li>some point</li>
                 <li>next point</li>
                 <li>other point</li>
             </ol>
         </mat-card-content>
-        <mat-card-content mat-dialog-content class="formula">
+        <mat-divider></mat-divider>
+        <mat-card-title class="formula-title dialog-body-content">Formula</mat-card-title>
+        <mat-card-content mat-dialog-content class="formula dialog-body-content">
             {{ratiosInfos.formula}}
         </mat-card-content>
     </mat-card-content>
 </mat-card>
-
-<!-- <mat-card class="additional-details-dialog">
-    <mat-card-title class="ratio-name">
-
-    </mat-card-title>
-    <mat-card-content class="description-text">
-
-    </mat-card-content>
-    <mat-card-content class="detailed-points">
-
-    </mat-card-content>
-    <mat-card-content class="formula">
-
-    </mat-card-content>
-</mat-card> -->

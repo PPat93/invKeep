@@ -2,7 +2,16 @@ span {
     display: inline-block;
 }
 
-
-h2.ratio-name-header-dialog {
+.ratio-name-header-dialog {
     padding-right: 50px;
+    font-size: 28px !important;
+}
+
+.close-dialog-btn {
+    float: right;
+}
+
+mat-card-content.dialog-body-content, mat-card-title.dialog-body-content{
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
 }

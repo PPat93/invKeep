@@ -38,7 +38,7 @@ export class RatioDetailsDialogComponent implements OnInit {
     isLoading: boolean = true;
     ratioName: string;
 
-    constructor(public route: ActivatedRoute, private router: Router, public RatioDetailsService: RatioDetailsService,
+    constructor(public route: ActivatedRoute, public RatioDetailsService: RatioDetailsService,
         public dialogRef: MatDialogRef<RatioDetailsDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: string) {
         if (data) {
             this.ratioName = data;
