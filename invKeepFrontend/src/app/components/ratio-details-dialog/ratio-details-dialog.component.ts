@@ -15,7 +15,6 @@ export class RatioDetailsDialogComponent implements OnInit {
 
     private ratiosInfosUpdateSub: Subscription;
 
-
     assetId: string;
     ratiosInfos: RatioInfoObject = {
         name: ``,
@@ -61,5 +60,9 @@ export class RatioDetailsDialogComponent implements OnInit {
 
     closeDialog() {
         this.dialogRef.close()
+    }
+
+    ngOnDestroy(): void {
+        this.ratiosInfosUpdateSub.unsubscribe();
     }
 }
