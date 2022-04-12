@@ -1,5 +1,5 @@
-<div class="additional-details-dialog">
-    <div class="header">
+<mat-card class="additional-details-dialog">
+    <mat-card-title class="header">
         <span>
             <h2 mat-dialog-title class="ratio-name-header-dialog">
                 Additional info on <b>{{ratioName}}</b>
@@ -10,20 +10,36 @@
                 <span>x</span>
             </button>
         </span>
-    </div>
+    </mat-card-title>
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-    <div class="dialog-body-content" *ngIf="!isLoading">
-        <div mat-dialog-content class="description-text">
+    <mat-card-content class="dialog-body-content" *ngIf="!isLoading">
+        <mat-card-content mat-dialog-content class="description-text">
             some desc
-        </div>
-        <div mat-dialog-content class="detailed-points">
+        </mat-card-content>
+        <mat-card-content mat-dialog-content class="detailed-points">
             <ol>
                 <li>some point</li>
                 <li>next point</li>
                 <li>other point</li>
             </ol>
-        </div>
-        <div mat-dialog-content class="formula">
-        </div>
-    </div>
-</div>
+        </mat-card-content>
+        <mat-card-content mat-dialog-content class="formula">
+            {{ratiosInfos.formula}}
+        </mat-card-content>
+    </mat-card-content>
+</mat-card>
+
+<!-- <mat-card class="additional-details-dialog">
+    <mat-card-title class="ratio-name">
+
+    </mat-card-title>
+    <mat-card-content class="description-text">
+
+    </mat-card-content>
+    <mat-card-content class="detailed-points">
+
+    </mat-card-content>
+    <mat-card-content class="formula">
+
+    </mat-card-content>
+</mat-card> -->

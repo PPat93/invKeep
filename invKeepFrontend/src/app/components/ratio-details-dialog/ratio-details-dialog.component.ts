@@ -50,12 +50,12 @@ export class RatioDetailsDialogComponent implements OnInit {
         this.RatioDetailsService.getRatiosDetails(this.ratioName)
             .subscribe(ratiosDetailedInfos => {
                 this.ratiosInfos = ratiosDetailedInfos;
+                this.isLoading = false;
             })
 
         this.ratiosInfosUpdateSub = this.RatioDetailsService.getRatiosDetailsListener()
             .subscribe(ratiosDetails => {
                 this.ratiosInfos = ratiosDetails;
-                this.isLoading = false;
             })
     }
 
