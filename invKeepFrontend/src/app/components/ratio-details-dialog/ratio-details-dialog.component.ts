@@ -25,12 +25,12 @@ export class RatioDetailsDialogComponent implements OnInit {
         example: ``,
         bulletPointSummary: [``],
         intervals: {
-            data: {
+            data: [{
                 name: ``,
                 numberRating: 0,
                 summary: ``,
                 verbalRating: ``
-            },
+            }],
             values: [[0], [0]]
         }
     };

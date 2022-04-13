@@ -13,22 +13,42 @@
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
     <mat-card-content class="dialog-body" *ngIf="!isLoading">
         <mat-card-title class="extensive-description-title dialog-body-content">Description</mat-card-title>
-        <mat-card-content mat-dialog-content class="description-text dialog-body-content">
+        <mat-card-content mat-dialog-content class="extensive-description-text dialog-body-content">
             some desc
         </mat-card-content>
         <mat-divider></mat-divider>
         <mat-card-title class="bullet-point-summary-header dialog-body-content">Bullet point summary</mat-card-title>
-        <mat-card-content mat-dialog-content class="bullet-point-summary-content dialog-body-content">
+        <mat-card-content mat-dialog-content class="bullet-point-summary-content-text dialog-body-content">
             <ol>
-                <li>some point</li>
-                <li>next point</li>
-                <li>other point</li>
+                <li>First summary point</li>
+                <li>Second summary point</li>
+                <li>Third summary point</li>
             </ol>
         </mat-card-content>
         <mat-divider></mat-divider>
+        <mat-card-title class="coanalysis-title dialog-body-content">Co-Analysis</mat-card-title>
+        <mat-card-content mat-dialog-content class="coanalysis-text dialog-body-content">
+            <ol>
+                <li>First coanalysis ratio</li>
+                <li>Second coanalysis ratio</li>
+                <li>Thrid coanalysis ratio</li>
+            </ol>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-title class="intervals-title dialog-body-content">Intervals</mat-card-title>
+        <mat-card-content mat-dialog-content class="intervals-text dialog-body-content">
+            All intervals listed here
+            And corresponding values
+        </mat-card-content>
+        <mat-divider></mat-divider>
         <mat-card-title class="formula-title dialog-body-content">Formula</mat-card-title>
-        <mat-card-content mat-dialog-content class="formula dialog-body-content">
-            {{ratiosInfos.formula}}
+        <mat-card-content mat-dialog-content class="formula-text dialog-body-content">
+            a + b = 2 * d * c
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-title class="usage-example-title dialog-body-content">Usage example</mat-card-title>
+        <mat-card-content mat-dialog-content class="usage-example-text dialog-body-content">
+            Descriptive ratio usage example
         </mat-card-content>
     </mat-card-content>
 </mat-card>
