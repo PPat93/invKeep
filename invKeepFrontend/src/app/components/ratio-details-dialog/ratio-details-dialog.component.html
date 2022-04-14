@@ -37,8 +37,9 @@
         <mat-divider></mat-divider>
         <mat-card-title class="intervals-title dialog-body-content">Intervals</mat-card-title>
         <mat-card-content mat-dialog-content class="intervals-text dialog-body-content">
-            All intervals listed here
-            And corresponding values
+            <mat-list>
+                <mat-list-item *ngFor="let singleInterval of ratiosInfos.intervals.data"><mat-icon>keyboard_arrow_right</mat-icon>{{ singleInterval.summary }}</mat-list-item>
+            </mat-list>
         </mat-card-content>
         <mat-divider></mat-divider>
         <mat-card-title class="formula-title dialog-body-content">Formula</mat-card-title>
