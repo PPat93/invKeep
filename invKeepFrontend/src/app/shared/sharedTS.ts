@@ -14,8 +14,8 @@ export interface AssetRatiosValues {
   ratiosArray: { parameterName: string, valueNum: number, unit: string }[]
 }
 // TODO clean up below AssetAndIndicatorsAnlysis and AnalyzedData interfaces that are probably redundant
-export interface AssetAndIndicatorsAnlysis extends AssetRatiosValues{
-   analyzedData: {
+export interface AssetAndIndicatorsAnlysis extends AssetRatiosValues {
+  analyzedData: {
     coAnalysis: string[],
     shortDescription: string,
     intervals: {
@@ -48,18 +48,18 @@ export interface RatioInfoObject {
   name: string,
   coAnalysis: string[],
   shortDescription: string,
-  extensiveDescription:  string[],
+  extensiveDescription: string,
   formula: string,
   example: string,
   bulletPointSummary: string[],
   intervals: {
-      data: {
-        name: string,
-        numberRating: number,
-        summary: string,
-        verbalRating: string
-      }[],
-      values: number[][]
+    data: {
+      name: string,
+      numberRating: number,
+      summary: string,
+      verbalRating: string
+    }[],
+    values: number[][]
   },
 };
 

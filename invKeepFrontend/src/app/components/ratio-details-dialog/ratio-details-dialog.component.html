@@ -19,11 +19,12 @@
         <mat-divider></mat-divider>
         <mat-card-title class="bullet-point-summary-header dialog-body-content">Bullet point summary</mat-card-title>
         <mat-card-content mat-dialog-content class="bullet-point-summary-content-text dialog-body-content">
-            <ol>
-                <li>First summary point</li>
-                <li>Second summary point</li>
-                <li>Third summary point</li>
-            </ol>
+            <mat-list>
+                <mat-list-item *ngFor="let singleBullet of ratiosInfos.bulletPointSummary">
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                    {{singleBullet}}
+                </mat-list-item>
+            </mat-list>
         </mat-card-content>
         <mat-divider></mat-divider>
         <mat-card-title class="coanalysis-title dialog-body-content">Co-Analysis</mat-card-title>
@@ -38,8 +39,12 @@
         <mat-card-title class="intervals-title dialog-body-content">Intervals</mat-card-title>
         <mat-card-content mat-dialog-content class="intervals-text dialog-body-content">
             <mat-list>
-                <mat-list-item *ngFor="let singleInterval of ratiosInfos.intervals.data"><mat-icon>keyboard_arrow_right</mat-icon>{{ singleInterval.summary }}</mat-list-item>
+                <mat-list-item *ngFor="let singleInterval of ratiosInfos.intervals.data">
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                    {{ singleInterval.summary }}
+                </mat-list-item>
             </mat-list>
+            <!-- TODO Add intervals values to each point -->
         </mat-card-content>
         <mat-divider></mat-divider>
         <mat-card-title class="formula-title dialog-body-content">Formula</mat-card-title>
