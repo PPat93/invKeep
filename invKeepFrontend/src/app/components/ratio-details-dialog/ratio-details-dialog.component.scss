@@ -11,11 +11,27 @@ span {
     float: right;
 }
 
-mat-card-content.dialog-body-content, mat-card-title.dialog-body-content{
+mat-card-title.dialog-body-content{
     padding-top: 15px !important;
+    padding-bottom: 10px !important;
+}
+
+mat-card-content.dialog-body-content{
     padding-bottom: 10px !important;
 }
 
 mat-list-item.bullet-point-summary-content-item{
     height: 30px !important;
+}
+
+mat-card-title{
+    margin: 0;
+}
+
+mat-list{
+    padding-top: 0;
+}
+
+mat-card-content{
+    font-size: 14px !important;
 }
