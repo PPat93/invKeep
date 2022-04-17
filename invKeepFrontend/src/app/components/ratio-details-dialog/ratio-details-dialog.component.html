@@ -1,16 +1,7 @@
 <!-- TODO modify dialog to have better structure with  mat grid list -->
+<h2 mat-dialog-title class="ratio-name-header-dialog"> Additional info on <b>{{ratioName}}</b></h2>
+<mat-dialog-content class="mat-typography">
 <mat-card class="additional-details-dialog">
-    <mat-card-title class="header">
-        <span mat-dialog-title class="ratio-name-header-dialog">
-            Additional info on <b>{{ratioName}}</b>
-        </span>
-        <span class="close-dialog-btn">
-            <button mat-button mat-raised-button (click)="closeDialog()" class="close-dialog-btn">
-                <mat-icon>close</mat-icon>
-            </button>
-        </span>
-    </mat-card-title>
-    <mat-divider></mat-divider>
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
     <mat-card-content class="dialog-body" *ngIf="!isLoading">
         <mat-card-title class="short-description-title dialog-body-content">Short description</mat-card-title>
@@ -66,3 +57,9 @@
         </mat-card-content>
     </mat-card-content>
 </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close (click)="closeDialog()" class="close-dialog-btn">
+        Close
+    </button>
+</mat-dialog-actions>
