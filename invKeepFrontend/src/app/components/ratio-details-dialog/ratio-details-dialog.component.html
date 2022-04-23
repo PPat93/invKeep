@@ -38,9 +38,11 @@
         <mat-card-title class="intervals-title dialog-body-content">Intervals</mat-card-title>
         <mat-card-content mat-dialog-content class="intervals-text dialog-body-content">
             <mat-list>
-                <mat-list-item *ngFor="let singleInterval of ratiosInfos.intervals.data">
+                <mat-list-item *ngFor="let singleIntervalData of ratiosInfos.intervals.data, let i = index">
                     <mat-icon>keyboard_arrow_right</mat-icon>
-                    {{ singleInterval.summary }}
+                    {{ singleIntervalData.summary }}
+                    &nbsp;
+                    <span>{{ ratiosInfos.intervals.values[i] }}</span>
                 </mat-list-item>
             </mat-list>
             <!-- TODO Add intervals values to each point -->
