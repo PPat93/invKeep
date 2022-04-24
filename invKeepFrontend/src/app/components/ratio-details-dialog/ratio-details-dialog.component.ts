@@ -58,6 +58,12 @@ export class RatioDetailsDialogComponent implements OnInit {
             })
     }
 
+    rangeProcessing(range: number[]): string {
+        let leftBoundry = (range[0] == null) ? `-&infin;` : range[0];
+        let rightBoundry = (range[1] == null) ? `&infin;` : range[1];
+        return `<b>Range:</b>&nbsp; ${leftBoundry} to ${rightBoundry}`;
+    }
+
     closeDialog() {
         this.dialogRef.close()
     }

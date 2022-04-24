@@ -11,35 +11,49 @@ span {
     float: right;
 }
 
-mat-card-title.dialog-body-content{
+mat-card-title.dialog-body-content {
     padding-top: 15px !important;
     padding-bottom: 10px !important;
 }
-mat-card-title.short-description-title{
+mat-card-title.short-description-title {
     padding-top: 0px !important;
 }
-    
-mat-card-content.dialog-body-content{
+
+mat-card-content.dialog-body-content {
     padding-bottom: 10px !important;
 }
 
-mat-list-item.bullet-point-summary-content-item{
+mat-list-item.bullet-point-summary-content-item {
     height: 30px !important;
 }
 
-mat-card-title{
+mat-card-title {
     margin: 0;
 }
 
-mat-list{
+mat-list {
     padding-top: 0;
 }
 
-mat-card-content{
+mat-card-content {
     font-size: 14px !important;
 }
 
-mat-dialog-content{
+mat-dialog-content {
     padding-top: 2px;
     padding-bottom: 2px;
+}
+
+mat-list-item div mat-icon {
+    position: relative;
+    top: 5px;
+}
+
+.intervals-bulletpoint-text {
+    width: 85%;
+    display: inline-block;
+}
+.intervals-bulletpoint-range {
+    width: 15%;
+    display: inline-block;
 }
