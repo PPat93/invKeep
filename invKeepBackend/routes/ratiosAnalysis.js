@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const AssetRatio = require('../models/assetRatio');
-const RatiosAnalysis = require('../ratiosCalc/AllRatios');
+const RatiosAnalysis = require('../ratios/AllRatios');
 
 function analyzeAssetProfitability(ratiosForAnalysis) {
 
@@ -42,8 +42,24 @@ router.put('/:id', (req, res) => {
             });
         })
     }).catch($e => {
+        console.log('Error with detailed ratios save. Error: ' + $e);
+    })
+})
+
+// temp for experiments -> to be changed for real separate  ratios details retrieval
+router.get('/:id/details', (req, res) => {
+    AssetRatio.find({ assetId: req.params.id }).then((foundAssetRatios) => {
+
+        let analyzedData = analyzeAssetProfitability(foundAssetRatios);
+
+        res.status(200).json({
+
+            message: 'Asset ratios details retrieved!',
+            detailedInfos: analyzedData[1]
+        });
+    }).catch($e => {
         console.log('Error during indicators saving. Error: ' + $e);
     });
-});
+})
 
 module.exports = router;

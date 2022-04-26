@@ -14,12 +14,10 @@ export interface AssetRatiosValues {
   ratiosArray: { parameterName: string, valueNum: number, unit: string }[]
 }
 // TODO clean up below AssetAndIndicatorsAnlysis and AnalyzedData interfaces that are probably redundant
-export interface AssetAndIndicatorsAnlysis {
-  assetId: string,
-  ratiosArray: { parameterName: string, valueNum: number, unit: string }[],
+export interface AssetAndIndicatorsAnlysis extends AssetRatiosValues {
   analyzedData: {
-    coanalysis: string[],
-    description: string,
+    coAnalysis: string[],
+    shortDescription: string,
     intervals: {
       name: string,
       numberRating: number,
@@ -33,8 +31,8 @@ export interface AssetAndIndicatorsAnlysis {
 }
 
 export interface AnalyzedData {
-  coanalysis: string[],
-  description: string,
+  coAnalysis: string[],
+  shortDescription: string,
   intervals: {
     name: string,
     numberRating: number,
@@ -45,6 +43,25 @@ export interface AnalyzedData {
   bulletPointSummary: string[],
   value: number
 }
+
+export interface RatioInfoObject {
+  name: string,
+  coAnalysis: string[],
+  shortDescription: string,
+  extensiveDescription: string,
+  formula: string,
+  example: string,
+  bulletPointSummary: string[],
+  intervals: {
+    data: {
+      name: string,
+      numberRating: number,
+      summary: string,
+      verbalRating: string
+    }[],
+    values: number[][]
+  },
+};
 
 export let welcomeMsg = {
   "title": "Welcome!",

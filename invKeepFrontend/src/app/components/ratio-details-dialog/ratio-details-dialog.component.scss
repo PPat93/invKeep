@@ -1,0 +1,59 @@
+span {
+    display: inline-block;
+}
+
+.ratio-name-header-dialog {
+    padding-right: 50px;
+    font-size: 28px !important;
+}
+
+.close-dialog-btn {
+    float: right;
+}
+
+mat-card-title.dialog-body-content {
+    padding-top: 15px !important;
+    padding-bottom: 10px !important;
+}
+mat-card-title.short-description-title {
+    padding-top: 0px !important;
+}
+
+mat-card-content.dialog-body-content {
+    padding-bottom: 10px !important;
+}
+
+mat-list-item.bullet-point-summary-content-item {
+    height: 30px !important;
+}
+
+mat-card-title {
+    margin: 0;
+}
+
+mat-list {
+    padding-top: 0;
+}
+
+mat-card-content {
+    font-size: 14px !important;
+}
+
+mat-dialog-content {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+mat-list-item div mat-icon {
+    position: relative;
+    top: 5px;
+}
+
+.intervals-bulletpoint-text {
+    width: 85%;
+    display: inline-block;
+}
+.intervals-bulletpoint-range {
+    width: 15%;
+    display: inline-block;
+}

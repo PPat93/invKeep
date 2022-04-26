@@ -1,4 +1,4 @@
-const BasicRatio = require('../BasicRatio');
+const BasicRatio = require('./BasicRatio');
 const SharedJS = require('../../../invKeepFrontend/src/app/shared/sharedJS');
 
 module.exports = class PERatio extends BasicRatio {
@@ -7,9 +7,12 @@ module.exports = class PERatio extends BasicRatio {
         super();
         this.ratioName = `P/E Ratio`;
         this.coAnalysis = [`EPS Ratio`, `PEG Ratio`];
-        this.description = `The price-to-earnings ratio is the ratio for valuing a company that measures 
+        this.shortDescription = `The price-to-earnings ratio is the ratio for valuing a company that measures 
             its current share price relative to its per-share earnings (EPS). Determines the relative value of a company's 
             shares in an apples-to-apples comparison. Constant negative ratio may indicate a risk of bankruptcy.`;
+        this.extensiveDescription = ``;
+        this.formula = ``;
+        this.example = ``;
         this.bulletPointSummary = [
             `One of the most important metrics.`,
             `Shows how is the price of one share compared to company earnings per one share.`,

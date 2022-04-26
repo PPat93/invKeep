@@ -12,7 +12,9 @@ const PBRatio = require('./ratiosClasses/PBRatio');
 const PSRatio = require('./ratiosClasses/PSRatio');
 const ROCERatio = require('./ratiosClasses/ROCERatio');
 const ROERatio = require('./ratiosClasses/ROERatio');
-const CAPERatio = require('./ratiosClasses/CAPERatio')
+const CAPERatio = require('./ratiosClasses/CAPERatio');
+
+// TODO add some group import used multiple times like index.js
 
 module.exports = class AllRatios {
     CAPERatio;

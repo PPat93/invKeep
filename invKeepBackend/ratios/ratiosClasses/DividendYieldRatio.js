@@ -1,4 +1,4 @@
-const BasicRatio = require('../BasicRatio');
+const BasicRatio = require('./BasicRatio');
 const SharedJS = require('../../../invKeepFrontend/src/app/shared/sharedJS');
 
 module.exports = class DividendYieldRatio extends BasicRatio {
@@ -7,11 +7,14 @@ module.exports = class DividendYieldRatio extends BasicRatio {
         super();
         this.ratioName = `Dividend Yield Ratio`;
         this.coAnalysis = [`DPR Ratio`];
-        this.description = `${this.ratioName} is a percentage financial ratio showing how much is paid each year 
-        comparing to stock price. Dividend is not always paid. It is important that higher ${this.ratioName} may not 
-        indicate better stock opportunities - lowering stock price may skyrocket this ratio. Mature companies pays 
-        divided more often. Some industries are taxed at a higher rate. Shows simple rate of return in cash dividends 
-        to shareholders, while DPR shows how much net earnings are paid as dividends.`;
+        this.shortDescription = `${this.ratioName} is a percentage financial ratio showing how much is paid each year 
+            comparing to stock price. Dividend is not always paid. It is important that higher ${this.ratioName} may not 
+            indicate better stock opportunities - lowering stock price may skyrocket this ratio. Mature companies pays 
+            divided more often. Some industries are taxed at a higher rate. Shows simple rate of return in cash dividends 
+            to shareholders, while DPR shows how much net earnings are paid as dividends.`;
+        this.extensiveDescription = ``;
+        this.formula = ``;
+        this.example = ``;
         this.bulletPointSummary = [
             `The higher, the better.`,
             `Declining stock price may falsely rise the ratio.`,

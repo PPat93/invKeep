@@ -1,4 +1,4 @@
-const BasicRatio = require('../BasicRatio');
+const BasicRatio = require('./BasicRatio');
 const SharedJS = require('../../../invKeepFrontend/src/app/shared/sharedJS');
 
 module.exports = class CAPERatio extends BasicRatio {
@@ -7,10 +7,13 @@ module.exports = class CAPERatio extends BasicRatio {
         super();
         this.ratioName = `CAPE Ratio`;
         this.coAnalysis = [`-`];
-        this.description = `Cyclically-Adjusted Price-to-Earnings Ratio is variation on P/E Ratio (Shiller P/E). Allows
-        to asses company's capabilities of making profits during the economic cycle. Considers economy fluctuations - 
-        recessions/expansions and makes easier to analyze company without them. The lower, the better. However, it does 
-        not involve accounting changes.`;
+        this.shortDescription = `Cyclically-Adjusted Price-to-Earnings Ratio is variation on P/E Ratio (Shiller P/E). Allows
+            to asses company's capabilities of making profits during the economic cycle. Considers economy fluctuations - 
+            recessions/expansions and makes easier to analyze company without them. The lower, the better. However, it does 
+            not involve accounting changes.`;
+        this.extensiveDescription = ``;
+        this.formula = ``;
+        this.example = ``;
         this.bulletPointSummary = [
             `Adjusted to economic cycles.`,
             `Shows if stock is over or under valued.`,

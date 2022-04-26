@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const assetRoutes = require('./routes/assets');
 const ratiosAnalysisRoutes = require('./routes/ratiosAnalysis');
+const ratiosDetailsRoutes = require('./routes/ratiosDetails');
 
 const app = express();
 
@@ -30,5 +31,6 @@ app.use((req, res, next) => {
 
 app.use('/api/assets', assetRoutes);
 app.use('/api/ratio-analysis', ratiosAnalysisRoutes);
+app.use('/api/ratio-details', ratiosDetailsRoutes);
 
 module.exports = app;

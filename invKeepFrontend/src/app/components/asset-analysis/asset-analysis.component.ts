@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AssetsService } from "../../services/assets.service";
 import { ActivatedRoute, ParamMap } from "@angular/router";
-import { AnalyzedData, AssetRecord, AssetAndIndicatorsAnlysis } from "../../shared/sharedTS";
+import { AnalyzedData, AssetRecord, AssetAndIndicatorsAnlysis, RatioInfoObject } from "../../shared/sharedTS";
 import { NgForm } from "@angular/forms";
 import { AssetRatiosService } from "../../services/asset-ratios.service";
 import { Subscription } from "rxjs";
+import { RatioDetailsService } from 'src/app/services/ratio-details.service';
+import { MatDialog } from '@angular/material/dialog';
+import { RatioDetailsDialogComponent } from '../ratio-details-dialog/ratio-details-dialog.component';
 
 @Component({
   selector: 'app-asset-analysis',
@@ -24,8 +27,8 @@ export class AssetAnalysisComponent implements OnInit {
       { parameterName: ``, valueNum: null, unit: `` }
     ],
     analyzedData: [{
-      coanalysis: [``],
-      description: ``,
+      coAnalysis: [``],
+      shortDescription: ``,
       intervals: {
         name: ``,
         numberRating: 0,
@@ -39,8 +42,8 @@ export class AssetAnalysisComponent implements OnInit {
   };
 
   analyzedAssetRatios: AnalyzedData[] = [{
-    coanalysis: [``],
-    description: ``,
+    coAnalysis: [``],
+    shortDescription: ``,
     intervals: {
       name: ``,
       numberRating: 0,
@@ -56,13 +59,14 @@ export class AssetAnalysisComponent implements OnInit {
   isLoading2: boolean = false;
 
   ratiosColumns: string[] = Object.keys(this.assetAnalysis.ratiosArray[0])
-  ratiosAnalysisColumns: string[] = [`name`, `value`, `intervals`, `description`]
+  ratiosAnalysisColumns: string[] = [`name`, `value`, `intervals`, `shortDescription`]
 
   private ratiosSub: Subscription;
   private ratiosAnalysisSub: Subscription;
-  private ratiosWereSavedInd: boolean = false;
+  private ratiosWereSavedIndicator: boolean = false;
 
-  constructor(public AssetService: AssetsService, public AssetRatiosService: AssetRatiosService, public route: ActivatedRoute) {
+  constructor(public AssetService: AssetsService, public AssetRatiosService: AssetRatiosService,
+    public RatioDetailsService: RatioDetailsService, public route: ActivatedRoute, public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -109,14 +113,22 @@ export class AssetAnalysisComponent implements OnInit {
       .subscribe((analysisReturned) => {
         this.analyzedAssetRatios = analysisReturned;
         this.isLoading2 = false;
-        this.ratiosWereSavedInd = true;
+        this.ratiosWereSavedIndicator = true;
       });
   }
 
   ngOnDestroy() {
     this.ratiosSub.unsubscribe();
-    if (this.ratiosWereSavedInd) {
+    if (this.ratiosWereSavedIndicator) {
       this.ratiosAnalysisSub.unsubscribe();
     }
+  }
+
+  openRatioDetails(ratioName: string) {
+    this.dialog.open(RatioDetailsDialogComponent, {
+      data: ratioName,
+      width: `80%`,
+      height: `80%`
+    })
   }
 }

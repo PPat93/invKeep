@@ -2,8 +2,8 @@
 const express = require("express");
 const router = express.Router();
 
-const AllRatios = require('../ratiosCalc/AllRatios');
-const EPSRatio = require('../ratiosCalc/ratiosClasses/EPSRatio');
+const AllRatios = require('../ratios/AllRatios');
+const EPSRatio = require('../ratios/ratiosClasses/EPSRatio');
 const RatiosNames = require('../../invKeepFrontend/src/app/shared/sharedJS');
 
 const Asset = require('../models/asset');
