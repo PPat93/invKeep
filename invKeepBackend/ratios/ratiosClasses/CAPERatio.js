@@ -11,14 +11,17 @@ module.exports = class CAPERatio extends BasicRatio {
             to asses company's capabilities of making profits during the economic cycle. Considers economy fluctuations - 
             recessions/expansions and makes easier to analyze company without them. The lower, the better. However, it does 
             not involve accounting changes.`;
-        this.extensiveDescription = ``;
+        this.extensiveDescription = `${this.ratioName} measures real earnings per share value throughout 10 years. It is 
+        showing average earnings considering inflation. Thanks to a long period of time taken into account, ratio is resistant
+        to fluctuations of economic cycles. Company profit changes ocurring during recessions and high prosperity are adjusted 
+        with averaged inflation. That allow to present if stock price is undervalued or overvalued.`;
         this.formula = ``;
         this.example = ``;
         this.bulletPointSummary = [
             `Adjusted to economic cycles.`,
             `Shows if stock is over or under valued.`,
             `The higher value the worse.`,
-            `Analyzes long term company results.`,
+            `Analyzes long term company results, useless for companies younger than 10 years.`,
             `Analyze with: ${this.coAnalysis}`
         ];
         this.finalValue = CAPERatio;
