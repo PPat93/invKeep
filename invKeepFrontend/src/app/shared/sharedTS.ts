@@ -49,7 +49,7 @@ export interface RatioInfoObject {
   coAnalysis: string[],
   shortDescription: string,
   extensiveDescription: string,
-  formula: string,
+  formula: string[],
   example: string,
   bulletPointSummary: string[],
   intervals: {

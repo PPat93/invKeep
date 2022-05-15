@@ -15,7 +15,7 @@ module.exports = class CAPERatio extends BasicRatio {
         showing average earnings considering inflation. Thanks to a long period of time taken into account, ratio is resistant
         to fluctuations of economic cycles. Company profit changes ocurring during recessions and high prosperity are adjusted 
         with averaged inflation. That allow to present if stock price is undervalued or overvalued.`;
-        this.formula = ``;
+        this.formula = [`CAPEvalue`, `Stock Price`, `10 years Inflation Adjusted Earnings`];
         this.example = ``;
         this.bulletPointSummary = [
             `Adjusted to economic cycles.`,

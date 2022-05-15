@@ -13,7 +13,7 @@ module.exports = class PSRatio extends BasicRatio {
             This factor takes into account only price and revenue. ALl other data is omitted, what can cause some serious mistakes. 
             It is worth to compare company with other ones from an industry.`;
         this.extensiveDescription = ``;
-        this.formula = ``;
+        this.formula = [``, ``, ``];
         this.example = ``;
         this.bulletPointSummary = [
             `The lower, the better.`,

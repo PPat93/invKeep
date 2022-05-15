@@ -13,7 +13,7 @@ module.exports = class DividendYieldRatio extends BasicRatio {
             divided more often. Some industries are taxed at a higher rate. Shows simple rate of return in cash dividends 
             to shareholders, while DPR shows how much net earnings are paid as dividends.`;
         this.extensiveDescription = ``;
-        this.formula = ``;
+        this.formula = [``, ``, ``];
         this.example = ``;
         this.bulletPointSummary = [
             `The higher, the better.`,

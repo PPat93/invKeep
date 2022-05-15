@@ -13,7 +13,7 @@ module.exports = class EVEBITDARatio extends BasicRatio {
             dependently from industry. Is higher for high-grown and probably overvalued companies and lower for 
             slow-growing, probably undervalued enterprises.`;
         this.extensiveDescription = ``;
-        this.formula = ``;
+        this.formula = [``, ``, ``];
         this.example = ``;
         this.bulletPointSummary = [
             `The lower the better, the higher the worse.`,

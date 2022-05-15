@@ -12,7 +12,7 @@ module.exports = class EVEBITRatio extends BasicRatio {
             indicates stable and secure company. Allows easy comparison of two firms with similar operating profiles. 
             The difference between EV/EBITDA is ${this.ratioName} do not incorporates depreciation and amortization.`;
         this.extensiveDescription = ``;
-        this.formula = ``;
+        this.formula = [``, ``, ``];
         this.example = ``;
         this.bulletPointSummary = [
             `Show stability and security of company.`,
