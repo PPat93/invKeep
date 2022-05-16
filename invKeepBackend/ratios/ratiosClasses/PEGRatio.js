@@ -12,7 +12,7 @@ module.exports = class PEGRatio extends BasicRatio {
             industry or company type, so should be analyzed in connection with it. It is important to know that EPS growth 
             period is used.`;
         this.extensiveDescription = ``;
-        this.formula = [``, ``, ``];
+        this.formula = [`PEG Ratio`, `Price/Earnings per Share`, `Earnings per Share Growth`];
         this.example = ``;
         this.bulletPointSummary = [
             `Complementary to PE Ratio.`,
