@@ -77,12 +77,9 @@ module.exports = class CAPERatio extends BasicRatio {
         this.intervals = [[-Infinity, 0], [0, 10], [10, 15], [15, 20], [20, 25], [25, 30], [30, Infinity]];
     }
 
-
-
     // calculate() { // future ratio more precise analysis method
     //     let stockPrice, 10yearInflationAdjusted;
     //     // here external def of above values for calculation
     //     return this.finalValue = stockPrice / 10yearInflationAdjusted;
     // }
 }
-
