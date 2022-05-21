@@ -15,7 +15,7 @@ module.exports = class CAPERatio extends BasicRatio {
             showing average earnings considering inflation. Thanks to a long period of time taken into account, ratio is resistant
             to fluctuations of economic cycles. Company profit changes ocurring during recessions and high prosperity are adjusted 
             with averaged inflation. That allow to present if stock price is undervalued or overvalued.`;
-        this.formula = [`CAPEvalue`, `Stock Price`, `10 years Inflation Adjusted Earnings`];
+        this.formula = [this.ratioName, `Stock Price`, `10 years Inflation Adjusted Earnings`];
         this.example = `Let's say, that The Company share price is worth currently 1000$. Throughout the last 10 years Earning
             per Share was fluctuating from 20$ - 100$ and the inflation was between 10% - 20% depending on year. To adjust inflation, 
             each years EPS should be multiplied by inflation of that year, e.g.: 100$ * (1 - 0.2) = 80$. After that all results are

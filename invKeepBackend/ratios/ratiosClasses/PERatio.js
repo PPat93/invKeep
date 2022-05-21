@@ -11,7 +11,7 @@ module.exports = class PERatio extends BasicRatio {
             its current share price relative to its per-share earnings (EPS). Determines the relative value of a company's 
             shares in an apples-to-apples comparison. Constant negative ratio may indicate a risk of bankruptcy.`;
         this.extensiveDescription = ``;
-        this.formula = [`P/E Ratio`, `Market Value per Share`, `Earnigns per Share`];
+        this.formula = [this.ratioName, `Market Value per Share`, `Earnigns per Share`];
         this.example = ``;
         this.bulletPointSummary = [
             `One of the most important metrics.`,

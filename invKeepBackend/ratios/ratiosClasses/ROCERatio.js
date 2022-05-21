@@ -13,7 +13,7 @@ module.exports = class ROCERatio extends BasicRatio {
             the higher the value, the better profitability of the company is. Usually investor prefers companies with stable
             ROCE instead of volatile one. Can be affected by high cash resources. In this app is presented in %`;
         this.extensiveDescription = ``;
-        this.formula = [`ROCE Ratio`, `(Net Income + Interest + Taxes) OR (Revenue - Costs of Goods Sold - Operating Expenses)`, `Capital Employed`];
+        this.formula = [this.ratioName, `(Net Income + Interest + Taxes) OR (Revenue - Costs of Goods Sold - Operating Expenses)`, `Capital Employed`];
         this.example = ``;
         this.bulletPointSummary = [
             `The higher, the better.`,

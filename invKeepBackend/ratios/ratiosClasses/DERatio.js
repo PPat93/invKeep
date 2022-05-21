@@ -24,7 +24,7 @@ module.exports = class DERatio extends BasicRatio {
             gearing of debt and equity. ${this.ratioName} may be weak in terms of precise definition of debt and eqity. It may 
             happen that items are not always counted the same way. E.g. preferred stocks in REIT companies are usually uincluded in
             debt, while it may not happen for other industries.`;
-        this.formula = [`Debt to Equity Ratio`, `Total Liabilities`, `Total Shareholders' Equity`];
+        this.formula = [this.ratioName, `Total Liabilities`, `Total Shareholders' Equity`];
         this.example = `Let's assume that The Company 1 has $2 millions debt in short-term payables (like wages, bills etc.) and 
             $1 million of long-term debt. The Company 2 has $1 million debt in short-term payables (like wages, bills etc.) and $2 
             million long-term debt. Secondly, both companies have $3 millions equity. While ${this.ratioName} is identical for both 

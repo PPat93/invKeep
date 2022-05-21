@@ -11,7 +11,7 @@ module.exports = class GrahamNum extends BasicRatio {
             allowed to pay by investor? Usually, every value below ${this.ratioName} is considered as a good opportunity to 
             buy. Basically numbers shouldn't be higher than P/E Value < 15x and P/B Value < 1.5x`;
         this.extensiveDescription = ``;
-        this.formula = [`Graham Number`, `SQRT(22,5 * Earnings per Share * Book Value per Share)`, `1`];
+        this.formula = [this.ratioName, `SQRT(22,5 * Earnings per Share * Book Value per Share)`, `1`];
         this.example = ``;
         this.bulletPointSummary = [
             `Determines fair value of stock.`,

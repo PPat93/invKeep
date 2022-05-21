@@ -20,7 +20,7 @@ module.exports = class DividendYieldRatio extends BasicRatio {
             company itself. Value is presented in percentage, not in real currency, so it is easy to rate the expected amount 
             of return from the stock. In case that ${this.ratioName} is steadily increased thoughout the years, it is needed 
             to get known ifit is because of company growth or its slow decline.`,
-        this.formula = [`${this.ratioName}`, `Annual Dividends per Share * 100%`, `Price per Share`];
+        this.formula = [this.ratioName, `Annual Dividends per Share * 100%`, `Price per Share`];
         this.example = ` Let's assume that one share of The Company A was worth 50$ for the last year and the company paid 1$
             dividend in total. ${this.ratioName} for The Company A is 2%. Then, The Company 2 stock price was 100$ and the
             total dividend of 1$. It's ${this.ratioName} would be 1%. As the result of the comparision The Company 1 will 

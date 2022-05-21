@@ -12,7 +12,7 @@ module.exports = class EVEBITRatio extends BasicRatio {
             indicates stable and secure company. Allows easy comparison of two firms with similar operating profiles. 
             The difference between EV/EBITDA is ${this.ratioName} do not incorporates depreciation and amortization.`;
         this.extensiveDescription = ``;
-        this.formula = [`EV/EBIT Ratio`, `Market capitalization + Total Debt - Cash and cash equivalents`, `(Net Income + Interest + Taxes) OR (Revenue - Costs of Goods Sold - Operating Expenses)`];
+        this.formula = [this.ratioName, `Market capitalization + Total Debt - Cash and cash equivalents`, `(Net Income + Interest + Taxes) OR (Revenue - Costs of Goods Sold - Operating Expenses)`];
         this.example = ``;
         this.bulletPointSummary = [
             `Show stability and security of company.`,
