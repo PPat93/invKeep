@@ -24,7 +24,14 @@ module.exports = class EVEBITDARatio extends BasicRatio {
         this.formula = [this.ratioName, 
                         `Market capitalization + Total Debt - Cash and cash equivalents`, 
                         `Net Income + Taxes + Interest Expense + Depreciation & Amortization`];
-        this.example = ``;
+        this.example = `Let's assume that on the beginning of January, The Company 1 generated $4 billion 
+            throught the last 12 months. The company had $4 million in cash and it's equivalents and $8 billion 
+            of total debt. At the end of the next quarter, market cap of TC1 is $32 billion. So, ${this.ratioName} 
+            is currently ($32 billion + $8 billion - $4 million)/$4 billion = 9,9. The same time, next year the
+            The Company 1 has the same data, except the generated value - $3 billion instead $4 billion. Then 
+            ${this.ratioName} is 13,3. Just one billion change altered ${this.ratioName} by 3,4. This example
+            shows, how debt and equities are taken into account together and how relatively small change influences
+            whole ratio`;
         this.bulletPointSummary = [
             `The lower the better, the higher the worse.`,
             `Varies dependently from industry and should be analyzed on industry average basis.`,
