@@ -19,7 +19,7 @@ module.exports = class EVEBITDARatio extends BasicRatio {
             low ${this.ratioName} and may look as a good investment. However, in that kind of situation it is 
             only illusion of an opportunity. It can be assesed on the basis of future values. If they are
             overly cheap, it may be a good predictor of a "value trap". ${this.ratioName} does not apply to 
-            finance, insurance and real estate sector. For some industries this ratio can be misleading, 
+            finance, insurance and real estate sectors. For some industries this ratio can be misleading, 
             because it does not reflect the cost of capital investments like property, plants, and equipment.`;
         this.formula = [this.ratioName, 
                         `Market capitalization + Total Debt - Cash and cash equivalents`, 
@@ -37,7 +37,7 @@ module.exports = class EVEBITDARatio extends BasicRatio {
             `Varies dependently from industry and should be analyzed on industry average basis.`,
             `Shows how economical value of business corresponds wth estimatied value.`,
             `Is higher for fast growing industries and lower for slow growing ones.`,
-            `Does not apply to some industries, e.g. finance, insurance and real estate `,
+            `Does not apply to some industries, e.g. finance, insurance and real estate.`,
             `Analyze with: ${this.coAnalysis}`
         ];
         this.finalValue = EVEBITDARatio;
