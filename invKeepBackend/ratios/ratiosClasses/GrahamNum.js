@@ -7,14 +7,19 @@ module.exports = class GrahamNum extends BasicRatio {
         super();
         this.ratioName = `Graham Number`;
         this.coAnalysis = [`Indyvidually, not compared to others`];
-        this.shortDescription = `${this.ratioName} responds to the question - What is the maximum value of the stock that is 
-            allowed to pay by investor? Usually, every value below ${this.ratioName} is considered as a good opportunity to 
-            buy. Basically numbers shouldn't be higher than P/E Value < 15x and P/B Value < 1.5x`;
-        this.extensiveDescription = ``;
+        this.shortDescription = `${this.ratioName} responds to the question - What is the maximum value of the stock that  
+            investor should maximally consider. Usually, every value below ${this.ratioName} is considered as a good 
+            opportunity to buy. `;
+        this.extensiveDescription = `Calculated on the basis of Book value and Earning per Share ratios. It is estimator
+            of the maximum price per share, with which paid the company would be still profitable. It is one of many useful
+            ratios. However, on the opposite to other ratios, it shouldn't be compared across the companies, even within 
+            the industry. The only comparison that is allowed is with actual share price. Of course, ${this.ratioName} 
+            may not be the only determinant of investment decision. Combined with types of ratios can be a great addition
+            to overall analysis.`;
         this.formula = [this.ratioName, `SQRT(22,5 * Earnings per Share * Book Value per Share)`, `1`];
         this.example = ``;
         this.bulletPointSummary = [
-            `Determines fair value of stock.`,
+            `Determines maximum fair value of stock.`,
             `Stock price below ${this.ratioName} is considered as undervalued.`,
             `Different for every company.`,
             `Must be considered separately from anothers companies or averages.`,
