@@ -17,7 +17,10 @@ module.exports = class GrahamNum extends BasicRatio {
             may not be the only determinant of investment decision. Combined with types of ratios can be a great addition
             to overall analysis.`;
         this.formula = [this.ratioName, `SQRT(22,5 * Earnings per Share * Book Value per Share)`, `1`];
-        this.example = ``;
+        this.example = `Let's assume that The Company 1 has EPS value equal to $10 and Book per Value equal $5. In that 
+            case, ${this.ratioName} is $33.54. That value is the maximum amount that investor should pay for the share of 
+            TC1. Every price share below $33.54 would be profitable and every price above that figure is deemed as 
+            not worth consideration.`;
         this.bulletPointSummary = [
             `Determines maximum fair value of stock.`,
             `Stock price below ${this.ratioName} is considered as undervalued.`,
