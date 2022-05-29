@@ -9,9 +9,18 @@ module.exports = class PBRatio extends BasicRatio {
         this.coAnalysis = [`NEVER ALONE!, ROE Ratio`];
         this.shortDescription = `The Price/Book Ratio allows to see how much it is needed to pay for one share of business
             in comparison to how much one share is worth. The higher value of this parameter is, the more overvalued a 
-            company is. If ${this.ratioName} is equal to 1, then price of one share is exact the same as it is really worth. However,
-            low ratio may indicate that company performance is poor. Includes all liabilities and assets of the company.`;
-        this.extensiveDescription = ``;
+            company is. If ${this.ratioName} is equal to 1, then price of one share is exact the same as it is really worth. 
+            However, low ratio may indicate that company performance is poor. Includes all liabilities and assets of the company.`;
+        this.extensiveDescription = `Usually, ${this.ratioName} is above value of 1, that means the "real" value is lower
+            than actual one. That situation is natural one, as majority of the investors tend to overprice assets on the markets.
+            The "overprice", above one value, shows how much would you be loosing if company went immediately bankrupt. 
+            ${this.ratioName} can be connected with ROE ratio, which can show reality check about the company. In case of
+            big discrepancies between those, it is a big warning about the company. Growth, too expnsive businesses usually
+            have a cobination of high ${this.ratioName} and low ROE ratio. Growing ROE should go along with growing 
+            ${this.ratioName}. Even that some general values of "good" ${this.ratioName} exists, it shouldn't be rigid. 
+            Industry influences the definition of "good" ratio. Good value for one branch, may be poor for another. Also,
+            even the same barnch, but different countries may make huge difference in ${this.ratioName} value. Growth stocks
+            often have higher ${this.ratioName} than the value ones.`;
         this.formula = [this.ratioName, `Market Price per Share`, `Book Value per Share`];
         this.example = ``;
         this.bulletPointSummary = [
