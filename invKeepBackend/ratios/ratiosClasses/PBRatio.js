@@ -22,7 +22,10 @@ module.exports = class PBRatio extends BasicRatio {
             even the same barnch, but different countries may make huge difference in ${this.ratioName} value. Growth stocks
             often have higher ${this.ratioName} than the value ones.`;
         this.formula = [this.ratioName, `Market Price per Share`, `Book Value per Share`];
-        this.example = ``;
+        this.example = `Let's assume that The Company 1 has $1 billion in assets and $500 million debt. It would be a Book 
+            Value of $500 million. Assuming there us about $100 million shares on the matket, and each share costs $10, 
+            then ${this.ratioName} value is (10 / 5) = 2. That means that with each bought share, investor is paying 
+            twice the estimated amount that stock should cost.`;
         this.bulletPointSummary = [
             `Shows if company is over- or under-valued.`,
             `Low value may indicate company's poor performance.`,
