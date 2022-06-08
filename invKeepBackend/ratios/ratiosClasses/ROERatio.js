@@ -8,11 +8,14 @@ module.exports = class ROERatio extends BasicRatio {
         this.ratioName = `ROE Ratio`;
         this.coAnalysis = [`P/B Ratio`];
         this.shortDescription = `Return on Equity ratio allows to calculate company financial performance. Basically, the 
-            higher, the better - above industry average is considered as good. As it takes debt  into account, it is 
-            dependant on what is average for company's industry. Usually counted on last financial year, however it is 
+            higher, the better - above industry average is considered as good. As it takes debt into account, it is 
+            dependant on what is average for company's industry. Usually counted on last financial year. However, it is 
             important to check base period. It may be influenced by inconsistent profits e.g.: if company is unprofitable 
             for several years and suddenly gains profits - ${this.ratioName} will skyrocket. Represented in %.`;
-        this.extensiveDescription = ``;
+        this.extensiveDescription = `${this.ratioName} is a better, more comprehensive alternative for ROCE ratio. This
+            ratio varies greatly depending in which industry is counted. Those can vary by even 30% og the value between
+            different branches. Usually, value equal or maybe a slightly above the average of the sector is a proper 
+            value. ${this.ratioName} is a great estimation of future growth of stock and dividends.`;
         this.formula = [this.ratioName, `Net Income`, `Average Shareholders' Equity`];
         this.example = ``;
         this.bulletPointSummary = [
