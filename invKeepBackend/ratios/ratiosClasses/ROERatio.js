@@ -8,13 +8,25 @@ module.exports = class ROERatio extends BasicRatio {
         this.ratioName = `ROE Ratio`;
         this.coAnalysis = [`P/B Ratio`];
         this.shortDescription = `Return on Equity ratio allows to calculate company financial performance. Basically, the 
-            higher, the better - above industry average is considered as good. As it takes debt  into account, it is 
-            dependant on what is average for company's industry. Usually counted on last financial year, however it is 
+            higher, the better - above industry average is considered as good. As it takes debt into account, it is 
+            dependant on what is average for company's industry. Usually counted on last financial year. However, it is 
             important to check base period. It may be influenced by inconsistent profits e.g.: if company is unprofitable 
             for several years and suddenly gains profits - ${this.ratioName} will skyrocket. Represented in %.`;
-        this.extensiveDescription = ``;
-        this.formula = ``;
-        this.example = ``;
+        this.extensiveDescription = `${this.ratioName} is a better, more comprehensive alternative for ROCE ratio. This
+            ratio varies greatly depending in which industry is counted. Those can vary by even 30% og the value between
+            different branches. Usually, value equal or maybe a slightly above the average of the sector is a proper 
+            value. ${this.ratioName} is a great start for estimation of future growth of stock and dividends. Really high 
+            value may be a result of a small equity in reference to a perfomance of the company, which may indicate a
+            high risk. Alos, if profits are inconsistent e.g. company was loosing money for a several years shrinking
+            firm's equity and suddenly it has some bigger earnings one year ${this.ratioName} would be deceitfully high.
+            The same can happen if company borrow a lot of money to buyback a stock - high EPS without real performance
+            or growth. Those are not only examples of this kinf od situation, so investors must be cautious with ${this.ratioName}.
+            Negative and positive values of this ratio cannot be compared, as the causes of value are completely different.`;
+        this.formula = [this.ratioName, `Net Income`, `Average Shareholders' Equity`];
+        this.example = `Let's assume that The Company 1 has a Net Income equalto 5 000 000$ and average equity of 50 000 000$
+            in that case ${this.ratioName} value would be 10%. If that value is good depends on the industry. If average
+            ${this.ratioName} would be 7%, then this value is pretty decent. If average value is 15% - it would be a poor
+            value.`;
         this.bulletPointSummary = [
             `The higher, the better - above industry average is considered as good.`,
             `Allows to calculate company financial performance.`,

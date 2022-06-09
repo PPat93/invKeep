@@ -6,7 +6,7 @@ module.exports = class BasicRatio {
     coAnalysis = [`First default coAnalysis ratio name`, `Second default coAnalysis ratio name`];
     shortDescription = `Default short ratio description about the ratio`;
     extensiveDescription = `Default long, extensive ratio description that is going on and on and on. Details and more...`;
-    formula = `(default formula value) = a + b/2`;
+    formula = [`Ratio Value symbol`, `Nnumerator elements`, `Denominator elements`];
     example = `If ratio is being bigger and bigger while something, then something and it is defaultly worth/not worth to buy`;
     bulletPointSummary = [
         `First default ratio summary point`,

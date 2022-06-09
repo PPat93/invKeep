@@ -21,7 +21,7 @@ export class RatioDetailsDialogComponent implements OnInit {
         coAnalysis: [``],
         shortDescription: ``,
         extensiveDescription: ``,
-        formula: ``,
+        formula: [``, ``, ``],
         example: ``,
         bulletPointSummary: [``],
         intervals: {

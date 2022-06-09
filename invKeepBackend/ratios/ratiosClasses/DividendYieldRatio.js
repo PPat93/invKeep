@@ -12,9 +12,19 @@ module.exports = class DividendYieldRatio extends BasicRatio {
             indicate better stock opportunities - lowering stock price may skyrocket this ratio. Mature companies pays 
             divided more often. Some industries are taxed at a higher rate. Shows simple rate of return in cash dividends 
             to shareholders, while DPR shows how much net earnings are paid as dividends.`;
-        this.extensiveDescription = ``;
-        this.formula = ``;
-        this.example = ``;
+        this.extensiveDescription = `${this.ratioName} at higher rate is not always wanted. Bigger yields may be the reasult 
+            of declining stock prices. Generally, smaller companies are paying smaller dividends as dynamic growth needs a 
+            lot of funds. While, more mature companies are no longer developing as rapidly (also because enermous money 
+            would be necessary), so diviends are usually better. Dividends are usually paid quarterly, so for overall 
+            ${this.ratioName} is multiplied by 4. However, it is not a rule and the amount of payouts is dependent from the 
+            company itself. Value is presented in percentage, not in real currency, so it is easy to rate the expected amount 
+            of return from the stock. In case that ${this.ratioName} is steadily increased thoughout the years, it is needed 
+            to get known ifit is because of company growth or its slow decline.`,
+        this.formula = [this.ratioName, `Annual Dividends per Share * 100%`, `Price per Share`];
+        this.example = ` Let's assume that one share of The Company A was worth 50$ for the last year and the company paid 1$
+            dividend in total. ${this.ratioName} for The Company A is 2%. Then, The Company 2 stock price was 100$ and the
+            total dividend of 1$. It's ${this.ratioName} would be 1%. As the result of the comparision The Company 1 will 
+            likely be more favored by the investors on the assumption that all is well with both of the companies.`;
         this.bulletPointSummary = [
             `The higher, the better.`,
             `Declining stock price may falsely rise the ratio.`,
