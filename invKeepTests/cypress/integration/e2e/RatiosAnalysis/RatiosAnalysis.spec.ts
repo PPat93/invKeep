@@ -135,3 +135,35 @@ describe(`Analysis Ratios saving`, () => {
             })
     })
 })
+
+describe.only(`Analysis Ratios Ratios Details button`, () => {
+
+    let assetName: string = ``;
+
+    beforeEach(`Create test asset`, () => {
+
+        assetName = `TestAsset${Date.now()}`;
+
+        cy.apiCreateAsset(assetName, `TASbl`, 19, 245.5, AssetCurrency.euro);
+        Utils.visitPage(Utils.mainPageUrl);
+        cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
+            .click();
+        cy.getDataCyElement(MainPage.dataCyElementDetailsBtn(assetName))
+            .click();
+    });
+
+    afterEach(`Little teardown`, () => {
+        Utils.teardownAssets(`TestAsset`);
+    })
+
+    it(`Ratios Analysis - Analysis Table Ratio Details modal is opened after clicking on a Ratio Details button from Additional info cell`, () => {
+
+        cy.getDataCyElement(Utils.loadingSpinner)
+            .should(`not.exist`);
+
+        cy.getDataCyElement(AnalysisPageConsts.additionalDataDetailsButton).first()
+            .click({force:true});
+        cy.getDataCyElement(AnalysisPageConsts.ratioDetailsDialog)
+            .should(`be.visible`);
+    })
+})
