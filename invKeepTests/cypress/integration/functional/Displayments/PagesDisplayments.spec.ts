@@ -151,7 +151,7 @@ describe(`Visibility of Analysis Page elements`, () => {
         })
     })
 
-    it(`Ratios Analysis - analysis table displayment - Name column`, () => {
+    it(`Ratios Analysis - Analysis table displayment - Name column`, () => {
 
         // Arrange, Act & Assert
         cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisNameCell).then(allCells => {
@@ -163,7 +163,7 @@ describe(`Visibility of Analysis Page elements`, () => {
         })
     })
 
-    it(`Ratios Analysis - analysis table displayment - Value column`, () => {
+    it(`Ratios Analysis - Analysis table displayment - Value column`, () => {
 
         // Arrange, Act & Assert
         cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisValueCell).then(allCells => {
@@ -178,7 +178,7 @@ describe(`Visibility of Analysis Page elements`, () => {
         })
     })
 
-    it(`Ratios Analysis - analysis table displayment - Analysis column`, () => {
+    it(`Ratios Analysis - Analysis table displayment - Analysis column`, () => {
 
         // Arrange, Act & Assert
         cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisIntervalsCell).then(allCells => {
@@ -192,7 +192,7 @@ describe(`Visibility of Analysis Page elements`, () => {
         })
     })
 
-    it(`Ratios Analysis - analysis table displayment - Analysis column - Verbal Rating`, () => {
+    it(`Ratios Analysis - Analysis table displayment - Analysis column - Verbal Rating`, () => {
 
         // Arrange, Act & Assert
         cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisIntervalsCell).each(singleCell => {
@@ -210,7 +210,7 @@ describe(`Visibility of Analysis Page elements`, () => {
         })
     })
 
-    it(`Ratios Analysis - analysis table displayment - Analysis column - Summary`, () => {
+    it(`Ratios Analysis - Analysis table displayment - Analysis column - Summary`, () => {
 
         // Arrange, Act & Assert
         cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisIntervalsCell).each(singleCell => {
@@ -224,7 +224,7 @@ describe(`Visibility of Analysis Page elements`, () => {
         })
     })
 
-    it(`Ratios Analysis - analysis table displayment - Analysis column - Summary have hidden overflow`, () => {
+    it(`Ratios Analysis - Analysis table displayment - Analysis column - Summary have hidden overflow`, () => {
 
         // Arrange, Act & Assert
         cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisIntervalsCell)
@@ -240,7 +240,7 @@ describe(`Visibility of Analysis Page elements`, () => {
             })
     })
 
-    it(`Ratios Analysis - analysis table displayment - Analysis column - Progress Bar`, () => {
+    it(`Ratios Analysis - Analysis table displayment - Analysis column - Progress Bar`, () => {
 
         // Arrange, Act & Assert
         cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisIntervalsCell).each(singleCell => {
@@ -253,7 +253,7 @@ describe(`Visibility of Analysis Page elements`, () => {
         })
     })
 
-    it(`Ratios Analysis - analysis table displayment - Aditional info column`, () => {
+    it(`Ratios Analysis - Analysis table displayment - Aditional info column`, () => {
 
         // Arrange, Act & Assert
         cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisAdditionalData).then(allCells => {
@@ -263,11 +263,11 @@ describe(`Visibility of Analysis Page elements`, () => {
         cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisAdditionalData).each(singleCell => {
 
             cy.wrap(singleCell)
-                .findNextDataCyElement(AnalysisPageConsts.additionalDataDetailsButton)
-                .should(`be.visible`)
+                .findNextDataCyElement(AnalysisPageConsts.ratioDetailsButton(`CAPE Ratio`))
+                .should(`exist`)
                 .and(`have.attr`, `color`, `accent`);
             cy.wrap(singleCell)
-                .findNextDataCyElement(AnalysisPageConsts.additionalDataDetailsButton)
+                .findNextDataCyElement(AnalysisPageConsts.ratioDetailsButton(`CAPE Ratio`))
                 .find(`span`)
                 .should(`contain.text`, `Ratio Details`);
         })

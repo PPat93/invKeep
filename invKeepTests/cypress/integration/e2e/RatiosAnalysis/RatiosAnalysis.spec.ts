@@ -2,6 +2,7 @@ import MainPage from "../../../support/pageObjectModel/pageObjects/MainPage";
 import Utils, { AssetCurrency } from "../../../support/pageObjectModel/Utils/Utils";
 import AnalysisPageConsts from "../../../support/pageObjectModel/Utils/AnalysisPageConsts";
 import AnalysisPage from "../../../support/pageObjectModel/pageObjects/AnalysisPage";
+import RatiosNamesFixture from "../../../fixtures/ratiosNames.json";
 
 describe(`Analysis Ratios saving`, () => {
 
@@ -136,7 +137,7 @@ describe(`Analysis Ratios saving`, () => {
     })
 })
 
-describe.only(`Analysis Ratios Ratios Details button`, () => {
+describe(`Analysis Ratios Ratios Details button`, () => {
 
     let assetName: string = ``;
 
@@ -156,14 +157,16 @@ describe.only(`Analysis Ratios Ratios Details button`, () => {
         Utils.teardownAssets(`TestAsset`);
     })
 
-    it(`Ratios Analysis - Analysis Table Ratio Details modal is opened after clicking on a Ratio Details button from Additional info cell`, () => {
+    RatiosNamesFixture.forEach(singleItem => {
+        it(`Ratios Analysis - Analysis Table Ratio Details modal is opened after clicking on a Ratio Details button from Additional info cell - ${singleItem}`, () => {
 
-        cy.getDataCyElement(Utils.loadingSpinner)
-            .should(`not.exist`);
+            cy.getDataCyElement(Utils.loadingSpinner)
+                .should(`not.exist`);
 
-        cy.getDataCyElement(AnalysisPageConsts.additionalDataDetailsButton).first()
-            .click({force:true});
-        cy.getDataCyElement(AnalysisPageConsts.ratioDetailsDialog)
-            .should(`be.visible`);
+            cy.getDataCyElement(AnalysisPageConsts.ratioDetailsButton(singleItem))
+                .click({ force: true });
+            cy.getDataCyElement(AnalysisPageConsts.ratioDetailsDialog(singleItem))
+                .should(`be.visible`);
+        })
     })
 })
