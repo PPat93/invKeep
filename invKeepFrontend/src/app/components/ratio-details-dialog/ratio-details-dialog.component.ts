@@ -4,6 +4,7 @@ import { RatioDetailsService } from "src/app/services/ratio-details.service";
 import { RatioInfoObject } from "src/app/shared/sharedTS";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { Subscription } from "rxjs";
+import {sanitizeRatioName} from "./../../shared/sharedTS"
 
 @Component({
     selector: 'ratio-details-dialog',
@@ -37,11 +38,13 @@ export class RatioDetailsDialogComponent implements OnInit {
 
     isLoading: boolean = true;
     ratioName: string;
+    dataCyRatioName: string;
 
     constructor(public route: ActivatedRoute, public RatioDetailsService: RatioDetailsService,
         public dialogRef: MatDialogRef<RatioDetailsDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: string) {
         if (data) {
             this.ratioName = data;
+            this.dataCyRatioName = sanitizeRatioName(this.ratioName);
         }
     }
 
