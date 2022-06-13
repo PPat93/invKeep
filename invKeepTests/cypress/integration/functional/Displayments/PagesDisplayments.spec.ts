@@ -262,12 +262,13 @@ describe(`Visibility of Analysis Page elements`, () => {
         })
         cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisAdditionalData).each(singleCell => {
 
+            // TODO something is wrong here, it is not finding button despite it should
             cy.wrap(singleCell)
-                .findNextDataCyElement(AnalysisPageConsts.ratioDetailsButton(`CAPE Ratio`))
-                .should(`exist`)
+                .find(AnalysisPageConsts.detailsButtonClass)
+                .should(`be.visible`)
                 .and(`have.attr`, `color`, `accent`);
             cy.wrap(singleCell)
-                .findNextDataCyElement(AnalysisPageConsts.ratioDetailsButton(`CAPE Ratio`))
+                .find(AnalysisPageConsts.detailsButtonClass)
                 .find(`span`)
                 .should(`contain.text`, `Ratio Details`);
         })

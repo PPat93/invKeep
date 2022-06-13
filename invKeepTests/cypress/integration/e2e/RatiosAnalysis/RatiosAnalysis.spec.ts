@@ -158,15 +158,42 @@ describe(`Analysis Ratios Ratios Details button`, () => {
     })
 
     RatiosNamesFixture.forEach(singleItem => {
-        it(`Ratios Analysis - Analysis Table Ratio Details modal is opened after clicking on a Ratio Details button from Additional info cell - ${singleItem}`, () => {
+        it(`Ratios Analysis - Analysis Table Ratio Details dialog is opened after clicking on a Ratio Details button from Additional info cell - ${singleItem}`, () => {
 
+            // Arrange
             cy.getDataCyElement(Utils.loadingSpinner)
                 .should(`not.exist`);
 
+            // Act
             cy.getDataCyElement(AnalysisPageConsts.ratioDetailsButton(singleItem))
                 .click({ force: true });
+
+            // Assert    
             cy.getDataCyElement(AnalysisPageConsts.ratioDetailsDialog(singleItem))
                 .should(`be.visible`);
+            cy.get(AnalysisPageConsts.dialogHeaderClass)
+                .should(`contain.text`, singleItem);
+        })
+    })
+
+    RatiosNamesFixture.forEach(singleItem => {
+        it(`Ratios Analysis - Analysis Table Ratio Details dialog is closed after clicking on a Close button - ${singleItem}`, () => {
+
+            // Arrange
+            cy.getDataCyElement(Utils.loadingSpinner)
+                .should(`not.exist`);
+            cy.getDataCyElement(AnalysisPageConsts.ratioDetailsButton(singleItem))
+                .click({ force: true });
+
+            // Act
+            cy.getDataCyElement(AnalysisPageConsts.dialogCloseButton)
+                .should(`be.visible`)
+            cy.getDataCyElement(AnalysisPageConsts.dialogCloseButton)
+                .click();
+
+            // Assert
+            cy.getDataCyElement(AnalysisPageConsts.ratioDetailsDialog(singleItem))
+                .should(`not.exist`);
         })
     })
 })

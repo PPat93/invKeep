@@ -39,15 +39,19 @@ class AnalysisPageConsts {
     readonly intervalsNumberRating = `analysis-ratios-intervals-cell-number-rating`;
     readonly intervalsProgressBar = `analysis-ratios-intervals-cell-progress-bar`;
     readonly ratiosAnalysisAnalysisAdditionalData = `analysis-ratios-additional-info-cell`;
+    readonly detailsButtonClass = `.details-button`;
     ratioDetailsButton(ratioName: string) {
         return `${Utils.sanitizeRatioName(ratioName)}-details-button`;
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------------
     //  RATIO DETAILS DIALOG --------------------------------------------------------------------------------------------------------------
+    readonly dialogHeaderClass = `.ratio-name-header-dialog`;
+    readonly dialogCloseButton = `close-dialog-button`;
     ratioDetailsDialog(ratioName: string) {
         return `${Utils.sanitizeRatioName(ratioName)}-ratio-details-dialog`;
     };
+
 
     //-------------------------------------------------------------------------------------------------------------------------------------
 
