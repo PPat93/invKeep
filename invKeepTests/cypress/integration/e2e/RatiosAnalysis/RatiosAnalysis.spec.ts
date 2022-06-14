@@ -137,7 +137,7 @@ describe(`Analysis Ratios saving`, () => {
     })
 })
 
-describe(`Analysis Ratios Ratios Details button`, () => {
+describe(`Analysis Ratios Ratios Details Dialog opening and closing`, () => {
 
     let assetName: string = ``;
 
