@@ -5,8 +5,8 @@
     <mat-card class="additional-details-dialog">
         <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
         <mat-card-content class="dialog-body" *ngIf="!isLoading">
-            <mat-card-title class="short-description-title dialog-body-content">Short description</mat-card-title>
-            <mat-card-content mat-dialog-content class="short-description-text dialog-body-content">
+            <mat-card-title data-cy="short-description-title" class="short-description-title dialog-body-content">Short description</mat-card-title>
+            <mat-card-content data-cy="short-description-text" mat-dialog-content class="short-description-text dialog-body-content">
                 {{ratiosInfos.shortDescription}}
             </mat-card-content>
             <mat-divider></mat-divider>

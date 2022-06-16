@@ -36,7 +36,6 @@ describe(`Analysis Ratios Ratios Details Dialog items visibility`, () => {
                 .click({ force: true });
 
             // Assert    
-
             dialogSubsectionTitles.forEach(singleSubsectionTitle => {
                 cy.getDataCyElement(AnalysisPageConsts.ratioDetailsDialog(singleItem))
                     .find(`mat-card-title`)
@@ -46,4 +45,26 @@ describe(`Analysis Ratios Ratios Details Dialog items visibility`, () => {
             })
         })
     })
+
+    RatiosNamesFixture.forEach(singleItem => {
+        it(`Ratios Analysis - Analysis Table Ratio Details dialog Short Description subsection displayment - ${singleItem}`, () => {
+
+            // Arrange
+            cy.getDataCyElement(Utils.loadingSpinner)
+                .should(`not.exist`);
+
+            // Act
+            cy.getDataCyElement(AnalysisPageConsts.ratioDetailsButton(singleItem))
+                .click({ force: true });
+
+            // Assert    
+            cy.getDataCyElement(AnalysisPageConsts.ratioDetailsDialog(singleItem))
+                .findNextDataCyElement(AnalysisPageConsts.dialogShortDescriptionText).then(item => {
+                    cy.wrap(item)
+                        .should(`be.visible`);
+                    expect(item.text()).length.be.greaterThan(30);
+                })
+        })
+    })
 })
+// TODO after all add test checking one full ratio texts - if exact texts are displayed
