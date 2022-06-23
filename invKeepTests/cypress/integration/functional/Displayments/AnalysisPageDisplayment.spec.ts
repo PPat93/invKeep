@@ -175,7 +175,6 @@ describe(`Visibility of Analysis Page elements`, () => {
         })
         cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisAnalysisAdditionalData).each(singleCell => {
 
-            // TODO something is wrong here, it is not finding button despite it should
             cy.wrap(singleCell)
                 .find(AnalysisPageConsts.detailsButtonClass)
                 .should(`be.visible`)
