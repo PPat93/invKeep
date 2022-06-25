@@ -3,7 +3,7 @@ import MainPage from "../../../support/pageObjectModel/pageObjects/MainPage";
 import RatiosNamesFixture from "../../../fixtures/ratiosNames.json"
 import AnalysisPageConsts from "../../../support/pageObjectModel/Utils/AnalysisPageConsts";
 
-describe(`Analysis Ratios Ratios Details Dialog items visibility`, () => {
+describe(`Analysis Ratios - Ratios Details Dialog - sections visibility`, () => {
 
     let assetName: string = ``;
     let dialogSubsectionTitles = [`Short description`, `Extensive description`, `Bullet point summary`, `Co-Analysis`, `Intervals`, `Formula`, `Usage example`];
@@ -18,6 +18,9 @@ describe(`Analysis Ratios Ratios Details Dialog items visibility`, () => {
             .click();
         cy.getDataCyElement(MainPage.dataCyElementDetailsBtn(assetName))
             .click();
+        cy.getDataCyElement(Utils.loadingSpinner)
+            .should(`not.exist`);
+
     });
 
     afterEach(`Little teardown`, () => {
@@ -25,13 +28,9 @@ describe(`Analysis Ratios Ratios Details Dialog items visibility`, () => {
     })
 
     RatiosNamesFixture.forEach(singleItem => {
-        it(`Ratios Analysis - Analysis Table Ratio Details dialog subsection titles displayment - ${singleItem}`, () => {
+        it(`Ratio Details Dialog - subsection titles displayment - ${singleItem}`, () => {
 
-            // Arrange
-            cy.getDataCyElement(Utils.loadingSpinner)
-                .should(`not.exist`);
-
-            // Act
+            // Arrange & Act
             cy.getDataCyElement(AnalysisPageConsts.ratioDetailsButton(singleItem))
                 .click({ force: true });
 
@@ -47,13 +46,9 @@ describe(`Analysis Ratios Ratios Details Dialog items visibility`, () => {
     })
 
     RatiosNamesFixture.forEach(singleItem => {
-        it(`Ratios Analysis - Analysis Table Ratio Details dialog Short Description subsection displayment - ${singleItem}`, () => {
+        it(`Ratio Details Dialog - Short Description subsection displayment - ${singleItem}`, () => {
 
-            // Arrange
-            cy.getDataCyElement(Utils.loadingSpinner)
-                .should(`not.exist`);
-
-            // Act
+            // Arrange & Act
             cy.getDataCyElement(AnalysisPageConsts.ratioDetailsButton(singleItem))
                 .click({ force: true });
 
@@ -67,4 +62,44 @@ describe(`Analysis Ratios Ratios Details Dialog items visibility`, () => {
         })
     })
 })
-// TODO after all add test checking one full ratio texts - if exact texts are displayed
+
+
+describe(`Ratio Details Dialog - ratios texts displayments`, () => {
+
+    let assetName: string = ``;
+
+    beforeEach(`Create test asset`, () => {
+
+        assetName = `TestAsset${Date.now()}`;
+
+        cy.apiCreateAsset(assetName, `TASbl`, 19, 245.5, AssetCurrency.euro);
+        Utils.visitPage(Utils.mainPageUrl);
+        cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
+            .click();
+        cy.getDataCyElement(MainPage.dataCyElementDetailsBtn(assetName))
+            .click();
+        cy.getDataCyElement(Utils.loadingSpinner)
+            .should(`not.exist`);
+    });
+
+    afterEach(`Little teardown`, () => {
+        Utils.teardownAssets(`TestAsset`);
+    })
+
+    it(`CAPE Ratio texts displayments`, () => {
+
+        cy.fixture(`RatiosTexts/CAPERatio`).then(CAPERatioFix => {
+            
+        cy.getDataCyElement(AnalysisPageConsts.ratioDetailsButton(`CAPE Ratio`))
+            .click({ force: true });
+        cy.getDataCyElement(AnalysisPageConsts.dialogShortDescriptionText).then(shortDesc => {
+            expect(shortDesc.text()).be.eq(CAPERatioFix.shortDescription)
+            // TODO add all texts of cape ratio
+            // automate iteration through the ratios instead defining each test itself
+        })
+
+    })
+
+
+    })
+})
