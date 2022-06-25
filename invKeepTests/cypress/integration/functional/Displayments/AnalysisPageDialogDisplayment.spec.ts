@@ -100,6 +100,13 @@ describe(`Ratio Details Dialog - ratios texts displayments`, () => {
                 .should(`contain.text`, CAPERatioFix.shortDescription);
             cy.getDataCyElement(AnalysisPageConsts.dialogExtensiveDescriptionText)
                 .should(`contain.text`, CAPERatioFix.extensiveDescription);
+            CAPERatioFix.bulletPointSummary.forEach(singleItem => {
+
+                let singleItemIndex = CAPERatioFix.bulletPointSummary.indexOf(singleItem);
+                AnalysisPageConsts.dialogBulletItem(singleItemIndex)
+                    .should(`contain.text`, singleItem);
+            })
+
         })
     })
 })

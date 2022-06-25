@@ -52,10 +52,15 @@ class AnalysisPageConsts {
     readonly dialogShortDescriptionText = `short-description-text`;
     readonly dialogExtensiveDescriptionTitle = `extensive-description-title`;
     readonly dialogExtensiveDescriptionText = `extensive-description-text`;
+    readonly dialogBulletPointItemClass = `.bullet-point-summary-content-item`;
 
     ratioDetailsDialog(ratioName: string) {
         return `${Utils.sanitizeRatioName(ratioName)}-ratio-details-dialog`;
     };
+    
+    dialogBulletItem(itemIndex: number) {
+        return cy.getDataCyElement(`single-bullet-${itemIndex}`);
+    }
 
 
     //-------------------------------------------------------------------------------------------------------------------------------------
