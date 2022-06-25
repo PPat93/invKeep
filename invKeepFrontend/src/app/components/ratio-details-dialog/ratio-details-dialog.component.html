@@ -10,9 +10,11 @@
                     class="short-description-text dialog-body-content">{{ratiosInfos.shortDescription}}
                 </mat-card-content>
                 <mat-divider></mat-divider>
-                <mat-card-title data-cy="extensive-description-title" class="extensive-description-title dialog-body-content">Extensive description
+                <mat-card-title data-cy="extensive-description-title"
+                    class="extensive-description-title dialog-body-content">Extensive description
                 </mat-card-title>
-                <mat-card-content data-cy="extensive-description-text" mat-dialog-content class="extensive-description-text dialog-body-content">
+                <mat-card-content data-cy="extensive-description-text" mat-dialog-content
+                    class="extensive-description-text dialog-body-content">
                     {{ratiosInfos.extensiveDescription}}</mat-card-content>
                 <mat-divider></mat-divider>
                 <mat-card-title class="bullet-point-summary-header dialog-body-content">Bullet point summary
@@ -20,7 +22,9 @@
                 <mat-card-content mat-dialog-content class="bullet-point-summary-content-text dialog-body-content">
                     <mat-list>
                         <mat-list-item class="bullet-point-summary-content-item"
-                            *ngFor="let singleBullet of ratiosInfos.bulletPointSummary">{{singleBullet}}</mat-list-item>
+                            *ngFor="let singleBullet of ratiosInfos.bulletPointSummary; let i = index">
+                            <span [attr.data-cy]="'single-bullet-'+i">{{singleBullet}}</span>
+                        </mat-list-item>
                     </mat-list>
                 </mat-card-content>
                 <mat-divider></mat-divider>
