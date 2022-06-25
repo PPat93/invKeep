@@ -50,6 +50,8 @@ class AnalysisPageConsts {
     readonly dialogCloseButton = `close-dialog-button`;
     readonly dialogShortDescriptionTitle = `short-description-title`;
     readonly dialogShortDescriptionText = `short-description-text`;
+    readonly dialogExtensiveDescriptionTitle = `extensive-description-title`;
+    readonly dialogExtensiveDescriptionText = `extensive-description-text`;
 
     ratioDetailsDialog(ratioName: string) {
         return `${Utils.sanitizeRatioName(ratioName)}-ratio-details-dialog`;

@@ -88,18 +88,18 @@ describe(`Ratio Details Dialog - ratios texts displayments`, () => {
 
     it(`CAPE Ratio texts displayments`, () => {
 
+        //  Arrange 
         cy.fixture(`RatiosTexts/CAPERatio`).then(CAPERatioFix => {
-            
-        cy.getDataCyElement(AnalysisPageConsts.ratioDetailsButton(`CAPE Ratio`))
-            .click({ force: true });
-        cy.getDataCyElement(AnalysisPageConsts.dialogShortDescriptionText).then(shortDesc => {
-            expect(shortDesc.text()).be.eq(CAPERatioFix.shortDescription)
-            // TODO add all texts of cape ratio
-            // automate iteration through the ratios instead defining each test itself
+
+            //  Act
+            cy.getDataCyElement(AnalysisPageConsts.ratioDetailsButton(`CAPE Ratio`))
+                .click({ force: true });
+
+            // Asssert    
+            cy.getDataCyElement(AnalysisPageConsts.dialogShortDescriptionText)
+                .should(`contain.text`, CAPERatioFix.shortDescription);
+            cy.getDataCyElement(AnalysisPageConsts.dialogExtensiveDescriptionText)
+                .should(`contain.text`, CAPERatioFix.extensiveDescription);
         })
-
-    })
-
-
     })
 })
