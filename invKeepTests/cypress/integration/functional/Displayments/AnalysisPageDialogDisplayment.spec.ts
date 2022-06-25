@@ -103,7 +103,7 @@ describe(`Ratio Details Dialog - ratios texts displayments`, () => {
             CAPERatioFix.bulletPointSummary.forEach(singleItem => {
 
                 let singleItemIndex = CAPERatioFix.bulletPointSummary.indexOf(singleItem);
-                AnalysisPageConsts.dialogBulletItem(singleItemIndex)
+                AnalysisPageConsts.getDialogBulletItem(singleItemIndex)
                     .should(`contain.text`, singleItem);
             })
 

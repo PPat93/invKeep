@@ -47,21 +47,38 @@ class AnalysisPageConsts {
     //-------------------------------------------------------------------------------------------------------------------------------------
     //  RATIO DETAILS DIALOG --------------------------------------------------------------------------------------------------------------
     readonly dialogHeaderClass = `.ratio-name-header-dialog`;
-    readonly dialogCloseButton = `close-dialog-button`;
-    readonly dialogShortDescriptionTitle = `short-description-title`;
-    readonly dialogShortDescriptionText = `short-description-text`;
-    readonly dialogExtensiveDescriptionTitle = `extensive-description-title`;
-    readonly dialogExtensiveDescriptionText = `extensive-description-text`;
-    readonly dialogBulletPointItemClass = `.bullet-point-summary-content-item`;
-
     ratioDetailsDialog(ratioName: string) {
         return `${Utils.sanitizeRatioName(ratioName)}-ratio-details-dialog`;
     };
-    
-    dialogBulletItem(itemIndex: number) {
-        return cy.getDataCyElement(`single-bullet-${itemIndex}`);
+
+    readonly dialogCloseButton = `close-dialog-button`;
+
+    readonly dialogShortDescriptionTitle = `short-description-title`;
+    readonly dialogShortDescriptionText = `short-description-text`;
+
+    readonly dialogExtensiveDescriptionTitle = `extensive-description-title`;
+    readonly dialogExtensiveDescriptionText = `extensive-description-text`;
+
+    readonly dialogBulletSummaryTitle = `bullet-point-summary-title`;
+    readonly dialogBulletPointItemClass = `.bullet-point-summary-content-item`;
+    getDialogBulletItem(itemIndex: number) {
+        return cy.getDataCyElement(`single-bullet-item-${itemIndex}`);
     }
 
+    readonly dialogIntervalsTitle = `intervals-title`;
+    getDialogIntervalItem(itemIndex: number) {
+        return cy.getDataCyElement(`single-interval-item-${itemIndex}`);
+    }
+
+    readonly dialogCoanalysisTitle = `coanalysis-title`;
+    getDialogCoAnalysisItem(itemIndex: number) {
+        return cy.getDataCyElement(`single-coanalysis-item-${itemIndex}`);
+    }
+
+    readonly dialogFormulaTitle = `formula-title`;
+
+    readonly dialogUsageExampleTitle = `usage-example-title`;
+    readonly dialogUsageExampleText = `usage-example-text`;
 
     //-------------------------------------------------------------------------------------------------------------------------------------
 
