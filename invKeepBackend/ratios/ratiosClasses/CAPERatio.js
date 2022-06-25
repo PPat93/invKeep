@@ -7,10 +7,10 @@ module.exports = class CAPERatio extends BasicRatio {
         super();
         this.ratioName = `CAPE Ratio`;
         this.coAnalysis = [`-`];
-        this.shortDescription = `Cyclically-Adjusted Price-to-Earnings Ratio is variation on P/E Ratio (Shiller P/E). Allows
-            to asses company's capabilities of making profits during the economic cycle. Considers economy fluctuations - 
-            recessions/expansions and makes easier to analyze company without them. The lower, the better. However, it does 
-            not involve accounting changes.`;
+        this.shortDescription = `Cyclically-Adjusted Price-to-Earnings Ratio is variation on P/E Ratio (Shiller P/E). Allows ` + 
+            `to asses company's capabilities of making profits during the economic cycle. Considers economy fluctuations - ` +
+            `recessions/expansions and makes easier to analyze company without them. The lower, the better. However, it does ` + 
+            `not involve accounting changes.`;
         this.extensiveDescription = `${this.ratioName} measures real earnings per share value throughout 10 years. It is 
             showing average earnings considering inflation. Thanks to a long period of time taken into account, ratio is resistant
             to fluctuations of economic cycles. Company profit changes ocurring during recessions and high prosperity are adjusted 
