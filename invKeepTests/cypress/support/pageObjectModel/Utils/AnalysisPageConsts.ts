@@ -61,6 +61,9 @@ class AnalysisPageConsts {
 
     readonly dialogBulletSummaryTitle = `bullet-point-summary-title`;
     readonly dialogBulletPointItemClass = `.bullet-point-summary-content-item`;
+
+    readonly dialogIntervalTextItemClass = `intervals-bulletpoint-text`;
+
     getDialogBulletItem(itemIndex: number) {
         return cy.getDataCyElement(`single-bullet-item-${itemIndex}`);
     }

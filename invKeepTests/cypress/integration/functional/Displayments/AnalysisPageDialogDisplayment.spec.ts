@@ -86,7 +86,7 @@ describe(`Ratio Details Dialog - ratios texts displayments`, () => {
         Utils.teardownAssets(`TestAsset`);
     })
 
-    it(`CAPE Ratio texts displayments`, () => {
+    it.only(`CAPE Ratio texts displayments`, () => {
 
         //  Arrange 
         cy.fixture(`RatiosTexts/CAPERatio`).then(CAPERatioFix => {
@@ -100,6 +100,9 @@ describe(`Ratio Details Dialog - ratios texts displayments`, () => {
                 .should(`contain.text`, CAPERatioFix.shortDescription);
             cy.getDataCyElement(AnalysisPageConsts.dialogExtensiveDescriptionText)
                 .should(`contain.text`, CAPERatioFix.extensiveDescription);
+            cy.getDataCyElement(AnalysisPageConsts.dialogUsageExampleText)
+                .should(`contain.text`, CAPERatioFix.example);
+
             CAPERatioFix.bulletPointSummary.forEach(singleItem => {
 
                 let singleItemIndex = CAPERatioFix.bulletPointSummary.indexOf(singleItem);
@@ -107,6 +110,19 @@ describe(`Ratio Details Dialog - ratios texts displayments`, () => {
                     .should(`contain.text`, singleItem);
             })
 
+            CAPERatioFix.coAnalysis.forEach(singleItem => {
+
+                let singleItemIndex = CAPERatioFix.coAnalysis.indexOf(singleItem);
+                AnalysisPageConsts.getDialogCoAnalysisItem(singleItemIndex)
+                    .should(`contain.text`, singleItem);
+            })
+
+            CAPERatioFix.intervalsData.forEach(singleItem => {
+
+                let singleItemIndex = CAPERatioFix.intervalsData.indexOf(singleItem);
+                AnalysisPageConsts.getDialogIntervalItem(singleItemIndex)
+                    .should(`contain.text`, singleItem.summary);
+            })
         })
     })
 })

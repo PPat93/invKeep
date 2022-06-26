@@ -13,5 +13,52 @@
     "The higher value the worse.",
     "Analyzes long term company results, useless for companies younger than 10 years.",
     "Analyze with: -"
+  ],
+  "coAnalysis": [
+    "-"
+  ],
+  "intervalsData": [
+    {
+      "name": "CAPE Ratio",
+      "verbalRating": "Terrible",
+      "summary": "Negative value indicates loss, 0 indicates no profits. It probably should be avoided.",
+      "numberRating": 1
+    },
+    {
+      "name": "CAPE Ratio",
+      "verbalRating": "Outstanding",
+      "summary": "Value between 0 and 10 indicates great possibilities, average return after 10 - 15 years is 11.7%.",
+      "numberRating": 6
+    },
+    {
+      "name": "CAPE Ratio",
+      "verbalRating": "Rather good",
+      "summary": "Value between 10 and 15 indicates good possibilities, average return after 10 - 15 years is 8.7%.",
+      "numberRating": 5
+    },
+    {
+      "name": "CAPE Ratio",
+      "verbalRating": "OK",
+      "summary": "Value between 15 and 20 indicates quite OK possibilities, average return after 10 - 15 years is 7.2%.",
+      "numberRating": 4
+    },
+    {
+      "name": "CAPE Ratio",
+      "verbalRating": "Neutral",
+      "summary": "Value between 20 and 25 indicates normal possibilities, average return after 10 - 15 years is 5.7%.",
+      "numberRating": 3
+    },
+    {
+      "name": "CAPE Ratio",
+      "verbalRating": "Rather bad",
+      "summary": "Value between 25 and 30 indicates bad possibilities, average return after 10 - 15 years is 4.1%.",
+      "numberRating": 2
+    },
+    {
+      "name": "CAPE Ratio",
+      "verbalRating": "Terrible",
+      "summary": "Value between 25 and 30 indicates bad possibilities, average return after 10 - 15 years is 0.5%.",
+      "numberRating": 1
+    }
   ]
 }
