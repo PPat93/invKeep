@@ -21,7 +21,7 @@ module.exports = class DividendYieldRatio extends BasicRatio {
             `of return from the stock. In case that ${this.ratioName} is steadily increased thoughout the years, it is needed ` +
             `to get known ifit is because of company growth or its slow decline.`,
             this.formula = [this.ratioName, `Annual Dividends per Share * 100%`, `Price per Share`];
-        this.example = ` Let's assume that one share of The Company A was worth 50$ for the last year and the company paid 1$ ` +
+        this.example = `Let's assume that one share of The Company A was worth 50$ for the last year and the company paid 1$ ` +
             `dividend in total. ${this.ratioName} for The Company A is 2%. Then, The Company 2 stock price was 100$ and the ` +
             `total dividend of 1$. It's ${this.ratioName} would be 1%. As the result of the comparision The Company 1 will ` +
             `likely be more favored by the investors on the assumption that all is well with both of the companies.`;
@@ -37,14 +37,14 @@ module.exports = class DividendYieldRatio extends BasicRatio {
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.undetermined,
-                summary: `No dividend  payout is not a reason to avoid stock. It is still worth to consider.`,
+                summary: `No dividend payout is not a reason to avoid stock. It is still worth to consider.`,
                 numberRating: 0
             },
             {
                 name: `${this.ratioName}`,
                 verbalRating: SharedJS.RatingObject.rather_bad,
                 summary: `Rather low levels of ${this.ratioName} implies that company is paying low dividend or stock ` +
-                    `price is too high (may be an indicator to take a closer look of price comparing to industry or market)`,
+                    `price is too high (may be an indicator to take a closer look of price comparing to industry or market).`,
                 numberRating: 2
             },
             {

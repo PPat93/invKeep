@@ -86,11 +86,12 @@ describe(`Ratio Details Dialog - ratios texts displayments`, () => {
         Utils.teardownAssets(`TestAsset`);
     })
 
-    let item = [`CAPE Ratio`, `D/E Ratio`]
-
+    let item = [`CAPE Ratio`, `D/E Ratio`, `Dividend Yield Ratio`, `DPR Ratio`]
+    // TODO - exchange above item array with ratiosNames.json array file
+    // TODO - change DPR Ratio to DP Ratio all caross the app
     item.forEach(singleRatio => {
-        it(`${singleRatio} texts displayments`, () => {
-            
+        it.only(`${singleRatio} texts displayments`, () => {
+
             //  Arrange 
             let sanitizedRatioName = singleRatio.replace(/\s+/g, '').replace(/\//g, '');
             cy.fixture(`RatiosTexts/${sanitizedRatioName}`).then(ratioFixture => {
