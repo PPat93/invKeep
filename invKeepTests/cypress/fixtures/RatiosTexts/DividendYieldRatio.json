@@ -1,0 +1,46 @@
+{
+  "shortDescription": "Dividend Yield Ratio is a percentage financial ratio showing how much is paid each year comparing to stock price. Dividend is not always paid. It is important that higher Dividend Yield Ratio may not indicate better stock opportunities - lowering stock price may skyrocket this ratio. Mature companies pays divided more often. Some industries are taxed at a higher rate. Shows simple rate of return in cash dividends to shareholders, while DPR shows how much net earnings are paid as dividends.",
+  "extensiveDescription": "Dividend Yield Ratio at higher rate is not always wanted. Bigger yields may be the reasult of declining stock prices. Generally, smaller companies are paying smaller dividends as dynamic growth needs a lot of funds. While, more mature companies are no longer developing as rapidly (also because enermous money would be necessary), so diviends are usually better. Dividends are usually paid quarterly, so for overall Dividend Yield Ratio is multiplied by 4. However, it is not a rule and the amount of payouts is dependent from the company itself. Value is presented in percentage, not in real currency, so it is easy to rate the expected amount of return from the stock. In case that Dividend Yield Ratio is steadily increased thoughout the years, it is needed to get known ifit is because of company growth or its slow decline.",
+  "formula": [
+    "Dividend Yield Ratio",
+    "Annual Dividends per Share * 100%",
+    "Price per Share"
+  ],
+  "example": "Let's assume that one share of The Company A was worth 50$ for the last year and the company paid 1$ dividend in total. Dividend Yield Ratio for The Company A is 2%. Then, The Company 2 stock price was 100$ and the total dividend of 1$. It's Dividend Yield Ratio would be 1%. As the result of the comparision The Company 1 will likely be more favored by the investors on the assumption that all is well with both of the companies.",
+  "bulletPointSummary": [
+    "The higher, the better.",
+    "Declining stock price may falsely rise the ratio.",
+    "Dividend usually amplify returns.",
+    "May be falsely high to constant stock price lowering.",
+    "Analyze with: DPR Ratio"
+  ],
+  "coAnalysis": [
+    "DPR Ratio"
+  ],
+  "intervalsData": [
+    {
+      "name": "Dividend Yield Ratio",
+      "verbalRating": "Undetermined",
+      "summary": "No dividend payout is not a reason to avoid stock. It is still worth to consider.",
+      "numberRating": 1
+    },
+    {
+      "name": "Dividend Yield Ratio",
+      "verbalRating": "Rather bad",
+      "summary": "Rather low levels of Dividend Yield Ratio implies that company is paying low dividend or stock price is too high (may be an indicator to take a closer look of price comparing to industry or market).",
+      "numberRating": 2
+    },
+    {
+      "name": "Dividend Yield Ratio",
+      "verbalRating": "Outstanding",
+      "summary": "Interval between 2% and 6% is considered to be safe. Also it indicates that company probably does not have problems with declining stock price. However, it is dependent from many more factors, so must not be the only decision-determining ratio.",
+      "numberRating": 6
+    },
+    {
+      "name": "Dividend Yield Ratio",
+      "verbalRating": "Rather good",
+      "summary": "Dividend Yield Ratio above 6% may indicate company problems. It should be watched closely and checked. However, sometimes companies have Dividend Yield Ratio on higher levels, what may imply that stock is undervalued.",
+      "numberRating": 4
+    }
+  ]
+}
