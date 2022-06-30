@@ -1,0 +1,51 @@
+{
+  "shortDescription": "Earnings per share (EPS) is calculated as a company's profit divided by the amount of available shares. The result shows profitability of the company - presenting how much was earned per one share. The higher EPS Ratio the better - also because investors are usually willing to pay more for companies that present high EPS Ratio value.",
+  "extensiveDescription": "EPS Ratio is one of the most important and known ratios. It is vital to remember to subtract paid preferred dividends from net company income. It is good to take an average number of company shares, because the amount can change thorughout the years. EPS Ratio may be altered on purpose (or not) by some factors. Let's assume that company owns two factories and after some years it came out that one of them stands on valueable piece of land. If management decides to sell the land and build the factory somewhere else, on less expensieve place, then this kind of selling would be a exceptional profit, that won't be repeated in the future. This kind of \"extraordinary item\" may distort EPS Ratio. The windfall events can affect EPS negatively and positively, especially if some variation of the formula is used. It is vital to take a closer look at EPS Ratio before assesment of it's value. Buybacks of stocks or reducing number of share also affects the ratio, same as changes in accointing policy. All in all, despite EPS Ratio is important and widely used, it is easily influenced intentionally and not.",
+  "formula": [
+    "EPS Ratio",
+    "Net Income - Preferred Dividends",
+    "End-of-Period Common Shares Outstanding"
+  ],
+  "example": "Let's assume that The Company 1 has Net income without preffered dividends paid on $100 000, simultaneously with 1 000 shares. It means that EPS Ratio is $100 per share - The Company 1 made $100 profits on every share. It should be also compare with other ratios to have better context on profitability.",
+  "bulletPointSummary": [
+    "One of the most important metrics.",
+    "Shows how much company earns on most basic level.",
+    "The higher value the better.",
+    "Analyze with: P/E Ratio"
+  ],
+  "coAnalysis": [
+    "P/E Ratio"
+  ],
+  "intervalsData": [
+    {
+      "name": "EPS Ratio",
+      "verbalRating": "Terrible",
+      "summary": "Negative value indicates a loss, 0 indicates no profits.",
+      "numberRating": 1
+    },
+    {
+      "name": "EPS Ratio",
+      "verbalRating": "Rather bad",
+      "summary": "Significantly below average (counted as average of S&P500 from last 20 years).",
+      "numberRating": 2
+    },
+    {
+      "name": "EPS Ratio",
+      "verbalRating": "Neutral",
+      "summary": "Slightly below average (counted as average of S&P500 from last 20 years).",
+      "numberRating": 3
+    },
+    {
+      "name": "EPS Ratio",
+      "verbalRating": "Rather good",
+      "summary": "Slightly above average (counted as average of S&P500 from last 20 years).",
+      "numberRating": 5
+    },
+    {
+      "name": "EPS Ratio",
+      "verbalRating": "Outstanding",
+      "summary": "Significantly above average (counted as average of S&P500 from last 20 years).",
+      "numberRating": 6
+    }
+  ]
+}
