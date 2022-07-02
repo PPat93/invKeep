@@ -9,7 +9,7 @@ module.exports = class GrahamNum extends BasicRatio {
         this.coAnalysis = [`Indyvidually, not compared to others`];
         this.shortDescription = `${this.ratioName} responds to the question - What is the maximum value of the stock that ` +
             `investor should maximally consider. Usually, every value below ${this.ratioName} is considered as a good ` +
-            `opportunity to buy. `;
+            `opportunity to buy.`;
         this.extensiveDescription = `Calculated on the basis of Book value and Earning per Share ratios. It is estimator ` +
             `of the maximum price per share, with which paid the company would be still profitable. It is one of many useful ` +
             `ratios. However, on the opposite to other ratios, it shouldn't be compared across the companies, even within ` +
