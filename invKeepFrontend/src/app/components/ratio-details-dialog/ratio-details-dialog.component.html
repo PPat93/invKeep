@@ -1,79 +1,86 @@
-<!-- TODO modify dialog to have better structure with  mat grid list -->
-<h2 mat-dialog-title class="ratio-name-header-dialog"> Additional info on <b>{{ratioName}}</b></h2>
-<mat-dialog-content class="mat-typography">
-    <mat-card class="additional-details-dialog">
-        <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-        <mat-card-content class="dialog-body" *ngIf="!isLoading">
-            <mat-card-title class="short-description-title dialog-body-content">Short description</mat-card-title>
-            <mat-card-content mat-dialog-content class="short-description-text dialog-body-content">
-                {{ratiosInfos.shortDescription}}
-            </mat-card-content>
-            <mat-divider></mat-divider>
-            <mat-card-title class="extensive-description-title dialog-body-content">Extensive description
-            </mat-card-title>
-            <mat-card-content mat-dialog-content class="extensive-description-text dialog-body-content">
-                {{ratiosInfos.extensiveDescription}}
-            </mat-card-content>
-            <mat-divider></mat-divider>
-            <mat-card-title class="bullet-point-summary-header dialog-body-content">Bullet point summary
-            </mat-card-title>
-            <mat-card-content mat-dialog-content class="bullet-point-summary-content-text dialog-body-content">
-                <mat-list>
-                    <mat-list-item class="bullet-point-summary-content-item"
-                        *ngFor="let singleBullet of ratiosInfos.bulletPointSummary">
-                        <mat-icon>keyboard_arrow_right</mat-icon>
-                        {{singleBullet}}
-                    </mat-list-item>
-                </mat-list>
-            </mat-card-content>
-            <mat-divider></mat-divider>
-            <mat-card-title class="coanalysis-title dialog-body-content">Co-Analysis</mat-card-title>
-            <mat-card-content mat-dialog-content class="coanalysis-text dialog-body-content">
-                <mat-list>
-                    <mat-list-item *ngFor="let coAnalysisItem of ratiosInfos.coAnalysis">
-                        <mat-icon>keyboard_arrow_right</mat-icon>
-                        {{coAnalysisItem}}
-                    </mat-list-item>
-                </mat-list>
-            </mat-card-content>
-            <mat-divider></mat-divider>
-            <mat-card-title class="intervals-title dialog-body-content">Intervals</mat-card-title>
-            <mat-card-content mat-dialog-content class="intervals-text dialog-body-content">
-                <mat-list>
-                    <mat-list-item *ngFor="let singleIntervalData of ratiosInfos.intervals.data, let i = index">
-                        <div class="intervals-bulletpoint-text">
-                            <mat-icon>keyboard_arrow_right</mat-icon>
-                            {{ singleIntervalData.summary }}
-                        </div>
-                        <div class="intervals-bulletpoint-range">
-                            <mat-icon>arrow_right_alt</mat-icon>
-                            <span [innerHTML]="rangeProcessing(ratiosInfos.intervals.values[i])"></span>
-                        </div>
-                    </mat-list-item>
-                </mat-list>
-            </mat-card-content>
-            <mat-divider></mat-divider>
-            <mat-card-title class="formula-title dialog-body-content">Formula</mat-card-title>
-            <mat-card-content mat-dialog-content class="formula-text dialog-body-content">
-                <span>{{ratiosInfos.formula[0]}} = </span>
-                <span>
-                    <div style="display:inline-block; min-width: 200px;">
-                        <u><div style="display:block; min-width: 200px;">{{ratiosInfos.formula[1]}} </div></u>
+<div [attr.data-cy]="dataCyRatioName + '-ratio-details-dialog'" class="ratio-details-dialog">
+    <h2 mat-dialog-title class="ratio-name-header-dialog"> Additional info on <b>{{ratioName}}</b></h2>
+    <mat-dialog-content class="mat-typography">
+        <mat-card class="additional-details-dialog">
+            <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+            <mat-card-content class="dialog-body" *ngIf="!isLoading">
+                <mat-card-title data-cy="short-description-title" class="short-description-title dialog-body-content">
+                    Short description</mat-card-title>
+                <mat-card-content data-cy="short-description-text" mat-dialog-content
+                    class="short-description-text dialog-body-content">{{ratiosInfos.shortDescription}}
+                </mat-card-content>
+                <mat-divider></mat-divider>
+                <mat-card-title data-cy="extensive-description-title"
+                    class="extensive-description-title dialog-body-content">Extensive description
+                </mat-card-title>
+                <mat-card-content data-cy="extensive-description-text" mat-dialog-content
+                    class="extensive-description-text dialog-body-content">
+                    {{ratiosInfos.extensiveDescription}}</mat-card-content>
+                <mat-divider></mat-divider>
+                <mat-card-title data-cy="bullet-point-summary-title"
+                    class="bullet-point-summary-header dialog-body-content">Bullet point summary
+                </mat-card-title>
+                <mat-card-content mat-dialog-content class="bullet-point-summary-content-text dialog-body-content">
+                    <mat-list>
+                        <mat-list-item class="bullet-point-summary-content-item"
+                            *ngFor="let singleBullet of ratiosInfos.bulletPointSummary; let i = index">
+                            <span [attr.data-cy]="'single-bullet-item-'+i">{{singleBullet}}</span>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+                <mat-divider></mat-divider>
+                <mat-card-title data-cy="coanalysis-title" class="coanalysis-title dialog-body-content">Co-Analysis
+                </mat-card-title>
+                <mat-card-content mat-dialog-content class="coanalysis-text dialog-body-content">
+                    <mat-list>
+                        <mat-list-item *ngFor="let coAnalysisItem of ratiosInfos.coAnalysis; let i = index">
+                            <mat-icon>keyboard_arrow_right</mat-icon><span
+                                [attr.data-cy]="'single-coanalysis-item-'+i">{{coAnalysisItem}}</span>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+                <mat-divider></mat-divider>
+                <mat-card-title data-cy="intervals-title" class="intervals-title dialog-body-content">Intervals
+                </mat-card-title>
+                <mat-card-content mat-dialog-content class="intervals-text dialog-body-content">
+                    <mat-list>
+                        <mat-list-item *ngFor="let singleIntervalData of ratiosInfos.intervals.data, let i = index">
+                            <div class="intervals-bulletpoint-text">
+                                <mat-icon>keyboard_arrow_right</mat-icon><span
+                                    [attr.data-cy]="'single-interval-item-'+i">{{ singleIntervalData.summary }}</span>
+                            </div>
+                            <div class="intervals-bulletpoint-range">
+                                <mat-icon>arrow_right_alt</mat-icon>
+                                <span [innerHTML]="rangeProcessing(ratiosInfos.intervals.values[i])"></span>
+                            </div>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+                <mat-divider></mat-divider>
+                <mat-card-title data-cy="formula-title" class="formula-title dialog-body-content">Formula
+                </mat-card-title>
+                <mat-card-content mat-dialog-content class="formula-text dialog-body-content">
+                    <span>{{ratiosInfos.formula[0]}} = </span>
+                    <span>
+                        <div style="display:inline-block; min-width: 200px;">
+                            <u>
+                                <div style="display:block; min-width: 200px;">{{ratiosInfos.formula[1]}}</div>
+                            </u>
 
-                        <div style="display:block; min-width: 200px;">{{ratiosInfos.formula[2]}}</div>
-                    </div>
-                </span>
+                            <div style="display:block; min-width: 200px;">{{ratiosInfos.formula[2]}}</div>
+                        </div>
+                    </span>
+                </mat-card-content>
+                <mat-divider></mat-divider>
+                <mat-card-title data-cy="usage-example-title" class="usage-example-title dialog-body-content">Usage
+                    example</mat-card-title>
+                <mat-card-content data-cy="usage-example-text" mat-dialog-content
+                    class="usage-example-text dialog-body-content">{{ratiosInfos.example}}</mat-card-content>
             </mat-card-content>
-            <mat-divider></mat-divider>
-            <mat-card-title class="usage-example-title dialog-body-content">Usage example</mat-card-title>
-            <mat-card-content mat-dialog-content class="usage-example-text dialog-body-content">
-                {{ratiosInfos.example}}
-            </mat-card-content>
-        </mat-card-content>
-    </mat-card>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close (click)="closeDialog()" class="close-dialog-btn">
-        Close
-    </button>
-</mat-dialog-actions>
+        </mat-card>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button data-cy="close-dialog-button" mat-button mat-dialog-close (click)="closeDialog()"
+            class="close-dialog-btn">Close</button>
+    </mat-dialog-actions>
+</div>

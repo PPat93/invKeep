@@ -88,6 +88,10 @@ export class AssetAnalysisComponent implements OnInit {
       });
   }
 
+  sanitizeRatioName(rName: string){
+    return rName.replace(/\s+/g, '-').replace(/\//g, '-').toLowerCase();
+  }
+
   stockTotalCost(): string {
     return (this.assetMainDetails?.buyPrice * this.assetMainDetails?.amount).toFixed(2);
   }

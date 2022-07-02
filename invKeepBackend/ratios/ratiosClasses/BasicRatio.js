@@ -12,9 +12,16 @@ module.exports = class BasicRatio {
         `First default ratio summary point`,
         `Second default ratio summary point`,
         `Third default ratio summary point`
-        ];
+    ];
     finalValue = 0;
-    intervalsData = [{ name: `${this.ratioName}`, verbalRating: SharedJS.RatingObject.neutral, summary: `Default analysis ratio short comment`, numberRating: 0 }];
+    intervalsData = [
+        {
+            name: `${this.ratioName}`,
+            verbalRating: SharedJS.RatingObject.neutral,
+            summary: `Default analysis ratio short comment`,
+            numberRating: 0
+        }
+    ];
     intervals = [[-Infinity, 0], [0, Infinity]];
 
     constructor(ratio = 0) {

@@ -67,3 +67,7 @@ export let welcomeMsg = {
   "title": "Welcome!",
   "msg": "I'm glad you chose invKeep to keep your assets and analyze them (in the future). App is intuitive, simple and I will do my best to keep it like that."
 };
+
+export function sanitizeRatioName(name) {
+  return name.replace(/\s+/g, '-').replace(/\//g, '-').toLowerCase();
+}

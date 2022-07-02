@@ -2,6 +2,7 @@ import MainPage from "../../../support/pageObjectModel/pageObjects/MainPage";
 import Utils, { AssetCurrency } from "../../../support/pageObjectModel/Utils/Utils";
 import AnalysisPageConsts from "../../../support/pageObjectModel/Utils/AnalysisPageConsts";
 import AnalysisPage from "../../../support/pageObjectModel/pageObjects/AnalysisPage";
+import RatiosNamesFixture from "../../../fixtures/ratiosNames.json";
 
 describe(`Analysis Ratios saving`, () => {
 
@@ -133,5 +134,66 @@ describe(`Analysis Ratios saving`, () => {
                 cy.wrap(analysisRow).findNextDataCyElement(AnalysisPageConsts.intervalsCellVerbalRating)
                     .should(`contain.text`, verbalRating);
             })
+    })
+})
+
+describe(`Analysis Ratios Ratios Details Dialog opening and closing`, () => {
+
+    let assetName: string = ``;
+
+    beforeEach(`Create test asset`, () => {
+
+        assetName = `TestAsset${Date.now()}`;
+
+        cy.apiCreateAsset(assetName, `TASbl`, 19, 245.5, AssetCurrency.euro);
+        Utils.visitPage(Utils.mainPageUrl);
+        cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
+            .click();
+        cy.getDataCyElement(MainPage.dataCyElementDetailsBtn(assetName))
+            .click();
+    });
+
+    afterEach(`Little teardown`, () => {
+        Utils.teardownAssets(`TestAsset`);
+    })
+
+    RatiosNamesFixture.forEach(singleItem => {
+        it(`Ratios Analysis - Analysis Table Ratio Details dialog is opened after clicking on a Ratio Details button from Additional info cell - ${singleItem}`, () => {
+
+            // Arrange
+            cy.getDataCyElement(Utils.loadingSpinner)
+                .should(`not.exist`);
+
+            // Act
+            cy.getDataCyElement(AnalysisPageConsts.ratioDetailsButton(singleItem))
+                .click({ force: true });
+
+            // Assert    
+            cy.getDataCyElement(AnalysisPageConsts.ratioDetailsDialog(singleItem))
+                .should(`be.visible`);
+            cy.get(AnalysisPageConsts.dialogHeaderClass)
+                .should(`contain.text`, singleItem);
+        })
+    })
+
+    RatiosNamesFixture.forEach(singleItem => {
+        it(`Ratios Analysis - Analysis Table Ratio Details dialog is closed after clicking on a Close button - ${singleItem}`, () => {
+
+            // Arrange
+            cy.getDataCyElement(Utils.loadingSpinner)
+                .should(`not.exist`);
+            cy.getDataCyElement(AnalysisPageConsts.ratioDetailsButton(singleItem))
+                .click({ force: true });
+
+            // Act
+            cy.getDataCyElement(AnalysisPageConsts.dialogCloseButton)
+                .should(`be.visible`)
+            cy.getDataCyElement(AnalysisPageConsts.dialogCloseButton)
+                .click();
+
+            // Assert
+            cy.getDataCyElement(AnalysisPageConsts.ratioDetailsDialog(singleItem))
+                .should(`not.exist`);
+        })
     })
 })

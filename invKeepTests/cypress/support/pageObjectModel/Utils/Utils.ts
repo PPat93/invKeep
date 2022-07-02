@@ -43,6 +43,10 @@ class Utils {
             })
         })
     }
+
+    sanitizeRatioName(name) {
+        return name.replace(/\s+/g, '-').replace(/\//g, '-').toLowerCase();
+    }
 }
 
 export default new Utils();
