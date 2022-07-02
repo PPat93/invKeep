@@ -87,7 +87,7 @@ describe(`Ratio Details Dialog - ratios texts displayments`, () => {
     })
 
     let item = [`CAPE Ratio`, `D/E Ratio`, `Dividend Yield Ratio`, `DPR Ratio`, `EPS Ratio`,
-        `EV/EBITDA Ratio`, `EV/EBIT Ratio`, `Graham Number`]
+        `EV/EBITDA Ratio`, `EV/EBIT Ratio`, `Graham Number`, `P/B Ratio`]
     // TODO - exchange above item array with ratiosNames.json array file
     // TODO - change DPR Ratio to DP Ratio all caross the app
     item.forEach(singleRatio => {
