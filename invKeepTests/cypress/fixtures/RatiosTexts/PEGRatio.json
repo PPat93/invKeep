@@ -15,7 +15,8 @@
     "Analyze with: P/E Ratio,EPS Ratio"
   ],
   "coAnalysis": [
-    "P/E Ratio", "EPS Ratio"
+    "P/E Ratio",
+    "EPS Ratio"
   ],
   "intervalsData": [
     {
@@ -23,7 +24,7 @@
       "verbalRating": "Rather bad",
       "summary": "Company is shrinking or not creating any profits. Definitely needs more analysis.",
       "numberRating": 2
-    }, 
+    },
     {
       "name": "PEG Ratio",
       "verbalRating": "Outstanding",

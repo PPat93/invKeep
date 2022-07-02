@@ -16,7 +16,9 @@
     "Analyze with: ROA,ROE,ROIC"
   ],
   "coAnalysis": [
-    "ROA", "ROE", "ROIC"
+    "ROA",
+    "ROE",
+    "ROIC"
   ],
   "intervalsData": [
     {

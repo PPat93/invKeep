@@ -63,7 +63,6 @@ describe(`Analysis Ratios - Ratios Details Dialog - sections visibility`, () => 
     })
 })
 
-
 describe(`Ratio Details Dialog - ratios texts displayments`, () => {
 
     let assetName: string = ``;
@@ -86,13 +85,8 @@ describe(`Ratio Details Dialog - ratios texts displayments`, () => {
         Utils.teardownAssets(`TestAsset`);
     })
 
-    let item = [`CAPE Ratio`, `D/E Ratio`, `Dividend Yield Ratio`, `DPR Ratio`, `EPS Ratio`,
-        `EV/EBITDA Ratio`, `EV/EBIT Ratio`, `Graham Number`, `P/B Ratio`, `PEG Ratio`,
-        `P/E Ratio`, `P/S Ratio`, `ROCE Ratio`, `ROE Ratio`]
-    // TODO - exchange above item array with ratiosNames.json array file
-    // TODO - change DPR Ratio to DP Ratio all caross the app
-    item.forEach(singleRatio => {
-        it.only(`${singleRatio} texts displayments`, () => {
+    RatiosNamesFixture.forEach(singleRatio => {
+        it(`${singleRatio} texts displayments`, () => {
 
             //  Arrange 
             let sanitizedRatioName = singleRatio.replace(/\s+/g, '').replace(/\//g, '');
