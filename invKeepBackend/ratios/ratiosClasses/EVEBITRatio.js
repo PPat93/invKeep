@@ -16,13 +16,13 @@ module.exports = class EVEBITRatio extends BasicRatio {
             `depreciation and amortization into ratio, so it allows to recognize them as the real costs and representation ` +
             `as the utilization of the asstes  of the company. The lower the ${this.ratioName} is, the more secure and ` +
             `stable and secure a company is. This ratio is especially useful in industries which functioning requires ` +
-            `a lot of capital and depreciation or amortization is a real economic cost. `;
+            `a lot of capital and depreciation or amortization is a real economic cost.`;
         this.formula = [
             this.ratioName,
             `Market capitalization + Total Debt - Cash and cash equivalents`,
             `(Net Income + Interest + Taxes) OR (Revenue - Costs of Goods Sold - Operating Expenses)`
         ];
-        this.example = ` Let's assume that The Company 1 has ${this.ratioName} 12.5, The Company 2 has 24.6, The Company 3 ` +
+        this.example = `Let's assume that The Company 1 has ${this.ratioName} 12.5, The Company 2 has 24.6, The Company 3 ` +
             `has 9.2 and The Company 4 has also 9.2. In that case, The best ${this.ratioName} is for TC3 and TC4 alike, as ` +
             `their values are the lowest. Other ratios and criteria are needed to asses which one of them is better. Next ` +
             `best company is TC1, as has middle value of the ratio. The worst company on this example is TC2 with the biggest ` +

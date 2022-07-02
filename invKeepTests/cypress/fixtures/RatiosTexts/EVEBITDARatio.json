@@ -16,7 +16,7 @@
     "Analyze with: EV/EBIT Ratio"
   ],
   "coAnalysis": [
-    "P/E Ratio"
+    "EV/EBIT Ratio"
   ],
   "intervalsData": [
     {
@@ -36,12 +36,6 @@
       "verbalRating": "OK",
       "summary": "Value 14.20 was average for S&P500 on January 2020. Values between 10 and 18 are about average and they may be worth attention of investors.",
       "numberRating": 4
-    },
-    {
-      "name": "EPS Ratio",
-      "verbalRating": "Rather good",
-      "summary": "Slightly above average (counted as average of S&P500 from last 20 years).",
-      "numberRating": 5
     },
     {
       "name": "EPS Ratio",

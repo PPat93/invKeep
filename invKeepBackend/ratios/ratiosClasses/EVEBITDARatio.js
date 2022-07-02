@@ -31,7 +31,7 @@ module.exports = class EVEBITDARatio extends BasicRatio {
             `The Company 1 has the same data, except the generated value - $3 billion instead $4 billion. Then ` +
             `${this.ratioName} is 13,3. Just one billion change altered ${this.ratioName} by 3,4. This example ` +
             `shows, how debt and equities are taken into account together and how relatively small change influences ` +
-            `whole ratio`;
+            `whole ratio.`;
         this.bulletPointSummary = [
             `The lower the better, the higher the worse.`,
             `Varies dependently from industry and should be analyzed on industry average basis.`,
