@@ -1,7 +1,7 @@
-import MainPage from "../../../support/pageObjectModel/pageObjects/MainPage";
-import CreateEditPageConsts from "../../../support/pageObjectModel/Utils/CreateEditPageConsts";
-import Utils, { AssetCurrency } from "../../../support/pageObjectModel/Utils/Utils";
-import CreateEditPage from "../../../support/pageObjectModel/pageObjects/CreateEditPage";
+import MainPage from "../../support/pageObjectModel/pageObjects/MainPage";
+import CreateEditPageConsts from "../../support/pageObjectModel/Utils/CreateEditPageConsts";
+import Utils, { AssetCurrency } from "../../support/pageObjectModel/Utils/Utils";
+import CreateEditPage from "../../support/pageObjectModel/pageObjects/CreateEditPage";
 
 describe(`Assets creation`, () => {
     let assetName: string = ``;

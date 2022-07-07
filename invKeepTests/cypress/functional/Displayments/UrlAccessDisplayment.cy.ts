@@ -1,6 +1,6 @@
-import MainPageConsts from "../../../support/pageObjectModel/Utils/MainPageConsts";
-import Utils from "../../../support/pageObjectModel/Utils/Utils";
-import CreateEditPageConsts from "../../../support/pageObjectModel/Utils/CreateEditPageConsts";
+import MainPageConsts from "../../../cypress/support/pageObjectModel/Utils/MainPageConsts";
+import Utils from "../../../cypress/support/pageObjectModel/Utils/Utils";
+import CreateEditPageConsts from "../../../cypress/support/pageObjectModel/Utils/CreateEditPageConsts";
 
 describe(`Page displayments after direct access from URL`, () => {
 

@@ -1,6 +1,6 @@
-import CreateEditPage from "../../../support/pageObjectModel/pageObjects/CreateEditPage";
-import CreateEditPageConsts from "../../../support/pageObjectModel/Utils/CreateEditPageConsts";
-import Utils from "../../../support/pageObjectModel/Utils/Utils"
+import CreateEditPage from "../../../cypress/support/pageObjectModel/pageObjects/CreateEditPage";
+import CreateEditPageConsts from "../../../cypress/support/pageObjectModel/Utils/CreateEditPageConsts";
+import Utils from "../../../cypress/support/pageObjectModel/Utils/Utils"
 
 describe(`Error messages - Create Asset form - empty required`, () => {
 
