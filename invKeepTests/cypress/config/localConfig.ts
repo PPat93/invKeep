@@ -1,4 +1,4 @@
-const config = {
+const localConfig = {
     environment: `local`,
     baseUrl: `http://localhost:4200`,
     viewportWidth: 1200,
@@ -8,4 +8,4 @@ const config = {
     }
 }
 
-export default config;
+export default localConfig;
