@@ -1,7 +1,7 @@
-import Utils, { AssetCurrency } from "../../../cypress/support/pageObjectModel/Utils/Utils";
-import MainPage from "../../../cypress/support/pageObjectModel/pageObjects/MainPage";
-import RatiosNamesFixture from "../../../cypress/fixtures/ratiosNames.json"
-import AnalysisPageConsts from "../../../cypress/support/pageObjectModel/Utils/AnalysisPageConsts";
+import Utils, { AssetCurrency } from "../../../support/pageObjectModel/Utils/Utils";
+import MainPage from "../../../support/pageObjectModel/pageObjects/MainPage";
+import RatiosNamesFixture from "../../../fixtures/ratiosNames.json"
+import AnalysisPageConsts from "../../../support/pageObjectModel/Utils/AnalysisPageConsts";
 
 describe(`Analysis Ratios - Ratios Details Dialog - sections visibility`, () => {
 

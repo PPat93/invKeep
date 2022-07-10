@@ -35,7 +35,7 @@ Cypress.Commands.add('apiDeleteAsset', (assetId: string) => {
 })
 
 Cypress.Commands.add('apiGetAsset', () => {
-
+    
     cy.request({
         method: `GET`,
         url: `${Cypress.env(`backendUrl`)}`,

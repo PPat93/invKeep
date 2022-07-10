@@ -9,14 +9,14 @@ export default defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
 
-      if (config.env.configFile === 'dev') {
+      if (config.env.configFile === `dev`) {
         customConfigFile = dev;
       } else {
         customConfigFile = local;
       }
 
       Object.entries(customConfigFile).forEach(([key, value]) => {
-        config.env[key] = value;
+        config[key] = value;
       });
       return config
     }

@@ -1,6 +1,6 @@
-import Utils, { AssetCurrency } from "../../../cypress/support/pageObjectModel/Utils/Utils";
-import CreateEditPageConsts from "../../../cypress/support/pageObjectModel/Utils/CreateEditPageConsts";
-import MainPage from "../../../cypress/support/pageObjectModel/pageObjects/MainPage";
+import Utils, { AssetCurrency } from "../../../support/pageObjectModel/Utils/Utils";
+import CreateEditPageConsts from "../../../support/pageObjectModel/Utils/CreateEditPageConsts";
+import MainPage from "../../../support/pageObjectModel/pageObjects/MainPage";
 
 describe(`Displayment of asset data on asset edition`, () => {
 
@@ -13,7 +13,7 @@ describe(`Displayment of asset data on asset edition`, () => {
     let assetPurchaseDate: string[][] = [[`12/12/2012`, `12/12/2012`], [`04.05.2010`, `4/5/2010`]];
 
     afterEach(`Teardown after each test`, () => {
-        Cypress.env("assetItem").forEach(singleAsset => {
+        Cypress.env(`assetItem`).forEach(singleAsset => {
             cy.apiDeleteAsset(singleAsset);
         })
     })
@@ -25,7 +25,7 @@ describe(`Displayment of asset data on asset edition`, () => {
             //  Arrange
             cy.apiCreateAsset(singleAssetName, `editVis`, 10, 1.21, AssetCurrency.dollar).then(res => {
                 if (res.status === 201)
-                    Cypress.env("assetItem").set(singleAssetName, res.body.assetId);
+                    Cypress.env(`assetItem.${singleAssetName}`, res.body.assetId);
             });
             Utils.visitPage(Utils.mainPageUrl);
 
@@ -49,7 +49,7 @@ describe(`Displayment of asset data on asset edition`, () => {
             //  Arrange
             cy.apiCreateAsset(assetName, singleSymbol, 10, 1.21, AssetCurrency.dollar).then(res => {
                 if (res.status === 201)
-                    Cypress.env("assetItem").set(assetName, res.body.assetId);
+                    Cypress.env(`assetItem.${assetName}`, res.body.assetId);
             });
             Utils.visitPage(Utils.mainPageUrl);
 
@@ -71,7 +71,7 @@ describe(`Displayment of asset data on asset edition`, () => {
         //  Arrange
         cy.apiCreateAsset(assetName, `amounSym`, 123, 1.21, AssetCurrency.dollar).then(res => {
             if (res.status === 201)
-                Cypress.env("assetItem").set(assetName, res.body.assetId);
+                Cypress.env(`assetItem.${assetName}`, res.body.assetId);
         });
         Utils.visitPage(Utils.mainPageUrl);
 
@@ -94,7 +94,7 @@ describe(`Displayment of asset data on asset edition`, () => {
             //  Arrange
             cy.apiCreateAsset(assetName, `amounSym`, 123, singlePriceUnit, AssetCurrency.dollar).then(res => {
                 if (res.status === 201)
-                    Cypress.env("assetItem").set(assetName, res.body.assetId);
+                    Cypress.env(`assetItem.${assetName}`, res.body.assetId);
             });
             Utils.visitPage(Utils.mainPageUrl);
 
@@ -118,7 +118,7 @@ describe(`Displayment of asset data on asset edition`, () => {
             //  Arrange
             cy.apiCreateAsset(assetName, `amounSym`, 123, 12.2, singleCurrency).then(res => {
                 if (res.status === 201)
-                    Cypress.env("assetItem").set(assetName, res.body.assetId);
+                    Cypress.env(`assetItem.${assetName}`, res.body.assetId);
             });
             Utils.visitPage(Utils.mainPageUrl);
 
@@ -141,7 +141,7 @@ describe(`Displayment of asset data on asset edition`, () => {
             //  Arrange
             cy.apiCreateAsset(assetName, `amounSym`, 123, 12.2, AssetCurrency.dollar, singleDate[0]).then(res => {
                 if (res.status === 201)
-                    Cypress.env("assetItem").set(assetName, res.body.assetId);
+                    Cypress.env(`assetItem.${assetName}`, res.body.assetId);
             });
             Utils.visitPage(Utils.mainPageUrl);
 
