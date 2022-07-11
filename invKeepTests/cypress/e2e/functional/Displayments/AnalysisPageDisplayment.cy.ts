@@ -8,8 +8,9 @@ describe(`Visibility of Analysis Page elements`, () => {
 // TODO - asset is not assigned to an environmental variable + more investigation
     beforeEach(`Create asset`, () => {
         cy.apiCreateAsset(assetName, `itemVis`, 10, 1.21, AssetCurrency.dollar).then(res => {
+            
             if (res.status === 201) {
-                Cypress.env(`assetItem.${assetName}`, res.body.assetId);
+                Cypress.env('assetItem').set(assetName, res.body.assetId);
             }
         });
         Utils.visitPage(Utils.mainPageUrl);
@@ -20,7 +21,6 @@ describe(`Visibility of Analysis Page elements`, () => {
     })
 
     afterEach(`Teardown after each test`, () => {
-        console.log(Cypress.env(`assetItem`))
         Cypress.env(`assetItem`).forEach(singleAsset => {
             cy.apiDeleteAsset(singleAsset);
         })

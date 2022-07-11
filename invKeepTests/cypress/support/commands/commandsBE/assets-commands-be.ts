@@ -34,14 +34,19 @@ Cypress.Commands.add('apiDeleteAsset', (assetId: string) => {
     })
 })
 
-Cypress.Commands.add('apiGetAsset', () => {
-    
+Cypress.Commands.add('apiGetAsset', (possibleItem: string = undefined) => {
+
+    let backendUrl: string = `${Cypress.env(`backendUrl`)}`;
+
+    if (possibleItem !== undefined)
+        backendUrl = backendUrl + `/${possibleItem}`;
+
     cy.request({
         method: `GET`,
-        url: `${Cypress.env(`backendUrl`)}`,
+        url: backendUrl,
         failOnStatusCode: false,
         headers: {
-            Accept: `application/json`
+            Accept: `application/ json`
         }
     })
 })

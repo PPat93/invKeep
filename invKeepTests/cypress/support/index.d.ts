@@ -15,7 +15,7 @@ declare global {
 
             apiDeleteAsset(assetId: string): Chainable<any>,
 
-            apiGetAsset(): Chainable<any>,
+            apiGetAsset(possibleItem?: string | undefined): Chainable<any>,
         }
     }
 }
