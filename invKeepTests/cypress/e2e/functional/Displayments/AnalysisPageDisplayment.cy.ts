@@ -5,11 +5,13 @@ import MainPage from "../../../support/pageObjectModel/pageObjects/MainPage";
 describe(`Visibility of Analysis Page elements`, () => {
 
     let assetName: string = `TestAsset${Date.now()}`;
-
+// TODO - asset is not assigned to an environmental variable + more investigation
     beforeEach(`Create asset`, () => {
         cy.apiCreateAsset(assetName, `itemVis`, 10, 1.21, AssetCurrency.dollar).then(res => {
-            if (res.status === 201)
-                Cypress.env("assetItem").set(assetName, res.body.assetId);
+            
+            if (res.status === 201) {
+                Cypress.env('assetItem').set(assetName, res.body.assetId);
+            }
         });
         Utils.visitPage(Utils.mainPageUrl);
         cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
@@ -19,7 +21,7 @@ describe(`Visibility of Analysis Page elements`, () => {
     })
 
     afterEach(`Teardown after each test`, () => {
-        Cypress.env("assetItem").forEach(singleAsset => {
+        Cypress.env(`assetItem`).forEach(singleAsset => {
             cy.apiDeleteAsset(singleAsset);
         })
     })

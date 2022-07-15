@@ -1,4 +1,4 @@
-import './commands/commands';
+import './commands';
 import Utils from './pageObjectModel/Utils/Utils';
 
 Cypress.env("assetItem", new Map())

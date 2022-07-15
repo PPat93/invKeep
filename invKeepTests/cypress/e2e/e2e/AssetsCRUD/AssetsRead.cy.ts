@@ -20,7 +20,7 @@ describe(`Assets read`, () => {
         //  Arrange
         cy.apiCreateAsset(assetName, `readDat`, 112, 54.78, AssetCurrency.euro).then(res => {
             if (res.status === 201)
-                Cypress.env("assetItem").set(assetName, res.body.assetId);
+                Cypress.env(`assetItem`).set(assetName, res.body.assetId);
         });
 
         Utils.visitPage(Utils.mainPageUrl);
@@ -35,7 +35,7 @@ describe(`Assets read`, () => {
 
         cy.apiCreateAsset(assetName, `readDat`, 112, 54.78, AssetCurrency.euro, `27/09/2020`).then(res => {
             if (res.status === 201)
-                Cypress.env("assetItem").set(assetName, res.body.assetId);
+                Cypress.env(`assetItem`).set(assetName, res.body.assetId);
         });
 
         Utils.visitPage(Utils.mainPageUrl);
