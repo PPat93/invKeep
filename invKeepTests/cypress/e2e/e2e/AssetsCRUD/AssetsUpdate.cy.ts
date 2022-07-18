@@ -41,7 +41,7 @@ describe(`Assets edition`, () => {
         cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
             .then((asset) => {
 
-                MainPage.assertAssetProperties(asset, assetName, `EdTST`, `123`, `12.5 ${AssetCurrency.pound}`, `4.05.2020`);
+                MainPage.assertAssetProperties(asset, assetName, `EdTST`, `123`, `12.5 ${AssetCurrency.pound}`, `4/05/2020`);
             });
     })
 
@@ -77,7 +77,7 @@ describe(`Assets edition`, () => {
         cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
             .then((asset) => {
 
-                MainPage.assertAssetProperties(asset, assetName, `EdTST`, `123`, `12.5 ${AssetCurrency.pound}`, `4.05.2020`);
+                MainPage.assertAssetProperties(asset, assetName, `EdTST`, `123`, `12.5 ${AssetCurrency.pound}`, `4/05/2020`);
             });
     })
     // TODO add negative scenarios
