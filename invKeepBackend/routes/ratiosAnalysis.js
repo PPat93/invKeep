@@ -16,8 +16,9 @@ function analyzeAssetProfitability(ratiosForAnalysis) {
 
 router.get('/:id', (req, res) => {
     AssetRatio.find({ assetId: req.params.id }).then((ratiosForAnalysis) => {
+
 //  After import in Linux got an error here: "Error during ratio analysis retrieval. Error: TypeError: Cannot read properties of undefined (reading 'valueNum')"
-//  Analysis results -> for some reason, ratiosArray array that is inside each imported object is wrapped with string inside the database:
+//  Analysis results -> for some reason, ratiosArray array that is inside each imported object may be wrapped with string during import to a database:
 //  [{
 //       _id: 61fbc950679d1b4014972f03,
 //       __v: 0,
@@ -27,7 +28,7 @@ router.get('/:id', (req, res) => {
 //  Therefore, inside AllRatios class constructor - the array, that should be searched through with sharedJS.js file searchObject method is called with an
 //  argument of string chars created array (with length equal to the number of all chars of imported file). In that case, search object method does not find 
 //  appropriate name (as it is looking through single chars). Then, undefined value is returned and valueNum property is not defined and cannot be assigned
-//  during execution of class constructor. There error occurs. TODO -> find a way to avoid this situation with endlessly spinning spinners.
+//  during execution of class constructor. There error occurs. For the future -> make sure import was conducted correctly with appropiately exported data file
 
         let analyzedData = analyzeAssetProfitability(ratiosForAnalysis);
 
