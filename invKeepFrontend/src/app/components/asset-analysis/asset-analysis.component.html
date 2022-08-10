@@ -11,28 +11,43 @@
     </mat-card-subtitle>
     <app-loading-spinner *ngIf="isLoading1"></app-loading-spinner>
     <mat-card-content data-cy="asset-analysis-section" class="primary-details" *ngIf="!isLoading1">
-      <table>
-        <tr data-cy="amount" id="amount">
-          <td> Owned quantity:</td>
-          <td class="primary-values">{{assetMainDetails?.amount}}</td>
-        </tr>
-        <tr data-cy="price" id="price">
-          <td>Price per share:</td>
-          <td class="primary-values">{{assetMainDetails?.buyPrice}}&nbsp;{{assetMainDetails?.currency}}</td>
-        </tr>
-        <tr data-cy="total-price" id="total-price">
-          <td>Total paid price:</td>
-          <td class="primary-values">{{stockTotalCost()}}&nbsp;{{assetMainDetails?.currency}}</td>
-        </tr>
-        <tr data-cy="date" id="date">
-          <td>Purchase date:</td>
-          <td class="primary-values">{{assetMainDetails?.purchaseDate}}</td>
-        </tr>
-      </table>
+      <div>
+        <span id="asset-main-details">
+          <table>
+            <tr data-cy="amount" id="amount">
+              <td> Owned quantity:</td>
+              <td class="primary-values">{{assetMainDetails?.amount}}</td>
+            </tr>
+            <tr data-cy="price" id="price">
+              <td>Price per share:</td>
+              <td class="primary-values">{{assetMainDetails?.buyPrice}}&nbsp;{{assetMainDetails?.currency}}</td>
+            </tr>
+            <tr data-cy="total-price" id="total-price">
+              <td>Total paid price:</td>
+              <td class="primary-values">{{stockTotalCost()}}&nbsp;{{assetMainDetails?.currency}}</td>
+            </tr>
+            <tr data-cy="date" id="date">
+              <td>Purchase date:</td>
+              <td class="primary-values">{{assetMainDetails?.purchaseDate}}</td>
+            </tr>
+          </table>
+        </span>
+        <span id="file-upload">
+          <table>
+            <tr id="file-upload-row">
+              <td id="file-upload-cell-description"> Upload image file for future analysis</td>
+              <td id="file-upload-cell-upload">
+                <input #inputFile type="file" hidden>
+                <button mat-stroked-button color="accent" (click)="inputFile.click()">Input</button>
+              </td>
+            </tr>
+          </table>
+        </span>
+      </div>
+      <mat-card-actions>
+        <a class="edit" data-cy="edit" mat-stroked-button color="primary" [routerLink]="['/edit', assetId]">Edit</a>
+      </mat-card-actions>
     </mat-card-content>
-    <mat-card-actions>
-      <a class="edit" data-cy="edit" mat-stroked-button color="primary" [routerLink]="['/edit', assetId]">Edit</a>
-    </mat-card-actions>
     <mat-divider></mat-divider>
     <br>
     <mat-card-subtitle class="subtitle">
@@ -77,8 +92,7 @@
     </mat-card-content>
 
     <mat-card-content *ngIf="!isLoading2" class="ratio-analysis">
-      <table data-cy="ratios-analysis-table" class="analysis-table" mat-table
-        [dataSource]="analyzedAssetRatios">
+      <table data-cy="ratios-analysis-table" class="analysis-table" mat-table [dataSource]="analyzedAssetRatios">
         <ng-container matColumnDef="name">
           <th data-cy="analysis-ratios-name-header" mat-header-cell *matHeaderCellDef>Name</th>
           <td data-cy="analysis-ratios-name-cell" class="parameter-name" mat-cell *matCellDef="let analysis">
@@ -116,7 +130,8 @@
           <th data-cy="analysis-ratios-additional-info-header" mat-header-cell *matHeaderCellDef>Additional Info</th>
           <td data-cy="analysis-ratios-additional-info-cell" class="info-button-column" mat-cell
             *matCellDef="let analysis">
-            <button [attr.data-cy]="sanitizeRatioName(analysis.name)+'-details-button'" class="details-button" mat-raised-button (click)="openRatioDetails(analysis.name)" color="accent">Ratio
+            <button [attr.data-cy]="sanitizeRatioName(analysis.name)+'-details-button'" class="details-button"
+              mat-raised-button (click)="openRatioDetails(analysis.name)" color="accent">Ratio
               Details</button>
           </td>
         </ng-container>
