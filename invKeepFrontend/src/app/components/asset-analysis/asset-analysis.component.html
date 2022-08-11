@@ -12,36 +12,41 @@
     <app-loading-spinner *ngIf="isLoading1"></app-loading-spinner>
     <mat-card-content data-cy="asset-analysis-section" class="primary-details" *ngIf="!isLoading1">
       <div>
-        <span id="asset-main-details">
-          <table>
-            <tr data-cy="amount" id="amount">
-              <td> Owned quantity:</td>
-              <td class="primary-values">{{assetMainDetails?.amount}}</td>
-            </tr>
-            <tr data-cy="price" id="price">
-              <td>Price per share:</td>
-              <td class="primary-values">{{assetMainDetails?.buyPrice}}&nbsp;{{assetMainDetails?.currency}}</td>
-            </tr>
-            <tr data-cy="total-price" id="total-price">
-              <td>Total paid price:</td>
-              <td class="primary-values">{{stockTotalCost()}}&nbsp;{{assetMainDetails?.currency}}</td>
-            </tr>
-            <tr data-cy="date" id="date">
-              <td>Purchase date:</td>
-              <td class="primary-values">{{assetMainDetails?.purchaseDate}}</td>
-            </tr>
-          </table>
-        </span>
-        <span id="file-upload">
-          <table>
-            <tr id="file-upload-row">
-              <td id="file-upload-cell-description"> Upload image file for future analysis</td>
-              <td id="file-upload-cell-upload">
-                <input #inputFile type="file" hidden>
-                <button mat-stroked-button color="accent" (click)="inputFile.click()">Input</button>
-              </td>
-            </tr>
-          </table>
+        <span id="width-wrap-main-details">
+          <span id="asset-main-details">
+            <table>
+              <tr data-cy="amount" id="amount">
+                <td> Owned quantity:</td>
+                <td class="primary-values">{{assetMainDetails?.amount}}</td>
+              </tr>
+              <tr data-cy="price" id="price">
+                <td>Price per share:</td>
+                <td class="primary-values">{{assetMainDetails?.buyPrice}}&nbsp;{{assetMainDetails?.currency}}</td>
+              </tr>
+              <tr data-cy="total-price" id="total-price">
+                <td>Total paid price:</td>
+                <td class="primary-values">{{stockTotalCost()}}&nbsp;{{assetMainDetails?.currency}}</td>
+              </tr>
+              <tr data-cy="date" id="date">
+                <td>Purchase date:</td>
+                <td class="primary-values">{{assetMainDetails?.purchaseDate}}</td>
+              </tr>
+            </table>
+          </span>
+          <span id="file-upload">
+            <table>
+              <tr class="no-highlight">
+                <td id="file-upload-cell-description">Upload image file for future analysis:</td>
+              </tr>
+              <tr class="no-highlight">
+                <td id="file-upload-cell-upload">
+                  <input #inputFile type="file" hidden>
+                  <button id="upload-button" mat-stroked-button color="primary"
+                    (click)="inputFile.click()">Input</button>
+                </td>
+              </tr>
+            </table>
+          </span>
         </span>
       </div>
       <mat-card-actions>
