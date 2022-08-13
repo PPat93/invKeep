@@ -20,27 +20,6 @@ export class AssetAnalysisComponent implements OnInit {
   assetId: string;
   assetMainDetails: AssetRecord;
 
-  // TODO clean below multiple variables that are messed and probably redundant
-  assetAnalysis: AssetAndIndicatorsAnlysis = {
-    assetId: ``,
-    ratiosArray: [
-      { parameterName: ``, valueNum: null, unit: `` }
-    ],
-    analyzedData: [{
-      coAnalysis: [``],
-      shortDescription: ``,
-      intervals: {
-        name: ``,
-        numberRating: 0,
-        summary: ``,
-        verbalRating: ``
-      },
-      name: ``,
-      bulletPointSummary: [],
-      value: 0
-    }]
-  };
-
   analyzedAssetRatios: AnalyzedData[] = [{
     coAnalysis: [``],
     shortDescription: ``,
@@ -54,6 +33,15 @@ export class AssetAnalysisComponent implements OnInit {
     bulletPointSummary: [``],
     value: 0
   }];
+
+  assetAnalysis: AssetAndIndicatorsAnlysis = {
+    assetId: ``,
+    ratiosArray: [
+      { parameterName: ``, valueNum: null, unit: `` }
+    ],
+    analyzedData: this.analyzedAssetRatios
+  };
+
 
   isLoading1: boolean = false;
   isLoading2: boolean = false;
