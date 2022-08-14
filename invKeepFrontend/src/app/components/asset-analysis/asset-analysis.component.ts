@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AssetsService } from "../../services/assets.service";
 import { ActivatedRoute, ParamMap } from "@angular/router";
-import { AnalyzedData, AssetRecord, AssetAndIndicatorsAnlysis } from "../../shared/sharedTS";
-import { NgForm } from "@angular/forms";
+import { AnalyzedData, AssetRecord, AssetAndIndicatorsAnlysis, sanitizeRatioName } from "../../shared/sharedTS";
+import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
 import { AssetRatiosService } from "../../services/asset-ratios.service";
 import { Subscription } from "rxjs";
 import { RatioDetailsService } from 'src/app/services/ratio-details.service';
@@ -19,6 +19,7 @@ export class AssetAnalysisComponent implements OnInit {
 
   assetId: string;
   assetMainDetails: AssetRecord;
+  ratiosValuesForm: FormGroup;
 
   analyzedAssetRatios: AnalyzedData[] = [{
     coAnalysis: [``],
@@ -73,11 +74,12 @@ export class AssetAnalysisComponent implements OnInit {
         this.isLoading2 = false;
         this.assetAnalysis = ratiosSubscribed;
         this.analyzedAssetRatios = ratiosSubscribed.analyzedData;
+        this.createFormGroup(this.assetAnalysis.ratiosArray)
       });
   }
 
-  sanitizeRatioName(rName: string){
-    return rName.replace(/\s+/g, '-').replace(/\//g, '-').toLowerCase();
+  sanitizeHTMLRatioName(rName: string) {
+    return sanitizeRatioName(rName);
   }
 
   stockTotalCost(): string {
@@ -122,5 +124,15 @@ export class AssetAnalysisComponent implements OnInit {
       width: `80%`,
       height: `80%`
     })
+  }
+
+  createFormGroup(names: { parameterName: string, valueNum: number, unit: string }[]) {
+
+    let tempGroupFormControl = {};
+    names.forEach(element => {
+      tempGroupFormControl[sanitizeRatioName(element.parameterName)] = new FormControl(0, { validators: [Validators.required, Validators.maxLength(5), Validators.pattern(`^[0-9]*[.0-9]*$`)] });
+    });
+
+    this.ratiosValuesForm = new FormGroup(tempGroupFormControl);
   }
 }

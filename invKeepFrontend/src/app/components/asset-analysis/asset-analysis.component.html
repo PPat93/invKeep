@@ -60,7 +60,7 @@
     </mat-card-subtitle>
     <app-loading-spinner *ngIf="isLoading2"></app-loading-spinner>
     <mat-card-content data-cy="ratios-section" class="ratios-column" *ngIf="!isLoading2">
-      <form data-cy="ratios-inputs" (submit)="saveRatiosValues(ratiosInput)" ngForm #ratiosInput="ngForm"
+      <form data-cy="ratios-inputs" (submit)="saveRatiosValues()"
         class="asset-ratios-table" name="ratio-analysis">
         <table data-cy="ratios-input-table" mat-table [dataSource]="assetAnalysis.ratiosArray">
           <ng-container matColumnDef="parameterName">
@@ -74,7 +74,7 @@
               <mat-form-field class="input-ratio-value">
                 <input class="single-asset-ratio"
                   [attr.data-cy]="ratio.parameterName.replaceAll(' ', '-').toLowerCase() + '-input'"
-                  name="r{{ratio.parameterName}}" matInput [ngModel]="ratio.valueNum" value="{{ratio.valueNum}}">
+                  name="r{{ratio.parameterName}}" matInput value="{{ratio.valueNum}}">
                 <!-- DO NOT REMOVE ABOVE "r" letter from "name" parameter, it breaks Ratios Analysis - save functionality
                    because of error that appears if input field has name set only by
                    two way binding it was needed to add a letter that is not dynamic. Here I add it -> it is removed in saveRatiosValues -->
@@ -135,7 +135,7 @@
           <th data-cy="analysis-ratios-additional-info-header" mat-header-cell *matHeaderCellDef>Additional Info</th>
           <td data-cy="analysis-ratios-additional-info-cell" class="info-button-column" mat-cell
             *matCellDef="let analysis">
-            <button [attr.data-cy]="sanitizeRatioName(analysis.name)+'-details-button'" class="details-button"
+            <button [attr.data-cy]="sanitizeHTMLRatioName(analysis.name)+'-details-button'" class="details-button"
               mat-raised-button (click)="openRatioDetails(analysis.name)" color="accent">Ratio
               Details</button>
           </td>
