@@ -128,11 +128,21 @@ export class AssetAnalysisComponent implements OnInit {
 
   createFormGroup(names: { parameterName: string, valueNum: number, unit: string }[]) {
 
+    //  Dynamic creation of the controllers for all items in form (with all needed validators)
     let tempGroupFormControl = {};
     names.forEach(element => {
       tempGroupFormControl[sanitizeRatioName(element.parameterName)] = new FormControl(0, { validators: [Validators.required, Validators.maxLength(5), Validators.pattern(`^[0-9]*[.0-9]*$`)] });
     });
 
     this.ratiosValuesForm = new FormGroup(tempGroupFormControl);
+
+    //  Dynamic assignment of starting values accordingly to values retrieved from DB 
+    let oldRatiosValues = {};
+
+    this.analyzedAssetRatios.forEach(item => {
+      oldRatiosValues[sanitizeRatioName(item.name)] = item.value;
+    })
+
+    this.ratiosValuesForm.setValue(oldRatiosValues);
   }
 }

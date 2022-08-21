@@ -9,7 +9,7 @@ const RatiosNames = Object.freeze({
   de_ratio: 'D/E Ratio',
   roe_ratio: 'ROE Ratio',
   roce_ratio: 'ROCE Ratio',
-  dividend_yield: 'Dividend Yield',
+  dividend_yield_ratio: 'Dividend Yield Ratio',
   dpr_ratio: 'DPR Ratio',
   ps_ratio: 'P/S Ratio',
   graham_num: 'Graham Number',
