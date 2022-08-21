@@ -21,7 +21,7 @@
       "_id": {
         "$oid": "61edc4a14b544f099484c5b1"
       },
-      "parameterName": "Dividend Yield",
+      "parameterName": "Dividend Yield Ratio",
       "valueNum": 0
     },
     {
@@ -169,7 +169,7 @@
       "_id": {
         "$oid": "61edc0264b544f099484c550"
       },
-      "parameterName": "Dividend Yield",
+      "parameterName": "Dividend Yield Ratio",
       "valueNum": 0
     },
     {
@@ -275,7 +275,7 @@
       "_id": {
         "$oid": "61edc0384b544f099484c564"
       },
-      "parameterName": "Dividend Yield",
+      "parameterName": "Dividend Yield Ratio",
       "valueNum": 0
     },
     {
@@ -381,7 +381,7 @@
       "_id": {
         "$oid": "61edc0514b544f099484c578"
       },
-      "parameterName": "Dividend Yield",
+      "parameterName": "Dividend Yield Ratio",
       "valueNum": 0
     },
     {
@@ -487,7 +487,7 @@
       "_id": {
         "$oid": "61edc0674b544f099484c58c"
       },
-      "parameterName": "Dividend Yield",
+      "parameterName": "Dividend Yield Ratio",
       "valueNum": 0
     },
     {
