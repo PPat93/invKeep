@@ -26,7 +26,7 @@ router.post('', (req, res) => {
         ratiosArray: [
             { parameterName: RatiosNames.RatiosNames.cape_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.unitless },
             { parameterName: RatiosNames.RatiosNames.de_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.unitless },
-            { parameterName: RatiosNames.RatiosNames.dividend_yield, valueNum: 0, unit: RatiosNames.RatiosUnits.percentage },
+            { parameterName: RatiosNames.RatiosNames.dividend_yield_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.percentage },
             { parameterName: RatiosNames.RatiosNames.dpr_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.percentage },
             { parameterName: RatiosNames.RatiosNames.eps_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.currency },
             { parameterName: RatiosNames.RatiosNames.ev_ebitda_ratio, valueNum: 0, unit: RatiosNames.RatiosUnits.unitless },

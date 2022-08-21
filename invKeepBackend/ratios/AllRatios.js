@@ -35,7 +35,7 @@ module.exports = class AllRatios {
     constructor(ratiosAnalysisArray) {
         this.CAPERatio = new CAPERatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.cape_ratio)).valueNum);
         this.objDERatio = new DERatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.de_ratio)).valueNum);
-        this.objDividendYieldRatio = new DividendYieldRatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.dividend_yield)).valueNum);
+        this.objDividendYieldRatio = new DividendYieldRatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.dividend_yield_ratio)).valueNum);
         this.objDPRRatio = new DPRRatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.dpr_ratio)).valueNum);
         this.objEPSRatio = new EPSRatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.eps_ratio)).valueNum);
         this.objEVEBITDARatio = new EVEBITDARatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.ev_ebitda_ratio)).valueNum);

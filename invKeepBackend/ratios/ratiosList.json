@@ -40,7 +40,7 @@
         "url": "roceratio"
     },
     {
-        "name": "Dividend Yield",
+        "name": "Dividend Yield Ratio",
         "className": "DividendYieldRatio",
         "url": "dividendyieldratio"
     },
