@@ -90,16 +90,25 @@ export class AssetAnalysisComponent implements OnInit {
     return (unit === 'curr') ? this.assetMainDetails.currency : unit;
   }
 
-  saveRatiosValues(ratiosValues: NgForm): void {
+  saveRatiosValues(): void {
     // TODO add handling of comma and dot ratios 
-    for (let ratio in this.assetAnalysis.ratiosArray) {
-      for (let newRatio in ratiosValues.form.value) {
-        if (this.assetAnalysis.ratiosArray[ratio].parameterName === (newRatio.substring(1)))
+    this.assetAnalysis.ratiosArray.forEach(ratio => {
+      Object.entries(this.ratiosValuesForm.value).forEach(([key, value]) => {
+        //HERE -> ratiosArray lost all units, to be fixed
+        // console.log(value)
+        if (ratio.parameterName === key){
           // because of error that appears if input field has name set only by
           // two way binding it was needed to add a letter that is not dynamic. Here I remove it.
-          this.assetAnalysis.ratiosArray[ratio].valueNum = Number(ratiosValues.form.value[newRatio]);
-      }
-    }
+          console.log(this.assetAnalysis.ratiosArray[this.assetAnalysis.ratiosArray.indexOf(ratio)].valueNum)
+
+          this.assetAnalysis.ratiosArray[this.assetAnalysis.ratiosArray.indexOf(ratio)].valueNum = Number(value);
+          console.log(this.assetAnalysis.ratiosArray[this.assetAnalysis.ratiosArray.indexOf(ratio)].valueNum)
+// console.log(this.assetAnalysis.ratiosArray)
+}
+
+
+      })
+    })
     this.assetAnalysis.assetId = this.assetId;
     this.AssetRatiosService.saveRatiosValues(this.assetId, this.assetAnalysis);
     this.isLoading2 = true;
