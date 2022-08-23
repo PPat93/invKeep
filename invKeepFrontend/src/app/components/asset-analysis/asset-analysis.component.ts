@@ -95,18 +95,12 @@ export class AssetAnalysisComponent implements OnInit {
     this.assetAnalysis.ratiosArray.forEach(ratio => {
       Object.entries(this.ratiosValuesForm.value).forEach(([key, value]) => {
         //HERE -> ratiosArray lost all units, to be fixed
-        // console.log(value)
-        if (ratio.parameterName === key){
+        // To check if r letter is still needed in reactive forms
+        if (sanitizeRatioName(ratio.parameterName) === key) {
           // because of error that appears if input field has name set only by
           // two way binding it was needed to add a letter that is not dynamic. Here I remove it.
-          console.log(this.assetAnalysis.ratiosArray[this.assetAnalysis.ratiosArray.indexOf(ratio)].valueNum)
-
           this.assetAnalysis.ratiosArray[this.assetAnalysis.ratiosArray.indexOf(ratio)].valueNum = Number(value);
-          console.log(this.assetAnalysis.ratiosArray[this.assetAnalysis.ratiosArray.indexOf(ratio)].valueNum)
-// console.log(this.assetAnalysis.ratiosArray)
-}
-
-
+        }
       })
     })
     this.assetAnalysis.assetId = this.assetId;
