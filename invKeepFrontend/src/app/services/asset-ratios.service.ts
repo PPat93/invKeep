@@ -10,43 +10,27 @@ export class AssetRatiosService {
 
   private updateAssetRatios = new Subject<AssetAndIndicatorsAnlysis>();
   private ratiosAnalysisEdit = new Subject<AnalyzedData[]>();
-  ratiosReturn2: {
-    assetId: string,
-    ratiosArray: { parameterName: any; valueNum: number; unit: string }[],
-    analyzedData: AnalyzedData[]
-  };
+
   ratiosReturn: {
     assetId: string,
-    ratiosArray: { parameterName: any; valueNum: number; unit: string }[],
+    ratiosArray: { parameterName: string; valueNum: number; unit: string }[],
     analyzedData: AnalyzedData[]
   };
 
   constructor(private http: HttpClient) {
   }
 
+  processedRatios: { parameterName: string, valueNum: number, unit: string }[] = [];
+
   getAssetRatiosValues(assetId: string) {
     this.http.get<{ message: string, retrievedRatios: AssetRatiosValues, analyzedData: AnalyzedData[] }>(`http://localhost:3000/api/ratio-analysis/${assetId}`)
       .pipe(map((returnedRatios) => {
+        // Reprocessing returned ratios, so it has a proper structure needed by frontend. 
         return {
           assetId: returnedRatios.retrievedRatios.assetId,
-          ratiosArray: returnedRatios.retrievedRatios.ratiosArray.map((ratios) => {
-            return [
-              // TODO add dynamic for loop for each ratio instead of forced way
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[0].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[0].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[0].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[1].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[1].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[1].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[2].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[2].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[2].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[3].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[3].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[3].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[4].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[4].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[4].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[5].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[5].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[5].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[6].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[6].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[6].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[7].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[7].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[7].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[8].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[8].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[8].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[9].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[9].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[9].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[10].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[10].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[10].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[11].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[11].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[11].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[12].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[12].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[12].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[13].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[13].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[13].unit }
-            ]
+          ratiosArray: returnedRatios.retrievedRatios.ratiosArray.map(ratio => {
+            this.processedRatios.push({ parameterName: ratio.parameterName, valueNum: ratio.valueNum, unit: ratio.unit })
+            return this.processedRatios
           }),
           analyzedData: returnedRatios.analyzedData
         }
