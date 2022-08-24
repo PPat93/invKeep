@@ -45,5 +45,5 @@ describe(`Assets read`, () => {
             MainPage.assertAssetProperties(readAsset, assetName, `readDat`, `112`, `54.78 ${AssetCurrency.euro}`, `27/09/2020`);
         })
     })
-    // TODO add negative scenarios
+    // TODO- 6 - somewhat important- add negative scenarios
 })

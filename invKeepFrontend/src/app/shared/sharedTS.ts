@@ -13,7 +13,7 @@ export interface AssetRatiosValues {
   assetId: string,
   ratiosArray: { parameterName: string, valueNum: number, unit: string }[]
 }
-// TODO clean up below AssetAndIndicatorsAnlysis and AnalyzedData interfaces that are probably redundant
+// TODO - 1 - not urgent - clean up below AssetAndIndicatorsAnlysis and AnalyzedData interfaces that are probably redundant
 export interface AssetAndIndicatorsAnlysis extends AssetRatiosValues {
   analyzedData: {
     coAnalysis: string[],

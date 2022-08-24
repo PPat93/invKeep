@@ -16,7 +16,7 @@ const ROCERatio = require('./ratiosClasses/ROCERatio');
 const ROERatio = require('./ratiosClasses/ROERatio');
 const CAPERatio = require('./ratiosClasses/CAPERatio');
 
-// TODO add some group import used multiple times like index.js
+// TODO - 1 - not urgent - add some group import used multiple times like index.js
 
 module.exports = class RatiosDetails {
 
@@ -26,7 +26,7 @@ module.exports = class RatiosDetails {
 
     constructor(ratioName) {
         // make sure it is running appropriate class, not any script from frontend
-        // TODO add some better sanitization  
+        // TODO - 5 - can be beneficial - add some better sanitization  
         ratiosList.some(ratio => {
 
             // let sanitizedRatioName =  TODO
@@ -35,7 +35,7 @@ module.exports = class RatiosDetails {
                 this.toBeRetrievedRatioDetailsClass = eval('new ' + ratio.className + '()');
                 return true;
             }
-            // TODO add some error handling if item was not found
+            // TODO - 7 - quite urgent - add some error handling if item was not found
         })
     }
 

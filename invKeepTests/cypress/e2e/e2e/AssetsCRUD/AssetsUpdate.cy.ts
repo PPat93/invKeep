@@ -80,6 +80,6 @@ describe(`Assets edition`, () => {
                 MainPage.assertAssetProperties(asset, assetName, `EdTST`, `123`, `12.5 ${AssetCurrency.pound}`, `4/05/2020`);
             });
     })
-    // TODO add negative scenarios
-    // TODO change input of date - currently inverted day and month, add prompt how date should be formatted
+    // TODO - 6 - somewhat important - add negative scenarios
+    // TODO - 5 - rather important - change input of date - currently inverted day and month, add prompt how date should be formatted
 })

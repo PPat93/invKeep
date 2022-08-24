@@ -14,7 +14,7 @@ const ROCERatio = require('./ratiosClasses/ROCERatio');
 const ROERatio = require('./ratiosClasses/ROERatio');
 const CAPERatio = require('./ratiosClasses/CAPERatio');
 
-// TODO add some group import used multiple times like index.js
+// TODO - 1 - not urgent - add some group import used multiple times like index.js
 
 module.exports = class AllRatios {
     CAPERatio;

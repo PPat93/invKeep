@@ -3,7 +3,7 @@ const SharedJS = require('../../../invKeepFrontend/src/app/shared/sharedJS');
 
 module.exports = class DPRRatio extends BasicRatio {
 
-    // TODO - change DPR Ratio to DP Ratio all caross the app
+    // TODO - 3 - nothing special - change DPR Ratio to DP Ratio all caross the app
     constructor(DPRRatio) {
         super();
         this.ratioName = `DPR Ratio`;

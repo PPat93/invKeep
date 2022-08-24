@@ -60,4 +60,4 @@ describe(`Assets creation`, () => {
     })
 })
 
-// TODO add negative scenarios
+// TODO - 6 - somewhat important - add negative scenarios

@@ -5,7 +5,7 @@ import MainPage from "../../../support/pageObjectModel/pageObjects/MainPage";
 describe(`Visibility of Analysis Page elements`, () => {
 
     let assetName: string = `TestAsset${Date.now()}`;
-// TODO - asset is not assigned to an environmental variable + more investigation
+// TODO - ? - nno idea - asset is not assigned to an environmental variable + more investigation
     beforeEach(`Create asset`, () => {
         cy.apiCreateAsset(assetName, `itemVis`, 10, 1.21, AssetCurrency.dollar).then(res => {
             

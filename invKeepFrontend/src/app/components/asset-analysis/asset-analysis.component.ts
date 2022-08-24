@@ -91,7 +91,7 @@ export class AssetAnalysisComponent implements OnInit {
   }
 
   saveRatiosValues(): void {
-    // TODO add handling of comma and dot ratios 
+    // TODO - 5 - quite important - add handling of comma and dot ratios 
     this.assetAnalysis.ratiosArray.forEach(ratio => {
       Object.entries(this.ratiosValuesForm.value).forEach(([key, value]) => {
         //HERE -> ratiosArray lost all units, to be fixed
