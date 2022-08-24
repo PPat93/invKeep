@@ -36,6 +36,7 @@ export class AssetRatiosService {
         }
       }))
       .subscribe((returnedRatios) => {
+        this.processedRatios = []
         this.ratiosReturn = {
           assetId: assetId,
           ratiosArray: returnedRatios.ratiosArray[0],
