@@ -36,6 +36,8 @@ export class AssetRatiosService {
         }
       }))
       .subscribe((returnedRatios) => {
+        //  processedRatios variable cleaning after processing retrieved ratios array, so after next record 'visiting' previous data
+        //  won't be dslayed and new array will be created on fresh variable
         this.processedRatios = []
         this.ratiosReturn = {
           assetId: assetId,
