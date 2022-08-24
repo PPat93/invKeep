@@ -33,6 +33,9 @@ export class AssetRatiosService {
             return this.processedRatios
           }),
           analyzedData: returnedRatios.analyzedData
+          //  TODO - 1 - not urgent -> Somewhere units disappeared and in database there were ot existing anymore. Have no idea where it happened, it might be somewhere
+          //  during app development or during migration from windows. Nevertheless, to be checked and be sure that they won't be lost anymore
+          //  Maybe addition of some validation before request send or automatic addition of units 
         }
       }))
       .subscribe((returnedRatios) => {
