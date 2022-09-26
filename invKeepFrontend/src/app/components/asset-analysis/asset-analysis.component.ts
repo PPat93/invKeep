@@ -94,11 +94,7 @@ export class AssetAnalysisComponent implements OnInit {
     // TODO - 5 - quite important - add handling of comma and dot ratios 
     this.assetAnalysis.ratiosArray.forEach(ratio => {
       Object.entries(this.ratiosValuesForm.value).forEach(([key, value]) => {
-        //HERE -> ratiosArray lost all units, to be fixed
-        // To check if r letter is still needed in reactive forms
         if (sanitizeRatioName(ratio.parameterName) === key) {
-          // because of error that appears if input field has name set only by
-          // two way binding it was needed to add a letter that is not dynamic. Here I remove it.
           this.assetAnalysis.ratiosArray[this.assetAnalysis.ratiosArray.indexOf(ratio)].valueNum = Number(value);
         }
       })

@@ -74,11 +74,8 @@
               <mat-form-field class="input-ratio-value">
                 <input class="single-asset-ratio"
                   [attr.data-cy]="ratio.parameterName.replaceAll(' ', '-').toLowerCase() + '-input'"
-                  name="r{{ratio.parameterName}}" matInput value="{{ratio.valueNum}}" 
+                  name="{{ratio.parameterName}}" matInput value="{{ratio.valueNum}}" 
                   [formControlName]="ratio.parameterName.replaceAll(' ', '-').replaceAll('/','-').toLowerCase()">
-                <!-- DO NOT REMOVE ABOVE "r" letter from "name" parameter, it breaks Ratios Analysis - save functionality
-                   because of error that appears if input field has name set only by
-                   two way binding it was needed to add a letter that is not dynamic. Here I add it -> it is removed in saveRatiosValues -->
               </mat-form-field>
             </td>
           </ng-container>
