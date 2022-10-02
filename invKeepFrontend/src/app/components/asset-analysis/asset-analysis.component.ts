@@ -125,6 +125,12 @@ export class AssetAnalysisComponent implements OnInit {
     })
   }
 
+  // method validating that uploaded file is an image, here file will be stored in a variable that will be send to the backend after confirmation
+  onImgSelected(event: Event){
+    const imageFile = (event.target as HTMLInputElement).files[0];
+    console.log(imageFile)
+  }
+
   createFormGroup(names: { parameterName: string, valueNum: number, unit: string }[]) {
 
     //  Dynamic creation of the controllers for all items in form (with all needed validators)

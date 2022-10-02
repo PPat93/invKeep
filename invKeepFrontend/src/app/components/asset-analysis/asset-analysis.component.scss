@@ -142,8 +142,6 @@ mat-progress-bar {
   max-width: 35px;
 }
 
-#file-upload {}
-
 #asset-main-details {
   display: inline-block;
 }
@@ -163,7 +161,8 @@ mat-progress-bar {
   padding: 0.5%;
 }
 
-#file-upload-cell-upload {
+// #file-upload-cell-upload {
+  .file-upload{
   display: flex;
   justify-content: center;
   position: relative;

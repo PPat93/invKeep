@@ -39,10 +39,14 @@
                 <td id="file-upload-cell-description">Upload image file for future analysis:</td>
               </tr>
               <tr class="no-highlight">
-                <td id="file-upload-cell-upload">
-                  <input #inputFile type="file" hidden>
-                  <button id="upload-button" mat-stroked-button color="primary"
-                    (click)="inputFile.click()">Input</button>
+                <td class="file-upload" id="file-upload-cell-upload">
+                  <input #inputFile type="file" (change)="onImgSelected($event)" hidden>
+                  <button id="sellect-file-button" mat-stroked-button color="primary"
+                    (click)="inputFile.click()">Input</button> 
+                    <!-- above -> to be switched with img preview after selection -->
+                </td>
+                <td class="file-upload" id="file-upload-cell-save">
+                  <button id="save-button" mat-raised-button color="primary" (click)="saveImageFile()">Save</button>
                 </td>
               </tr>
             </table>
@@ -74,7 +78,7 @@
               <mat-form-field class="input-ratio-value">
                 <input class="single-asset-ratio"
                   [attr.data-cy]="ratio.parameterName.replaceAll(' ', '-').toLowerCase() + '-input'"
-                  name="{{ratio.parameterName}}" matInput value="{{ratio.valueNum}}" 
+                  name="{{ratio.parameterName}}" matInput value="{{ratio.valueNum}}"
                   [formControlName]="ratio.parameterName.replaceAll(' ', '-').replaceAll('/','-').toLowerCase()">
               </mat-form-field>
             </td>
