@@ -43,6 +43,7 @@ export class AssetAnalysisComponent implements OnInit {
     analyzedData: this.analyzedAssetRatios
   };
 
+  imageFile: File;
 
   isLoading1: boolean = false;
   isLoading2: boolean = false;
@@ -59,6 +60,13 @@ export class AssetAnalysisComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  //  FormControl with uploaded file image validators for the new 'form'. This one is separate from saving ratios 
+    let imageForm = new FormControl({
+      name: new FormControl(0, { validators: [Validators.pattern(`^.*[.](bmp|jpg|jpeg|png|)$`)] }),
+      type: new FormControl(0, { validators: [Validators.pattern(`^image/.*$`)] })
+    })
+
     this.isLoading1 = true;
     this.isLoading2 = true;
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -110,6 +118,11 @@ export class AssetAnalysisComponent implements OnInit {
       });
   }
 
+  //  Sending image file to a service and into backend
+  uploadAnalysisImage(imageFile: File){
+    this.AssetRatiosService.saveAnalysisImageHttp(imageFile);
+  }
+
   ngOnDestroy() {
     this.ratiosSub.unsubscribe();
     if (this.ratiosWereSavedIndicator) {
@@ -127,16 +140,14 @@ export class AssetAnalysisComponent implements OnInit {
 
   // method validating that uploaded file is an image, here file will be stored in a variable that will be send to the backend after confirmation
   onImgSelected(event: Event) {
-    let imageFormControl = {};
-    const imageFile = (event.target as HTMLInputElement).files[0];
-    imageFormControl[imageFile.name] = new FormControl(0, { validators: [Validators.pattern(`^.*[.](bmp|jpg|jpeg|png|)$`)] });
-    imageFormControl[imageFile.type] = new FormControl(0, { validators: [Validators.pattern(`^image/.*$`)] });
+   let imageFile = (event.target as HTMLInputElement).files[0];
     console.log(imageFile)
   }
 
   createFormGroup(names: { parameterName: string, valueNum: number, unit: string }[]) {
 
-    //  Dynamic creation of the controllers for all items in form (with all needed validators)
+    //  Dynamic creation of the controllers for all items in form (with all needed validators) 
+    //  TODO - 9 - V ERY IMPORTANT to be updated and location changed into onInit.
     let tempGroupFormControl = {};
     names.forEach(element => {
       tempGroupFormControl[sanitizeRatioName(element.parameterName)] = new FormControl(0, { validators: [Validators.required, Validators.maxLength(5), Validators.pattern(`^[0-9]*[.0-9]*$`)] });
