@@ -19,7 +19,10 @@ export class AssetAnalysisComponent implements OnInit {
 
   assetId: string;
   assetMainDetails: AssetRecord;
-  ratiosValuesForm: FormGroup;
+
+  //  FormGroups variables declaration, used to control and validate ratios values and image value
+  ratiosFormGroup: FormGroup;
+  imageFormGroup: FormGroup;
 
   analyzedAssetRatios: AnalyzedData[] = [{
     coAnalysis: [``],
@@ -93,10 +96,10 @@ export class AssetAnalysisComponent implements OnInit {
   }
 
   saveRatiosValues(): void {
-    if (!this.ratiosValuesForm.invalid) {
+    if (!this.ratiosFormGroup.invalid) {
       // TODO - 5 - quite important - add handling of comma and dot ratios 
       this.assetAnalysis.ratiosArray.forEach(ratio => {
-        Object.entries(this.ratiosValuesForm.value).forEach(([key, value]) => {
+        Object.entries(this.ratiosFormGroup.value).forEach(([key, value]) => {
           if (sanitizeRatioName(ratio.parameterName) === key) {
             this.assetAnalysis.ratiosArray[this.assetAnalysis.ratiosArray.indexOf(ratio)].valueNum = Number(value);
           }
@@ -114,16 +117,14 @@ export class AssetAnalysisComponent implements OnInit {
     }
   }
 
-  //  Sending image file to a service and into backend
-  uploadAnalysisImage(imageFile: File) {
-    this.AssetRatiosService.saveAnalysisImageHttp(imageFile);
-  }
 
-  ngOnDestroy() {
-    this.ratiosSub.unsubscribe();
-    if (this.ratiosWereSavedIndicator) {
-      this.ratiosAnalysisSub.unsubscribe();
-    }
+  /*  ->  Sending image file to a service and then into backend
+  *   ->  If no error is retured from Image Form Group (imageFormGroup), the image is passed into the assett 
+  *       ratios service
+  */
+  uploadAnalysisImage(imageFile: File) {
+    if (!this.imageFormGroup.invalid)
+      this.AssetRatiosService.saveAnalysisImageHttp(imageFile);
   }
 
   openRatioDetails(ratioName: string) {
@@ -134,10 +135,12 @@ export class AssetAnalysisComponent implements OnInit {
     })
   }
 
-  // method validating that uploaded file is an image, here file will be stored in a variable that will be send to the backend after confirmation
+  /*  ->  Image FormGroup value setting 
+  *   ->  Newly attached file is assigned as a new value to the FormGroup
+  */
   onImgSelected(event: Event) {
     let imageFile = (event.target as HTMLInputElement).files[0];
-    console.log(imageFile)
+    this.imageFormGroup.setValue(imageFile);
   }
 
   createFormGroups(names: { parameterName: string, valueNum: number, unit: string }[]) {
@@ -148,13 +151,13 @@ export class AssetAnalysisComponent implements OnInit {
     *   ->  Here,temporary Form Control object (tempGroupFormControl) is created, after getting FormControls for 
     *       each ratio received form the backend, it is passed as a new FormGroip for global ratios Form Group
     */
-    let tempGroupFormControl = {};
+    let tempGroupFormControls = {};
 
     names.forEach(element => {
-      tempGroupFormControl[sanitizeRatioName(element.parameterName)] = new FormControl(0, { validators: [Validators.maxLength(5), Validators.pattern(`^[0-9]*[.0-9]*$`)] });
+      tempGroupFormControls[sanitizeRatioName(element.parameterName)] = new FormControl(0, { validators: [Validators.maxLength(5), Validators.pattern(`^[0-9]*[.0-9]*$`)] });
     });
 
-    this.ratiosValuesForm = new FormGroup(tempGroupFormControl);
+    this.ratiosFormGroup = new FormGroup(tempGroupFormControls);
 
     /*  ->  Dynamic assignment of starting values accordingly to values retrieved from DB 
     *   ->  Each value retrieved from the backend is assigned to an appropriate ratio, all of them are gathered
@@ -167,15 +170,25 @@ export class AssetAnalysisComponent implements OnInit {
       oldRatiosValues[sanitizeRatioName(item.name)] = item.value;
     })
 
-    this.ratiosValuesForm.setValue(oldRatiosValues);
+    this.ratiosFormGroup.setValue(oldRatiosValues);
 
     /*  ->  FormControl with uploaded file image validators for the new 'form'. This one is separate from saving ratios 
     *   ->  Separate Form Controls are created for another form (the one for image save). File type and extension are
     *       checked in validators in order to preven invalid file attachment.
-    * */
-    let imageFormControl = new FormControl({
+    *   ->  After creation new FormGroup, directly for image upload is created on the basis of imageFormControl object
+    */
+    let imageFormControls = {
       name: new FormControl(0, { validators: [Validators.pattern(`^.*[.](bmp|jpg|jpeg|png|)$`)] }),
       type: new FormControl(0, { validators: [Validators.pattern(`^image/.*$`)] })
-    })
+    };
+
+    this.imageFormGroup = new FormGroup(imageFormControls);
+  }
+
+  ngOnDestroy() {
+    this.ratiosSub.unsubscribe();
+    if (this.ratiosWereSavedIndicator) {
+      this.ratiosAnalysisSub.unsubscribe();
+    }
   }
 }
