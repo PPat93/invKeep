@@ -61,12 +61,6 @@ export class AssetAnalysisComponent implements OnInit {
 
   ngOnInit() {
 
-  //  FormControl with uploaded file image validators for the new 'form'. This one is separate from saving ratios 
-    let imageForm = new FormControl({
-      name: new FormControl(0, { validators: [Validators.pattern(`^.*[.](bmp|jpg|jpeg|png|)$`)] }),
-      type: new FormControl(0, { validators: [Validators.pattern(`^image/.*$`)] })
-    })
-
     this.isLoading1 = true;
     this.isLoading2 = true;
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -82,7 +76,7 @@ export class AssetAnalysisComponent implements OnInit {
         this.isLoading2 = false;
         this.assetAnalysis = ratiosSubscribed;
         this.analyzedAssetRatios = ratiosSubscribed.analyzedData;
-        this.createFormGroup(this.assetAnalysis.ratiosArray)
+        this.createFormGroups(this.assetAnalysis.ratiosArray);
       });
   }
 
@@ -99,27 +93,29 @@ export class AssetAnalysisComponent implements OnInit {
   }
 
   saveRatiosValues(): void {
-    // TODO - 5 - quite important - add handling of comma and dot ratios 
-    this.assetAnalysis.ratiosArray.forEach(ratio => {
-      Object.entries(this.ratiosValuesForm.value).forEach(([key, value]) => {
-        if (sanitizeRatioName(ratio.parameterName) === key) {
-          this.assetAnalysis.ratiosArray[this.assetAnalysis.ratiosArray.indexOf(ratio)].valueNum = Number(value);
-        }
+    if (!this.ratiosValuesForm.invalid) {
+      // TODO - 5 - quite important - add handling of comma and dot ratios 
+      this.assetAnalysis.ratiosArray.forEach(ratio => {
+        Object.entries(this.ratiosValuesForm.value).forEach(([key, value]) => {
+          if (sanitizeRatioName(ratio.parameterName) === key) {
+            this.assetAnalysis.ratiosArray[this.assetAnalysis.ratiosArray.indexOf(ratio)].valueNum = Number(value);
+          }
+        })
       })
-    })
-    this.assetAnalysis.assetId = this.assetId;
-    this.AssetRatiosService.saveRatiosValues(this.assetId, this.assetAnalysis);
-    this.isLoading2 = true;
-    this.ratiosAnalysisSub = this.AssetRatiosService.getRatiosAnalysisListener()
-      .subscribe((analysisReturned) => {
-        this.analyzedAssetRatios = analysisReturned;
-        this.isLoading2 = false;
-        this.ratiosWereSavedIndicator = true;
-      });
+      this.assetAnalysis.assetId = this.assetId;
+      this.AssetRatiosService.saveRatiosValues(this.assetId, this.assetAnalysis);
+      this.isLoading2 = true;
+      this.ratiosAnalysisSub = this.AssetRatiosService.getRatiosAnalysisListener()
+        .subscribe((analysisReturned) => {
+          this.analyzedAssetRatios = analysisReturned;
+          this.isLoading2 = false;
+          this.ratiosWereSavedIndicator = true;
+        });
+    }
   }
 
   //  Sending image file to a service and into backend
-  uploadAnalysisImage(imageFile: File){
+  uploadAnalysisImage(imageFile: File) {
     this.AssetRatiosService.saveAnalysisImageHttp(imageFile);
   }
 
@@ -129,6 +125,7 @@ export class AssetAnalysisComponent implements OnInit {
       this.ratiosAnalysisSub.unsubscribe();
     }
   }
+
 
   openRatioDetails(ratioName: string) {
     this.dialog.open(RatioDetailsDialogComponent, {
@@ -140,22 +137,31 @@ export class AssetAnalysisComponent implements OnInit {
 
   // method validating that uploaded file is an image, here file will be stored in a variable that will be send to the backend after confirmation
   onImgSelected(event: Event) {
-   let imageFile = (event.target as HTMLInputElement).files[0];
+    let imageFile = (event.target as HTMLInputElement).files[0];
     console.log(imageFile)
   }
 
-  createFormGroup(names: { parameterName: string, valueNum: number, unit: string }[]) {
+  createFormGroups(names: { parameterName: string, valueNum: number, unit: string }[]) {
 
-    //  Dynamic creation of the controllers for all items in form (with all needed validators) 
-    //  TODO - 9 - V ERY IMPORTANT to be updated and location changed into onInit.
+    /*  ->  Dynamic creation of the controllers for all ratios items in the form (with all needed validators) 
+    *   ->  Needed to be created inside OnInit method, but also it had to be done after ratios items 
+    *       are received from the backend, cause they are also dynamically created.
+    *   ->  Here,temporary Form Control object (tempGroupFormControl) is created, after getting FormControls for 
+    *       each ratio received form the backend, it is passed as a new FormGroip for global ratios Form Group
+    */
     let tempGroupFormControl = {};
+
     names.forEach(element => {
-      tempGroupFormControl[sanitizeRatioName(element.parameterName)] = new FormControl(0, { validators: [Validators.required, Validators.maxLength(5), Validators.pattern(`^[0-9]*[.0-9]*$`)] });
+      tempGroupFormControl[sanitizeRatioName(element.parameterName)] = new FormControl(0, { validators: [Validators.maxLength(5), Validators.pattern(`^[0-9]*[.0-9]*$`)] });
     });
 
     this.ratiosValuesForm = new FormGroup(tempGroupFormControl);
 
-    //  Dynamic assignment of starting values accordingly to values retrieved from DB 
+    /*  ->  Dynamic assignment of starting values accordingly to values retrieved from DB 
+    *   ->  Each value retrieved from the backend is assigned to an appropriate ratio, all of them are gathered
+    *       inside one temporary value object (oldRatiosValues), which is used as an initial value for all ratios 
+    *       form.     
+    */
     let oldRatiosValues = {};
 
     this.analyzedAssetRatios.forEach(item => {
@@ -163,5 +169,14 @@ export class AssetAnalysisComponent implements OnInit {
     })
 
     this.ratiosValuesForm.setValue(oldRatiosValues);
+
+    /*  ->  FormControl with uploaded file image validators for the new 'form'. This one is separate from saving ratios 
+    *   ->  Separate Form Controls are created for another form (the one for image save). File type and extension are
+    *       checked in validators in order to preven invalid file attachment.
+    * */
+    let imageFormControl = new FormControl({
+      name: new FormControl(0, { validators: [Validators.pattern(`^.*[.](bmp|jpg|jpeg|png|)$`)] }),
+      type: new FormControl(0, { validators: [Validators.pattern(`^image/.*$`)] })
+    })
   }
 }
