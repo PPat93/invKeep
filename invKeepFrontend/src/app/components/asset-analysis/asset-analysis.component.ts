@@ -117,7 +117,6 @@ export class AssetAnalysisComponent implements OnInit {
     }
   }
 
-
   /*  ->  Sending image file to a service and then into backend
   *   ->  If no error is retured from Image Form Group (imageFormGroup), the image is passed into the assett 
   *       ratios service
@@ -178,8 +177,8 @@ export class AssetAnalysisComponent implements OnInit {
     *   ->  After creation new FormGroup, directly for image upload is created on the basis of imageFormControl object
     */
     let imageFormControls = {
-      name: new FormControl(0, { validators: [Validators.pattern(`^.*[.](bmp|jpg|jpeg|png|)$`)] }),
-      type: new FormControl(0, { validators: [Validators.pattern(`^image/.*$`)] })
+      name: new FormControl(null, { validators: [Validators.pattern(`^.*[.](bmp|jpg|jpeg|png|)$`)] }),
+      type: new FormControl(null, { validators: [Validators.pattern(`^image/.*$`)] })
     };
 
     this.imageFormGroup = new FormGroup(imageFormControls);

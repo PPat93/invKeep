@@ -64,7 +64,7 @@
     </mat-card-subtitle>
     <app-loading-spinner *ngIf="isLoading2"></app-loading-spinner>
     <mat-card-content data-cy="ratios-section" class="ratios-column" *ngIf="!isLoading2">
-      <form data-cy="ratios-inputs" [formGroup]="ratiosValuesForm" (submit)="saveRatiosValues()"
+      <form data-cy="ratios-inputs" [formGroup]="ratiosFormGroup" (submit)="saveRatiosValues()"
         class="asset-ratios-table" name="ratio-analysis">
         <table data-cy="ratios-input-table" mat-table [dataSource]="assetAnalysis.ratiosArray">
           <ng-container matColumnDef="parameterName">
@@ -78,7 +78,7 @@
               <mat-form-field class="input-ratio-value">
                 <input class="single-asset-ratio"
                   [attr.data-cy]="ratio.parameterName.replaceAll(' ', '-').toLowerCase() + '-input'"
-                  name="{{ratio.parameterName}}" matInput value="{{ratio.valueNum}}"
+                  name="{{ratio.parameterName.replaceAll(' ', '-').toLowerCase()}}" matInput value="{{ratio.valueNum}}"
                   [formControlName]="ratio.parameterName.replaceAll(' ', '-').replaceAll('/','-').toLowerCase()">
               </mat-form-field>
             </td>
