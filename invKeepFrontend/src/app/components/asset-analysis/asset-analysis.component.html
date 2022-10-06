@@ -92,6 +92,12 @@
           <tr data-cy="input-ratios-items-row" class="table-row " mat-row *matRowDef="let row; columns: ratiosColumns">
           </tr>
         </table>
+        <div *ngIf="ratiosFormGroup.invalid" color="warn" class="alert alert-danger">
+          {{ratiosFormGroup.errors}}
+          <mat-error *ngIf="ratiosFormGroup.errors?.minLength">
+            Incorrect characters were entered, allowed characters are: All numbers and dor character.
+          </mat-error>
+        </div>
         <mat-card-actions>
           <button data-cy="save" mat-raised-button color="primary" type="submit">Save</button>
         </mat-card-actions>

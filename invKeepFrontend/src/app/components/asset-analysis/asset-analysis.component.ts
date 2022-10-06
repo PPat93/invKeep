@@ -8,6 +8,7 @@ import { Subscription } from "rxjs";
 import { RatioDetailsService } from 'src/app/services/ratio-details.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RatioDetailsDialogComponent } from '../ratio-details-dialog/ratio-details-dialog.component';
+import { keyframes } from '@angular/animations';
 
 @Component({
   selector: 'app-asset-analysis',
@@ -47,6 +48,9 @@ export class AssetAnalysisComponent implements OnInit {
   };
 
   imageFile: File;
+  //  Array containing name of the ratios that has errors, error types, and invalid values, 
+  //  retrieved manually from ratios FormGroup ('ratiosFormGroup)
+  inputErrorsArray: object[] = [];
 
   isLoading1: boolean = false;
   isLoading2: boolean = false;
@@ -96,6 +100,10 @@ export class AssetAnalysisComponent implements OnInit {
   }
 
   saveRatiosValues(): void {
+
+    //  ->  Errors of invalid values retrieval from ratios FormGroup
+    this.retrieveFormErrors();
+
     if (!this.ratiosFormGroup.invalid) {
       // TODO - 5 - quite important - add handling of comma and dot ratios 
       this.assetAnalysis.ratiosArray.forEach(ratio => {
@@ -118,12 +126,39 @@ export class AssetAnalysisComponent implements OnInit {
   }
 
   /*  ->  Sending image file to a service and then into backend
-  *   ->  If no error is retured from Image Form Group (imageFormGroup), the image is passed into the assett 
+  *   ->  If no error is retured from Image Form Group (imageFormGroup), the image is passed into the asset 
   *       ratios service
   */
   uploadAnalysisImage(imageFile: File) {
     if (!this.imageFormGroup.invalid)
       this.AssetRatiosService.saveAnalysisImageHttp(imageFile);
+  }
+
+  /*  ->  Obtain the value, type of error and name of the ratio whose input value is incorrect
+  *   ->  Because of the way of my FormControl creation (dynamic across all ratios), error objects (after invalid
+  *       value is introduced) are not automatically added to aggregative 'errors' property inside. Therefore,
+  *       it is needed to retrieve them individually, one by one. Here we have iteration through: FormControl, until 
+  *       'controls' object is found, then through every single ratio inside, until not null 'errors' property is found
+  *       and finally ratio name, invalid validator name and invalid value is retirieved.
+  *   ->  All errors are packed into object and pushed to 'inputErrorsArray' array
+  */
+  retrieveFormErrors() {
+    Object.entries(this.ratiosFormGroup).forEach(([controlsobject, ratiosobjects]) => {
+      if (controlsobject === 'controls') {
+        Object.entries(ratiosobjects).forEach(([singleRatioName, singleRatioProperties]) => {
+          if (singleRatioProperties['errors'] !== null) {
+            Object.entries(singleRatioProperties['errors']).forEach(([singleErrorName, errorProps]) => {
+              this.inputErrorsArray.push(
+                {
+                  ratioName: singleRatioName,
+                  errorTypeName: singleErrorName,
+                  invalidValue: errorProps[`actualValue`]
+                })
+            })
+          }
+        })
+      }
+    })
   }
 
   openRatioDetails(ratioName: string) {
