@@ -92,18 +92,13 @@
           <tr data-cy="input-ratios-items-row" class="table-row " mat-row *matRowDef="let row; columns: ratiosColumns">
           </tr>
         </table>
-        <div *ngIf="ratiosFormGroup.invalid" color="warn" class="alert alert-danger">
-          {{ratiosFormGroup.errors}}
-          <mat-error *ngIf="ratiosFormGroup.errors?.minLength">
-            Incorrect characters were entered, allowed characters are: All numbers and dor character.
-          </mat-error>
-        </div>
+
         <mat-card-actions>
           <button data-cy="save" mat-raised-button color="primary" type="submit">Save</button>
         </mat-card-actions>
       </form>
     </mat-card-content>
-
+    
     <mat-card-content *ngIf="!isLoading2" class="ratio-analysis">
       <table data-cy="ratios-analysis-table" class="analysis-table" mat-table [dataSource]="analyzedAssetRatios">
         <ng-container matColumnDef="name">
@@ -153,5 +148,16 @@
           *matRowDef="let row; columns: ratiosAnalysisColumns"></tr>
       </table>
     </mat-card-content>
+
+    <!-- Errors from ratio input fields are displayed here, depending from inputErrorsArray objects -->
+    <div *ngIf="inputErrorsArray[0]!==undefined" color="warn" class="alert alert-danger">
+      <mat-error *ngIf="!inputErrorsArray.minLength">
+        {{tempErrorString}}
+      </mat-error>
+      <mat-error *ngIf="!inputErrorsArray.pattern">
+        {{tempErrorString}}
+      </mat-error>
+    </div>
+
   </div>
 </mat-card>

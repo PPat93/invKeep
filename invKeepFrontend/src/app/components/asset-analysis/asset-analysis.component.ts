@@ -8,7 +8,6 @@ import { Subscription } from "rxjs";
 import { RatioDetailsService } from 'src/app/services/ratio-details.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RatioDetailsDialogComponent } from '../ratio-details-dialog/ratio-details-dialog.component';
-import { keyframes } from '@angular/animations';
 
 @Component({
   selector: 'app-asset-analysis',
@@ -48,6 +47,7 @@ export class AssetAnalysisComponent implements OnInit {
   };
 
   imageFile: File;
+
   //  Array containing name of the ratios that has errors, error types, and invalid values, 
   //  retrieved manually from ratios FormGroup ('ratiosFormGroup)
   inputErrorsArray: object[] = [];
@@ -122,6 +122,9 @@ export class AssetAnalysisComponent implements OnInit {
           this.isLoading2 = false;
           this.ratiosWereSavedIndicator = true;
         });
+
+      //  Resetting ratios error array after successful ratios update
+      this.inputErrorsArray = [];
     }
   }
 
@@ -161,6 +164,7 @@ export class AssetAnalysisComponent implements OnInit {
     })
   }
 
+  //  ->  Set parameters of the dialogs and pass data displayed inside dialogs
   openRatioDetails(ratioName: string) {
     this.dialog.open(RatioDetailsDialogComponent, {
       data: ratioName,
@@ -188,7 +192,7 @@ export class AssetAnalysisComponent implements OnInit {
     let tempGroupFormControls = {};
 
     names.forEach(element => {
-      tempGroupFormControls[sanitizeRatioName(element.parameterName)] = new FormControl(0, { validators: [Validators.maxLength(5), Validators.pattern(`^[0-9]*[.0-9]*$`)] });
+      tempGroupFormControls[sanitizeRatioName(element.parameterName)] = new FormControl(0, { validators: [Validators.maxLength(5), Validators.pattern(`^[0-9]*[.,0-9]*$`)] });
     });
 
     this.ratiosFormGroup = new FormGroup(tempGroupFormControls);
