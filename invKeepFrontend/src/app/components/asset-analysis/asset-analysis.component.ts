@@ -105,10 +105,15 @@ export class AssetAnalysisComponent implements OnInit {
     this.retrieveFormErrors();
 
     if (!this.ratiosFormGroup.invalid) {
-      // TODO - 5 - quite important - add handling of comma and dot ratios 
       this.assetAnalysis.ratiosArray.forEach(ratio => {
         Object.entries(this.ratiosFormGroup.value).forEach(([key, value]) => {
           if (sanitizeRatioName(ratio.parameterName) === key) {
+
+            //  Handling comma if provided in a ratio value, replaced with dot
+            if (value.toString().includes(',')) {
+              value = value.toString().replace(/,/g, '.')
+            }
+
             this.assetAnalysis.ratiosArray[this.assetAnalysis.ratiosArray.indexOf(ratio)].valueNum = Number(value);
           }
         })
@@ -192,7 +197,9 @@ export class AssetAnalysisComponent implements OnInit {
     let tempGroupFormControls = {};
 
     names.forEach(element => {
-      tempGroupFormControls[sanitizeRatioName(element.parameterName)] = new FormControl(0, { validators: [Validators.maxLength(5), Validators.pattern(`^[0-9]*[.,0-9]*$`)] });
+      //  Maximum 7 chars, valid examples: 123.123; 12.1; 1.1; 5; 0.123; 1234; etc. -> and all of them with comma instead of dot
+      //  Everything else is invalid
+      tempGroupFormControls[sanitizeRatioName(element.parameterName)] = new FormControl(0, { validators: [Validators.maxLength(7), Validators.pattern(`^([0-9]{1,3}[.,]{0,1}[0-9]{1,3})$|^([0-9]{1})$`)] });
     });
 
     this.ratiosFormGroup = new FormGroup(tempGroupFormControls);
