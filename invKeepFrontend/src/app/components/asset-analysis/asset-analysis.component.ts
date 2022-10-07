@@ -169,6 +169,14 @@ export class AssetAnalysisComponent implements OnInit {
     })
   }
 
+  createErrorMessages() {
+    let tempErrorString;
+    this.inputErrorsArray.forEach(singleError => {
+      // TODO - 6 - next step - create item that will be displayed as an error
+    })
+    return tempErrorString;
+  }
+
   //  ->  Set parameters of the dialogs and pass data displayed inside dialogs
   openRatioDetails(ratioName: string) {
     this.dialog.open(RatioDetailsDialogComponent, {
