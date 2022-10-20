@@ -55,6 +55,8 @@ export class AssetAnalysisComponent implements OnInit {
   isLoading1: boolean = false;
   isLoading2: boolean = false;
 
+  disabledImageSaveBtn: boolean = true;
+
   ratiosColumns: string[] = Object.keys(this.assetAnalysis.ratiosArray[0])
   ratiosAnalysisColumns: string[] = [`name`, `value`, `intervals`, `shortDescription`]
 
@@ -139,7 +141,9 @@ export class AssetAnalysisComponent implements OnInit {
   */
   uploadAnalysisImage(imageFile: File) {
     if (!this.imageFormGroup.invalid)
-      this.AssetRatiosService.saveAnalysisImageHttp(imageFile);
+      this.AssetRatiosService.saveAnalysisImageHttp(imageFile, this.assetId);
+    this.disabledImageSaveBtn = false;
+    console.log(this.imageFormGroup)
   }
 
   /*  ->  Obtain the value, type of error and name of the ratio whose input value is incorrect
@@ -191,7 +195,18 @@ export class AssetAnalysisComponent implements OnInit {
   */
   onImgSelected(event: Event) {
     let imageFile = (event.target as HTMLInputElement).files[0];
-    this.imageFormGroup.setValue(imageFile);
+    this.imageFormGroup.setValue({ name: imageFile.name, type: imageFile.type });
+    this.disableSaveBtn()
+  }
+
+  disableSaveBtn() {
+    if ((this.imageFormGroup.value.name !== ``) &&
+      (this.imageFormGroup.controls.type.valid) &&
+      (this.imageFormGroup.value.type !== ``)) {
+      this.disabledImageSaveBtn = true;
+    } else {
+      this.disabledImageSaveBtn = false;
+    }
   }
 
   createFormGroups(names: { parameterName: string, valueNum: number, unit: string }[]) {
@@ -231,8 +246,8 @@ export class AssetAnalysisComponent implements OnInit {
     *   ->  After creation new FormGroup, directly for image upload is created on the basis of imageFormControl object
     */
     let imageFormControls = {
-      name: new FormControl(null, { validators: [Validators.pattern(`^.*[.](bmp|jpg|jpeg|png|)$`)] }),
-      type: new FormControl(null, { validators: [Validators.pattern(`^image/.*$`)] })
+      name: new FormControl(``, { validators: [Validators.pattern(`^.*[.](bmp|jpg|jpeg|png|)$`)] }),
+      type: new FormControl(``, { validators: [Validators.pattern(`^image/.*$`)] })
     };
 
     this.imageFormGroup = new FormGroup(imageFormControls);
