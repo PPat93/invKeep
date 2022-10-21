@@ -55,7 +55,7 @@ export class AssetAnalysisComponent implements OnInit {
   isLoading1: boolean = false;
   isLoading2: boolean = false;
 
-  disabledImageSaveBtn: boolean = true;
+  disableImageSaveBtn: boolean = true;
 
   ratiosColumns: string[] = Object.keys(this.assetAnalysis.ratiosArray[0])
   ratiosAnalysisColumns: string[] = [`name`, `value`, `intervals`, `shortDescription`]
@@ -142,8 +142,7 @@ export class AssetAnalysisComponent implements OnInit {
   uploadAnalysisImage(imageFile: File) {
     if (!this.imageFormGroup.invalid)
       this.AssetRatiosService.saveAnalysisImageHttp(imageFile, this.assetId);
-    this.disabledImageSaveBtn = false;
-    console.log(this.imageFormGroup)
+    this.disableImageSaveBtn = true;
   }
 
   /*  ->  Obtain the value, type of error and name of the ratio whose input value is incorrect
@@ -190,25 +189,29 @@ export class AssetAnalysisComponent implements OnInit {
     })
   }
 
-  /*  ->  Image FormGroup value setting 
+  /*  ->  imageFormGroup value setting 
   *   ->  Newly attached file is assigned as a new value to the FormGroup
   */
   onImgSelected(event: Event) {
     let imageFile = (event.target as HTMLInputElement).files[0];
     this.imageFormGroup.setValue({ name: imageFile.name, type: imageFile.type });
-    this.disableSaveBtn()
+    this.disableSaveBtn();
   }
 
+  /*  ->  Disabling/enabling image Save button depending on file attached
+  *   ->  If file that is attached has extension of bmp or jpg or jpeg or png and has a type of image/*
+  *       then imageFormGroup FormGroup is valid and disableImageSaveBtn boolean variable is set to false.
+  *       In case that any of these cases is not fulfilled, the variable is set to true and Save button 
+  *       is disabled.
+  */
   disableSaveBtn() {
-    if ((this.imageFormGroup.value.name !== ``) &&
-      (this.imageFormGroup.controls.type.valid) &&
-      (this.imageFormGroup.value.type !== ``)) {
-      this.disabledImageSaveBtn = true;
-    } else {
-      this.disabledImageSaveBtn = false;
-    }
+    this.disableImageSaveBtn = (this.imageFormGroup.controls.type.valid) ? false : true;
   }
 
+    /*  ->  Creation of all used in Analysis page
+    *   ->  ratiosFormGroup is created with two validators for each inputed value
+    *   ->  imageFormGroup is created with two validators for image upload value
+    */
   createFormGroups(names: { parameterName: string, valueNum: number, unit: string }[]) {
 
     /*  ->  Dynamic creation of the controllers for all ratios items in the form (with all needed validators) 
@@ -220,6 +223,7 @@ export class AssetAnalysisComponent implements OnInit {
     let tempGroupFormControls = {};
 
     names.forEach(element => {
+
       //  Maximum 7 chars, valid examples: 123.123; 12.1; 1.1; 5; 0.123; 1234; etc. -> and all of them with comma instead of dot
       //  Everything else is invalid
       tempGroupFormControls[sanitizeRatioName(element.parameterName)] = new FormControl(0, { validators: [Validators.maxLength(7), Validators.pattern(`^([0-9]{1,3}[.,]{0,1}[0-9]{1,3})$|^([0-9]{1})$`)] });
@@ -246,13 +250,23 @@ export class AssetAnalysisComponent implements OnInit {
     *   ->  After creation new FormGroup, directly for image upload is created on the basis of imageFormControl object
     */
     let imageFormControls = {
-      name: new FormControl(``, { validators: [Validators.pattern(`^.*[.](bmp|jpg|jpeg|png|)$`)] }),
+
+      //  Any file with bmp, jpg, jpeg or png extension is accepted by first pattern validator and simultaneously the file
+      //  type that is accepted must be any image one: image/* 
+      name: new FormControl(``, { validators: [Validators.pattern(`^.*[.](bmp|jpg|jpeg|png)$`)] }),
       type: new FormControl(``, { validators: [Validators.pattern(`^image/.*$`)] })
     };
 
     this.imageFormGroup = new FormGroup(imageFormControls);
   }
 
+  /*  ->  Unsubscribing of subscriptions created for the Analysis component
+  *   ->  In the moment that the ANalysis component is destroyed, ratiosSub, that is subscription for receiving
+  *       all ratios values, is unsubscribed. The same is done with ratiosAnalysisSub that is receiving changes   
+  *       on Analyzed data. However, the latest is unsubscribed only if ratios were previously saved, cause the 
+  *       subscription is created only after ratios were saved (initial analysis retrieval is done by default, 
+  *       without subscription). Unsubscribe method shouldn't be called without prior subscription.
+  */
   ngOnDestroy() {
     this.ratiosSub.unsubscribe();
     if (this.ratiosWereSavedIndicator) {
