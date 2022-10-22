@@ -61,7 +61,7 @@ export class AssetRatiosService {
   }
 
   saveAnalysisImageHttp(imageFile: File, assetId: string){
-    // this.http.post
+    // this.http.post(`http://localhost:3000/api/ratio-analysis/${assetId}`, imageFile)
   }
 
   getRatiosUpdateListener(): Observable<AssetAndIndicatorsAnlysis> {

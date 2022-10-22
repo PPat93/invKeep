@@ -182,3 +182,13 @@ tr.no-highlight:hover {
 #file-upload-cell-description {
   font-weight: 500;
 }
+
+#image-prv {
+  max-width: 5rem;
+  max-height: 5rem;
+  cursor: pointer;
+}
+
+.img-prv-btn{
+  height: 100%;
+}

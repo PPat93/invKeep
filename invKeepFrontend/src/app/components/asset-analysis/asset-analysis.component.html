@@ -41,12 +41,16 @@
               <tr class="no-highlight">
                 <td class="file-upload" id="file-upload-cell-upload">
                   <input #inputFile type="file" (change)="onImgSelected($event)" hidden>
-                  <button id="sellect-file-button" mat-stroked-button color="primary"
-                    (click)="inputFile.click()">Input</button>
-                  <!-- above -> to be replaced with img preview after selection -->
+                  <div class="img-prv-btn">
+                    <button *ngIf="imagePreview === '' || !imagePreview" id="sellect-file-button" mat-stroked-button
+                      color="primary" (click)="inputFile.click()">Input</button>
+                    <img id="image-prv" data-cy="image-prv" *ngIf="imagePreview !== '' && imagePreview"
+                      [src]="imagePreview" [alt]="" (click)="inputFile.click()">
+                  </div>
                 </td>
                 <td class="file-upload" id="file-upload-cell-save">
-                  <button id="save-button" [disabled]="disableImageSaveBtn" mat-raised-button color="primary" (click)="uploadAnalysisImage()">Save</button>
+                  <button id="save-button" [disabled]="disableImageSaveBtn" mat-raised-button color="primary"
+                    (click)="uploadAnalysisImage()">Save</button>
                 </td>
               </tr>
             </table>
@@ -98,7 +102,7 @@
         </mat-card-actions>
       </form>
     </mat-card-content>
-    
+
     <mat-card-content *ngIf="!isLoading2" class="ratio-analysis">
       <table data-cy="ratios-analysis-table" class="analysis-table" mat-table [dataSource]="analyzedAssetRatios">
         <ng-container matColumnDef="name">

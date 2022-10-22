@@ -17,13 +17,21 @@ import { RatioDetailsDialogComponent } from '../ratio-details-dialog/ratio-detai
 
 export class AssetAnalysisComponent implements OnInit {
 
+  //  id of the analyzed asset
   assetId: string;
+
+  //  Basic data of the asset that are displayed at the top of the page - name, syymbol, currency, etc.
   assetMainDetails: AssetRecord;
 
   //  FormGroups variables declaration, used to control and validate ratios values and image value
   ratiosFormGroup: FormGroup;
   imageFormGroup: FormGroup;
 
+  //  image preview holding variable
+  imagePreview: string;
+
+  //  Object holding all data retrieved from the backend after ratios values analysis. Here it is defined and initialized
+  //  with empty values/0 values
   analyzedAssetRatios: AnalyzedData[] = [{
     coAnalysis: [``],
     shortDescription: ``,
@@ -38,6 +46,8 @@ export class AssetAnalysisComponent implements OnInit {
     value: 0
   }];
 
+  //  Object holding defined above object with all analyzed data, asset id and all ratios names, values and units in one
+  //  ratiosArray array
   assetAnalysis: AssetAndIndicatorsAnlysis = {
     assetId: ``,
     ratiosArray: [
@@ -103,7 +113,7 @@ export class AssetAnalysisComponent implements OnInit {
 
   saveRatiosValues(): void {
 
-    //  ->  Errors of invalid values retrieval from ratios FormGroup
+    //  Errors of invalid values retrieval from ratios FormGroup
     this.retrieveFormErrors();
 
     if (!this.ratiosFormGroup.invalid) {
@@ -133,16 +143,6 @@ export class AssetAnalysisComponent implements OnInit {
       //  Resetting ratios error array after successful ratios update
       this.inputErrorsArray = [];
     }
-  }
-
-  /*  ->  Sending image file to a service and then into backend
-  *   ->  If no error is retured from Image Form Group (imageFormGroup), the image is passed into the asset 
-  *       ratios service
-  */
-  uploadAnalysisImage(imageFile: File) {
-    if (!this.imageFormGroup.invalid)
-      this.AssetRatiosService.saveAnalysisImageHttp(imageFile, this.assetId);
-    this.disableImageSaveBtn = true;
   }
 
   /*  ->  Obtain the value, type of error and name of the ratio whose input value is incorrect
@@ -190,12 +190,34 @@ export class AssetAnalysisComponent implements OnInit {
   }
 
   /*  ->  imageFormGroup value setting 
-  *   ->  Newly attached file is assigned as a new value to the FormGroup
+  *   ->  Newly attached file is assigned as a new value to the imageFormGroup FormGroup, file name and
+  *       file type are passed. 
+  *   ->  Depending on these values, validity of the form is checked and if validators are ok, Save button 
+  *       is activated. 
+  *   ->  File reader assigns all processing results to imagePreview variable, as a string. 
+  *   ->  Image preview is created or cleaned, depending from the validity of image form group checked earlier.  
   */
   onImgSelected(event: Event) {
     let imageFile = (event.target as HTMLInputElement).files[0];
     this.imageFormGroup.setValue({ name: imageFile.name, type: imageFile.type });
+
+    //  Evaluation if Save button should be disabled or not
     this.disableSaveBtn();
+
+    //  Image file reader that process attached file. On load, it will set dependency of all file reading 
+    //  results as a string value to imagePreviev variable.
+    let imageFileReader = new FileReader();
+    imageFileReader.onload = () => {
+      this.imagePreview = imageFileReader.result as string;
+    }
+
+    //  Create an image preview when all validators attached to a image form group are passed: uploaded 
+    //  file is really an image. Otherwise, old preview is cleaned as an empty string is set for imagePreview 
+    //  (that is assigned to an img param in HTML)
+    if (!this.disableImageSaveBtn)
+      imageFileReader.readAsDataURL(imageFile);
+    else
+      this.imagePreview = ``;
   }
 
   /*  ->  Disabling/enabling image Save button depending on file attached
@@ -208,18 +230,27 @@ export class AssetAnalysisComponent implements OnInit {
     this.disableImageSaveBtn = (this.imageFormGroup.controls.type.valid) ? false : true;
   }
 
-    /*  ->  Creation of all used in Analysis page
-    *   ->  ratiosFormGroup is created with two validators for each inputed value
-    *   ->  imageFormGroup is created with two validators for image upload value
-    */
+  /*  ->  Sending image file to a service and then into backend
+  *   ->  If no error is retured from Image Form Group (imageFormGroup), the image is passed into the asset 
+  *       ratios service
+  */
+  uploadAnalysisImage(imageFile: File) {
+    if (!this.imageFormGroup.invalid)
+      this.AssetRatiosService.saveAnalysisImageHttp(imageFile, this.assetId);
+    this.disableImageSaveBtn = true;
+  }
+
+  /*  ->  Creation of all used in Analysis page
+  *   ->  ratiosFormGroup is created with two validators for each inputed value
+  *   ->  imageFormGroup is created with two validators for image upload value
+  */
   createFormGroups(names: { parameterName: string, valueNum: number, unit: string }[]) {
 
-    /*  ->  Dynamic creation of the controllers for all ratios items in the form (with all needed validators) 
-    *   ->  Needed to be created inside OnInit method, but also it had to be done after ratios items 
-    *       are received from the backend, cause they are also dynamically created.
-    *   ->  Here,temporary Form Control object (tempGroupFormControl) is created, after getting FormControls for 
-    *       each ratio received form the backend, it is passed as a new FormGroip for global ratios Form Group
-    */
+    //  Dynamic creation of the controllers for all ratios items in the form (with all needed validators) 
+    //  Needed to be created inside OnInit method, but also it had to be done after ratios items 
+    //  are received from the backend, cause they are also dynamically created.
+    //  Here,temporary Form Control object (tempGroupFormControl) is created, after getting FormControls for 
+    //  each ratio received form the backend, it is passed as a new FormGroip for global ratios Form Group
     let tempGroupFormControls = {};
 
     names.forEach(element => {
@@ -231,11 +262,10 @@ export class AssetAnalysisComponent implements OnInit {
 
     this.ratiosFormGroup = new FormGroup(tempGroupFormControls);
 
-    /*  ->  Dynamic assignment of starting values accordingly to values retrieved from DB 
-    *   ->  Each value retrieved from the backend is assigned to an appropriate ratio, all of them are gathered
-    *       inside one temporary value object (oldRatiosValues), which is used as an initial value for all ratios 
-    *       form.     
-    */
+    //  Dynamic assignment of starting values accordingly to values retrieved from DB 
+    //  Each value retrieved from the backend is assigned to an appropriate ratio, all of them are gathered
+    //  inside one temporary value object (oldRatiosValues), which is used as an initial value for all ratios 
+    //  form.
     let oldRatiosValues = {};
 
     this.analyzedAssetRatios.forEach(item => {
@@ -244,11 +274,10 @@ export class AssetAnalysisComponent implements OnInit {
 
     this.ratiosFormGroup.setValue(oldRatiosValues);
 
-    /*  ->  FormControl with uploaded file image validators for the new 'form'. This one is separate from saving ratios 
-    *   ->  Separate Form Controls are created for another form (the one for image save). File type and extension are
-    *       checked in validators in order to preven invalid file attachment.
-    *   ->  After creation new FormGroup, directly for image upload is created on the basis of imageFormControl object
-    */
+    //  FormControl with uploaded file image validators for the new 'form'. This one is separate from saving ratios 
+    //  Separate Form Controls are created for another form (the one for image save). File type and extension are
+    //  checked in validators in order to preven invalid file attachment.
+    //  After creation new FormGroup, directly for image upload is created on the basis of imageFormControl object 
     let imageFormControls = {
 
       //  Any file with bmp, jpg, jpeg or png extension is accepted by first pattern validator and simultaneously the file
