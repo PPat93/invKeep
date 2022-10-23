@@ -59,7 +59,7 @@ export class AssetAnalysisComponent implements OnInit {
   imageFile: File;
 
   //  Array containing name of the ratios that has errors, error types, and invalid values, 
-  //  retrieved manually from ratios FormGroup ('ratiosFormGroup)
+  //  retrieved manually from ratios FormGroup (ratiosFormGroup)
   inputErrorsArray: object[] = [];
 
   isLoading1: boolean = false;
@@ -108,7 +108,7 @@ export class AssetAnalysisComponent implements OnInit {
   }
 
   setUnit(unit: string) {
-    return (unit === 'curr') ? this.assetMainDetails.currency : unit;
+    return (unit === `curr`) ? this.assetMainDetails.currency : unit;
   }
 
   saveRatiosValues(): void {
@@ -122,8 +122,8 @@ export class AssetAnalysisComponent implements OnInit {
           if (sanitizeRatioName(ratio.parameterName) === key) {
 
             //  Handling comma if provided in a ratio value, replaced with dot
-            if (value.toString().includes(',')) {
-              value = value.toString().replace(/,/g, '.')
+            if (value.toString().includes(`,`)) {
+              value = value.toString().replace(/,/g, `.`)
             }
 
             this.assetAnalysis.ratiosArray[this.assetAnalysis.ratiosArray.indexOf(ratio)].valueNum = Number(value);
@@ -155,10 +155,10 @@ export class AssetAnalysisComponent implements OnInit {
   */
   retrieveFormErrors() {
     Object.entries(this.ratiosFormGroup).forEach(([controlsobject, ratiosobjects]) => {
-      if (controlsobject === 'controls') {
+      if (controlsobject === `controls`) {
         Object.entries(ratiosobjects).forEach(([singleRatioName, singleRatioProperties]) => {
-          if (singleRatioProperties['errors'] !== null) {
-            Object.entries(singleRatioProperties['errors']).forEach(([singleErrorName, errorProps]) => {
+          if (singleRatioProperties[`errors`] !== null) {
+            Object.entries(singleRatioProperties[`errors`]).forEach(([singleErrorName, errorProps]) => {
               this.inputErrorsArray.push(
                 {
                   ratioName: singleRatioName,
