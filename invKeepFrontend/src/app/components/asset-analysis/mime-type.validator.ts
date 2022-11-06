@@ -20,6 +20,7 @@ export const mimeValidator = (control: AbstractControl): Promise<{ [key: string]
 
     let fileReaderObserver = new Observable((observer: Observer<{ [key: string]: any }>) => {
 
+
         fileReader.addEventListener(`loadend`, () => {
 
             //  First 4 values of an array created out of read uploaded file
@@ -31,10 +32,11 @@ export const mimeValidator = (control: AbstractControl): Promise<{ [key: string]
             //  Extraction, conversion of each magic number part from hex. Building magic number string
             fileReaderResultSubArray.forEach(singleItem => fileMagicNumber += singleItem.toString(16))
 
+            console.log(fileMagicNumber)
             //  All allowed magic numbers
             const allowiedMagicNumbers = [
-                `89504E47`, // png file type
-                `FFD8FFE0`, `FFD8FFE1`, `FFD8FFE2`, `FFD8FFE3`, `FFD8FFE08` // all jpgs file types
+                `89504e47`, // png file type
+                `ffd8ffe0`, `ffd8ffe1`, `ffd8ffe2`, `ffd8ffe3`, `ffd8ffe08` // all jpgs file types
             ];
 
             //  Check if extracted file magic number is allowed 
@@ -44,15 +46,18 @@ export const mimeValidator = (control: AbstractControl): Promise<{ [key: string]
                 isFileImage = false;
 
             //  Return validation result - null is corrrect and object is error    
-            if (isFileImage)
+            if (isFileImage) {
                 observer.next(null);
-            else
-                observer.next({ invalidMimeType: true });
+            }
+            else {
+                observer.next({ invalidMimeType: true })
+            }
 
             //  Finish observer's job    
             observer.complete();
         })
         fileReader.readAsArrayBuffer(file);
+
     })
     return fileReaderObserver;
 }

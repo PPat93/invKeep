@@ -200,7 +200,10 @@ export class AssetAnalysisComponent implements OnInit {
   */
   onImgSelected(event: Event) {
     let imageFile = (event.target as HTMLInputElement).files[0];
-    this.imageFormGroup.setValue({ name: imageFile.name, type: imageFile.type });
+    this.imageFormGroup.patchValue({ name: imageFile.name, type: imageFile.type, mime_type: imageFile });
+    this.imageFormGroup.get('mime_type').updateValueAndValidity();
+    this.imageFormGroup.get('type').updateValueAndValidity();
+    this.imageFormGroup.get('name').updateValueAndValidity();
 
     //  Evaluation if Save button should be disabled or not
     this.disableSaveBtn();
@@ -284,7 +287,8 @@ export class AssetAnalysisComponent implements OnInit {
       //  Any file with bmp, jpg, jpeg or png extension is accepted by first pattern validator and simultaneously the file
       //  type that is accepted must be any image one: image/* 
       name: new FormControl(``, { validators: [Validators.pattern(`^.*[.](bmp|jpg|jpeg|png)$`)] }),
-      type: new FormControl(``, { validators: [Validators.pattern(`^image/.*$`)] })
+      type: new FormControl(``, { validators: [Validators.pattern(`^image/.*$`)] }),
+      mime_type: new FormControl(``, { asyncValidators: [mimeValidator]}),
     };
 
     this.imageFormGroup = new FormGroup(imageFormControls);
