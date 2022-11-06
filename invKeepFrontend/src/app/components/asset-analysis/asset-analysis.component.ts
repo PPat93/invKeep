@@ -8,6 +8,7 @@ import { Subscription } from "rxjs";
 import { RatioDetailsService } from 'src/app/services/ratio-details.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RatioDetailsDialogComponent } from '../ratio-details-dialog/ratio-details-dialog.component';
+import { mimeValidator } from './mime-type.validator';
 
 @Component({
   selector: 'app-asset-analysis',
