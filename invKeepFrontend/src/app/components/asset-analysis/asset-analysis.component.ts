@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AssetsService } from "../../services/assets.service";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { AnalyzedData, AssetRecord, AssetAndIndicatorsAnlysis, sanitizeRatioName } from "../../shared/sharedTS";
-import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AssetRatiosService } from "../../services/asset-ratios.service";
 import { Subscription } from "rxjs";
 import { RatioDetailsService } from 'src/app/services/ratio-details.service';
@@ -202,8 +202,6 @@ export class AssetAnalysisComponent implements OnInit {
     let imageFile = (event.target as HTMLInputElement).files[0];
     this.imageFormGroup.patchValue({ name: imageFile.name, type: imageFile.type, mime_type: imageFile });
     this.imageFormGroup.get('mime_type').updateValueAndValidity();
-    this.imageFormGroup.get('type').updateValueAndValidity();
-    this.imageFormGroup.get('name').updateValueAndValidity();
 
     //  Evaluation if Save button should be disabled or not
     this.disableSaveBtn();
@@ -231,7 +229,8 @@ export class AssetAnalysisComponent implements OnInit {
   *       is disabled.
   */
   disableSaveBtn() {
-    this.disableImageSaveBtn = (this.imageFormGroup.controls.type.valid) ? false : true;
+    //it looks like variables are not updated after file upload.mime_type valid returns false after file upload, however if yoy get strictly form group, status is valid - it looks like it is not updated
+    this.disableImageSaveBtn = (this.imageFormGroup.valid) ? false : true;
   }
 
   /*  ->  Sending image file to a service and then into backend
