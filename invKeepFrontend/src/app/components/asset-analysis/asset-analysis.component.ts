@@ -229,8 +229,11 @@ export class AssetAnalysisComponent implements OnInit {
   *       is disabled.
   */
   disableSaveBtn() {
-    //it looks like variables are not updated after file upload.mime_type valid returns false after file upload, however if yoy get strictly form group, status is valid - it looks like it is not updated
-    this.disableImageSaveBtn = (this.imageFormGroup.valid) ? false : true;
+    //still disable criteria  for save button are not working properly, investigate disable/enable criteria
+    console.log(this.imageFormGroup)
+    this.imageFormGroup.updateValueAndValidity()
+    console.log(this.imageFormGroup.valid)
+    this.disableImageSaveBtn = (this.imageFormGroup.valid) ? true : false;
   }
 
   /*  ->  Sending image file to a service and then into backend
