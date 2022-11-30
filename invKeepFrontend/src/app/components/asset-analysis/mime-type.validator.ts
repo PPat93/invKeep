@@ -56,8 +56,10 @@ export const mimeValidator = (control: AbstractControl): Promise<{ [key: string]
             //  Finish observer's job    
             observer.complete();
         })
-        fileReader.readAsArrayBuffer(file);
 
+        // Make sure that input is not empty
+        if (file as unknown !== ``)
+            fileReader.readAsArrayBuffer(file);
     })
     return fileReaderObserver;
 }
