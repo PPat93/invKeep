@@ -32,7 +32,6 @@ export const mimeValidator = (control: AbstractControl): Promise<{ [key: string]
             //  Extraction, conversion of each magic number part from hex. Building magic number string
             fileReaderResultSubArray.forEach(singleItem => fileMagicNumber += singleItem.toString(16))
 
-            console.log(fileMagicNumber)
             //  All allowed magic numbers
             const allowiedMagicNumbers = [
                 `89504e47`, // png file type

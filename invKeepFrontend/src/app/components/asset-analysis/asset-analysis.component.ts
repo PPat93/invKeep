@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AssetsService } from "../../services/assets.service";
 import { ActivatedRoute, ParamMap } from "@angular/router";
-import { AnalyzedData, AssetRecord, AssetAndIndicatorsAnlysis, sanitizeRatioName } from "../../shared/sharedTS";
+import { AnalyzedData, AssetRecord, AssetAndIndicatorsAnlysis, sanitizeRatioName, sleep } from "../../shared/sharedTS";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AssetRatiosService } from "../../services/asset-ratios.service";
 import { Subscription } from "rxjs";
@@ -199,12 +199,11 @@ export class AssetAnalysisComponent implements OnInit {
   *   ->  Image preview is created or cleaned, depending from the validity of image form group checked earlier.  
   */
   onImgSelected(event: Event) {
+
     let imageFile = (event.target as HTMLInputElement).files[0];
     this.imageFormGroup.patchValue({ name: imageFile.name, type: imageFile.type, mime_type: imageFile });
-    this.imageFormGroup.get('mime_type').updateValueAndValidity();
 
-    //  Evaluation if Save button should be disabled or not
-    this.disableSaveBtn();
+    this.imageFormGroup.get('mime_type').updateValueAndValidity();
 
     //  Image file reader that process attached file. On load, it will set dependency of all file reading 
     //  results as a string value to imagePreviev variable.
@@ -212,6 +211,9 @@ export class AssetAnalysisComponent implements OnInit {
     imageFileReader.onload = () => {
       this.imagePreview = imageFileReader.result as string;
     }
+
+    //  Evaluation if Save button should be disabled or not
+    this.disableSaveBtn();
 
     //  Create an image preview when all validators attached to a image form group are passed: uploaded 
     //  file is really an image. Otherwise, old preview is cleaned as an empty string is set for imagePreview 
@@ -231,8 +233,11 @@ export class AssetAnalysisComponent implements OnInit {
   disableSaveBtn() {
     //still disable criteria  for save button are not working properly, investigate disable/enable criteria
     console.log(this.imageFormGroup)
-    this.imageFormGroup.updateValueAndValidity()
-    console.log(this.imageFormGroup.valid)
+    console.log(`before`)
+    console.log(this.imageFormGroup.status)
+    this.imageFormGroup.get('mime_type').updateValueAndValidity();
+    console.log(`after`)
+    console.log(this.imageFormGroup.status)
     this.disableImageSaveBtn = (this.imageFormGroup.valid) ? true : false;
   }
 
@@ -290,7 +295,7 @@ export class AssetAnalysisComponent implements OnInit {
       //  type that is accepted must be any image one: image/* 
       name: new FormControl(``, { validators: [Validators.pattern(`^.*[.](bmp|jpg|jpeg|png)$`)] }),
       type: new FormControl(``, { validators: [Validators.pattern(`^image/.*$`)] }),
-      mime_type: new FormControl(``, { asyncValidators: [mimeValidator]}),
+      mime_type: new FormControl(``, { asyncValidators: [mimeValidator] }),
     };
 
     this.imageFormGroup = new FormGroup(imageFormControls);

@@ -71,3 +71,11 @@ export let welcomeMsg = {
 export function sanitizeRatioName(name) {
   return name.replace(/\s+/g, '-').replace(/\//g, '-').toLowerCase();
 }
+
+export function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
