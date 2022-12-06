@@ -12,14 +12,13 @@ import { Observable, Observer } from "rxjs";
 */
 export const mimeValidator = (control: AbstractControl): Promise<{ [key: string]: any }> | Observable<{ [key: string]: any }> => {
 
-    //  Variable holding validation result
-    let isFileImage = false;
-
     const file = control.value as File;
     let fileReader = new FileReader();
 
-    let fileReaderObserver = new Observable((observer: Observer<{ [key: string]: any }>) => {
+    let fileReaderObservable = new Observable((observer: Observer<{ [key: string]: any }>) => {
 
+        //  Variable holding validation result
+        let isFileImage = false;
 
         fileReader.addEventListener(`loadend`, () => {
 
@@ -47,18 +46,15 @@ export const mimeValidator = (control: AbstractControl): Promise<{ [key: string]
             //  Return validation result - null is corrrect and object is error    
             if (isFileImage) {
                 observer.next(null);
-            }
-            else {
+            } else {
                 observer.next({ invalidMimeType: true })
             }
 
             //  Finish observer's job    
             observer.complete();
-        })
+        });
 
-        // Make sure that input is not empty
-        if (file as unknown !== ``)
-            fileReader.readAsArrayBuffer(file);
+        fileReader.readAsArrayBuffer(file);
     })
-    return fileReaderObserver;
+    return fileReaderObservable;
 }
