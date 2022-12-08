@@ -31,6 +31,9 @@ export class AssetAnalysisComponent implements OnInit {
   //  image preview holding variable
   imagePreview: string;
 
+  //  attached image file holding variable
+  imageFile: File;
+
   //  Object holding all data retrieved from the backend after ratios values analysis. Here it is defined and initialized
   //  with empty values/0 values
   analyzedAssetRatios: AnalyzedData[] = [{
@@ -57,8 +60,6 @@ export class AssetAnalysisComponent implements OnInit {
     analyzedData: this.analyzedAssetRatios
   };
 
-  imageFile: File;
-
   //  Array containing name of the ratios that has errors, error types, and invalid values, 
   //  retrieved manually from ratios FormGroup (ratiosFormGroup)
   inputErrorsArray: object[] = [];
@@ -66,7 +67,7 @@ export class AssetAnalysisComponent implements OnInit {
   isLoading1: boolean = false;
   isLoading2: boolean = false;
 
-  disableImageSaveBtn: boolean = true;
+  disableImageSaveBtn: boolean;
 
   ratiosColumns: string[] = Object.keys(this.assetAnalysis.ratiosArray[0])
   ratiosAnalysisColumns: string[] = [`name`, `value`, `intervals`, `shortDescription`]
@@ -190,11 +191,16 @@ export class AssetAnalysisComponent implements OnInit {
     })
   }
 
-  getActualStatusOfImageForm(): string|any {
-    this.imageFormGroup.statusChanges.subscribe(status => {
-      if (status !== 'PENDING'){
-      console.log('poszlo')
-        return status}
+  getActualStatusOfImageForm() {
+    let imgSubscription = this.imageFormGroup.statusChanges.subscribe(status => {
+      if (status !== 'INVALID') {
+        this.disableImageSaveBtn = false;
+        imgSubscription.unsubscribe();
+      }
+      else if (status !== 'VALID') {
+        this.disableImageSaveBtn = true;
+        imgSubscription.unsubscribe();
+      }
     })
   }
 
@@ -212,8 +218,6 @@ export class AssetAnalysisComponent implements OnInit {
 
     // FOR SOME REASON, STATUS is PENDING all the time if get directly from mime_type async validator, But if whol eform is get, everything is set as VALID
     this.imageFormGroup.get('mime_type').updateValueAndValidity();
-    console.log(this.imageFormGroup.get('mime_type').pending)
-    console.log(this.imageFormGroup.get('mime_type').updateValueAndValidity())
 
     //  Image file reader that process attached file. On load, it will set dependency of all file reading 
     //  results as a string value to imagePreviev variable.
@@ -235,28 +239,25 @@ export class AssetAnalysisComponent implements OnInit {
   }
 
   /*  ->  Disabling/enabling image Save button depending on file attached
-  *   ->  If file that is attached has extension of bmp or jpg or jpeg or png and has a type of image/*
-  *       then imageFormGroup FormGroup is valid and disableImageSaveBtn boolean variable is set to false.
+  *   ->  If file that is attached has extension of bmp or jpg or jpeg or png and has a type of image/* and
+  *       it's MIME type is within png/jpg magic numbers then imageFormGroup FormGroup is valid and 
+  *       disableImageSaveBtn boolean variable is set to false.
   *       In case that any of these cases is not fulfilled, the variable is set to true and Save button 
   *       is disabled.
   */
-  async disableSaveBtn() {
-    //still disable criteria  for save button are not working properly, investigate disable/enable criteria
+  disableSaveBtn() {
 
-    console.log(this.disableImageSaveBtn)
-    this.disableImageSaveBtn = (this.getActualStatusOfImageForm()) ? true : false;
-
-    console.log('poszlo2')
-    console.log(this.disableImageSaveBtn)
+    this.getActualStatusOfImageForm();
   }
 
   /*  ->  Sending image file to a service and then into backend
   *   ->  If no error is retured from Image Form Group (imageFormGroup), the image is passed into the asset 
   *       ratios service
   */
-  uploadAnalysisImage(imageFile: File) {
+  uploadAnalysisImage() {
+    console.log('uplod')
     if (!this.imageFormGroup.invalid)
-      this.AssetRatiosService.saveAnalysisImageHttp(imageFile, this.assetId);
+      this.AssetRatiosService.saveAnalysisImageHttp(this.imageFile, this.assetId);
     this.disableImageSaveBtn = true;
   }
 
