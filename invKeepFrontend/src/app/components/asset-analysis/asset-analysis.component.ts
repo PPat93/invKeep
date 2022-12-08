@@ -18,7 +18,7 @@ import { mimeValidator } from './mime-type.validator';
 
 export class AssetAnalysisComponent implements OnInit {
 
-  //  id of the analyzed asset
+  //  ID of the analyzed asset
   assetId: string;
 
   //  Basic data of the asset that are displayed at the top of the page - name, syymbol, currency, etc.
@@ -28,10 +28,10 @@ export class AssetAnalysisComponent implements OnInit {
   ratiosFormGroup: FormGroup;
   imageFormGroup: FormGroup;
 
-  //  image preview holding variable
+  //  Image preview holding variable
   imagePreview: string;
 
-  //  attached image file holding variable
+  //  Attached image file holding variable
   imageFile: File;
 
   //  Object holding all data retrieved from the backend after ratios values analysis. Here it is defined and initialized
@@ -67,7 +67,8 @@ export class AssetAnalysisComponent implements OnInit {
   isLoading1: boolean = false;
   isLoading2: boolean = false;
 
-  disableImageSaveBtn: boolean;
+  //  Variable controlling disability status of the Image Save Button
+  disableImageSaveBtn: boolean = true;
 
   ratiosColumns: string[] = Object.keys(this.assetAnalysis.ratiosArray[0])
   ratiosAnalysisColumns: string[] = [`name`, `value`, `intervals`, `shortDescription`]
@@ -191,10 +192,20 @@ export class AssetAnalysisComponent implements OnInit {
     })
   }
 
+  /*  ->  Evaluating final status of imageFormGroup validity
+  *   ->  Because async validator takes some time to perform it was needed to wait for the change.
+  *       it is done by subscribing on the whole imageFormGroup statusChange property, which indicates
+  *       status change as soon as it occurs. During validity analysis done by async validator, it has
+  *       PENDING status. After that new status appears, its value is compared with possible outcomes.
+  *       Depending on the outcome, Save button disability controlling variable is set to true or false.
+  *       At the end, unsubscription occurs so resources are not wasted.
+  *   ->  Also, if final status is INVALID, image preview holding variable is cleared
+  */
   getActualStatusOfImageForm() {
     let imgSubscription = this.imageFormGroup.statusChanges.subscribe(status => {
       if (status !== 'INVALID') {
         this.disableImageSaveBtn = false;
+        this.imagePreview = null;
         imgSubscription.unsubscribe();
       }
       else if (status !== 'VALID') {
@@ -215,15 +226,14 @@ export class AssetAnalysisComponent implements OnInit {
   onImgSelected(event: Event) {
     let imageFile = (event.target as HTMLInputElement).files[0];
     this.imageFormGroup.patchValue({ name: imageFile.name, type: imageFile.type, mime_type: imageFile });
-
-    // FOR SOME REASON, STATUS is PENDING all the time if get directly from mime_type async validator, But if whol eform is get, everything is set as VALID
     this.imageFormGroup.get('mime_type').updateValueAndValidity();
 
     //  Image file reader that process attached file. On load, it will set dependency of all file reading 
     //  results as a string value to imagePreviev variable.
     let imageFileReader = new FileReader();
     imageFileReader.onload = () => {
-      this.imagePreview = imageFileReader.result as string;
+      if (!this.disableImageSaveBtn)
+        this.imagePreview = imageFileReader.result as string;
     }
 
     //  Evaluation if Save button should be disabled or not
@@ -232,6 +242,7 @@ export class AssetAnalysisComponent implements OnInit {
     //  Create an image preview when all validators attached to a image form group are passed: uploaded 
     //  file is really an image. Otherwise, old preview is cleaned as an empty string is set for imagePreview 
     //  (that is assigned to an img param in HTML)
+    //  TODO - preview seems to be a little delayed comparing to value that should be there. to be checked.
     if (!this.disableImageSaveBtn)
       imageFileReader.readAsDataURL(imageFile);
     else
@@ -241,9 +252,8 @@ export class AssetAnalysisComponent implements OnInit {
   /*  ->  Disabling/enabling image Save button depending on file attached
   *   ->  If file that is attached has extension of bmp or jpg or jpeg or png and has a type of image/* and
   *       it's MIME type is within png/jpg magic numbers then imageFormGroup FormGroup is valid and 
-  *       disableImageSaveBtn boolean variable is set to false.
-  *       In case that any of these cases is not fulfilled, the variable is set to true and Save button 
-  *       is disabled.
+  *       disableImageSaveBtn boolean variable is set to false. It happens inside getActualStatusOfImageForm()
+  *       method because of time needed for async validator time.
   */
   disableSaveBtn() {
 
