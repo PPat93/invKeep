@@ -45,11 +45,11 @@
                     <button *ngIf="imagePreview === '' || !imagePreview" id="sellect-file-button" mat-stroked-button
                       color="primary" (click)="inputFile.click()">Input</button>
                     <img id="image-prv" data-cy="image-prv" *ngIf="imagePreview !== '' && imagePreview"
-                      [src]="imagePreview" [alt]="" (click)="inputFile.click()">
+                      [src]="imagePreview" [alt]="" (click)="inputFile.click();">
                   </div>
                 </td>
                 <td class="file-upload" id="file-upload-cell-save">
-                  <button id="save-button" [disabled]="disableImageSaveBtn" mat-raised-button color="primary"
+                  <button id="save-img-button" [disabled]="disableImageSaveBtn" mat-raised-button color="primary"
                     (click)="uploadAnalysisImage()">Save</button>
                 </td>
               </tr>
