@@ -79,3 +79,11 @@ export function sleep(milliseconds) {
     currentDate = Date.now();
   } while (currentDate - date < milliseconds);
 }
+
+export function debugFcn(...args) {
+  console.log('-----------------------START-----------------------');
+  args.forEach(item => {
+    console.log(item);
+  })
+  console.log('-----------------------END-----------------------');
+}

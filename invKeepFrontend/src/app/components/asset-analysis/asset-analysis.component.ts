@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AssetsService } from "../../services/assets.service";
 import { ActivatedRoute, ParamMap } from "@angular/router";
-import { AnalyzedData, AssetRecord, AssetAndIndicatorsAnlysis, sanitizeRatioName, sleep } from "../../shared/sharedTS";
+import { AnalyzedData, AssetRecord, AssetAndIndicatorsAnlysis, sanitizeRatioName, debugFcn } from "../../shared/sharedTS";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AssetRatiosService } from "../../services/asset-ratios.service";
 import { Subscription } from "rxjs";
@@ -30,9 +30,11 @@ export class AssetAnalysisComponent implements OnInit {
 
   //  Image preview holding variable
   imagePreview: string = null;
+  tempImagePreview: string = null;
 
   //  Attached image file holding variable
   imageFile: File;
+  imageFileReader: FileReader;
 
   //  Object holding all data retrieved from the backend after ratios values analysis. Here it is defined and initialized
   //  with empty values/0 values
@@ -204,17 +206,21 @@ export class AssetAnalysisComponent implements OnInit {
   getActualStatusOfImageForm() {
 
     let imgSubscription = this.imageFormGroup.statusChanges.subscribe(status => {
-
-      if (status !== 'INVALID') {
-
+console.log( status)
+      if (status === 'INVALID') {
         this.imagePreview = null;
+        this.tempImagePreview = null;
         this.imageFile = null;
-        this.disableImageSaveBtn = false;
-        imgSubscription.unsubscribe();
-      } else if (status !== 'VALID') {
-
         this.disableImageSaveBtn = true;
         imgSubscription.unsubscribe();
+      } else if (status === 'VALID') {
+
+        this.imagePreview = this.tempImagePreview;
+        this.tempImagePreview = null;
+        this.disableImageSaveBtn = false;
+        imgSubscription.unsubscribe();
+        debugFcn(['this.imagePreview', this.imagePreview, 'this.tempImagePreview', this.tempImagePreview, 'this.disableImageSaveBtn', this.disableImageSaveBtn,  'this.imageFile',  this.imageFile])
+
       }
     })
   }
@@ -227,17 +233,30 @@ export class AssetAnalysisComponent implements OnInit {
   *   ->  File reader assigns all processing results to imagePreview variable, as a string. 
   *   ->  Image preview is created or cleaned, depending from the validity of image form group checked earlier.  
   */
-  onImgSelected(event: Event) {
-    this.imageFile = (event.target as HTMLInputElement).files[0];
-    this.imageFormGroup.patchValue({ name: this.imageFile.name, type: this.imageFile.type, mime_type: this.imageFile });
-    this.imageFormGroup.get('mime_type').updateValueAndValidity();
+   onImgSelected(event: Event) {
+    this.imageFile =  (event.target as HTMLInputElement).files[0];
+     this.imageFormGroup.patchValue({ name: this.imageFile.name, type: this.imageFile.type, mime_type: this.imageFile });
+     this.imageFormGroup.get('mime_type').updateValueAndValidity();
 
     //  Image file reader that process attached file. On load, it will set dependency of all file reading 
     //  results as a string value to imagePreviev variable.
-    let imageFileReader = new FileReader();
-    imageFileReader.onload = () => {
-      this.imagePreview = imageFileReader.result as string;
+    this.imageFileReader = new FileReader();
+    this.imageFileReader.onload = () => {
+      this.tempImagePreview = this.imageFileReader.result as string;
+      console.log('ustawione')
     }
+    console.log('po onload')
+    debugFcn(['this.tempImagePreview', this.tempImagePreview])
+
+
+    //  Create an image preview when all validators attached to a image form group are passed: uploaded 
+    //  file is really an image. Otherwise, old preview is cleaned as an empty string is set for imagePreview 
+    //  (that is assigned to an img param in HTML)
+    // TODO invalid order of execution, it seems like getActual status is firstly executed, readAsDataUrl is next and onload is set, somethingis no yes
+     this.imageFileReader.readAsDataURL(this.imageFile);
+     console.log('po read as url')
+    debugFcn(['this.tempImagePreview', this.tempImagePreview])
+
 
     /*  ->  Disabling/enabling image Save button depending on file attached
     *   ->  If file that is attached has extension of bmp or jpg or jpeg or png and has a type of image/* and
@@ -245,14 +264,8 @@ export class AssetAnalysisComponent implements OnInit {
     *       disableImageSaveBtn boolean variable is set to false. It happens inside getActualStatusOfImageForm()
     *       method because of time needed for async validator time.
     */
-    this.getActualStatusOfImageForm();
+     this.getActualStatusOfImageForm();
 
-    //  Create an image preview when all validators attached to a image form group are passed: uploaded 
-    //  file is really an image. Otherwise, old preview is cleaned as an empty string is set for imagePreview 
-    //  (that is assigned to an img param in HTML)
-    // TODO it is needed to delay execution of this item until imageForm async validator analysis is completed. 
-    // Too fast firing causes broken preview image icon
-    imageFileReader.readAsDataURL(this.imageFile);
   }
 
   /*  ->  Sending image file to a service and then into backend
@@ -260,7 +273,6 @@ export class AssetAnalysisComponent implements OnInit {
   *       ratios service
   */
   uploadAnalysisImage() {
-    console.log('uplod')
     if (!this.imageFormGroup.invalid)
       this.AssetRatiosService.saveAnalysisImageHttp(this.imageFile, this.assetId);
     this.disableImageSaveBtn = true;
