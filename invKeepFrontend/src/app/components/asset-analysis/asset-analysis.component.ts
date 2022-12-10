@@ -29,7 +29,7 @@ export class AssetAnalysisComponent implements OnInit {
   imageFormGroup: FormGroup;
 
   //  Image preview holding variable
-  imagePreview: string;
+  imagePreview: string = null;
 
   //  Attached image file holding variable
   imageFile: File;
@@ -202,13 +202,17 @@ export class AssetAnalysisComponent implements OnInit {
   *   ->  Also, if final status is INVALID, image preview holding variable is cleared
   */
   getActualStatusOfImageForm() {
+
     let imgSubscription = this.imageFormGroup.statusChanges.subscribe(status => {
+
       if (status !== 'INVALID') {
-        this.disableImageSaveBtn = false;
+
         this.imagePreview = null;
+        this.imageFile = null;
+        this.disableImageSaveBtn = false;
         imgSubscription.unsubscribe();
-      }
-      else if (status !== 'VALID') {
+      } else if (status !== 'VALID') {
+
         this.disableImageSaveBtn = true;
         imgSubscription.unsubscribe();
       }
@@ -224,40 +228,31 @@ export class AssetAnalysisComponent implements OnInit {
   *   ->  Image preview is created or cleaned, depending from the validity of image form group checked earlier.  
   */
   onImgSelected(event: Event) {
-    let imageFile = (event.target as HTMLInputElement).files[0];
-    this.imageFormGroup.patchValue({ name: imageFile.name, type: imageFile.type, mime_type: imageFile });
+    this.imageFile = (event.target as HTMLInputElement).files[0];
+    this.imageFormGroup.patchValue({ name: this.imageFile.name, type: this.imageFile.type, mime_type: this.imageFile });
     this.imageFormGroup.get('mime_type').updateValueAndValidity();
 
     //  Image file reader that process attached file. On load, it will set dependency of all file reading 
     //  results as a string value to imagePreviev variable.
     let imageFileReader = new FileReader();
     imageFileReader.onload = () => {
-      if (!this.disableImageSaveBtn)
-        this.imagePreview = imageFileReader.result as string;
+      this.imagePreview = imageFileReader.result as string;
     }
 
-    //  Evaluation if Save button should be disabled or not
-    this.disableSaveBtn();
+    /*  ->  Disabling/enabling image Save button depending on file attached
+    *   ->  If file that is attached has extension of bmp or jpg or jpeg or png and has a type of image/* and
+    *       it's MIME type is within png/jpg magic numbers then imageFormGroup FormGroup is valid and 
+    *       disableImageSaveBtn boolean variable is set to false. It happens inside getActualStatusOfImageForm()
+    *       method because of time needed for async validator time.
+    */
+    this.getActualStatusOfImageForm();
 
     //  Create an image preview when all validators attached to a image form group are passed: uploaded 
     //  file is really an image. Otherwise, old preview is cleaned as an empty string is set for imagePreview 
     //  (that is assigned to an img param in HTML)
-    //  TODO - preview seems to be a little delayed comparing to value that should be there. to be checked.
-    if (!this.disableImageSaveBtn)
-      imageFileReader.readAsDataURL(imageFile);
-    else
-      this.imagePreview = null;
-  }
-
-  /*  ->  Disabling/enabling image Save button depending on file attached
-  *   ->  If file that is attached has extension of bmp or jpg or jpeg or png and has a type of image/* and
-  *       it's MIME type is within png/jpg magic numbers then imageFormGroup FormGroup is valid and 
-  *       disableImageSaveBtn boolean variable is set to false. It happens inside getActualStatusOfImageForm()
-  *       method because of time needed for async validator time.
-  */
-  disableSaveBtn() {
-
-    this.getActualStatusOfImageForm();
+    // TODO it is needed to delay execution of this item until imageForm async validator analysis is completed. 
+    // Too fast firing causes broken preview image icon
+    imageFileReader.readAsDataURL(this.imageFile);
   }
 
   /*  ->  Sending image file to a service and then into backend

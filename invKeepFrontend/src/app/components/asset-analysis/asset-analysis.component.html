@@ -42,9 +42,9 @@
                 <td class="file-upload" id="file-upload-cell-upload">
                   <input #inputFile type="file" (change)="onImgSelected($event)" hidden>
                   <div class="img-prv-btn">
-                    <button *ngIf="imagePreview === '' || !imagePreview" id="sellect-file-button" mat-stroked-button
+                    <button *ngIf="imagePreview === null || !imagePreview" id="sellect-file-button" mat-stroked-button
                       color="primary" (click)="inputFile.click()">Input</button>
-                    <img id="image-prv" data-cy="image-prv" *ngIf="imagePreview !== '' && imagePreview"
+                    <img id="image-prv" data-cy="image-prv" *ngIf="imagePreview !== null && imagePreview"
                       [src]="imagePreview" [alt]="" (click)="inputFile.click();">
                   </div>
                 </td>
