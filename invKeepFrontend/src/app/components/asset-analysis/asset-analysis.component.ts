@@ -203,25 +203,33 @@ export class AssetAnalysisComponent implements OnInit {
   *       At the end, unsubscription occurs so resources are not wasted.
   *   ->  Also, if final status is INVALID, image preview holding variable is cleared
   */
-  getActualStatusOfImageForm() {
+  getActualStatusOfImageForm(): Promise<boolean> {
+    debugFcn(['2', 'tempImagePreview', this.tempImagePreview, 'imageFile', this.imageFile, 'this.imagePreview', this.imagePreview])
 
-    let imgSubscription = this.imageFormGroup.statusChanges.subscribe(status => {
-console.log( status)
-      if (status === 'INVALID') {
-        this.imagePreview = null;
-        this.tempImagePreview = null;
-        this.imageFile = null;
-        this.disableImageSaveBtn = true;
-        imgSubscription.unsubscribe();
-      } else if (status === 'VALID') {
+    return new Promise((resolve, reject) => {
 
-        this.imagePreview = this.tempImagePreview;
-        this.tempImagePreview = null;
-        this.disableImageSaveBtn = false;
-        imgSubscription.unsubscribe();
-        debugFcn(['this.imagePreview', this.imagePreview, 'this.tempImagePreview', this.tempImagePreview, 'this.disableImageSaveBtn', this.disableImageSaveBtn,  'this.imageFile',  this.imageFile])
+      let imgSubscription = this.imageFormGroup.statusChanges.subscribe(status => {
+        if (status === 'INVALID') {
+          this.imagePreview = null;
+          this.tempImagePreview = null;
+          this.imageFile = null;
+          this.disableImageSaveBtn = true;
+          imgSubscription.unsubscribe();
+          debugFcn(['2i', 'tempImagePreview', this.tempImagePreview, 'imageFile',  this.imageFile, 'this.imagePreview', this.imagePreview])
+          resolve(false);
+        } else if (status === 'VALID') {
 
-      }
+          this.imagePreview = this.tempImagePreview;
+          this.tempImagePreview = null;
+          this.disableImageSaveBtn = false;
+          imgSubscription.unsubscribe();
+          debugFcn(['2v', 'tempImagePreview', this.tempImagePreview, 'imageFile',  this.imageFile, 'this.imagePreview', this.imagePreview])
+          resolve(true);
+        }
+        setTimeout(() => {
+          reject(null)
+        }, 5000)
+      })
     })
   }
 
@@ -233,30 +241,18 @@ console.log( status)
   *   ->  File reader assigns all processing results to imagePreview variable, as a string. 
   *   ->  Image preview is created or cleaned, depending from the validity of image form group checked earlier.  
   */
-   onImgSelected(event: Event) {
-    this.imageFile =  (event.target as HTMLInputElement).files[0];
-     this.imageFormGroup.patchValue({ name: this.imageFile.name, type: this.imageFile.type, mime_type: this.imageFile });
-     this.imageFormGroup.get('mime_type').updateValueAndValidity();
+  onImgSelected(event: Event) {
+    this.imageFile = (event.target as HTMLInputElement).files[0];
+    this.imageFormGroup.patchValue({ name: this.imageFile.name, type: this.imageFile.type, mime_type: this.imageFile });
+    this.imageFormGroup.get('mime_type').updateValueAndValidity();
 
     //  Image file reader that process attached file. On load, it will set dependency of all file reading 
     //  results as a string value to imagePreviev variable.
     this.imageFileReader = new FileReader();
     this.imageFileReader.onload = () => {
       this.tempImagePreview = this.imageFileReader.result as string;
-      console.log('ustawione')
+      debugFcn(['1', 'tempImagePreview', this.tempImagePreview, 'imageFile', this.imageFile, 'this.imagePreview', this.imagePreview])
     }
-    console.log('po onload')
-    debugFcn(['this.tempImagePreview', this.tempImagePreview])
-
-
-    //  Create an image preview when all validators attached to a image form group are passed: uploaded 
-    //  file is really an image. Otherwise, old preview is cleaned as an empty string is set for imagePreview 
-    //  (that is assigned to an img param in HTML)
-    // TODO invalid order of execution, it seems like getActual status is firstly executed, readAsDataUrl is next and onload is set, somethingis no yes
-     this.imageFileReader.readAsDataURL(this.imageFile);
-     console.log('po read as url')
-    debugFcn(['this.tempImagePreview', this.tempImagePreview])
-
 
     /*  ->  Disabling/enabling image Save button depending on file attached
     *   ->  If file that is attached has extension of bmp or jpg or jpeg or png and has a type of image/* and
@@ -264,8 +260,17 @@ console.log( status)
     *       disableImageSaveBtn boolean variable is set to false. It happens inside getActualStatusOfImageForm()
     *       method because of time needed for async validator time.
     */
-     this.getActualStatusOfImageForm();
+    this.getActualStatusOfImageForm().then(result => {
+      debugFcn(['31', 'tempImagePreview', this.tempImagePreview, 'imageFile', this.imageFile, 'this.imagePreview', this.imagePreview])
 
+      //  Create an image preview when all validators attached to a image form group are passed: uploaded 
+      //  file is really an image. Otherwise, old preview is cleaned as an empty string is set for imagePreview 
+      //  (that is assigned to an img param in HTML)
+      // TODO invalid order of execution, it seems like getActual status is firstly executed, readAsDataUrl is next and onload is set, somethingis no yes
+      if (result === true)
+      debugFcn(['32', 'tempImagePreview', this.tempImagePreview, 'imageFile',  this.imageFile, 'this.imagePreview', this.imagePreview])
+        this.imageFileReader.readAsDataURL(this.imageFile);
+    })
   }
 
   /*  ->  Sending image file to a service and then into backend
