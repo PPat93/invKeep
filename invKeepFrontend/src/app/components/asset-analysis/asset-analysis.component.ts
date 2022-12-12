@@ -195,12 +195,17 @@ export class AssetAnalysisComponent implements OnInit {
 
   /*  ->  Evaluating final status of imageFormGroup validity
   *   ->  Because async validator takes some time to perform it was needed to wait for the change.
-  *       it is done by subscribing on the whole imageFormGroup statusChange property, which indicates
-  *       status change as soon as it occurs. During validity analysis done by async validator, it has
-  *       PENDING status. After that new status appears, its value is compared with possible outcomes.
-  *       Depending on the outcome, Save button disability controlling variable is set to true or false.
-  *       At the end, unsubscription occurs so resources are not wasted.
-  *   ->  Also, if final status is INVALID, image preview holding variable is cleared
+  *       It is done by subscribing on the whole imageFormGroup statusChange property, which indicates
+  *       status change as soon as it occurs. Because of that, Promise usage was needed, as Subscription
+  *       is awaited asynchronously, so the Promise returns corrrectly/incorrectly executed task confirmation
+  *       (as a boolean if finished or null if error).
+  *   ->  During validity analysis done by async validator, it has PENDING status. After finish new status 
+  *       appears, its value is compared with possible outcomes.
+  *   ->  Depending on the outcome, save button disability controlling variable is set to true or false.
+  *       Invalid validation also cleans imagePreview and imageFile variables. 
+  *   ->  At the end, unsubscription occurs so resources are not wasted. 
+  *   ->  Finally, promise is resolved with true or false return value (depending on valid or invalid outcome) 
+  *       or is rejected after 5 seconds of waiting.
   */
   getActualStatusOfImageForm(): Promise<boolean> {
 
@@ -258,7 +263,6 @@ export class AssetAnalysisComponent implements OnInit {
       //  Create an image preview when all validators attached to a image form group are passed: uploaded 
       //  file is really an image. Otherwise, old preview is cleaned as an empty string is set for imagePreview 
       //  (that is assigned to an img param in HTML)
-      // TODO invalid order of execution, it seems like getActual status is firstly executed, readAsDataUrl is next and onload is set, somethingis no yes
       if (result === true) {
         this.imageFileReader.readAsDataURL(this.imageFile);
       }
