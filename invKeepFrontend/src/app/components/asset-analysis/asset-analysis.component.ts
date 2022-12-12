@@ -30,7 +30,6 @@ export class AssetAnalysisComponent implements OnInit {
 
   //  Image preview holding variable
   imagePreview: string = null;
-  tempImagePreview: string = null;
 
   //  Attached image file holding variable
   imageFile: File;
@@ -204,31 +203,26 @@ export class AssetAnalysisComponent implements OnInit {
   *   ->  Also, if final status is INVALID, image preview holding variable is cleared
   */
   getActualStatusOfImageForm(): Promise<boolean> {
-    debugFcn(['2', 'tempImagePreview', this.tempImagePreview, 'imageFile', this.imageFile, 'this.imagePreview', this.imagePreview])
 
     return new Promise((resolve, reject) => {
 
       let imgSubscription = this.imageFormGroup.statusChanges.subscribe(status => {
         if (status === 'INVALID') {
           this.imagePreview = null;
-          this.tempImagePreview = null;
           this.imageFile = null;
           this.disableImageSaveBtn = true;
           imgSubscription.unsubscribe();
-          debugFcn(['2i', 'tempImagePreview', this.tempImagePreview, 'imageFile',  this.imageFile, 'this.imagePreview', this.imagePreview])
           resolve(false);
         } else if (status === 'VALID') {
 
-          this.imagePreview = this.tempImagePreview;
-          this.tempImagePreview = null;
           this.disableImageSaveBtn = false;
           imgSubscription.unsubscribe();
-          debugFcn(['2v', 'tempImagePreview', this.tempImagePreview, 'imageFile',  this.imageFile, 'this.imagePreview', this.imagePreview])
           resolve(true);
         }
         setTimeout(() => {
           reject(null)
-        }, 5000)
+        }, 5000);
+        // TODO - add error catching code
       })
     })
   }
@@ -250,8 +244,7 @@ export class AssetAnalysisComponent implements OnInit {
     //  results as a string value to imagePreviev variable.
     this.imageFileReader = new FileReader();
     this.imageFileReader.onload = () => {
-      this.tempImagePreview = this.imageFileReader.result as string;
-      debugFcn(['1', 'tempImagePreview', this.tempImagePreview, 'imageFile', this.imageFile, 'this.imagePreview', this.imagePreview])
+      this.imagePreview = this.imageFileReader.result as string;
     }
 
     /*  ->  Disabling/enabling image Save button depending on file attached
@@ -261,15 +254,14 @@ export class AssetAnalysisComponent implements OnInit {
     *       method because of time needed for async validator time.
     */
     this.getActualStatusOfImageForm().then(result => {
-      debugFcn(['31', 'tempImagePreview', this.tempImagePreview, 'imageFile', this.imageFile, 'this.imagePreview', this.imagePreview])
 
       //  Create an image preview when all validators attached to a image form group are passed: uploaded 
       //  file is really an image. Otherwise, old preview is cleaned as an empty string is set for imagePreview 
       //  (that is assigned to an img param in HTML)
       // TODO invalid order of execution, it seems like getActual status is firstly executed, readAsDataUrl is next and onload is set, somethingis no yes
-      if (result === true)
-      debugFcn(['32', 'tempImagePreview', this.tempImagePreview, 'imageFile',  this.imageFile, 'this.imagePreview', this.imagePreview])
+      if (result === true) {
         this.imageFileReader.readAsDataURL(this.imageFile);
+      }
     })
   }
 
