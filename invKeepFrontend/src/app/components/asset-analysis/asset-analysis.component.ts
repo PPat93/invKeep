@@ -209,21 +209,35 @@ export class AssetAnalysisComponent implements OnInit {
   */
   getActualStatusOfImageForm(): Promise<boolean> {
 
+    //  Promise, so it can be checked and returned asynchronously
     return new Promise((resolve, reject) => {
 
+      //  imgSubscription variable is defined, so it can be unsubscribed just after validation is conducted
+      //  subscription on imageForm status change allows finding the moment when async validator finishes execution
       let imgSubscription = this.imageFormGroup.statusChanges.subscribe(status => {
+
+        //  INVALID, VALID and IN PROGRESS can appear as a status for a FormGroup 
         if (status === 'INVALID') {
+
+          //  After invalid status of the image form occurs, preview variable and image file holding variable are
+          //  cleared. Save image button is set to be disabled, subscription on statusChange is unsubscribed and the
+          //  promise is resolved with false boolean value returned.
           this.imagePreview = null;
           this.imageFile = null;
           this.disableImageSaveBtn = true;
           imgSubscription.unsubscribe();
           resolve(false);
+
         } else if (status === 'VALID') {
 
+          //  After valid status of the image form occurs, Save file button is eanbled, similarly to Invalid status,
+          //  subscription on statusChange is unsubscribed and the promise is resolved with a true boolean avlue returned.
           this.disableImageSaveBtn = false;
           imgSubscription.unsubscribe();
           resolve(true);
         }
+
+        // In case that anything goes wrong, the promise is rejected with a null value returned after 5 seconds.
         setTimeout(() => {
           reject(null)
         }, 5000);
@@ -237,10 +251,12 @@ export class AssetAnalysisComponent implements OnInit {
   *       file type are passed. 
   *   ->  Depending on these values, validity of the form is checked and if validators are ok, Save button 
   *       is activated. 
-  *   ->  File reader assigns all processing results to imagePreview variable, as a string. 
-  *   ->  Image preview is created or cleaned, depending from the validity of image form group checked earlier.  
+  *   ->  File reader assigns all processing results to imagePreview variable, as a string if validation passed.
   */
   onImgSelected(event: Event) {
+
+    //  Single file attached to the form is assigned to the imageFile variable, value inside imageFormGroup is updated
+    //  with new file and it's properties. Also, asynchronous mime_type validator is recalled.
     this.imageFile = (event.target as HTMLInputElement).files[0];
     this.imageFormGroup.patchValue({ name: this.imageFile.name, type: this.imageFile.type, mime_type: this.imageFile });
     this.imageFormGroup.get('mime_type').updateValueAndValidity();
