@@ -217,7 +217,7 @@ export class AssetAnalysisComponent implements OnInit {
       let imgSubscription = this.imageFormGroup.statusChanges.subscribe(status => {
 
         //  INVALID, VALID and IN PROGRESS can appear as a status for a FormGroup 
-        if (status === 'INVALID') {
+        if (status === `INVALID`) {
 
           //  After invalid status of the image form occurs, preview variable and image file holding variable are
           //  cleared. Save image button is set to be disabled, subscription on statusChange is unsubscribed and the
@@ -228,7 +228,7 @@ export class AssetAnalysisComponent implements OnInit {
           imgSubscription.unsubscribe();
           resolve(false);
 
-        } else if (status === 'VALID') {
+        } else if (status === `VALID`) {
 
           //  After valid status of the image form occurs, Save file button is eanbled, similarly to Invalid status,
           //  subscription on statusChange is unsubscribed and the promise is resolved with a true boolean avlue returned.
@@ -239,9 +239,8 @@ export class AssetAnalysisComponent implements OnInit {
 
         // In case that anything goes wrong, the promise is rejected with a null value returned after 5 seconds.
         setTimeout(() => {
-          reject(null)
+          reject(null);
         }, 5000);
-        // TODO - add error catching code
       })
     })
   }
@@ -259,7 +258,7 @@ export class AssetAnalysisComponent implements OnInit {
     //  with new file and it's properties. Also, asynchronous mime_type validator is recalled.
     this.imageFile = (event.target as HTMLInputElement).files[0];
     this.imageFormGroup.patchValue({ name: this.imageFile.name, type: this.imageFile.type, mime_type: this.imageFile });
-    this.imageFormGroup.get('mime_type').updateValueAndValidity();
+    this.imageFormGroup.get(`mime_type`).updateValueAndValidity();
 
     //  Image file reader that process attached file. On load, it will set dependency of all file reading 
     //  results as a string value to imagePreviev variable.
@@ -282,6 +281,11 @@ export class AssetAnalysisComponent implements OnInit {
       if (result === true) {
         this.imageFileReader.readAsDataURL(this.imageFile);
       }
+    }).catch(e => {
+      
+      //  If, for some reason, image validation promise was rejected, error is caught here and an error message is
+      //  written in the console.
+      console.log(`Something went wrong with file validation.`)
     })
   }
 
