@@ -9,6 +9,7 @@ import { RatioDetailsService } from 'src/app/services/ratio-details.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RatioDetailsDialogComponent } from '../ratio-details-dialog/ratio-details-dialog.component';
 import { mimeValidator } from './mime-type.validator';
+import { AssetImageService } from 'src/app/services/asset-image.service';
 
 @Component({
   selector: 'app-asset-analysis',
@@ -78,8 +79,13 @@ export class AssetAnalysisComponent implements OnInit {
   private ratiosAnalysisSub: Subscription;
   private ratiosWereSavedIndicator: boolean = false;
 
-  constructor(public AssetService: AssetsService, public AssetRatiosService: AssetRatiosService,
-    public RatioDetailsService: RatioDetailsService, public route: ActivatedRoute, public dialog: MatDialog) {
+  constructor(
+    public AssetService: AssetsService, 
+    public AssetRatiosService: AssetRatiosService,
+    public AssetImageService: AssetImageService,
+    public RatioDetailsService: RatioDetailsService, 
+    public route: ActivatedRoute, 
+    public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -295,7 +301,7 @@ export class AssetAnalysisComponent implements OnInit {
   */
   uploadAnalysisImage() {
     if (!this.imageFormGroup.invalid)
-      this.AssetRatiosService.saveAnalysisImageHttp(this.imageFile, this.assetId);
+      this.AssetImageService.saveImageFile(this.imageFile, this.assetId);
     this.disableImageSaveBtn = true;
   }
 
