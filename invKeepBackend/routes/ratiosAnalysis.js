@@ -4,6 +4,8 @@ const router = express.Router();
 const AssetRatio = require('../models/assetRatio');
 const RatiosAnalysis = require('../ratios/AllRatios');
 
+const mutler = require('mutler');
+
 function analyzeAssetProfitability(ratiosForAnalysis) {
 
     let newRatios = ratiosForAnalysis[0];
