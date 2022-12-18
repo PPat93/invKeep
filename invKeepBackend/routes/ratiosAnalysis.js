@@ -36,6 +36,12 @@ function analyzeAssetProfitability(ratiosForAnalysis) {
     return [newRatios, analyzedRatios];
 }
 
+let storage = multer.diskStorage({
+    destination:(req, file, cb) => {
+
+    }
+})
+
 // ROUTES
 
 router.get('/:id', (req, res) => {
