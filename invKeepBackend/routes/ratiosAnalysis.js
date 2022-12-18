@@ -42,26 +42,49 @@ const acceptedMimeTypes = {
     'image/png': 'png'
 }
 
-//  ->  Multer configuration
+const invalidChars = ['<', '>', ';', ';', '\'', '\"', '&', '|', '\\', '%', '#', '*', '!'];
+
+/*  ->  Multer configuration
+*
+*/
 let storage = multer.diskStorage({
 
-    //  A place to where file should be saved is defined below. Also, uploaded file invalid MIME type protection is added.
+    //  The folder to which the file should be saved is defined below. Also, uploaded file invalid MIME type protection is added.
     destination: (req, file, cb) => {
 
+        // if isValid is undefined - that means the file MIME type was not found in allowed MIME types object and error is returned
+        // if mimeError is null, no error is returned and the proper RELATIVE path to a file save folder is returned.
         const isValid = acceptedMimeTypes[file.mimetype];
         let mimeError = null;
+
         if (isValid === undefined) {
             mimeError = new Error('Error, invalid MIME type of the uploaded file.')
         }
+
         cb(mimeError, 'invKeepBackend/imageFiles');
     },
+
     filename: (req, file, cb) => {
 
+        let isNotValid = false;
+        let filenameError = null;
+
+        invalidChars.forEach(singleChar => {
+            if (file.originalname.includes(singleChar))
+                isNotValid = true;
+        })
+
+        if (isNotValid)
+            filenameError = new Error('Error, filename contains invalid chars.')
+
+        let fileExtension = '.' + acceptedMimeTypes[file.mimetype];
+        let newFileName = file.originalname.replaceAll(' ', '-').toLowerCase() + Date.now() + fileExtension;
+
+        cb(filenameError, newFileName);
     }
 })
 
 // ROUTES
-
 router.get('/:id', (req, res) => {
     AssetRatio.find({ assetId: req.params.id }).then((ratiosForAnalysis) => {
 
