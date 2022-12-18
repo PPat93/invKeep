@@ -36,8 +36,26 @@ function analyzeAssetProfitability(ratiosForAnalysis) {
     return [newRatios, analyzedRatios];
 }
 
+const acceptedMimeTypes = {
+    'image/jpg': 'jpg',
+    'image/jpeg': 'jpeg',
+    'image/png': 'png'
+}
+
+//  ->  Multer configuration
 let storage = multer.diskStorage({
-    destination:(req, file, cb) => {
+
+    //  A place to where file should be saved is defined below. Also, uploaded file invalid MIME type protection is added.
+    destination: (req, file, cb) => {
+
+        const isValid = acceptedMimeTypes[file.mimetype];
+        let mimeError = null;
+        if (isValid === undefined) {
+            mimeError = new Error('Error, invalid MIME type of the uploaded file.')
+        }
+        cb(mimeError, 'invKeepBackend/imageFiles');
+    },
+    filename: (req, file, cb) => {
 
     }
 })
