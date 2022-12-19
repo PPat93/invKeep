@@ -84,7 +84,8 @@ let storage = multer.diskStorage({
     }
 })
 
-// ROUTES
+//  ROUTES
+//  Asset ratios
 router.get('/:id', (req, res) => {
     AssetRatio.find({ assetId: req.params.id }).then((ratiosForAnalysis) => {
 
@@ -130,7 +131,6 @@ router.put('/:id', (req, res) => {
     })
 })
 
-// temp for experiments -> to be changed for real separate  ratios details retrieval
 router.get('/:id/details', (req, res) => {
     AssetRatio.find({ assetId: req.params.id }).then((foundAssetRatios) => {
 
@@ -146,4 +146,23 @@ router.get('/:id/details', (req, res) => {
     });
 })
 
+//  Image routes
+
+router.get('/:id/images/:imagePath', (req, res) => {
+    // AssetImage.find({ assetId: req.params.id }).then( assetImage => {
+
+    //     res.status(200).json({
+
+    //         message: 'Asset image retrieved!',
+    //         image: 
+    //     });
+    // }).catch($e => {
+    //     console.log('Error during image retrieval. Error: ' + $e);
+    // });
+})
+ 
+router.post('/:id/images', multer(storage).single('image'), (req, res, next) => {
+    
+})
+ 
 module.exports = router;
