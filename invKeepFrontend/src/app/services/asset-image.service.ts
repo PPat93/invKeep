@@ -8,11 +8,11 @@ export class AssetImageService {
 
   constructor(private http: HttpClient) { }
 
-  getImageFile(assetId: string){
-    this.http.get(`http://localhost:3000/api/ratio-analysis/${assetId}`);
+  getImageFile(assetId: string, imagePath: string){
+    this.http.get(`http://localhost:3000/api/ratio-analysis/${assetId}/images/${imagePath}`);
   }
 
   saveImageFile(imageFile: File, assetId: string){
-    this.http.post(`http://localhost:3000/api/ratio-analysis/${assetId}`, imageFile)
+    this.http.post(`http://localhost:3000/api/ratio-analysis/${assetId}/images`, imageFile)
   }
 }
