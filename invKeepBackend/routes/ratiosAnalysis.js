@@ -162,7 +162,7 @@ router.get('/:id/images/:imagePath', (req, res) => {
 })
  
 router.post('/:id/images', multer(storage).single('image'), (req, res, next) => {
-    
+    console.log('received');
 })
  
 module.exports = router;
