@@ -80,11 +80,11 @@ export class AssetAnalysisComponent implements OnInit {
   private ratiosWereSavedIndicator: boolean = false;
 
   constructor(
-    public AssetService: AssetsService, 
+    public AssetService: AssetsService,
     public AssetRatiosService: AssetRatiosService,
     public AssetImageService: AssetImageService,
-    public RatioDetailsService: RatioDetailsService, 
-    public route: ActivatedRoute, 
+    public RatioDetailsService: RatioDetailsService,
+    public route: ActivatedRoute,
     public dialog: MatDialog) {
   }
 
@@ -288,7 +288,7 @@ export class AssetAnalysisComponent implements OnInit {
         this.imageFileReader.readAsDataURL(this.imageFile);
       }
     }).catch(e => {
-      
+
       //  If, for some reason, image validation promise was rejected, error is caught here and an error message is
       //  written in the console.
       console.log(`Something went wrong with file validation.`)
@@ -300,8 +300,9 @@ export class AssetAnalysisComponent implements OnInit {
   *       ratios service
   */
   uploadAnalysisImage() {
-    if (!this.imageFormGroup.invalid)
+    if (!this.imageFormGroup.invalid) {
       this.AssetImageService.saveImageFile(this.imageFile, this.assetId);
+    }
     this.disableImageSaveBtn = true;
   }
 

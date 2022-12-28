@@ -52,7 +52,7 @@ export class AssetRatiosService {
     return this.updateAssetRatios;
   }
 
-  saveRatiosValues(assetId: string, ratiosValues) {
+  saveRatiosValues(assetId: string, ratiosValues: AssetAndIndicatorsAnlysis) {
     this.http.put<{ message: string, analyzedData: any }>(`http://localhost:3000/api/ratio-analysis/${assetId}`, ratiosValues)
       .subscribe(responseData => {
         this.ratiosAnalysisEdit.next(responseData.analyzedData);
