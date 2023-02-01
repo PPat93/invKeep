@@ -19,8 +19,7 @@ export class AssetImageService {
 
     this.http.post<{ message: string }>(`http://localhost:3000/api/ratio-analysis/${assetId}/images`, formData)
       .subscribe(responseData => {
-        console.log('sent');
-        console.log(responseData);
+        // placeholder for response handling
       })
     return 1;
   }

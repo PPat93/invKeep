@@ -162,9 +162,8 @@ router.get('/:id/images/:imagePath', (req, res) => {
 })
 
 router.post('/:id/images', multer({ storage: storage }).single('imageFile'), (req, res, next) => {
-    console.log(req);
+    
     res.status(200).json({
-
         message: 'ok'
     });
 })
