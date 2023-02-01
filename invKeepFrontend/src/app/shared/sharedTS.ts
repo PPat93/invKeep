@@ -87,3 +87,13 @@ export function debugFcn(...args) {
   })
   console.log('-----------------------END-----------------------');
 }
+
+export function convertImgToBlob(imageFile): FormData {
+  let formData = new FormData();
+
+  let imageBlob = new Blob([imageFile], { type: 'image/*' })
+  var fileOfBlob = new File([imageBlob], 'imageFile.json');
+  formData.append("upload", fileOfBlob);
+
+  return formData;
+}

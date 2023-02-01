@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { convertImgToBlob } from "../shared/sharedTS";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,10 @@ export class AssetImageService {
   }
 
   saveImageFile(imageFile: File, assetId: string) {
-    this.http.post(`http://localhost:3000/api/ratio-analysis/${assetId}/images`, imageFile)
+
+    const formData = convertImgToBlob(imageFile);
+
+    this.http.post<{ message: string }>(`http://localhost:3000/api/ratio-analysis/${assetId}/images`, formData)
       .subscribe(responseData => {
         console.log('sent');
         console.log(responseData);
