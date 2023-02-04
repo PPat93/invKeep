@@ -52,6 +52,7 @@ let storage = multer.diskStorage({
     //  The folder to which the file should be saved is defined below. Also, uploaded file invalid MIME type protection is added.
     destination: (req, file, cb) => {
 
+        console.log(file.mimetype)
         // if isValid is undefined - that means the file MIME type was not found in allowed MIME types object and error is returned
         // if mimeError is null, no error is returned and the proper RELATIVE path to a file save folder is returned.
         const isValid = acceptedMimeTypes[file.mimetype];
@@ -61,7 +62,7 @@ let storage = multer.diskStorage({
             mimeError = new Error('Error, invalid MIME type of the uploaded file.')
         }
 
-        cb(mimeError, './invKeepBackend/imageFiles');
+        cb(mimeError, './../invKeepBackend/imageFiles');
     },
 
     filename: (req, file, cb) => {
@@ -147,7 +148,6 @@ router.get('/:id/details', (req, res) => {
 })
 
 //  Image routes
-
 router.get('/:id/images/:imagePath', (req, res) => {
     // AssetImage.find({ assetId: req.params.id }).then( assetImage => {
 
@@ -162,7 +162,7 @@ router.get('/:id/images/:imagePath', (req, res) => {
 })
 
 router.post('/:id/images', multer({ storage: storage }).single('imageFile'), (req, res, next) => {
-    
+
     res.status(200).json({
         message: 'ok'
     });
