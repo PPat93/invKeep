@@ -63,6 +63,7 @@ export interface RatioInfoObject {
   },
 };
 
+//  TODO - 2 - good to have - switch from constant displayment of the message to cookies storage of closing
 export let welcomeMsg = {
   "title": "Welcome!",
   "msg": "I'm glad you chose invKeep to keep your assets and analyze them (in the future). App is intuitive, simple and I will do my best to keep it like that."
@@ -88,6 +89,7 @@ export function debugFcn(...args) {
   console.log('-----------------------END-----------------------');
 }
 
+//  TODO - 1 - not urgent - research file conversion to blob - pros/cons and (if better) add conversion to blob fcn here -> rename to convertImgToBlob()
 export function createFileFormData(imageFile: File): FormData {
 
   let formData = new FormData();
