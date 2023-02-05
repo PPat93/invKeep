@@ -52,7 +52,6 @@ let storage = multer.diskStorage({
     //  The folder to which the file should be saved is defined below. Also, uploaded file invalid MIME type protection is added.
     destination: (req, file, cb) => {
 
-        console.log(file.mimetype)
         // if isValid is undefined - that means the file MIME type was not found in allowed MIME types object and error is returned
         // if mimeError is null, no error is returned and the proper RELATIVE path to a file save folder is returned.
         const isValid = acceptedMimeTypes[file.mimetype];
@@ -79,7 +78,8 @@ let storage = multer.diskStorage({
             filenameError = new Error('Error, filename contains invalid chars.')
 
         let fileExtension = '.' + acceptedMimeTypes[file.mimetype];
-        let newFileName = file.originalname.replaceAll(' ', '-').toLowerCase() + Date.now() + fileExtension;
+        let shortenedName = file.originalname.split('.')[0];
+        let newFileName = shortenedName.replaceAll(' ', '-').toLowerCase() + Date.now() + fileExtension;
 
         cb(filenameError, newFileName);
     }
