@@ -37,17 +37,20 @@ function analyzeAssetProfitability(ratiosForAnalysis) {
     return [newRatios, analyzedRatios];
 }
 
+//  object holding all allowed MIME types
 const acceptedMimeTypes = {
     'image/jpg': 'jpg',
     'image/jpeg': 'jpeg',
     'image/png': 'png'
 }
 
+//  invalidChars holds all chars with which file will be rejected
 const invalidChars = ['<', '>', ';', '\'', '\"', '&', '|', '\\', '%', '#', '*', '!'];
 
+//  latestFileName holds latest generated file name, so it can be checked (if exists) before sending upload response
 var latestFileName = '';
 
-/*  ->  Multer configuration
+/*  ->  Multer storage configuration
 *
 */
 let storage = multer.diskStorage({
@@ -55,43 +58,58 @@ let storage = multer.diskStorage({
     //  The folder to which the file should be saved is defined below. Also, uploaded file invalid MIME type protection is added.
     destination: (req, file, cb) => {
 
-        // if isValid is undefined - that means the file MIME type was not found in allowed MIME types object and error is returned
-        // if mimeError is null, no error is returned and the proper RELATIVE path to a file save folder is returned.
+        //  if isValid is undefined - that means the file MIME type was not found in allowed MIME types object and error is returned
+        //  if mimeError is null, no error is returned and the proper RELATIVE path to a file save folder is returned.
         const isValid = acceptedMimeTypes[file.mimetype];
         let mimeError = null;
 
+        //  assigns error if obtained MIME type does not exist in acceptedMimeTypes object
         if (isValid === undefined) {
 
+            //  object returned if invalid MIME type file is uploaded to the backend
             mimeError = {
                 errorType: 'mimeError',
                 erorMessage: 'Error, invalid MIME type of the uploaded file.'
             }
         }
 
+        //  if error exists, will be returned here, also if mimeError is null, then file is saved in the path provided as a second arg
         cb(mimeError, './../invKeepBackend/imageFiles');
     },
 
+    //  filename checking code + creation of a new, unique filename before saving it in the destination above
     filename: (req, file, cb) => {
 
+        //  if isNotValid is false, then also filenameError is null and no error is returned
         let isNotValid = false;
         let filenameError = null;
 
+        //  iterates through invalidChars array containing invalid chars, if uploaded file name had any of invalid chars, isNotValid is set to true
         invalidChars.forEach(singleChar => {
             if (file.originalname.includes(singleChar))
                 isNotValid = true;
         })
 
+        //  assigns error object if any of forbidden chars was included into filename
         if (isNotValid)
+
+            //  object returned if uploaded file contain any of the forbidden chars
             filenameError = {
                 errorType: 'filenameError',
                 erorMessage: 'Error, filename contains invalid chars.'
             }
 
+        //  extraction of the correct file extension according to the MIME typeand addition it to a string after a dot
         let fileExtension = '.' + acceptedMimeTypes[file.mimetype];
+        //  taking only first filename part - until first dot encountered to avoid extension duplcation. The rest does not matter, especially that unique timestamp is added.
         let shortenedName = file.originalname.split('.')[0];
+        //  create new filename - first part of the filename (until first dot) is taken, spaces are replaced with dashes, all letters are becoming lower case
+        //  additionally, current timestamp is added so filename will be surely unique, at the end the dot and proper file extension is added.
         let newFileName = shortenedName.replaceAll(' ', '-').toLowerCase() + Date.now() + fileExtension;
+        //  assigning the latest file name to a global latestFileName variable, so it will be used as anargument during checking if file exists and if was properly saved
         latestFileName = newFileName;
 
+        //  if error exists, will be returned here, also if filenameError is null, then the file is saved with the name provided as newFileName
         cb(filenameError, newFileName);
     }
 })
@@ -172,29 +190,36 @@ router.get('/:id/images/:imagePath', (req, res) => {
     // });
 })
 
+//  define multer storage to be used
 var upload = multer({ storage: storage });
 
+//  multer middleware for being called if route was requested and handle potential errors from multer diskStorage
 var uploadMiddleware = function (req, res, next) {
 
     let multerErrorHandler = upload.single('imageFile');
 
+    //  checking which error is encountered and return correct status
     multerErrorHandler(req, res, function (err) {
 
+        //  below if is needed, as errorType must be checked later than err - if err is null, types inside are undefined and crashes the server
         if (err) {
             switch (err.errorType) {
 
+                //  error with file name
                 case 'filenameError':
                     res.status(422).json({
                         error: err.erorMessage
                     });
                     break;
 
+                //  error with file MIME type
                 case 'mimeError':
                     res.status(422).json({
                         error: err.erorMessage
                     });
                     break;
 
+                //  default error if unexpected error happened
                 default:
                     res.status(422).json({
                         error: 'The request could not be processed.'
@@ -205,8 +230,11 @@ var uploadMiddleware = function (req, res, next) {
     });
 }
 
+//  upload an image file
 router.post('/:id/images', uploadMiddleware, (req, res, next) => {
 
+    //  return 200OK only if uploaded file was correctly saved and it exists, errors are created in multer disk storage 
+    //  and handled inside uploadMiddleware function
     if (fs.existsSync('./../invKeepBackend/imageFiles/' + latestFileName)) {
         res.status(200).json({
             message: 'File uploaded successfully'
