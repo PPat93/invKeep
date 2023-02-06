@@ -233,12 +233,16 @@ var uploadMiddleware = function (req, res, next) {
 //  upload an image file
 router.post('/:id/images', uploadMiddleware, (req, res, next) => {
 
+    //  get current url address to use as a partial file path response
+    let url = req.protocol + '://' + req.get('host');
+
     //  return 200OK only if uploaded file was correctly saved and it exists, errors are created in multer disk storage 
     //  and handled inside uploadMiddleware function
     if (fs.existsSync('./../invKeepBackend/imageFiles/' + latestFileName)) {
+
         res.status(200).json({
             message: 'File uploaded successfully',
-            imgPath: '/file/path/to/be/returned/here'
+            imgPath: url + '/imageFiles/' + latestFileName
         });
     }
 })
