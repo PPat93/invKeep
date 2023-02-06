@@ -237,7 +237,8 @@ router.post('/:id/images', uploadMiddleware, (req, res, next) => {
     //  and handled inside uploadMiddleware function
     if (fs.existsSync('./../invKeepBackend/imageFiles/' + latestFileName)) {
         res.status(200).json({
-            message: 'File uploaded successfully'
+            message: 'File uploaded successfully',
+            imgPath: 'file/path/yo/be/returned/here'
         });
     }
 })
