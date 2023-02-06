@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { createFileFormData } from "../shared/sharedTS";
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AssetImageService {
+
+  analysisImageSave = new Subject<string>();
 
   constructor(private http: HttpClient) { }
 
@@ -14,14 +17,14 @@ export class AssetImageService {
   }
 
   saveImageFile(imageFile: File, assetId: string) {
-    
+
     let formData = new FormData();
     formData = createFileFormData(imageFile);
 
-    this.http.post<{ message: string }>(`http://localhost:3000/api/ratio-analysis/${assetId}/images`, formData)
+    this.http.post<{ message: string, imgPath: string }>(`http://localhost:3000/api/ratio-analysis/${assetId}/images`, formData)
       .subscribe(responseData => {
-        // placeholder for response handling
+        this.analysisImageSave.next(responseData.imgPath);
       })
-    return 1;
+    return this.analysisImageSave;
   }
 }
