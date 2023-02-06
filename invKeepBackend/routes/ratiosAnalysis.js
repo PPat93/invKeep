@@ -1,6 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const router = express.Router();
+const fs = require('fs');
 
 const AssetRatio = require('../models/assetRatio');
 const RatiosAnalysis = require('../ratios/AllRatios');
@@ -42,7 +43,9 @@ const acceptedMimeTypes = {
     'image/png': 'png'
 }
 
-const invalidChars = ['<', '>', ';', ';', '\'', '\"', '&', '|', '\\', '%', '#', '*', '!'];
+const invalidChars = ['<', '>', ';', '\'', '\"', '&', '|', '\\', '%', '#', '*', '!'];
+
+var latestFileName = '';
 
 /*  ->  Multer configuration
 *
@@ -58,7 +61,11 @@ let storage = multer.diskStorage({
         let mimeError = null;
 
         if (isValid === undefined) {
-            mimeError = new Error('Error, invalid MIME type of the uploaded file.')
+
+            mimeError = {
+                errorType: 'mimeError',
+                erorMessage: 'Error, invalid MIME type of the uploaded file.'
+            }
         }
 
         cb(mimeError, './../invKeepBackend/imageFiles');
@@ -75,11 +82,15 @@ let storage = multer.diskStorage({
         })
 
         if (isNotValid)
-            filenameError = new Error('Error, filename contains invalid chars.')
+            filenameError = {
+                errorType: 'filenameError',
+                erorMessage: 'Error, filename contains invalid chars.'
+            }
 
         let fileExtension = '.' + acceptedMimeTypes[file.mimetype];
         let shortenedName = file.originalname.split('.')[0];
         let newFileName = shortenedName.replaceAll(' ', '-').toLowerCase() + Date.now() + fileExtension;
+        latestFileName = newFileName;
 
         cb(filenameError, newFileName);
     }
@@ -161,11 +172,46 @@ router.get('/:id/images/:imagePath', (req, res) => {
     // });
 })
 
-router.post('/:id/images', multer({ storage: storage }).single('imageFile'), (req, res, next) => {
+var upload = multer({ storage: storage });
 
-    res.status(200).json({
-        message: 'ok'
+var uploadMiddleware = function (req, res, next) {
+
+    let multerErrorHandler = upload.single('imageFile');
+
+    multerErrorHandler(req, res, function (err) {
+
+        if (err) {
+            switch (err.errorType) {
+
+                case 'filenameError':
+                    res.status(422).json({
+                        error: err.erorMessage
+                    });
+                    break;
+
+                case 'mimeError':
+                    res.status(422).json({
+                        error: err.erorMessage
+                    });
+                    break;
+
+                default:
+                    res.status(422).json({
+                        error: 'The request could not be processed.'
+                    });
+            }
+        }
+        next();
     });
+}
+
+router.post('/:id/images', uploadMiddleware, (req, res, next) => {
+
+    if (fs.existsSync('./../invKeepBackend/imageFiles/' + latestFileName)) {
+        res.status(200).json({
+            message: 'File uploaded successfully'
+        });
+    }
 })
 
 module.exports = router;
