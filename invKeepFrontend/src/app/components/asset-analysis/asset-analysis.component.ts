@@ -69,8 +69,8 @@ export class AssetAnalysisComponent implements OnInit {
   isLoading1: boolean = false;
   isLoading2: boolean = false;
 
-  //  Variable controlling disability status of the Image Save Button
-  disableImageSaveBtn: boolean = true;
+  //  Variable controlling visability of the Image Save Button
+  hideImageSaveBtn: boolean = true;
 
   ratiosColumns: string[] = Object.keys(this.assetAnalysis.ratiosArray[0])
   ratiosAnalysisColumns: string[] = [`name`, `value`, `intervals`, `shortDescription`]
@@ -207,7 +207,7 @@ export class AssetAnalysisComponent implements OnInit {
   *       (as a boolean if finished or null if error).
   *   ->  During validity analysis done by async validator, it has PENDING status. After finish new status 
   *       appears, its value is compared with possible outcomes.
-  *   ->  Depending on the outcome, save button disability controlling variable is set to true or false.
+  *   ->  Depending on the outcome, save button visibility controlling variable is set to true or false.
   *       Invalid validation also cleans imagePreview and imageFile variables. 
   *   ->  At the end, unsubscription occurs so resources are not wasted. 
   *   ->  Finally, promise is resolved with true or false return value (depending on valid or invalid outcome) 
@@ -226,11 +226,11 @@ export class AssetAnalysisComponent implements OnInit {
         if (status === `INVALID`) {
 
           //  After invalid status of the image form occurs, preview variable and image file holding variable are
-          //  cleared. Save image button is set to be disabled, subscription on statusChange is unsubscribed and the
+          //  cleared. Save image button is invisible, subscription on statusChange is unsubscribed and the
           //  promise is resolved with false boolean value returned.
           this.imagePreview = null;
           this.imageFile = null;
-          this.disableImageSaveBtn = true;
+          this.hideImageSaveBtn = true;
           imgSubscription.unsubscribe();
           resolve(false);
 
@@ -238,7 +238,7 @@ export class AssetAnalysisComponent implements OnInit {
 
           //  After valid status of the image form occurs, Save file button is eanbled, similarly to Invalid status,
           //  subscription on statusChange is unsubscribed and the promise is resolved with a true boolean avlue returned.
-          this.disableImageSaveBtn = false;
+          this.hideImageSaveBtn = false;
           imgSubscription.unsubscribe();
           resolve(true);
         }
@@ -273,10 +273,10 @@ export class AssetAnalysisComponent implements OnInit {
       this.imagePreview = this.imageFileReader.result as string;
     }
 
-    /*  ->  Disabling/enabling image Save button depending on file attached
+    /*  ->  Showing/hiding image Save button depending on file attached
     *   ->  If file that is attached has extension of bmp or jpg or jpeg or png and has a type of image/* and
     *       it's MIME type is within png/jpg magic numbers then imageFormGroup FormGroup is valid and 
-    *       disableImageSaveBtn boolean variable is set to false. It happens inside getActualStatusOfImageForm()
+    *       hideImageSaveBtn boolean variable is set to false. It happens inside getActualStatusOfImageForm()
     *       method because of time needed for async validator time.
     */
     this.getActualStatusOfImageForm().then(result => {
@@ -303,7 +303,7 @@ export class AssetAnalysisComponent implements OnInit {
     if (!this.imageFormGroup.invalid) {
       this.AssetImageService.saveImageFile(this.imageFile, this.assetId);
     }
-    this.disableImageSaveBtn = true;
+    this.hideImageSaveBtn = true;
   }
 
   /*  ->  Creation of all used in Analysis page
