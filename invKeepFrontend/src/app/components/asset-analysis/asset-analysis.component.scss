@@ -162,7 +162,7 @@ mat-progress-bar {
 }
 
 // #file-upload-cell-upload {
-  .file-upload{
+.file-upload {
   display: flex;
   justify-content: center;
   position: relative;
@@ -173,6 +173,11 @@ mat-progress-bar {
   top: 50%;
   left: 50%;
   margin: 8.5px 0 0 -41px;
+}
+
+#select-file-button {
+  margin: 8.5px 0 0 0;
+  
 }
 
 tr.no-highlight:hover {
@@ -189,6 +194,6 @@ tr.no-highlight:hover {
   cursor: pointer;
 }
 
-.img-prv-btn{
+.img-prv-btn {
   height: 100%;
 }
