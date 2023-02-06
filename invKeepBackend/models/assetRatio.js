@@ -13,4 +13,4 @@ const assetRatioSchema = new mongoose.Schema({
     ratiosArray: [subDetails]
 }, {collection: 'assetRatios'});
 
-module.exports = mongoose.model('assetRatioSchema', assetRatioSchema);
+module.exports = mongoose.model('AssetRatioSchema', assetRatioSchema);
