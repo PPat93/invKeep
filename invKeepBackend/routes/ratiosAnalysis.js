@@ -4,6 +4,7 @@ const router = express.Router();
 const fs = require('fs');
 
 const AssetRatio = require('../models/assetRatio');
+const AnalysisFilePath = require('../models/analysisFilePaths');
 const RatiosAnalysis = require('../ratios/AllRatios');
 
 /*  ->  analyzeAssetProfitability determines stock ratios potential value 
@@ -240,9 +241,24 @@ router.post('/:id/images', uploadMiddleware, (req, res, next) => {
     //  and handled inside uploadMiddleware function
     if (fs.existsSync('./../invKeepBackend/imageFiles/' + latestFileName)) {
 
-        res.status(200).json({
-            message: 'File uploaded successfully',
-            imgPath: url + '/imageFiles/' + latestFileName
+        //  create the newPath variable that will be used for saving new document in AnalysisFilePath collection, which will
+        //  hold assetId as a string so it can be found for the right asset + filePath to retrieve the image if necessary
+        let newPath = new AnalysisFilePath({
+            assetId: req.params.id,
+            filePath: url + '/imageFiles/' + latestFileName
+        });
+
+        //  save new document in AnalysisFilePath collection, if everything went ok, 201 Created status is returned, along with
+        //  confirmation message and a path to the saved file. If anything is wrong, error is caught and error message is printed 
+        //  on the server side
+        newPath.save().then(savedPathDoc => {
+
+            res.status(201).json({
+                message: 'File uploaded successfully',
+                imgPath: savedPathDoc.filePath
+            });
+        }).catch(($e) => {
+            console.log('\x1b[31m', `AnalysisFilePath addition failed! Error: ${$e}`);
         });
     }
 })

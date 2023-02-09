@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const analysisFilePathSchema = new mongoose.Schema({
-    id: {
+    assetId: {
         type: String,
         required: true
     },
@@ -11,4 +11,4 @@ const analysisFilePathSchema = new mongoose.Schema({
     }
 }, { collection: 'analysisFilePath' });
 
-module.exports = mongoose.model('AnalysisFilePathSchema', analysisFilePathSchema);
+module.exports = mongoose.model('AnalysisFilePath', analysisFilePathSchema);
