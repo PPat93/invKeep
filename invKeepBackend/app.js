@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 
@@ -19,6 +20,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/invKeepDatabase?retryWrites=true&w=m
 });
 
 app.use(express.json());
+app.use("/imageFiles", express.static(path.join(__dirname + "/imageFiles")));
 
 // set all needed headers for every response
 app.use((req, res, next) => {
