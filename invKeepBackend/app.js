@@ -20,6 +20,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/invKeepDatabase?retryWrites=true&w=m
 });
 
 app.use(express.json());
+
+//  middleware that will take all requests with '/imageFiles' path (if nothing preceedes it) and allows it an access to a .../invKeepBackend/imageFiles 
+//  directory only for retrieving files
 app.use("/imageFiles", express.static(path.join(__dirname + "/imageFiles")));
 
 // set all needed headers for every response
