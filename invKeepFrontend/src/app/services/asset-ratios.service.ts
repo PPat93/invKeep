@@ -61,10 +61,10 @@ export class AssetRatiosService {
   }
 
   getRatiosUpdateListener(): Observable<AssetAndIndicatorsAnlysis> {
-    return this.updateAssetRatios.asObservable()
+    return this.updateAssetRatios.asObservable();
   }
 
   getRatiosAnalysisListener(): Observable<AnalyzedData[]> {
-    return this.ratiosAnalysisEdit.asObservable()
+    return this.ratiosAnalysisEdit.asObservable();
   }
 }

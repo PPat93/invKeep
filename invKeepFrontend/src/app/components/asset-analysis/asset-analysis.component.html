@@ -35,24 +35,34 @@
           </span>
           <span id="file-upload">
             <table>
-              <tr class="no-highlight">
-                <td id="file-upload-cell-description">Upload image file for future analysis:</td>
-              </tr>
-              <tr class="no-highlight">
-                <td class="file-upload" id="file-upload-cell-upload">
-                  <input #inputFile type="file" (change)="onImgSelected($event)" hidden>
-                  <div class="img-prv-btn">
-                    <button *ngIf="imagePreview === null || !imagePreview" id="select-file-button" mat-stroked-button
-                      color="primary" (click)="inputFile.click()">Input</button>
-                    <img id="image-prv" data-cy="image-prv" *ngIf="imagePreview !== null && imagePreview"
-                      [src]="imagePreview" [alt]="" (click)="inputFile.click();">
-                  </div>
-                </td>
-                <td class="file-upload" id="file-upload-cell-save">
-                  <button id="save-img-button" *ngIf="!hideImageSaveBtn" mat-raised-button color="primary"
-                    (click)="uploadAnalysisImage()">Save</button>
-                </td>
-              </tr>
+              <td>
+                <tr class="no-highlight">
+                  <td id="file-upload-cell-description">Upload image file for future analysis:</td>
+                </tr>
+                <tr class="no-highlight">
+                  <td class="file-upload" id="file-upload-cell-upload">
+                    <input #inputFile type="file" (change)="onImgSelected($event)" hidden>
+                    <div class="img-prv-btn">
+                      <button *ngIf="imagePreview === null || !imagePreview" id="select-file-button" mat-stroked-button
+                        color="primary" (click)="inputFile.click()">Input</button>
+                      <img id="image-prv" data-cy="image-prv" *ngIf="imagePreview !== null && imagePreview"
+                        [src]="imagePreview" [alt]="" (click)="inputFile.click();">
+                    </div>
+                  </td>
+                  <td class="file-upload" id="file-upload-cell-save">
+                  </td>
+                  <td class="file-upload" id="file-upload-cell-save">
+                    <button id="save-img-button" *ngIf="!hideImageSaveBtn" mat-raised-button color="primary"
+                      (click)="uploadAnalysisImage()">Save</button>
+                  </td>
+                </tr>
+              </td>
+              <td>
+
+                <div>here img 
+                  <img id="analysis-img" data-cy="analysis-img"
+                    [src]="imageFilePath" [alt]="imageFilePath"></div>
+              </td>
             </table>
           </span>
         </span>

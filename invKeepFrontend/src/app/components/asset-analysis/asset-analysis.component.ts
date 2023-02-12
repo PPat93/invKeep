@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AssetsService } from "../../services/assets.service";
 import { ActivatedRoute, ParamMap } from "@angular/router";
-import { AnalyzedData, AssetRecord, AssetAndIndicatorsAnlysis, sanitizeRatioName, debugFcn } from "../../shared/sharedTS";
+import { AnalyzedData, AssetRecord, AssetAndIndicatorsAnlysis, sanitizeRatioName } from "../../shared/sharedTS";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AssetRatiosService } from "../../services/asset-ratios.service";
 import { Subscription } from "rxjs";
@@ -34,6 +34,7 @@ export class AssetAnalysisComponent implements OnInit {
 
   //  Attached image file holding variable
   imageFile: File;
+  imageFilePath: string = ``;
   imageFileReader: FileReader;
 
   //  Object holding all data retrieved from the backend after ratios values analysis. Here it is defined and initialized
@@ -77,6 +78,7 @@ export class AssetAnalysisComponent implements OnInit {
 
   private ratiosSub: Subscription;
   private ratiosAnalysisSub: Subscription;
+  private ratiosImageSub: Subscription;
   private ratiosWereSavedIndicator: boolean = false;
 
   constructor(
@@ -99,6 +101,14 @@ export class AssetAnalysisComponent implements OnInit {
         this.assetMainDetails = singleAsset.payload;
       });
     });
+    this.AssetImageService.getImageFile(this.assetId).subscribe(retrievedImage => {
+      this.imageFilePath = retrievedImage.imgPath;
+    })
+    this.ratiosImageSub = this.AssetImageService.getImageFileGetListener()
+      .subscribe(retrievedImage => {
+        this.isLoading2 = false;
+        this.imageFilePath = retrievedImage.imgPath;
+      })
     this.AssetRatiosService.getAssetRatiosValues(this.assetId);
     this.ratiosSub = this.AssetRatiosService.getRatiosUpdateListener()
       .subscribe((ratiosSubscribed: AssetAndIndicatorsAnlysis) => {
@@ -368,6 +378,7 @@ export class AssetAnalysisComponent implements OnInit {
   */
   ngOnDestroy() {
     this.ratiosSub.unsubscribe();
+    this.ratiosImageSub.unsubscribe();
     if (this.ratiosWereSavedIndicator) {
       this.ratiosAnalysisSub.unsubscribe();
     }
