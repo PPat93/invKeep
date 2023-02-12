@@ -248,32 +248,46 @@ router.post('/:id/images', uploadMiddleware, (req, res, next) => {
             filePath: url + '/imageFiles/' + latestFileName
         });
 
-        let savedPathDoc = '';
+        //  fileUploadProcess holds value if upload was addition of a new record or an update of existing one
         let fileUploadProcess = null;
+
+        //  isFileUploadErrorPresent indicates if an error occured during a file update/save
         let isFileUploadErrorPresent = null;
 
-        //  save new document in AnalysisFilePath collection, if everything went ok, 201 Created status is returned, along with
-        //  confirmation message and a path to the saved file. If anything is wrong, error is caught and error message is printed 
-        //  on the server side
+        //  check if a record with existing file path exists for the current asset
         AnalysisFilePath.findOne({ assetId: newPath.assetId }).then(foundFilePath => {
 
+            //  if the path record exists, update it and set fileUploadProcess to update direction
             if (foundFilePath) {
                 fileUploadProcess = 'updating'
                 AnalysisFilePath.updateOne({ assetId: foundFilePath.assetId }, { filePath: newPath.filePath });
+
             } else {
+
+                //  if the path record is not found, save new document in AnalysisFilePath collection and set fileUploadProcess to save direction
                 fileUploadProcess = 'saving'
                 newPath.save();
             }
         }).catch(($e) => {
+
+            //  If anything is wrong, error is caught and error message containing process errored is printed on the server side,
+            //  additionally, isFileUploadErrorPresent is set to true, as the error ocurred 
             isFileUploadErrorPresent = true;
             console.log('\x1b[31m', `Problem with ${fileUploadProcess} file path! Error: ${$e}`);
+
         }).then(() => {
+
+            //  if everything went ok and isFileUploadErrorPresent is false (no error occured), 201 Created status is returned, 
+            //  along with confirmation message and a path to the saved file
             if (!isFileUploadErrorPresent) {
                 res.status(201).json({
                     message: 'File uploaded successfully.',
                     imgPath: newPath.filePath
                 });
             } else {
+
+                //  if anything went wrong and an error occured during the file saving, 422 is returned, with message about an error only
+                //  without the image path field
                 res.status(422).json({
                     message: 'Error occured during file upload.'
                 });
