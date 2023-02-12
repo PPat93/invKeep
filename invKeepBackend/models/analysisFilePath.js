@@ -9,6 +9,6 @@ const analysisFilePathSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-}, { collection: 'analysisFilePath' });
+}, { collection: 'analysisFilePaths' });
 
 module.exports = mongoose.model('AnalysisFilePath', analysisFilePathSchema);

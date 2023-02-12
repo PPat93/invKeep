@@ -4,7 +4,7 @@ const router = express.Router();
 const fs = require('fs');
 
 const AssetRatio = require('../models/assetRatio');
-const AnalysisFilePath = require('../models/analysisFilePaths');
+const AnalysisFilePath = require('../models/analysisFilePath');
 const RatiosAnalysis = require('../ratios/AllRatios');
 
 /*  ->  analyzeAssetProfitability determines stock ratios potential value 
@@ -248,18 +248,46 @@ router.post('/:id/images', uploadMiddleware, (req, res, next) => {
             filePath: url + '/imageFiles/' + latestFileName
         });
 
+        let isErrorPresent = false;
+        let savedPathDoc = '';
+
         //  save new document in AnalysisFilePath collection, if everything went ok, 201 Created status is returned, along with
         //  confirmation message and a path to the saved file. If anything is wrong, error is caught and error message is printed 
         //  on the server side
-        newPath.save().then(savedPathDoc => {
+        AnalysisFilePath.findOne({ assetId: newPath.assetId }).then(foundFilePath => {
 
-            res.status(201).json({
-                message: 'File uploaded successfully',
-                imgPath: savedPathDoc.filePath
-            });
-        }).catch(($e) => {
-            console.log('\x1b[31m', `AnalysisFilePath addition failed! Error: ${$e}`);
-        });
+            console.log(foundFilePath)
+            if (foundFilePath) {
+                AnalysisFilePath.updateOne({ assetId: foundFilePath.assetId }, { filePath: newPath.filePath }).then(() => {
+                    savedPathDoc = newPath.filePath;
+                    console.log('updated')
+                }).catch(($e) => {
+                    isErrorPresent = true;
+                    console.log('\x1b[31m', `Problem with updating file path! Error: ${$e}`);
+                });
+            } else {
+                newPath.save().then(savedItem => {
+                    savedPathDoc = savedItem;
+                    console.log('saved')
+                })
+                    .catch(($e) => {
+                        isErrorPresent = true;
+                        console.log('\x1b[31m', `Problem with saving file path! Error: ${$e}`);
+                    });
+            }
+        }).then(() => {
+            if (!isErrorPresent) {
+                res.status(201).json({
+                    message: 'File uploaded successfully.',
+                    imgPath: savedPathDoc.filePath
+                });
+            } else {
+                res.status(422).json({
+                    message: 'Error occured during file upload.',
+                    imgPath: savedPathDoc.filePath
+                });
+            }
+        })
     }
 })
 
