@@ -12,8 +12,8 @@ export class AssetImageService {
 
   constructor(private http: HttpClient) { }
 
-  getImageFile(assetId: string, imagePath: string) {
-    this.http.get(`http://localhost:3000/api/ratio-analysis/${assetId}/images/${imagePath}`);
+  getImageFile(assetId: string) {
+    return this.http.get<{ message: string, imgPath?: string }>(`http://localhost:3000/api/ratio-analysis/${assetId}/images`);
   }
 
   saveImageFile(imageFile: File, assetId: string) {
@@ -21,8 +21,9 @@ export class AssetImageService {
     let formData = new FormData();
     formData = createFileFormData(imageFile);
 
-    this.http.post<{ message: string, imgPath: string }>(`http://localhost:3000/api/ratio-analysis/${assetId}/images`, formData)
+    this.http.post<{ message: string, imgPath?: string }>(`http://localhost:3000/api/ratio-analysis/${assetId}/images`, formData)
       .subscribe(responseData => {
+
         this.analysisImageSave.next(responseData.imgPath);
       })
     return this.analysisImageSave;
