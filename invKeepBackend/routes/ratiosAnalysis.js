@@ -177,18 +177,33 @@ router.get('/:id/details', (req, res) => {
     });
 })
 
-//  Image routes
-router.get('/:id/images/:imagePath', (req, res) => {
-    // AssetImage.find({ assetId: req.params.id }).then( assetImage => {
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+//  Image routes                                                                                       //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //     res.status(200).json({
+//  get a path to an image file of an asset
+router.get('/:id/images', (req, res) => {
 
-    //         message: 'Asset image retrieved!',
-    //         image: 
-    //     });
-    // }).catch($e => {
-    //     console.log('Error during image retrieval. Error: ' + $e);
-    // });
+    //  try to find a record in AnalysisFilePath that has an id of an asset requested
+    AnalysisFilePath.findOne({ assetId: req.params.id }).then(foundFilePath => {
+
+        //  if no errors occurred and a record was found, return 200OK status along with message and a path to the file
+        if (foundFilePath) {
+            res.status(200).json({
+                message: 'Asset image retrieved.',
+                imgPath: foundFilePath.filePath
+            });
+        } else {
+
+            //  if no errors occurred and a record was not found, return 404 Not Found status along with a message only
+            res.status(404).json({
+                message: 'Asset image not found.'
+            });
+        }
+        //  if any error occurred, log it in server console
+    }).catch($e => {
+        console.log('Error during image retrieval. Error: ' + $e);
+    });
 })
 
 //  define multer storage to be used
