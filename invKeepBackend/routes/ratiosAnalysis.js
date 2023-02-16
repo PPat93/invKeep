@@ -272,16 +272,32 @@ router.post('/:id/images', uploadMiddleware, (req, res, next) => {
         //  check if a record with existing file path exists for the current asset
         AnalysisFilePath.findOne({ assetId: newPath.assetId }).then(foundFilePath => {
 
-            //  if the path record exists, update it and set fileUploadProcess to update direction
+            //  if the path record exists, update it and set fileUploadProcess to update direction. Interesting thing, if there is no
+            //  'then' after updateOne(), the document is not updated for some reason 
             if (foundFilePath) {
                 fileUploadProcess = 'updating'
-                AnalysisFilePath.updateOne({ assetId: foundFilePath.assetId }, { filePath: newPath.filePath });
+                AnalysisFilePath.updateOne({ assetId: foundFilePath.assetId }, { filePath: newPath.filePath }).then(() => {
 
+                    // retrieval of the old file name from the saved path
+                    let oldPathSplit = foundFilePath.filePath.split('/');
+                    var oldFileName = oldPathSplit[oldPathSplit.length - 1];
+
+                    //  deleting old file in case of path update, so the server will not get crowded
+                    fs.unlink('./../invKeepBackend/imageFiles/' + oldFileName, (err) => {
+                        if (err) {
+                            console.log("Error occured during deletion of " + oldFileName + " file. Error: " + err);
+                        } else {
+                            console.log("File " + oldFileName + " deleted successfully.");
+                        }
+                    });
+                })
             } else {
 
                 //  if the path record is not found, save new document in AnalysisFilePath collection and set fileUploadProcess to save direction
                 fileUploadProcess = 'saving'
-                newPath.save();
+                newPath.save().then(() => {
+                    console.log("File saved successfully.");
+                });
             }
         }).catch(($e) => {
 
