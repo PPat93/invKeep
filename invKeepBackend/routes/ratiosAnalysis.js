@@ -282,14 +282,18 @@ router.post('/:id/images', uploadMiddleware, (req, res, next) => {
                     let oldPathSplit = foundFilePath.filePath.split('/');
                     var oldFileName = oldPathSplit[oldPathSplit.length - 1];
 
-                    //  deleting old file in case of path update, so the server will not get crowded
-                    fs.unlink('./../invKeepBackend/imageFiles/' + oldFileName, (err) => {
-                        if (err) {
-                            console.log("Error occured during deletion of " + oldFileName + " file. Error: " + err);
-                        } else {
-                            console.log("File " + oldFileName + " deleted successfully.");
-                        }
-                    });
+                    //  make sure that old file exists, if so - delete it
+                    if (fs.existsSync('./../invKeepBackend/imageFiles/' + oldFileName)) {
+
+                        //  deleting old file in case of path update, so the server will not get crowded
+                        fs.unlink('./../invKeepBackend/imageFiles/' + oldFileName, (err) => {
+                            if (err) {
+                                console.log("Error occured during deletion of " + oldFileName + " file. Error: " + err);
+                            } else {
+                                console.log("File " + oldFileName + " deleted successfully.");
+                            }
+                        });
+                    }
                 })
             } else {
 
