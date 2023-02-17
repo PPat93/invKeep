@@ -41,7 +41,7 @@
                 </tr>
                 <tr class="no-highlight">
                   <td class="file-upload" id="file-upload-cell-upload">
-                    <form [formGroup]="imageFormGroup">
+                    <form *ngIf="imageFormGroup" [formGroup]="imageFormGroup">
                       <input #inputFile type="file" (change)="onImgSelected($event)" hidden>
                       <div class="img-prv-btn">
                         <img class="image-prv retrieved-img" id="analysis-img" data-cy="analysis-img"
@@ -75,7 +75,7 @@
     </mat-card-subtitle>
     <app-loading-spinner *ngIf="isLoading2"></app-loading-spinner>
     <mat-card-content data-cy="ratios-section" class="ratios-column" *ngIf="!isLoading2">
-      <form data-cy="ratios-inputs" [formGroup]="ratiosFormGroup" (submit)="saveRatiosValues()"
+      <form data-cy="ratios-inputs" [formGroup]="ratiosFormGroup"  (submit)="saveRatiosValues()"
         class="asset-ratios-table" name="ratio-analysis">
         <table data-cy="ratios-input-table" mat-table [dataSource]="assetAnalysis.ratiosArray">
           <ng-container matColumnDef="parameterName">
