@@ -41,26 +41,24 @@
                 </tr>
                 <tr class="no-highlight">
                   <td class="file-upload" id="file-upload-cell-upload">
-                    <input #inputFile type="file" (change)="onImgSelected($event)" hidden>
-                    <div class="img-prv-btn">
-                      <button *ngIf="imagePreview === null || !imagePreview" id="select-file-button" mat-stroked-button
-                        color="primary" (click)="inputFile.click()">Input</button>
-                      <img id="image-prv" data-cy="image-prv" *ngIf="imagePreview !== null && imagePreview"
-                        [src]="imagePreview" [alt]="" (click)="inputFile.click();">
-                    </div>
-                  </td>
-                  <td class="file-upload" id="file-upload-cell-save">
-                  </td>
+                    <form [formGroup]="imageFormGroup">
+                      <input #inputFile type="file" (change)="onImgSelected($event)" hidden>
+                      <div class="img-prv-btn">
+                        <img class="image-prv retrieved-img" id="analysis-img" data-cy="analysis-img"
+                          *ngIf="imageFilePath!==''" [src]="imageFilePath" [alt]="imageFilePath"
+                          (click)="inputFile.click()">
+                        <button *ngIf="imageFilePath!=='' && (imagePreview === null || !imagePreview)"
+                          id="select-file-button" mat-stroked-button color="primary"
+                          (click)="inputFile.click()">Input</button>
+                        <img class="image-prv new-img" data-cy="image-prv" *ngIf="imagePreview !== null && imagePreview"
+                          [src]="imagePreview" [alt]="" (click)="inputFile.click();">
+                      </div>
+                    </form>
                   <td class="file-upload" id="file-upload-cell-save">
                     <button id="save-img-button" *ngIf="!hideImageSaveBtn" mat-raised-button color="primary"
                       (click)="uploadAnalysisImage()">Save</button>
                   </td>
                 </tr>
-              </td>
-              <td>
-                <div>here img 
-                  <img id="analysis-img" data-cy="analysis-img"
-                    [src]="imageFilePath" [alt]="imageFilePath"></div>
               </td>
             </table>
           </span>
