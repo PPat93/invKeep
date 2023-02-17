@@ -75,7 +75,7 @@
     </mat-card-subtitle>
     <app-loading-spinner *ngIf="isLoading2"></app-loading-spinner>
     <mat-card-content data-cy="ratios-section" class="ratios-column" *ngIf="!isLoading2">
-      <form data-cy="ratios-inputs" [formGroup]="ratiosFormGroup"  (submit)="saveRatiosValues()"
+      <form data-cy="ratios-inputs" *ngIf="ratiosFormGroup" [formGroup]="ratiosFormGroup"  (submit)="saveRatiosValues()"
         class="asset-ratios-table" name="ratio-analysis">
         <table data-cy="ratios-input-table" mat-table [dataSource]="assetAnalysis.ratiosArray">
           <ng-container matColumnDef="parameterName">
