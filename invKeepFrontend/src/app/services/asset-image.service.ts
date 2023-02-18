@@ -14,10 +14,14 @@ export class AssetImageService {
   constructor(private http: HttpClient) { }
 
   getImageFile(assetId: string) {
-    this.http.get<{ message: string, imgPath?: string }>(`http://localhost:3000/api/ratio-analysis/${assetId}/images`)
+    this.http.get<{ message: string, imgPath: string }>(`http://localhost:3000/api/ratio-analysis/${assetId}/images`)
       .subscribe(receivedPath => {
-
         this.analysisImageGet.next(receivedPath);
+      }, 
+      //  handling case of 404 not found if no image was previously saved or if it was removed. In that case, only object from BE is passed
+      err => {
+        if (err.status === 404)
+          return this.analysisImageGet.next(err.error);
       });
     return this.analysisImageGet;
   }
