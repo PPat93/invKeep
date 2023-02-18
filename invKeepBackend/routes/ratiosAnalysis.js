@@ -197,7 +197,8 @@ router.get('/:id/images', (req, res) => {
 
             //  if no errors occurred and a record was not found, return 404 Not Found status along with a message only
             res.status(404).json({
-                message: 'Asset image not found.'
+                message: 'Asset image not found.',
+                imgPath: ''
             });
         }
         //  if any error occurred, log it in server console
