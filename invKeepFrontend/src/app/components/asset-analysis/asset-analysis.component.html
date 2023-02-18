@@ -45,9 +45,10 @@
                       <input #inputFile type="file" (change)="onImgSelected($event)" hidden>
                       <div class="img-prv-btn">
                         <img class="image-prv retrieved-img" id="analysis-img" data-cy="analysis-img"
-                          *ngIf="imageFilePath!==''" [src]="imageFilePath" [alt]="imageFilePath"
-                          (click)="inputFile.click()">
-                        <button *ngIf="imageFilePath!=='' && (imagePreview === null || !imagePreview)"
+                          *ngIf="(imageFilePath!=='' || imageFilePath!==undefined) && (imagePreview === null || !imagePreview)"
+                          [src]="imageFilePath" [alt]="" (click)="inputFile.click()">
+                        <button
+                          *ngIf="(imageFilePath==='' || imageFilePath===undefined)&& (imagePreview === null || !imagePreview)"
                           id="select-file-button" mat-stroked-button color="primary"
                           (click)="inputFile.click()">Input</button>
                         <img class="image-prv new-img" data-cy="image-prv" *ngIf="imagePreview !== null && imagePreview"
@@ -75,7 +76,7 @@
     </mat-card-subtitle>
     <app-loading-spinner *ngIf="isLoading2"></app-loading-spinner>
     <mat-card-content data-cy="ratios-section" class="ratios-column" *ngIf="!isLoading2">
-      <form data-cy="ratios-inputs" *ngIf="ratiosFormGroup" [formGroup]="ratiosFormGroup"  (submit)="saveRatiosValues()"
+      <form data-cy="ratios-inputs" *ngIf="ratiosFormGroup" [formGroup]="ratiosFormGroup" (submit)="saveRatiosValues()"
         class="asset-ratios-table" name="ratio-analysis">
         <table data-cy="ratios-input-table" mat-table [dataSource]="assetAnalysis.ratiosArray">
           <ng-container matColumnDef="parameterName">
