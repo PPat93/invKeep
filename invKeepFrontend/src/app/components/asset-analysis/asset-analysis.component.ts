@@ -67,6 +67,7 @@ export class AssetAnalysisComponent implements OnInit {
   //  retrieved manually from ratios FormGroup (ratiosFormGroup)
   inputErrorsArray: object[] = [];
 
+  //  variables holding status of any loading spinners that can be shown on the page
   isLoading1: boolean = false;
   isLoading2: boolean = false;
   isLoadingImg: boolean = false;
@@ -104,20 +105,25 @@ export class AssetAnalysisComponent implements OnInit {
       });
     });
 
-
+    //  init section retrieving image file from the backend, if it is returned, img path is assigned to the imageFilePath variable
+    //  in case that file is not found, empty string is assigned. At the end of this part, the loading spinner is turned off
     this.AssetImageService.getImageFile(this.assetId);
     this.ratiosImageSub = this.AssetImageService.getImageFileGetListener()
       .subscribe(retrievedImage => {
         this.imageFilePath = retrievedImage.imgPath;
         this.isLoadingImg = false;
       });
+
+    //  init section retrieving asset ratios values from the backend, both asset ratios values and asset ratios analysis are retrieved here.
+    //  createFormGroups are responsible for creating and initializing all FormGroups on analysis page - both ratios FormGroup and image analysis
+    //  FormGroup. Eventuall, after all of these steps, loading spinner is hidden and the table is displayed     
     this.AssetRatiosService.getAssetRatiosValues(this.assetId);
     this.ratiosSub = this.AssetRatiosService.getRatiosUpdateListener()
       .subscribe((ratiosSubscribed: AssetAndIndicatorsAnlysis) => {
-        this.isLoading2 = false;
         this.assetAnalysis = ratiosSubscribed;
         this.analyzedAssetRatios = ratiosSubscribed.analyzedData;
         this.createFormGroups(this.assetAnalysis.ratiosArray);
+        this.isLoading2 = false;
       });
   }
 
