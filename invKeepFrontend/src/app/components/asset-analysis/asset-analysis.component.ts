@@ -101,9 +101,7 @@ export class AssetAnalysisComponent implements OnInit {
         this.assetMainDetails = singleAsset.payload;
       });
     });
-    this.AssetImageService.getImageFile(this.assetId).subscribe(retrievedImage => {
-      this.imageFilePath = retrievedImage.imgPath;
-    })
+    this.AssetImageService.getImageFile(this.assetId);
     this.ratiosImageSub = this.AssetImageService.getImageFileGetListener()
       .subscribe(retrievedImage => {
         this.isLoading2 = false;
