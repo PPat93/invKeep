@@ -69,6 +69,7 @@ export class AssetAnalysisComponent implements OnInit {
 
   isLoading1: boolean = false;
   isLoading2: boolean = false;
+  isLoadingImg: boolean = false;
 
   //  Variable controlling visability of the Image Save Button
   hideImageSaveBtn: boolean = true;
@@ -94,6 +95,7 @@ export class AssetAnalysisComponent implements OnInit {
 
     this.isLoading1 = true;
     this.isLoading2 = true;
+    this.isLoadingImg = true;
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       this.assetId = paramMap.get(`assetId`);
       this.AssetService.getSingleAsset(this.assetId).subscribe(singleAsset => {
@@ -101,12 +103,14 @@ export class AssetAnalysisComponent implements OnInit {
         this.assetMainDetails = singleAsset.payload;
       });
     });
+
+
     this.AssetImageService.getImageFile(this.assetId);
     this.ratiosImageSub = this.AssetImageService.getImageFileGetListener()
       .subscribe(retrievedImage => {
-        this.isLoading2 = false;
         this.imageFilePath = retrievedImage.imgPath;
-      })
+        this.isLoadingImg = false;
+      });
     this.AssetRatiosService.getAssetRatiosValues(this.assetId);
     this.ratiosSub = this.AssetRatiosService.getRatiosUpdateListener()
       .subscribe((ratiosSubscribed: AssetAndIndicatorsAnlysis) => {
