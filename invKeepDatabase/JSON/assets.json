@@ -2,4 +2,3 @@
 {"_id":{"$oid":"63069d317e6ed215eac4e20a"},"id":"63069d317e6ed215eac4e20a","assetName":"Nio","assetSymbol":"NIO","amount":123,"buyPrice":5.75,"currency":"¥","purchaseDate":"-","__v":0}
 {"_id":{"$oid":"63069d587e6ed215eac4e220"},"id":"63069d587e6ed215eac4e220","assetName":"Chesapeake Energy","assetSymbol":"CHK","amount":512,"buyPrice":0.472,"currency":"$","purchaseDate":"11/07/2022","__v":0}
 {"_id":{"$oid":"63069d8c7e6ed215eac4e236"},"id":"63069d8c7e6ed215eac4e236","assetName":"Comerica","assetSymbol":"CMA","amount":78,"buyPrice":53.4,"currency":"$","purchaseDate":"05/07/2020","__v":0}
-{"_id":{"$oid":"63069dbe7e6ed215eac4e24c"},"id":"63069dbe7e6ed215eac4e24c","assetName":"Apple","assetSymbol":"AAPL","amount":2,"buyPrice":1684.75,"currency":"€","purchaseDate":"-","__v":0}
