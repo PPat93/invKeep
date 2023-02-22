@@ -16,7 +16,8 @@ th {
 }
 
 .interval-summary {
-  max-width: 600px; /* feel free to include any other value */
+  max-width: 600px;
+  /* feel free to include any other value */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -58,6 +59,11 @@ button {
   font-size: large;
 }
 
+mat-card-actions {
+  padding-left: 1%;
+  padding-bottom: 1%;
+}
+
 .details-button {
   display: block;
   margin: auto;
@@ -81,6 +87,7 @@ button {
   text-align: left !important;
   width: 100px;
 }
+
 .parameter-value {
   width: 100px !important;
 }
@@ -133,4 +140,60 @@ mat-progress-bar {
 .input-ratio-value,
 .single-asset-ratio {
   max-width: 35px;
+}
+
+#asset-main-details {
+  display: inline-block;
+}
+
+#file-upload {
+  display: inline-block;
+  width: 101%;
+  border-width: 2px;
+  border-color: #673ab7;
+  border-style: dashed;
+  padding: 1%;
+}
+
+#width-wrap-main-details {
+  display: inline-grid;
+  grid-template-columns: 3fr 1fr;
+  padding: 0.5%;
+}
+
+// #file-upload-cell-upload {
+.file-upload {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+#upload-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 8.5px 0 0 -41px;
+}
+
+#select-file-button {
+  margin: 8.5px 0 0 0;
+  
+}
+
+tr.no-highlight:hover {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+#file-upload-cell-description {
+  font-weight: 500;
+}
+
+.image-prv {
+  max-width: 5rem;
+  max-height: 5rem;
+  cursor: pointer;
+}
+
+.img-prv-btn {
+  height: 100%;
 }

@@ -10,48 +10,38 @@ export class AssetRatiosService {
 
   private updateAssetRatios = new Subject<AssetAndIndicatorsAnlysis>();
   private ratiosAnalysisEdit = new Subject<AnalyzedData[]>();
-  ratiosReturn2: {
-    assetId: string,
-    ratiosArray: { parameterName: any; valueNum: number; unit: string }[],
-    analyzedData: AnalyzedData[]
-  };
+
   ratiosReturn: {
     assetId: string,
-    ratiosArray: { parameterName: any; valueNum: number; unit: string }[],
+    ratiosArray: { parameterName: string; valueNum: number; unit: string }[],
     analyzedData: AnalyzedData[]
   };
 
   constructor(private http: HttpClient) {
   }
 
+  processedRatios: { parameterName: string, valueNum: number, unit: string }[] = [];
+
   getAssetRatiosValues(assetId: string) {
     this.http.get<{ message: string, retrievedRatios: AssetRatiosValues, analyzedData: AnalyzedData[] }>(`http://localhost:3000/api/ratio-analysis/${assetId}`)
       .pipe(map((returnedRatios) => {
+        // Reprocessing returned ratios, so it has a proper structure needed by frontend. 
         return {
           assetId: returnedRatios.retrievedRatios.assetId,
-          ratiosArray: returnedRatios.retrievedRatios.ratiosArray.map((ratios) => {
-            return [
-              // TODO add dynamic for loop for each ratio instead of forced way
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[0].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[0].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[0].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[1].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[1].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[1].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[2].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[2].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[2].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[3].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[3].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[3].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[4].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[4].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[4].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[5].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[5].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[5].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[6].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[6].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[6].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[7].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[7].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[7].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[8].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[8].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[8].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[9].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[9].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[9].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[10].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[10].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[10].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[11].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[11].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[11].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[12].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[12].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[12].unit },
-              { parameterName: returnedRatios.retrievedRatios.ratiosArray[13].parameterName, valueNum: returnedRatios.retrievedRatios.ratiosArray[13].valueNum, unit: returnedRatios.retrievedRatios.ratiosArray[13].unit }
-            ]
+          ratiosArray: returnedRatios.retrievedRatios.ratiosArray.map(ratio => {
+            this.processedRatios.push({ parameterName: ratio.parameterName, valueNum: ratio.valueNum, unit: ratio.unit })
+            return this.processedRatios
           }),
           analyzedData: returnedRatios.analyzedData
+          //  TODO - 1 - not urgent -> Somewhere units disappeared and in database there were ot existing anymore. Have no idea where it happened, it might be somewhere
+          //  during app development or during migration from windows. Nevertheless, to be checked and be sure that they won't be lost anymore
+          //  Maybe addition of some validation before request send or automatic addition of units 
         }
       }))
       .subscribe((returnedRatios) => {
+        //  processedRatios variable cleaning after processing retrieved ratios array, so after next record 'visiting' previous data
+        //  won't be dslayed and new array will be created on fresh variable
+        this.processedRatios = []
         this.ratiosReturn = {
           assetId: assetId,
           ratiosArray: returnedRatios.ratiosArray[0],
@@ -62,7 +52,7 @@ export class AssetRatiosService {
     return this.updateAssetRatios;
   }
 
-  saveRatiosValues(assetId: string, ratiosValues) {
+  saveRatiosValues(assetId: string, ratiosValues: AssetAndIndicatorsAnlysis) {
     this.http.put<{ message: string, analyzedData: any }>(`http://localhost:3000/api/ratio-analysis/${assetId}`, ratiosValues)
       .subscribe(responseData => {
         this.ratiosAnalysisEdit.next(responseData.analyzedData);
@@ -71,10 +61,10 @@ export class AssetRatiosService {
   }
 
   getRatiosUpdateListener(): Observable<AssetAndIndicatorsAnlysis> {
-    return this.updateAssetRatios.asObservable()
+    return this.updateAssetRatios.asObservable();
   }
 
   getRatiosAnalysisListener(): Observable<AnalyzedData[]> {
-    return this.ratiosAnalysisEdit.asObservable()
+    return this.ratiosAnalysisEdit.asObservable();
   }
 }

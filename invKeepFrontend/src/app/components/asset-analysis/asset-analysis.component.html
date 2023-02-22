@@ -11,28 +11,65 @@
     </mat-card-subtitle>
     <app-loading-spinner *ngIf="isLoading1"></app-loading-spinner>
     <mat-card-content data-cy="asset-analysis-section" class="primary-details" *ngIf="!isLoading1">
-      <table>
-        <tr data-cy="amount" id="amount">
-          <td> Owned quantity:</td>
-          <td class="primary-values">{{assetMainDetails?.amount}}</td>
-        </tr>
-        <tr data-cy="price" id="price">
-          <td>Price per share:</td>
-          <td class="primary-values">{{assetMainDetails?.buyPrice}}&nbsp;{{assetMainDetails?.currency}}</td>
-        </tr>
-        <tr data-cy="total-price" id="total-price">
-          <td>Total paid price:</td>
-          <td class="primary-values">{{stockTotalCost()}}&nbsp;{{assetMainDetails?.currency}}</td>
-        </tr>
-        <tr data-cy="date" id="date">
-          <td>Purchase date:</td>
-          <td class="primary-values">{{assetMainDetails?.purchaseDate}}</td>
-        </tr>
-      </table>
+      <div>
+        <span id="width-wrap-main-details">
+          <span id="asset-main-details">
+            <table>
+              <tr data-cy="amount" id="amount">
+                <td> Owned quantity:</td>
+                <td class="primary-values">{{assetMainDetails?.amount}}</td>
+              </tr>
+              <tr data-cy="price" id="price">
+                <td>Price per share:</td>
+                <td class="primary-values">{{assetMainDetails?.buyPrice}}&nbsp;{{assetMainDetails?.currency}}</td>
+              </tr>
+              <tr data-cy="total-price" id="total-price">
+                <td>Total paid price:</td>
+                <td class="primary-values">{{stockTotalCost()}}&nbsp;{{assetMainDetails?.currency}}</td>
+              </tr>
+              <tr data-cy="date" id="date">
+                <td>Purchase date:</td>
+                <td class="primary-values">{{assetMainDetails?.purchaseDate}}</td>
+              </tr>
+            </table>
+          </span>
+          <span id="file-upload">
+            <table>
+              <app-loading-spinner *ngIf="isLoadingImg"></app-loading-spinner>
+              <td *ngIf="!isLoadingImg">
+                <tr class="no-highlight">
+                  <td id="file-upload-cell-description">Upload image file for future analysis:</td>
+                </tr>
+                <tr class="no-highlight">
+                  <td class="file-upload" id="file-upload-cell-upload">
+                    <form *ngIf="imageFormGroup" [formGroup]="imageFormGroup">
+                      <input #inputFile type="file" (change)="onImgSelected($event)" hidden>
+                      <div class="img-prv-btn">
+                        <img class="image-prv retrieved-img" id="analysis-img" data-cy="analysis-img"
+                          *ngIf="(imageFilePath!=='' || imageFilePath!==undefined) && (imagePreview === null || !imagePreview)"
+                          [src]="imageFilePath" [alt]="" (click)="inputFile.click()">
+                        <button
+                          *ngIf="(imageFilePath==='' || imageFilePath===undefined)&& (imagePreview === null || !imagePreview)"
+                          id="select-file-button" mat-stroked-button color="primary"
+                          (click)="inputFile.click()">Input</button>
+                        <img class="image-prv new-img" data-cy="image-prv" *ngIf="imagePreview !== null && imagePreview"
+                          [src]="imagePreview" [alt]="" (click)="inputFile.click();">
+                      </div>
+                    </form>
+                  <td class="file-upload" id="file-upload-cell-save">
+                    <button id="save-img-button" *ngIf="!hideImageSaveBtn" mat-raised-button color="primary"
+                      (click)="uploadAnalysisImage()">Save</button>
+                  </td>
+                </tr>
+              </td>
+            </table>
+          </span>
+        </span>
+      </div>
+      <mat-card-actions>
+        <a class="edit" data-cy="edit" mat-stroked-button color="primary" [routerLink]="['/edit', assetId]">Edit</a>
+      </mat-card-actions>
     </mat-card-content>
-    <mat-card-actions>
-      <a class="edit" data-cy="edit" mat-stroked-button color="primary" [routerLink]="['/edit', assetId]">Edit</a>
-    </mat-card-actions>
     <mat-divider></mat-divider>
     <br>
     <mat-card-subtitle class="subtitle">
@@ -40,7 +77,7 @@
     </mat-card-subtitle>
     <app-loading-spinner *ngIf="isLoading2"></app-loading-spinner>
     <mat-card-content data-cy="ratios-section" class="ratios-column" *ngIf="!isLoading2">
-      <form data-cy="ratios-inputs" (submit)="saveRatiosValues(ratiosInput)" ngForm #ratiosInput="ngForm"
+      <form data-cy="ratios-inputs" *ngIf="ratiosFormGroup" [formGroup]="ratiosFormGroup" (submit)="saveRatiosValues()"
         class="asset-ratios-table" name="ratio-analysis">
         <table data-cy="ratios-input-table" mat-table [dataSource]="assetAnalysis.ratiosArray">
           <ng-container matColumnDef="parameterName">
@@ -54,10 +91,8 @@
               <mat-form-field class="input-ratio-value">
                 <input class="single-asset-ratio"
                   [attr.data-cy]="ratio.parameterName.replaceAll(' ', '-').toLowerCase() + '-input'"
-                  name="r{{ratio.parameterName}}" matInput [ngModel]="ratio.valueNum" value="{{ratio.valueNum}}">
-                <!-- DO NOT REMOVE ABOVE "r" letter from "name" parameter, it breaks Ratios Analysis - save functionality
-                   because of error that appears if input field has name set only by
-                   two way binding it was needed to add a letter that is not dynamic. Here I add it -> it is removed in saveRatiosValues -->
+                  name="{{ratio.parameterName.replaceAll(' ', '-').toLowerCase()}}" matInput value="{{ratio.valueNum}}"
+                  [formControlName]="ratio.parameterName.replaceAll(' ', '-').replaceAll('/','-').toLowerCase()">
               </mat-form-field>
             </td>
           </ng-container>
@@ -70,6 +105,7 @@
           <tr data-cy="input-ratios-items-row" class="table-row " mat-row *matRowDef="let row; columns: ratiosColumns">
           </tr>
         </table>
+
         <mat-card-actions>
           <button data-cy="save" mat-raised-button color="primary" type="submit">Save</button>
         </mat-card-actions>
@@ -77,8 +113,7 @@
     </mat-card-content>
 
     <mat-card-content *ngIf="!isLoading2" class="ratio-analysis">
-      <table data-cy="ratios-analysis-table" class="analysis-table" mat-table
-        [dataSource]="analyzedAssetRatios">
+      <table data-cy="ratios-analysis-table" class="analysis-table" mat-table [dataSource]="analyzedAssetRatios">
         <ng-container matColumnDef="name">
           <th data-cy="analysis-ratios-name-header" mat-header-cell *matHeaderCellDef>Name</th>
           <td data-cy="analysis-ratios-name-cell" class="parameter-name" mat-cell *matCellDef="let analysis">
@@ -116,7 +151,8 @@
           <th data-cy="analysis-ratios-additional-info-header" mat-header-cell *matHeaderCellDef>Additional Info</th>
           <td data-cy="analysis-ratios-additional-info-cell" class="info-button-column" mat-cell
             *matCellDef="let analysis">
-            <button [attr.data-cy]="sanitizeRatioName(analysis.name)+'-details-button'" class="details-button" mat-raised-button (click)="openRatioDetails(analysis.name)" color="accent">Ratio
+            <button [attr.data-cy]="sanitizeHTMLRatioName(analysis.name)+'-details-button'" class="details-button"
+              mat-raised-button (click)="openRatioDetails(analysis.name)" color="accent">Ratio
               Details</button>
           </td>
         </ng-container>
@@ -125,5 +161,16 @@
           *matRowDef="let row; columns: ratiosAnalysisColumns"></tr>
       </table>
     </mat-card-content>
+
+    <!-- Errors from ratio input fields are displayed here, depending from inputErrorsArray objects -->
+    <div *ngIf="inputErrorsArray[0]!==undefined" color="warn" class="alert alert-danger">
+      <mat-error *ngIf="!inputErrorsArray.minLength">
+        {{tempErrorString}}
+      </mat-error>
+      <mat-error *ngIf="!inputErrorsArray.pattern">
+        {{tempErrorString}}
+      </mat-error>
+    </div>
+
   </div>
 </mat-card>

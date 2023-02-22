@@ -15,7 +15,7 @@ describe(`Assets deletion`, () => {
         MainPage.deleteAsset(assetName);
     })
 
-    // TODO add negative scenarios
-    // TODO it(`Delete non-existing asset`, () => {})
-    // TODO it(`Delete already deleted asset`, () => {})
+    // TODO - 6 - somewhat important - add negative scenarios
+    // it(`Delete non-existing asset`, () => {})
+    // it(`Delete already deleted asset`, () => {})
 })

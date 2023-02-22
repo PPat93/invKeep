@@ -55,9 +55,9 @@ describe(`Assets creation`, () => {
         //  Assert
         cy.getDataCyElement(MainPage.dataCyElementAsset(assetName), 4000).then(createdAsset => {
 
-            MainPage.assertAssetProperties(createdAsset, assetName, `TASbl`, `15`, `1.45 ${AssetCurrency.euro}`, `25/03/2015`);
+            MainPage.assertAssetProperties(createdAsset, assetName, `TASbl`, `15`, `1.45 ${AssetCurrency.euro}`, `25.03.2015`);
         })
     })
 })
 
-// TODO add negative scenarios
+// TODO - 6 - somewhat important - add negative scenarios

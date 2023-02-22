@@ -14,7 +14,7 @@ const ROCERatio = require('./ratiosClasses/ROCERatio');
 const ROERatio = require('./ratiosClasses/ROERatio');
 const CAPERatio = require('./ratiosClasses/CAPERatio');
 
-// TODO add some group import used multiple times like index.js
+// TODO - 1 - not urgent - add some group import used multiple times like index.js
 
 module.exports = class AllRatios {
     CAPERatio;
@@ -35,7 +35,7 @@ module.exports = class AllRatios {
     constructor(ratiosAnalysisArray) {
         this.CAPERatio = new CAPERatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.cape_ratio)).valueNum);
         this.objDERatio = new DERatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.de_ratio)).valueNum);
-        this.objDividendYieldRatio = new DividendYieldRatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.dividend_yield)).valueNum);
+        this.objDividendYieldRatio = new DividendYieldRatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.dividend_yield_ratio)).valueNum);
         this.objDPRRatio = new DPRRatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.dpr_ratio)).valueNum);
         this.objEPSRatio = new EPSRatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.eps_ratio)).valueNum);
         this.objEVEBITDARatio = new EVEBITDARatio((sharedJS.searchObject(ratiosAnalysisArray, sharedJS.RatiosNames.ev_ebitda_ratio)).valueNum);

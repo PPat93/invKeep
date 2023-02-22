@@ -10,5 +10,5 @@ export class LoadingSpinnerComponent {
 
     isSpinnerDisplayed: boolean = true;
 
-    //TODO: timeout 50s to be added
+    //TODO: - 4 - now not that important - timeout 50s to be added
 }
