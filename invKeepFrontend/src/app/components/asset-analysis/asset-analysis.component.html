@@ -33,31 +33,31 @@
               </tr>
             </table>
           </span>
-          <span id="file-upload">
+          <span id="file-upload" data-cy="file-upload-section">
             <table>
               <app-loading-spinner *ngIf="isLoadingImg"></app-loading-spinner>
               <td *ngIf="!isLoadingImg">
                 <tr class="no-highlight">
-                  <td id="file-upload-cell-description">Upload image file for future analysis:</td>
+                  <td id="file-upload-cell-description" data-cy="file-upload-cell-description">Upload image file for future analysis:</td>
                 </tr>
                 <tr class="no-highlight">
-                  <td class="file-upload" id="file-upload-cell-upload">
+                  <td class="file-upload" id="file-upload-cell-upload" data-cy="file-upload-cell-upload">
                     <form *ngIf="imageFormGroup" [formGroup]="imageFormGroup">
-                      <input #inputFile type="file" (change)="onImgSelected($event)" hidden>
+                      <input #inputFile type="file" data-cy="file-upload-input-hidden" (change)="onImgSelected($event)" hidden>
                       <div class="img-prv-btn">
-                        <img class="image-prv retrieved-img" id="analysis-img" data-cy="analysis-img"
+                        <img class="image-prv retrieved-img" id="file-upload-analysis-img" data-cy="file-upload-analysis-img"
                           *ngIf="(imageFilePath!=='' || imageFilePath!==undefined) && (imagePreview === null || !imagePreview)"
                           [src]="imageFilePath" [alt]="" (click)="inputFile.click()">
                         <button
                           *ngIf="(imageFilePath==='' || imageFilePath===undefined)&& (imagePreview === null || !imagePreview)"
-                          id="select-file-button" mat-stroked-button color="primary"
+                          id="select-file-button" data-cy="file-upload-select-file-button" mat-stroked-button color="primary"
                           (click)="inputFile.click()">Input</button>
-                        <img class="image-prv new-img" data-cy="image-prv" *ngIf="imagePreview !== null && imagePreview"
+                        <img class="image-prv new-img" data-cy="file-upload-image-prv" *ngIf="imagePreview !== null && imagePreview"
                           [src]="imagePreview" [alt]="" (click)="inputFile.click();">
                       </div>
                     </form>
-                  <td class="file-upload" id="file-upload-cell-save">
-                    <button id="save-img-button" *ngIf="!hideImageSaveBtn" mat-raised-button color="primary"
+                  <td class="file-upload" id="file-upload-cell-save" data-cy="file-upload-cell-save">
+                    <button id="save-img-button" data-cy="file-upload-save-img-button" *ngIf="!hideImageSaveBtn" mat-raised-button color="primary"
                       (click)="uploadAnalysisImage()">Save</button>
                   </td>
                 </tr>
