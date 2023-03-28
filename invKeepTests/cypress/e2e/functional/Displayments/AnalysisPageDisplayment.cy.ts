@@ -26,7 +26,7 @@ describe(`Visibility of Analysis Page elements`, () => {
         })
     })
 
-    it(`Ratios Analysis - input table displayment - Name column`, () => {
+    it(`Ratios Analysis - Input table displayment - Name column`, () => {
 
         // Arrange, Act & Assert
         cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisInputNameCell).then(allCells => {
@@ -52,7 +52,7 @@ describe(`Visibility of Analysis Page elements`, () => {
         })
     })
 
-    it(`Ratios Analysis - input table displayment - Unit column`, () => {
+    it(`Ratios Analysis - Input table displayment - Unit column`, () => {
 
         let units: string[] = [`%`, `-`, `€`, `$`, `¥`, `£`];
 
@@ -186,5 +186,11 @@ describe(`Visibility of Analysis Page elements`, () => {
                 .find(`span`)
                 .should(`contain.text`, `Ratio Details`);
         })
+    })
+
+    it(`Ratios Analysis - File upload section - Main elements `, () => {
+        
+        // Arrange, Act & Assert
+
     })
 })

@@ -45,7 +45,7 @@
                     <form *ngIf="imageFormGroup" [formGroup]="imageFormGroup">
                       <input #inputFile type="file" data-cy="file-upload-input-hidden" (change)="onImgSelected($event)" hidden>
                       <div class="img-prv-btn">
-                        <img class="image-prv retrieved-img" id="file-upload-analysis-img" data-cy="file-upload-analysis-img"
+                        <img class="image-prv retrieved-img" id="file-upload-retrieved-img" data-cy="file-upload-retrieved-img"
                           *ngIf="(imageFilePath!=='' || imageFilePath!==undefined) && (imagePreview === null || !imagePreview)"
                           [src]="imageFilePath" [alt]="" (click)="inputFile.click()">
                         <button

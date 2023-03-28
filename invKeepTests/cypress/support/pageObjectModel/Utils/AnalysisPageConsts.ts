@@ -14,6 +14,16 @@ class AnalysisPageConsts {
 
     readonly editBtn = `edit`;
     readonly saveBtn = `save`;
+    //-------------------------------------------------------------------------------------------------------------------------------------
+    //  FILE UPLOAD -----------------------------------------------------------------------------------------------------------------------
+    readonly fileUploadSection = `file-upload-section`;
+    readonly fileUploadCellDescription = `file-upload-cell-description`;
+    readonly fileUploadCellUpload = `file-upload-cell-upload`;
+    readonly fileUploadInputHidden = `file-upload-input-hidden`;
+    readonly fileUploadRetrievedImage = `file-upload-retrieved-img`;
+    readonly fileUploadSelectFileBtn = `file-upload-select-file-button`;
+    readonly fileUploadImagePreview = `file-upload-image-prv`;
+    readonly fileUploadSaveButton = `file-upload-cell-save`;
 
     //-------------------------------------------------------------------------------------------------------------------------------------
     //  INPUT TABLE -----------------------------------------------------------------------------------------------------------------------
