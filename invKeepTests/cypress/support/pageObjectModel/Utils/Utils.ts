@@ -24,6 +24,11 @@ class Utils {
     readonly loadingSpinner = `loading-spinner`;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //  STYLE                       ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    readonly stylePrimaryColor = `rgb(103, 58, 183)`;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //  METHODS                     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     visitPage(pageUrl: string) {
         cy.visit(pageUrl);
@@ -45,6 +50,14 @@ class Utils {
 
     sanitizeRatioName(name) {
         return name.replace(/\s+/g, '-').replace(/\//g, '-').toLowerCase();
+    }
+
+    assertButtonPrimaryStroked(btnDataCyValue: string, btnText: string) {
+        cy.getDataCyElement(btnDataCyValue)
+            .should(`be.visible`)
+            .and(`have.text`, btnText)
+            .and(`have.attr`, `color`, `primary`)
+            .and(`have.attr`, `mat-stroked-button`);
     }
 }
 
