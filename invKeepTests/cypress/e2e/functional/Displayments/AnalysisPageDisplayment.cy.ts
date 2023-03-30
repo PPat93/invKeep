@@ -218,7 +218,7 @@ describe(`Visibility of Analysis Page elements`, () => {
             .should(`not.exist`);
     })
 
-    it(`Ratios Analysis - File upload section - Elements displayment after file attachment and removal`, () => {
+    it(`Ratios Analysis - File upload section - Elements displayment after file attachment`, () => {
 
         // Arrange
         cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)

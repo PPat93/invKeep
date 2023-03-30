@@ -5,6 +5,8 @@ import Utils, { AssetCurrency } from "../../../support/pageObjectModel/Utils/Uti
 describe(`Analysis Ratios saving`, () => {
 
     let assetName: string = ``;
+    let correctFileExtensions = [`png`, `jpg`, `jpeg`];
+    let fileNames = [`testImg.${correctFileExtensions[0]}`, `testImg2.${correctFileExtensions[1]}`, `testImg3.${correctFileExtensions[2]}`];
 
     beforeEach(`Create test asset`, () => {
 
@@ -22,14 +24,33 @@ describe(`Analysis Ratios saving`, () => {
         Utils.teardownAssets(`TestAsset`);
     })
 
-    it(`Ratios Analysis - Correct file upload`, () => {
+    fileNames.forEach((singleFile, index) => {
+        it(`Ratios Analysis - Correct file upload - *.${correctFileExtensions[index]} extension`, () => {
 
-        //  Arrange
-        
-        //  Act 
+            //  Arrange 
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+                .selectFile(`cypress/fixtures/imageFileUpload/valid/${singleFile}`, { force: true });
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+                .should(`be.visible`);
+            cy.intercept(`POST`, `images`).as(`fileUploadRequest`);
 
-        //  Assert
-        
+            // Act
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+                .click();
+
+            //  Assert
+            cy.wait(`@fileUploadRequest`).then(intercept => {
+                expect(intercept.response.statusCode).equal(201);
+                expect(intercept.response.body).have.property(`message`, `File uploaded successfully.`);
+                expect(intercept.response.body).have.property(`imgPath`);
+
+            })
+            
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+                .should(`be.visible`);
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+                .should(`not.exist`);
+
+        })
     })
-
 })
