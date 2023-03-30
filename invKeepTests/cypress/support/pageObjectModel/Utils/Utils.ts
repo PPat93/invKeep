@@ -25,8 +25,9 @@ class Utils {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //  STYLE                       ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     readonly stylePrimaryColor = `rgb(103, 58, 183)`;
+    readonly strokedTypeBtn = `mat-stroked-button`;
+    readonly raisedTypeBtn = `mat-raised-button`;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //  METHODS                     ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,12 +53,12 @@ class Utils {
         return name.replace(/\s+/g, '-').replace(/\//g, '-').toLowerCase();
     }
 
-    assertButtonPrimaryStroked(btnDataCyValue: string, btnText: string) {
+    assertButton(btnDataCyValue: string, btnType: string, btnText: string) {
         cy.getDataCyElement(btnDataCyValue)
             .should(`be.visible`)
             .and(`have.text`, btnText)
             .and(`have.attr`, `color`, `primary`)
-            .and(`have.attr`, `mat-stroked-button`);
+            .and(`have.attr`, btnType);
     }
 }
 

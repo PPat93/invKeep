@@ -188,7 +188,7 @@ describe(`Visibility of Analysis Page elements`, () => {
         })
     })
 
-    it.only(`Ratios Analysis - File upload section - Main elements visible at the default state`, () => {
+    it(`Ratios Analysis - File upload section - Main elements visible at the default state`, () => {
 
         // Arrange, Act & Assert
         cy.getDataCyElement(AnalysisPageConsts.fileUploadSection)
@@ -202,19 +202,36 @@ describe(`Visibility of Analysis Page elements`, () => {
             .should(`be.visible`);
         cy.getDataCyElement(AnalysisPageConsts.fileUploadCellSave)
             .should(`exist`);
-        Utils.assertButtonPrimaryStroked(AnalysisPageConsts.fileUploadSelectFileBtn, `Input`);
+        Utils.assertButton(AnalysisPageConsts.fileUploadSelectFileBtn, Utils.strokedTypeBtn, `Input`);
     })
 
-    it.only(`Ratios Analysis - File upload section - Lack or invisibility of some upload elements at the default state`, () => {
+    it(`Ratios Analysis - File upload section - Lack or invisibility of some upload elements at the default state`, () => {
 
         // Arrange, Act & Assert
-        cy.get(`[data-cy="${AnalysisPageConsts.fileUploadInputHidden}"]`)
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
             .should(`not.be.visible`);
-        cy.get(`[data-cy="${AnalysisPageConsts.fileUploadRetrievedImage}"]`)
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadRetrievedImage)
             .should(`not.be.visible`);
-        cy.get(`[data-cy="${AnalysisPageConsts.fileUploadImagePreview}"]`)
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
             .should(`not.exist`);
-        cy.get(`[data-cy="${AnalysisPageConsts.fileUploadSaveButton}"]`)
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+            .should(`not.exist`);
+    })
+
+    it(`Ratios Analysis - File upload section - Elements displayment after file attachment and removal`, () => {
+
+        // Arrange
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+            .selectFile(`cypress/fixtures/imageFileUpload/valid/testImg.png`, { force: true });
+
+        //Act & Assert
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSelectFileBtn)
+            .should(`not.exist`)
+        Utils.assertButton(AnalysisPageConsts.fileUploadSaveButton, Utils.raisedTypeBtn, `Save`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+            .should(`be.visible`)
+            .and(`have.attr`, `src`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadRetrievedImage)
             .should(`not.exist`);
     })
 })

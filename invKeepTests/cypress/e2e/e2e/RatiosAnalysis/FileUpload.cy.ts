@@ -1,10 +1,10 @@
 import MainPage from "../../../support/pageObjectModel/pageObjects/MainPage";
+import AnalysisPageConsts from "../../../support/pageObjectModel/Utils/AnalysisPageConsts";
 import Utils, { AssetCurrency } from "../../../support/pageObjectModel/Utils/Utils";
 
 describe(`Analysis Ratios saving`, () => {
 
     let assetName: string = ``;
-    let ratiosValues: number[] = [1, 3.4, 23.95];
 
     beforeEach(`Create test asset`, () => {
 
@@ -25,7 +25,7 @@ describe(`Analysis Ratios saving`, () => {
     it(`Ratios Analysis - Correct file upload`, () => {
 
         //  Arrange
-
+        
         //  Act 
 
         //  Assert
