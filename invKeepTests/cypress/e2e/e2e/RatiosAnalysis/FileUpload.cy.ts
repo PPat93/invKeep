@@ -7,14 +7,14 @@ describe(`File upload`, () => {
     let assetName: string = ``;
 
     let correctFileExtensions = [`png`, `jpg`, `jpeg`];
-    let incorrectFileExtensions = [`exe`, `bmp`, `txt`, `pdf`, `xls`, `mp3`, `csv`];
+    let incorrectFileExtensions = [`exe`, `bmp`, `txt`, `pdf`, `xls`, `mp3`, `csv`, `zip`];
 
     let correctFileNames = [`testImg.${correctFileExtensions[0]}`, `testImg2.${correctFileExtensions[1]}`,
         `testImg3.${correctFileExtensions[2]}`];
-    let incorrectFileNames = [`exeFile.${incorrectFileExtensions[0]}`, `bmpImage.${incorrectFileExtensions[1]}`,
+    let incorrectFileNames = [`exeFile.${incorrectFileExtensions[0]}`, `bmpFile.${incorrectFileExtensions[1]}`,
         `txtFile.${incorrectFileExtensions[2]}`, `pdfFile.${incorrectFileExtensions[3]}`,
         `xlsFile.${incorrectFileExtensions[4]}`, `mp3File.${incorrectFileExtensions[5]}`,
-        `csvFile.${incorrectFileExtensions[6]}`];
+        `csvFile.${incorrectFileExtensions[6]}`, `zipFile.${incorrectFileExtensions[7]}`];
 
     beforeEach(`Create test asset`, () => {
 
