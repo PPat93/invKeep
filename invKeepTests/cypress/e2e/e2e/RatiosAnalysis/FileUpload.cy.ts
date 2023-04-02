@@ -10,11 +10,11 @@ describe(`File upload`, () => {
     let incorrectFileExtensions = [`exe`, `bmp`, `txt`, `pdf`, `xls`, `mp3`, `csv`, `zip`];
 
     let correctFileNames = [`testImg.${correctFileExtensions[0]}`, `testImg2.${correctFileExtensions[1]}`,
-        `testImg3.${correctFileExtensions[2]}`];
+    `testImg3.${correctFileExtensions[2]}`];
     let incorrectFileNames = [`exeFile.${incorrectFileExtensions[0]}`, `bmpFile.${incorrectFileExtensions[1]}`,
-        `txtFile.${incorrectFileExtensions[2]}`, `pdfFile.${incorrectFileExtensions[3]}`,
-        `xlsFile.${incorrectFileExtensions[4]}`, `mp3File.${incorrectFileExtensions[5]}`,
-        `csvFile.${incorrectFileExtensions[6]}`, `zipFile.${incorrectFileExtensions[7]}`];
+    `txtFile.${incorrectFileExtensions[2]}`, `pdfFile.${incorrectFileExtensions[3]}`,
+    `xlsFile.${incorrectFileExtensions[4]}`, `mp3File.${incorrectFileExtensions[5]}`,
+    `csvFile.${incorrectFileExtensions[6]}`, `zipFile.${incorrectFileExtensions[7]}`];
 
     beforeEach(`Create test asset`, () => {
 
@@ -92,14 +92,21 @@ describe(`File upload`, () => {
     })
 
     incorrectFileNames.forEach((singleFile, index) => {
-        it(`Ratios Analysis - Inorrect file upload - *.${incorrectFileExtensions[index]} extension`, () => {
+        it(`Ratios Analysis - Incorrect file upload attempt - No file attaching - *.${incorrectFileExtensions[index]} extension`, () => {
 
-            //  Arrange 
+            //  Arrange & Act
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+                .selectFile(`cypress/fixtures/imageFileUpload/invalid/${singleFile}`, { force: true });
 
-            // Act
-            
-            //  Assert
-            
+            // Assert
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+                .should(`not.be.visible`);
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadRetrievedImage)
+                .should(`not.be.visible`);
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+                .should(`not.exist`);
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+                .should(`not.exist`);
         })
     })
 })
