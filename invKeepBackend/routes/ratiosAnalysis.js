@@ -341,26 +341,29 @@ router.delete('/:id/images', (req, res, next) => {
         //  if no errors occurred and a record was found, try to delete a file and return 200OK status if successful
         if (itemFound !== null) {
 
+            //  retrieve file path, sanitize it and extract the file name
             let filePathSanitized = itemFound.filePath.split('/');
             var fileForDeletion = filePathSanitized[filePathSanitized.length - 1]
 
+            //  delete the first item from the file paths document that has the asset id
             AnalysisFilePath.deleteOne({ assetId: req.params.id }).then(() => {
+
+                //  if the file with the extracted above name exists on the server side, delete it from the catalogue
                 if (fs.existsSync('./../invKeepBackend/imageFiles/' + fileForDeletion)) {
                     fs.unlink('./../invKeepBackend/imageFiles/' + fileForDeletion, (err) => {
                         if (err) {
                             console.log("Error occured during deletion of " + fileForDeletion + " file. Error: " + err);
                         } else {
-                            res.status(200).json('Image deleted successfully.');
+                            res.status(200).json({ message: 'Image deleted successfully.' });
                         }
                     });
                 }
             }).catch($e => {
                 console.log('Error with asset image deletion. Error: ' + $e);
             })
-        }
-        else {
-
-            res.status(404).json('Not found');
+        } else {
+            //  for now 404, to be updated with better statuses in the future TODO
+            res.status(404).json({ message: 'Not found' });
         }
     });
 })
