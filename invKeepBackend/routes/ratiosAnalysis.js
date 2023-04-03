@@ -332,4 +332,37 @@ router.post('/:id/images', uploadMiddleware, (req, res, next) => {
     }
 })
 
+//  delete an image file
+router.delete('/:id/images', (req, res, next) => {
+
+    //  try to find a record in AnalysisFilePath that has an id of an asset requested
+    AnalysisFilePath.findOne({ assetId: req.params.id }).then(itemFound => {
+
+        //  if no errors occurred and a record was found, try to delete a file and return 200OK status if successful
+        if (itemFound !== null) {
+
+            let filePathSanitized = itemFound.filePath.split('/');
+            var fileForDeletion = filePathSanitized[filePathSanitized.length - 1]
+
+            AnalysisFilePath.deleteOne({ assetId: req.params.id }).then(() => {
+                if (fs.existsSync('./../invKeepBackend/imageFiles/' + fileForDeletion)) {
+                    fs.unlink('./../invKeepBackend/imageFiles/' + fileForDeletion, (err) => {
+                        if (err) {
+                            console.log("Error occured during deletion of " + fileForDeletion + " file. Error: " + err);
+                        } else {
+                            res.status(200).json('Image deleted successfully.');
+                        }
+                    });
+                }
+            }).catch($e => {
+                console.log('Error with asset image deletion. Error: ' + $e);
+            })
+        }
+        else {
+
+            res.status(404).json('Not found');
+        }
+    });
+})
+
 module.exports = router;
