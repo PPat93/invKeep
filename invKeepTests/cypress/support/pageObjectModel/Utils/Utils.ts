@@ -43,6 +43,7 @@ class Utils {
         cy.apiGetAsset().then(res => {
             res.body.payload.forEach(singleItem => {
                 if (singleItem.assetName.match(assetTemp)) {
+                    cy.apiDeleteAssetFile(singleItem.id);
                     cy.apiDeleteAsset(singleItem.id);
                 }
             })
