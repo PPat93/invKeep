@@ -6,7 +6,7 @@ describe(`File upload`, () => {
 
     let assetName: string = ``;
 
-    let correctFileNames = [`testImg.png`, `testImg2.jpg}`, `testImg3.jpeg`];
+    let correctFileNames = [`testImg.png`, `testImg2.jpg`, `testImg3.jpeg`];
     let incorrectFileNames = [`exeFile.exe`, `bmpFile.bmp`, `txtFile.txt`, `pdfFile.pdf`, `xlsFile.xls`, `mp3File.mp3`, `csvFile.csv`, `zipFile.zip`];
     let disguisedFiles = [`csvPretendingjJPG.jpg`, `pdfPretendingJPEG.jpeg`, `txtPretendingPNG.png`];
 
@@ -81,7 +81,6 @@ describe(`File upload`, () => {
                 .should(`not.exist`);
             cy.getDataCyElement(AnalysisPageConsts.fileUploadSelectFileBtn)
                 .should(`not.exist`);
-
         })
     })
 
@@ -121,5 +120,55 @@ describe(`File upload`, () => {
             cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
                 .should(`not.exist`);
         })
+    })
+
+    it(`Ratios Analysis - Correct file upload - File retrieval after app traversal`, () => {
+
+        //  Arrange 
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+            .selectFile(`cypress/fixtures/imageFileUpload/valid/testImg.png`, { force: true });
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+            .should(`be.visible`);
+
+        cy.intercept(`POST`, `images`).as(`fileUploadRequest`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+            .click();
+
+        cy.wait(`@fileUploadRequest`).then(intercept => {
+            expect(intercept.response.statusCode).equal(201);
+            Cypress.env(`assetFile`).set(assetName, intercept.response.body.imgPath);
+        })
+
+        //  Act
+        Utils.visitPage(Utils.mainPageUrl);
+        cy.get(`.mat-expansion-panel`).first()
+            .click();
+        cy.get(`.details`)
+            .filter(`:visible`)
+            .click();
+
+        Utils.visitPage(Utils.mainPageUrl);
+        cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
+            .click();
+
+        cy.intercept(`GET`, `images`).as(`fileRetrievalRequest`);
+        cy.getDataCyElement(MainPage.dataCyElementDetailsBtn(assetName))
+            .click();
+
+        //  Assert
+        cy.wait(`@fileRetrievalRequest`).then(interceptedData => {
+            expect(interceptedData.response.statusCode).equal(200);
+            expect(interceptedData.response.body.message).equal(`Asset image retrieved.`);
+            expect(interceptedData.response.body.imgPath).equal(Cypress.env(`assetFile`).get(assetName));
+        })
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadRetrievedImage)
+            .should(`be.visible`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+            .should(`not.exist`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+            .should(`not.exist`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSelectFileBtn)
+            .should(`not.exist`);
+
     })
 })
