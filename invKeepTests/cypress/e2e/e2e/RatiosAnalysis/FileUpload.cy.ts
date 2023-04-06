@@ -6,15 +6,9 @@ describe(`File upload`, () => {
 
     let assetName: string = ``;
 
-    let correctFileExtensions = [`png`, `jpg`, `jpeg`];
-    let incorrectFileExtensions = [`exe`, `bmp`, `txt`, `pdf`, `xls`, `mp3`, `csv`, `zip`];
-
-    let correctFileNames = [`testImg.${correctFileExtensions[0]}`, `testImg2.${correctFileExtensions[1]}`,
-    `testImg3.${correctFileExtensions[2]}`];
-    let incorrectFileNames = [`exeFile.${incorrectFileExtensions[0]}`, `bmpFile.${incorrectFileExtensions[1]}`,
-    `txtFile.${incorrectFileExtensions[2]}`, `pdfFile.${incorrectFileExtensions[3]}`,
-    `xlsFile.${incorrectFileExtensions[4]}`, `mp3File.${incorrectFileExtensions[5]}`,
-    `csvFile.${incorrectFileExtensions[6]}`, `zipFile.${incorrectFileExtensions[7]}`];
+    let correctFileNames = [`testImg.png`, `testImg2.jpg}`, `testImg3.jpeg`];
+    let incorrectFileNames = [`exeFile.exe`, `bmpFile.bmp`, `txtFile.txt`, `pdfFile.pdf`, `xlsFile.xls`, `mp3File.mp3`, `csvFile.csv`, `zipFile.zip`];
+    let disguisedFiles = [`csvPretendingjJPG.jpg`, `pdfPretendingJPEG.jpeg`, `txtPretendingPNG.png`];
 
     beforeEach(`Create test asset`, () => {
 
@@ -32,8 +26,8 @@ describe(`File upload`, () => {
         Utils.teardownAssets(`TestAsset`);
     })
 
-    correctFileNames.forEach((singleFile, index) => {
-        it(`Ratios Analysis - Correct file upload - *.${correctFileExtensions[index]} extension`, () => {
+    correctFileNames.forEach(singleFile => {
+        it(`Ratios Analysis - Correct file upload - ${singleFile}`, () => {
 
             //  Arrange 
             cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
@@ -55,8 +49,8 @@ describe(`File upload`, () => {
         })
     })
 
-    correctFileNames.forEach((singleFile, index) => {
-        it(`Ratios Analysis - Correct file upload - Image visibilities *.${correctFileExtensions[index]} extension`, () => {
+    correctFileNames.forEach(singleFile => {
+        it(`Ratios Analysis - Correct file upload - Image visibilities - ${singleFile}`, () => {
 
             //  Arrange 
             cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
@@ -92,11 +86,30 @@ describe(`File upload`, () => {
     })
 
     incorrectFileNames.forEach((singleFile, index) => {
-        it(`Ratios Analysis - Incorrect file upload attempt - No file attaching - *.${incorrectFileExtensions[index]} extension`, () => {
+        it(`Ratios Analysis - Incorrect file upload attempt - No file attaching - ${singleFile}`, () => {
 
             //  Arrange & Act
             cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
                 .selectFile(`cypress/fixtures/imageFileUpload/invalid/${singleFile}`, { force: true });
+
+            // Assert
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+                .should(`not.be.visible`);
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadRetrievedImage)
+                .should(`not.be.visible`);
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+                .should(`not.exist`);
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+                .should(`not.exist`);
+        })
+    })
+
+    disguisedFiles.forEach(singleFile => {
+        it(`Ratios Analysis - Incorrect file upload attempt - Disguised non-image file - ${singleFile}`, () => {
+
+            //  Arrange & Act
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+                .selectFile(`cypress/fixtures/imageFileUpload/invalid/disguised/${singleFile}`, { force: true });
 
             // Assert
             cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
