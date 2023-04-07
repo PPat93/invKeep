@@ -171,4 +171,51 @@ describe(`File upload`, () => {
             .should(`not.exist`);
 
     })
+
+    it.only(`Ratios Analysis - Correct file overwrite upload - Correct file retrieval after file overwritting`, () => {
+
+        //  Arrange 
+        //  upload first file
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+            .selectFile(`cypress/fixtures/imageFileUpload/valid/testImg.png`, { force: true });
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+            .should(`be.visible`);
+
+        cy.intercept(`POST`, `images`).as(`fileUploadRequest`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+            .click();
+
+        cy.wait(`@fileUploadRequest`).then(intercept => {
+            expect(intercept.response.statusCode).equal(201);
+            Cypress.env(`assetFile`).set(assetName, intercept.response.body.imgPath);
+        })
+
+        //  Act
+        //  overwrite old file with new one
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+            .selectFile(`cypress/fixtures/imageFileUpload/valid/testImg2.jpg`, { force: true });
+        cy.intercept(`POST`, `images`).as(`fileOverwrite`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+            .click();
+
+        cy.wait(`@fileOverwrite`).then(intercept => {
+            expect(intercept.response.statusCode).equal(201);
+            Cypress.env(`assetFile`).set(`fileOverwrite`, intercept.response.body.imgPath);
+            expect(Cypress.env(`assetFile`).get(assetName)).not.equal(Cypress.env(`assetFile`).get(`fileOverwrite`));
+        })
+        Utils.visitPage(Utils.mainPageUrl);
+        cy.getDataCyElement(MainPage.dataCyElementAsset(assetName))
+            .click();
+        cy.intercept(`GET`, `images`).as(`fileRetrieval`);
+        cy.getDataCyElement(MainPage.dataCyElementDetailsBtn(assetName))
+            .click();
+
+        //  Assert
+        cy.wait(`@fileRetrieval`).then(intercept => {
+            expect(intercept.response.statusCode).equal(200);
+            Cypress.env(`assetFile`).set(`fileRetrieval`, intercept.response.body.imgPath);
+            expect(Cypress.env(`assetFile`).get(assetName)).not.equal(Cypress.env(`assetFile`).get(`fileRetrieval`));
+            expect(Cypress.env(`assetFile`).get(`fileOverwrite`)).be.equal(Cypress.env(`assetFile`).get(`fileRetrieval`));
+        })
+    })
 })
