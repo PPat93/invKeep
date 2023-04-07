@@ -175,7 +175,6 @@ describe(`File upload`, () => {
     it.only(`Ratios Analysis - Correct file overwrite upload - Correct file retrieval after file overwritting`, () => {
 
         //  Arrange 
-        //  upload first file
         cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
             .selectFile(`cypress/fixtures/imageFileUpload/valid/testImg.png`, { force: true });
         cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
@@ -191,7 +190,6 @@ describe(`File upload`, () => {
         })
 
         //  Act
-        //  overwrite old file with new one
         cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
             .selectFile(`cypress/fixtures/imageFileUpload/valid/testImg2.jpg`, { force: true });
         cy.intercept(`POST`, `images`).as(`fileOverwrite`);
