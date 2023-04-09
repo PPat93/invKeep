@@ -59,15 +59,14 @@
                 <mat-divider></mat-divider>
                 <mat-card-title data-cy="formula-title" class="formula-title dialog-body-content">Formula
                 </mat-card-title>
-                <mat-card-content mat-dialog-content class="formula-text dialog-body-content">
-                    <span>{{ratiosInfos.formula[0]}} = </span>
+                <mat-card-content data-cy="formula-text" mat-dialog-content class="formula-text dialog-body-content">
+                    <span data-cy="formula-left-expression" >{{ratiosInfos.formula[0]}} = </span>
                     <span>
-                        <div style="display:inline-block; min-width: 200px;">
+                        <div data-cy="formula-right-expression" style="display:inline-block; min-width: 200px;">
                             <u>
-                                <div style="display:block; min-width: 200px;">{{ratiosInfos.formula[1]}}</div>
+                                <div data-cy="formula-numerator" style="display:block; min-width: 200px;">{{ratiosInfos.formula[1]}}</div>
                             </u>
-
-                            <div style="display:block; min-width: 200px;">{{ratiosInfos.formula[2]}}</div>
+                            <div data-cy="formula-denominator" style="display:block; min-width: 200px;">{{ratiosInfos.formula[2]}}</div>
                         </div>
                     </span>
                 </mat-card-content>

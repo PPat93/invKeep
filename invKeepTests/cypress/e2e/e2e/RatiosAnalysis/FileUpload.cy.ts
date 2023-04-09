@@ -172,7 +172,7 @@ describe(`File upload`, () => {
 
     })
 
-    it.only(`Ratios Analysis - Correct file overwrite upload - Correct file retrieval after file overwritting`, () => {
+    it(`Ratios Analysis - Correct file overwrite upload - Correct file retrieval after file overwritting`, () => {
 
         //  Arrange 
         cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
