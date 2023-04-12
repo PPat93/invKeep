@@ -216,4 +216,35 @@ describe(`File upload`, () => {
             expect(Cypress.env(`assetFile`).get(`fileOverwrite`)).be.equal(Cypress.env(`assetFile`).get(`fileRetrieval`));
         })
     })
+
+    it(`Ratios Analysis - Correct file reupload after upload attempt - No file attaching`, () => {
+
+        //  Arrange 
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+            .selectFile(`cypress/fixtures/imageFileUpload/valid/testImg.png`, { force: true });
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+            .should(`be.visible`);
+
+        cy.intercept(`POST`, `images`).as(`fileUploadRequest`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+            .click();
+
+        cy.wait(`@fileUploadRequest`).then(intercept => {
+            expect(intercept.response.statusCode).equal(201);
+            Cypress.env(`assetFile`).set(assetName, intercept.response.body.imgPath);
+        })
+
+        //  Act
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+            .selectFile(`cypress/fixtures/imageFileUpload/valid/testImg.png`, { force: true });
+
+        //  Assert
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+            .should(`be.visible`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+            .should(`not.exist`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSelectFileBtn)
+            .should(`not.exist`);
+
+    })
 })
