@@ -245,6 +245,44 @@ describe(`File upload`, () => {
             .should(`not.exist`);
         cy.getDataCyElement(AnalysisPageConsts.fileUploadSelectFileBtn)
             .should(`not.exist`);
+    })
 
+    it(`Ratios Analysis - Correct file reupload after file reload - Correct request send`, () => {
+
+        //  Arrange 
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+            .selectFile(`cypress/fixtures/imageFileUpload/valid/testImg.png`, { force: true });
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+            .should(`be.visible`);
+
+        cy.intercept(`POST`, `images`).as(`fileUploadRequest`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+            .click();
+
+        cy.wait(`@fileUploadRequest`).then(intercept => {
+            expect(intercept.response.statusCode).equal(201);
+            Cypress.env(`assetFile`).set(assetName, intercept.response.body.imgPath);
+        })
+
+        //  Act
+        cy.reload();
+        cy.intercept(`POST`, `images`).as(`fileReuploadRequest`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+            .selectFile(`cypress/fixtures/imageFileUpload/valid/testImg.png`, { force: true });
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+            .click();
+
+        //  Assert
+        cy.wait(`@fileReuploadRequest`).then(intercept => {
+            expect(intercept.response.statusCode).equal(201);
+            expect(intercept.response.body).have.property(`message`, `File uploaded successfully.`);
+            expect(intercept.response.body).have.property(`imgPath`);
+        })
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+            .should(`be.visible`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+            .should(`not.exist`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSelectFileBtn)
+            .should(`not.exist`);
     })
 })
