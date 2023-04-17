@@ -285,4 +285,25 @@ describe(`File upload`, () => {
         cy.getDataCyElement(AnalysisPageConsts.fileUploadSelectFileBtn)
             .should(`not.exist`);
     })
+
+    // To be unblocked after 
+    it.skip(`Ratios Analysis - Incorrect file upload - Too big file in weight`, () => {
+
+        //  Arrange 
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+            .selectFile(`cypress/fixtures/imageFileUpload/valid/testImg.png`, { force: true });
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+            .should(`be.visible`);
+
+        //  Act
+        cy.intercept(`POST`, `images`).as(`fileUploadRequest`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+            .click();
+
+        //  Assert
+        cy.wait(`@fileUploadRequest`).then(intercept => {
+            expect(intercept.response.statusCode).equal(422);
+            expect(intercept.response.body).have.property(`message`, `Uploaded file is too heavy.`);
+        })
+    })
 })
