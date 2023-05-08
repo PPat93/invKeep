@@ -285,7 +285,7 @@ export class AssetAnalysisComponent implements OnInit {
     //  Single file attached to the form is assigned to the imageFile variable, value inside imageFormGroup is updated
     //  with new file and it's properties. Also, asynchronous mime_type validator is recalled.
     this.imageFile = (event.target as HTMLInputElement).files[0];
-    this.imageFormGroup.patchValue({ name: this.imageFile.name, type: this.imageFile.type, mime_type: this.imageFile });
+    this.imageFormGroup.patchValue({ name: this.imageFile.name, type: this.imageFile.type, size: this.imageFile.size, mime_type: this.imageFile });
     this.imageFormGroup.get(`mime_type`).updateValueAndValidity();
 
     //  Image file reader that process attached file. On load, it will set dependency of all file reading 
@@ -381,6 +381,7 @@ export class AssetAnalysisComponent implements OnInit {
       //  type that is accepted must be any image one: image/* 
       name: new FormControl(``, { validators: [Validators.pattern(`^.*[.](jpg|jpeg|png)$`)] }),
       type: new FormControl(``, { validators: [Validators.pattern(`^image/.*$`)] }),
+      size: new FormControl(0, { validators: [Validators.max(2097152)] }),
       mime_type: new FormControl(null, {
         validators: [Validators.required],
         asyncValidators: [mimeValidator]

@@ -207,8 +207,8 @@ router.get('/:id/images', (req, res) => {
     });
 })
 
-//  define multer storage to be used
-var upload = multer({ storage: storage });
+//  define multer storage to be used + limit file size to be at maximum 2MB
+var upload = multer({ storage: storage, limits: { fileSize: 2097152 } });
 
 //  multer middleware for being called if route was requested and handle potential errors from multer diskStorage
 var uploadMiddleware = function (req, res, next) {
@@ -236,14 +236,23 @@ var uploadMiddleware = function (req, res, next) {
                     });
                     break;
 
-                //  default error if unexpected error happened
                 default:
-                    res.status(422).json({
-                        error: 'The request could not be processed.'
-                    });
+
+                    //  error if file heavier than 2 MB was uploaded
+                    if (err.code === 'LIMIT_FILE_SIZE') {
+                        res.status(413).json({
+                            error: 'Error, uploaded file is too heavy.'
+                        });
+                    } else {
+
+                        //  default error if unexpected error happened
+                        res.status(422).json({
+                            error: 'The request could not be processed.'
+                        });
+                    }
             }
+            next();
         }
-        next();
     });
 }
 
