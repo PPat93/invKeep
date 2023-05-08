@@ -237,7 +237,6 @@ var uploadMiddleware = function (req, res, next) {
                     break;
 
                 default:
-
                     //  error if file heavier than 2 MB was uploaded
                     if (err.code === 'LIMIT_FILE_SIZE') {
                         res.status(413).json({
@@ -251,8 +250,8 @@ var uploadMiddleware = function (req, res, next) {
                         });
                     }
             }
-            next();
         }
+        next();
     });
 }
 
