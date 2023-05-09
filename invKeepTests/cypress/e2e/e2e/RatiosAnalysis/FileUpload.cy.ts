@@ -286,24 +286,18 @@ describe(`File upload`, () => {
             .should(`not.exist`);
     })
 
-    // To be unblocked after 
-    it.skip(`Ratios Analysis - Incorrect file upload - Too big file in weight`, () => {
+    it(`Ratios Analysis - Incorrect file upload - Too heavy file (over 2MB)`, () => {
 
-        //  Arrange 
+        //  Arrange & Act 
         cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
-            .selectFile(`cypress/fixtures/imageFileUpload/valid/testImg.png`, { force: true });
-        cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
-            .should(`be.visible`);
-
-        //  Act
-        cy.intercept(`POST`, `images`).as(`fileUploadRequest`);
-        cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
-            .click();
+            .selectFile(`cypress/fixtures/imageFileUpload/invalid/testImgOver2mb.jpg`, { force: true });
 
         //  Assert
-        cy.wait(`@fileUploadRequest`).then(intercept => {
-            expect(intercept.response.statusCode).equal(422);
-            expect(intercept.response.body).have.property(`message`, `Uploaded file is too heavy.`);
-        })
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSelectFileBtn)
+            .should(`be.visible`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+            .should(`not.exist`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+            .should(`not.exist`);
     })
 })
