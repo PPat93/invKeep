@@ -7,8 +7,9 @@ describe(`File upload`, () => {
     let assetName: string = ``;
 
     let correctFileNames = [`testImg.png`, `testImg2.jpg`, `testImg3.jpeg`];
-    let incorrectFileNames = [`exeFile.exe`, `bmpFile.bmp`, `txtFile.txt`, `pdfFile.pdf`, `xlsFile.xls`, `mp3File.mp3`, `csvFile.csv`, `zipFile.zip`];
+    let wrongTypeFileNames = [`exeFile.exe`, `txtFile.txt`, `pdfFile.pdf`, `xlsFile.xls`, `mp3File.mp3`, `csvFile.csv`, `zipFile.zip`];
     let disguisedFiles = [`csvPretendingjJPG.jpg`, `pdfPretendingJPEG.jpeg`, `txtPretendingPNG.png`];
+    let wrongImageFiles = [`bmpFile.bmp`, `icoImage.ico`, `rasterImage.ora`,`tifImage.tif`];
 
     beforeEach(`Create test asset`, () => {
 
@@ -84,12 +85,12 @@ describe(`File upload`, () => {
         })
     })
 
-    incorrectFileNames.forEach((singleFile, index) => {
+    wrongTypeFileNames.forEach((singleFile, index) => {
         it(`Ratios Analysis - Incorrect file upload attempt - No file attaching - ${singleFile}`, () => {
 
             //  Arrange & Act
             cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
-                .selectFile(`cypress/fixtures/imageFileUpload/invalid/${singleFile}`, { force: true });
+                .selectFile(`cypress/fixtures/imageFileUpload/invalid/wrongType/${singleFile}`, { force: true });
 
             // Assert
             cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
@@ -109,6 +110,25 @@ describe(`File upload`, () => {
             //  Arrange & Act
             cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
                 .selectFile(`cypress/fixtures/imageFileUpload/invalid/disguised/${singleFile}`, { force: true });
+
+            // Assert
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+                .should(`not.be.visible`);
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadRetrievedImage)
+                .should(`not.be.visible`);
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+                .should(`not.exist`);
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+                .should(`not.exist`);
+        })
+    })
+
+    wrongImageFiles.forEach(singleFile => {
+        it(`Ratios Analysis - Incorrect file upload attempt - Invalid image file type - ${singleFile}`, () => {
+
+            //  Arrange & Act
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+                .selectFile(`cypress/fixtures/imageFileUpload/invalid/wrongImageType/${singleFile}`, { force: true });
 
             // Assert
             cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
@@ -298,6 +318,9 @@ describe(`File upload`, () => {
         cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
             .should(`not.exist`);
         cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
-            .should(`not.exist`);
+            .should(`not.exist`); 
     })
 })
+
+
+// TODO dodaj test z poprawnymi plikami obrazow ale nieobslugiwane formaty, sprawdz czy rozszerzenia sa to lowercase - w sensie test sprawdzajacy welkosc liter rozszrzenia pliku poprawnego
