@@ -7,6 +7,7 @@ describe(`File upload`, () => {
     let assetName: string = ``;
 
     let correctFileNames = [`testImg.png`, `testImg2.jpg`, `testImg3.jpeg`];
+    let upperLowerExtensions = [`testImg.pNg`, `testImg2.JpG`, `testImg3.JPEG`];
     let wrongTypeFileNames = [`exeFile.exe`, `txtFile.txt`, `pdfFile.pdf`, `xlsFile.xls`, `mp3File.mp3`, `csvFile.csv`, `zipFile.zip`];
     let disguisedFiles = [`csvPretendingjJPG.jpg`, `pdfPretendingJPEG.jpeg`, `txtPretendingPNG.png`];
     let wrongImageFiles = [`bmpFile.bmp`, `icoImage.ico`, `rasterImage.ora`,`tifImage.tif`];
@@ -85,8 +86,31 @@ describe(`File upload`, () => {
         })
     })
 
+    upperLowerExtensions.forEach(singleFile => {
+        it(`Ratios Analysis - Correct file upload - upper/lower case extensions ${singleFile}`, () => {
+
+            //  Arrange 
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+                .selectFile(`cypress/fixtures/imageFileUpload/valid/${singleFile}`, { force: true });
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+                .should(`be.visible`);
+            cy.intercept(`POST`, `images`).as(`fileUploadRequest`);
+
+            // Act
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+                .click();
+
+            //  Assert
+            cy.wait(`@fileUploadRequest`).then(intercept => {
+                expect(intercept.response.statusCode).equal(201);
+                expect(intercept.response.body).have.property(`message`, `File uploaded successfully.`);
+                expect(intercept.response.body).have.property(`imgPath`);
+            })
+        })
+    })
+    
     wrongTypeFileNames.forEach((singleFile, index) => {
-        it(`Ratios Analysis - Incorrect file upload attempt - No file attaching - ${singleFile}`, () => {
+        it(`Ratios Analysis - Incorrect file upload attempt - Wrong extension files , no file attaching - ${singleFile}`, () => {
 
             //  Arrange & Act
             cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
@@ -321,6 +345,3 @@ describe(`File upload`, () => {
             .should(`not.exist`); 
     })
 })
-
-
-// TODO dodaj test z poprawnymi plikami obrazow ale nieobslugiwane formaty, sprawdz czy rozszerzenia sa to lowercase - w sensie test sprawdzajacy welkosc liter rozszrzenia pliku poprawnego
