@@ -379,8 +379,8 @@ export class AssetAnalysisComponent implements OnInit {
 
       //  Any file with jpg, jpeg or png extension is accepted by first pattern validator and simultaneously the file
       //  type that is accepted must be any image one: image/* 
-      name: new FormControl(``, { validators: [Validators.pattern(`^.*[.](jpg|jpeg|png)$`)] }),
-      type: new FormControl(``, { validators: [Validators.pattern(`^image/.*$`)] }),
+      name: new FormControl(``, { validators: [Validators.pattern(/^.*[.](jpg|jpeg|png)$/i)] }),
+      type: new FormControl(``, { validators: [Validators.pattern(/^image\/.*$/)] }),
       size: new FormControl(0, { validators: [Validators.max(2097152)] }),
       mime_type: new FormControl(null, {
         validators: [Validators.required],
