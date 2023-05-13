@@ -10,7 +10,8 @@ describe(`File upload`, () => {
     let upperLowerExtensions = [`testImg.pNg`, `testImg2.JpG`, `testImg3.JPEG`];
     let wrongTypeFileNames = [`exeFile.exe`, `txtFile.txt`, `pdfFile.pdf`, `xlsFile.xls`, `mp3File.mp3`, `csvFile.csv`, `zipFile.zip`];
     let disguisedFiles = [`csvPretendingjJPG.jpg`, `pdfPretendingJPEG.jpeg`, `txtPretendingPNG.png`];
-    let wrongImageFiles = [`bmpFile.bmp`, `icoImage.ico`, `rasterImage.ora`,`tifImage.tif`];
+    let wrongImageFiles = [`bmpFile.bmp`, `icoImage.ico`, `rasterImage.ora`, `tifImage.tif`];
+    let extensionlessFiles = [`extensionlessImage`, `extensionlessNonImage`];
 
     beforeEach(`Create test asset`, () => {
 
@@ -87,7 +88,7 @@ describe(`File upload`, () => {
     })
 
     upperLowerExtensions.forEach(singleFile => {
-        it(`Ratios Analysis - Correct file upload - upper/lower case extensions ${singleFile}`, () => {
+        it(`Ratios Analysis - Correct file upload - Accept upper/lower case extensions ${singleFile}`, () => {
 
             //  Arrange 
             cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
@@ -108,7 +109,7 @@ describe(`File upload`, () => {
             })
         })
     })
-    
+
     wrongTypeFileNames.forEach((singleFile, index) => {
         it(`Ratios Analysis - Incorrect file upload attempt - Wrong extension files , no file attaching - ${singleFile}`, () => {
 
@@ -291,7 +292,7 @@ describe(`File upload`, () => {
             .should(`not.exist`);
     })
 
-    it(`Ratios Analysis - Correct file reupload after file reload - Correct request send`, () => {
+    it(`Ratios Analysis - Correct file reupload after page reload - Correct request send`, () => {
 
         //  Arrange 
         cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
@@ -342,6 +343,30 @@ describe(`File upload`, () => {
         cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
             .should(`not.exist`);
         cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
-            .should(`not.exist`); 
+            .should(`not.exist`);
     })
+
+    extensionlessFiles.forEach(singleFile => {
+        it(`Ratios Analysis - Incorrect file upload attempt - Extensionless file upload - ${singleFile}`, () => {
+
+            //  Arrange & Act 
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+                .selectFile(`cypress/fixtures/imageFileUpload/invalid/extensionlessImage`, { force: true });
+
+            //  Assert
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadSelectFileBtn)
+                .should(`be.visible`);
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+                .should(`not.exist`);
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+                .should(`not.exist`);
+        })
+    })
+
+    // TODO - 1 - not urgent - to be created after functionality is developed
+    it.skip(`Ratios Analysis - Incorrect file upload attempt - Too big dimensions`, () => { })
+    it.skip(`Ratios Analysis - Incorrect file upload attempt - Invalid name chars`, () => { })
+    it.skip(`Ratios Analysis - Incorrect file upload attempt - Too long file name`, () => { })
+    it.skip(`Ratios Analysis - Incorrect file upload attempt - Simultaneous multiple files upload`, () => { })
+    it.skip(`Ratios Analysis - Incorrect file upload attempt - Simultaneous multiple files upload`, () => { })
 })
