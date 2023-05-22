@@ -78,6 +78,8 @@ describe(`File upload`, () => {
 
             cy.getDataCyElement(AnalysisPageConsts.fileUploadRetrievedImage)
                 .should(`be.visible`);
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadRetrievedImage)
+                .assertImageSize(`imageFileUpload/valid/${singleFile}`);
             cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
                 .should(`not.exist`);
             cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
