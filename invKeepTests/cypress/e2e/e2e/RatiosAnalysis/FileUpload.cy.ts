@@ -71,6 +71,8 @@ describe(`File upload`, () => {
             //  Assert
             cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
                 .should(`be.visible`);
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+                .assertImageSize(`imageFileUpload/valid/${singleFile}`);
             cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
                 .should(`not.exist`);
 
@@ -210,6 +212,8 @@ describe(`File upload`, () => {
         })
         cy.getDataCyElement(AnalysisPageConsts.fileUploadRetrievedImage)
             .should(`be.visible`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadRetrievedImage)
+            .assertImageSize(`imageFileUpload/valid/testImg.png`);
         cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
             .should(`not.exist`);
         cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
@@ -288,6 +292,8 @@ describe(`File upload`, () => {
         //  Assert
         cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
             .should(`be.visible`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+            .assertImageSize(`imageFileUpload/valid/testImg.png`);
         cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
             .should(`not.exist`);
         cy.getDataCyElement(AnalysisPageConsts.fileUploadSelectFileBtn)
@@ -327,6 +333,8 @@ describe(`File upload`, () => {
         })
         cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
             .should(`be.visible`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+            .assertImageSize(`imageFileUpload/valid/testImg.png`);
         cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
             .should(`not.exist`);
         cy.getDataCyElement(AnalysisPageConsts.fileUploadSelectFileBtn)
