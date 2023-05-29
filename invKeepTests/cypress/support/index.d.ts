@@ -9,6 +9,7 @@ declare global {
             getDataCyElement(cyAttributeValue: string, customTimeout?: number): Chainable<any>,
             findNextDataCyElement(nextDataCyValue: string, customTimeout?: number): Chainable<any>,
             assertImageSize(fixtureImage: string, customTimeout?: number): Chainable<any>,
+            assertImageExtension(expectedExtension: string, customTimeout?: number): Chainable<any>,
 
             //  BACKEND     //////////////////////////////////////////////////////////////////////////////////////////
             //  Assets      /////////////////
