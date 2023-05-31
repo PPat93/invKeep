@@ -55,6 +55,8 @@ describe(`File upload`, () => {
     correctFileNames.forEach(singleFile => {
         it(`Ratios Analysis - Correct file upload - Image visibilities - ${singleFile}`, () => {
 
+            let retrievedExtension = singleFile.split(`.`)[length + 1];
+
             //  Arrange 
             cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
                 .selectFile(`cypress/fixtures/imageFileUpload/valid/${singleFile}`, { force: true });
@@ -82,6 +84,8 @@ describe(`File upload`, () => {
                 .should(`be.visible`);
             cy.getDataCyElement(AnalysisPageConsts.fileUploadRetrievedImage)
                 .assertImageSize(`imageFileUpload/valid/${singleFile}`);
+            cy.getDataCyElement(AnalysisPageConsts.fileUploadRetrievedImage)
+                .assertImageExtension(retrievedExtension);
             cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
                 .should(`not.exist`);
             cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)

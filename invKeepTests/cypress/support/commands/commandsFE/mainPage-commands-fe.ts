@@ -27,9 +27,10 @@ Cypress.Commands.add(`assertImageSize`, { prevSubject: true }, (subject, fixture
 })
 
 Cypress.Commands.add(`assertImageExtension`, { prevSubject: true }, (subject, expectedExtension) => {
+    let expectedExtensionSan = (expectedExtension === `jpg`) ? `jpeg` : expectedExtension;
     cy.wrap(subject).should(([img]) => {
         expect(img.complete).to.be.true;
     }).then(([img]) => {
-        expect(img.currentSrc).contains(expectedExtension);
+        expect(img.currentSrc).to.contains(expectedExtensionSan);
     })
 }) 
