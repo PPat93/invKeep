@@ -6,12 +6,12 @@ describe(`File upload`, () => {
 
     let assetName: string = ``;
 
-    let correctFileNames = [`testImg.png`, `testImg2.jpg`, `testImg3.jpeg`];
-    let upperLowerExtensions = [`testImg.pNg`, `testImg2.JpG`, `testImg3.JPEG`];
-    let wrongTypeFileNames = [`exeFile.exe`, `txtFile.txt`, `pdfFile.pdf`, `xlsFile.xls`, `mp3File.mp3`, `csvFile.csv`, `zipFile.zip`];
-    let disguisedFiles = [`csvPretendingjJPG.jpg`, `pdfPretendingJPEG.jpeg`, `txtPretendingPNG.png`];
-    let wrongImageFiles = [`bmpFile.bmp`, `icoImage.ico`, `rasterImage.ora`, `tifImage.tif`];
-    let extensionlessFiles = [`extensionlessImage`, `extensionlessNonImage`];
+    let correctFileNames: string[] = [`testImg.png`, `testImg2.jpg`, `testImg3.jpeg`];
+    let upperLowerExtensions: string[] = [`testImg.pNg`, `testImg2.JpG`, `testImg3.JPEG`];
+    let wrongTypeFileNames: string[] = [`exeFile.exe`, `txtFile.txt`, `pdfFile.pdf`, `xlsFile.xls`, `mp3File.mp3`, `csvFile.csv`, `zipFile.zip`];
+    let disguisedFiles: string[] = [`csvPretendingjJPG.jpg`, `pdfPretendingJPEG.jpeg`, `txtPretendingPNG.png`];
+    let wrongImageFiles: string[] = [`bmpFile.bmp`, `icoImage.ico`, `rasterImage.ora`, `tifImage.tif`];
+    let extensionlessFiles: string[] = [`extensionlessImage`, `extensionlessNonImage`];
 
     beforeEach(`Create test asset`, () => {
 
@@ -32,6 +32,9 @@ describe(`File upload`, () => {
     correctFileNames.forEach(singleFile => {
         it(`Ratios Analysis - Correct file upload - ${singleFile}`, () => {
 
+            let splitFileNameArr: string[] = singleFile.toLowerCase().split(`.`);
+            splitFileNameArr[1] = (splitFileNameArr[1] === `jpg`) ? `jpeg` : splitFileNameArr[1];
+
             //  Arrange 
             cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
                 .selectFile(`cypress/fixtures/imageFileUpload/valid/${singleFile}`, { force: true });
@@ -47,7 +50,7 @@ describe(`File upload`, () => {
             cy.wait(`@fileUploadRequest`).then(intercept => {
                 expect(intercept.response.statusCode).equal(201);
                 expect(intercept.response.body).have.property(`message`, `File uploaded successfully.`);
-                expect(intercept.response.body).have.property(`imgPath`);
+                expect(intercept.response.body.imgPath).contains(splitFileNameArr[0]).and.contains(splitFileNameArr[1]);
             })
         })
     })
@@ -55,7 +58,7 @@ describe(`File upload`, () => {
     correctFileNames.forEach(singleFile => {
         it(`Ratios Analysis - Correct file upload - Image visibilities - ${singleFile}`, () => {
 
-            let retrievedExtension = singleFile.split(`.`)[length + 1];
+            let retrievedExtension: string = singleFile.split(`.`)[length + 1];
 
             //  Arrange 
             cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
@@ -98,6 +101,9 @@ describe(`File upload`, () => {
     upperLowerExtensions.forEach(singleFile => {
         it(`Ratios Analysis - Correct file upload - Accept upper/lower case extensions ${singleFile}`, () => {
 
+            let splitFileNameArr: string[] = singleFile.toLowerCase().split(`.`);
+            splitFileNameArr[1] = (splitFileNameArr[1] === `jpg`) ? `jpeg` : splitFileNameArr[1];
+
             //  Arrange 
             cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
                 .selectFile(`cypress/fixtures/imageFileUpload/valid/${singleFile}`, { force: true });
@@ -113,7 +119,7 @@ describe(`File upload`, () => {
             cy.wait(`@fileUploadRequest`).then(intercept => {
                 expect(intercept.response.statusCode).equal(201);
                 expect(intercept.response.body).have.property(`message`, `File uploaded successfully.`);
-                expect(intercept.response.body).have.property(`imgPath`);
+                expect(intercept.response.body.imgPath).contains(splitFileNameArr[0]).and.contains(splitFileNameArr[1]);
             })
         })
     })
@@ -333,7 +339,7 @@ describe(`File upload`, () => {
         cy.wait(`@fileReuploadRequest`).then(intercept => {
             expect(intercept.response.statusCode).equal(201);
             expect(intercept.response.body).have.property(`message`, `File uploaded successfully.`);
-            expect(intercept.response.body).have.property(`imgPath`);
+            expect(intercept.response.body.imgPath).contains(`testimg`).and.contains(`png`);
         })
         cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
             .should(`be.visible`);
@@ -381,6 +387,4 @@ describe(`File upload`, () => {
     it.skip(`Ratios Analysis - Incorrect file upload attempt - Too big dimensions`, () => { })
     it.skip(`Ratios Analysis - Incorrect file upload attempt - Invalid name chars`, () => { })
     it.skip(`Ratios Analysis - Incorrect file upload attempt - Too long file name`, () => { })
-    it.skip(`Ratios Analysis - Incorrect file upload attempt - Simultaneous multiple files upload`, () => { })
-    it.skip(`Ratios Analysis - Incorrect file upload attempt - Simultaneous multiple files upload`, () => { })
 })
