@@ -32,6 +32,10 @@ export class AssetAnalysisComponent implements OnInit {
   //  Image preview holding variable
   imagePreview: string = null;
 
+  // Variables holding image weight values
+  imageWeight: number = null;
+  isSizeBelow2Mb: boolean = false;
+
   //  Attached image file holding variable
   imageFile: File;
   imageFilePath: string = ``;
@@ -289,6 +293,15 @@ export class AssetAnalysisComponent implements OnInit {
     this.imageFileReader = new FileReader();
     this.imageFileReader.onload = () => {
       this.imagePreview = this.imageFileReader.result as string;
+      this.imageWeight = this.imagePreview.length;
+
+      // TODO -> future image size validation
+      // console.log(this.isSizeBelow2Mb)
+      // this.isSizeBelow2Mb = false; 
+      // console.log(this.imageWeight)
+      // if (this.imageWeight * 2 < 2 ** 21) {
+      //   this.isSizeBelow2Mb = true;
+      // }
     }
 
     /*  ->  Showing/hiding image Save button depending on file attached
@@ -366,8 +379,8 @@ export class AssetAnalysisComponent implements OnInit {
 
       //  Any file with jpg, jpeg or png extension is accepted by first pattern validator and simultaneously the file
       //  type that is accepted must be any image one: image/* 
-      name: new FormControl(``, { validators: [Validators.pattern(`^.*[.](jpg|jpeg|png)$`)] }),
-      type: new FormControl(``, { validators: [Validators.pattern(`^image/.*$`)] }),
+      name: new FormControl(``, { validators: [Validators.pattern(/^.*[.](jpg|jpeg|png)$/i)] }),
+      type: new FormControl(``, { validators: [Validators.pattern(/^image\/.*$/)] }),
       size: new FormControl(0, { validators: [Validators.max(2097152)] }),
       mime_type: new FormControl(null, {
         validators: [Validators.required],

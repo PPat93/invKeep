@@ -5,10 +5,10 @@ import MainPage from "../../../support/pageObjectModel/pageObjects/MainPage";
 describe(`Visibility of Analysis Page elements`, () => {
 
     let assetName: string = `TestAsset${Date.now()}`;
-// TODO - ? - no idea - asset is not assigned to an environmental variable + more investigation
+    // TODO - ? - no idea - asset is not assigned to an environmental variable + more investigation
     beforeEach(`Create asset`, () => {
         cy.apiCreateAsset(assetName, `itemVis`, 10, 1.21, AssetCurrency.dollar).then(res => {
-            
+
             if (res.status === 201) {
                 Cypress.env('assetItem').set(assetName, res.body.assetId);
             }
@@ -26,7 +26,7 @@ describe(`Visibility of Analysis Page elements`, () => {
         })
     })
 
-    it(`Ratios Analysis - input table displayment - Name column`, () => {
+    it(`Ratios Analysis - Input table displayment - Name column`, () => {
 
         // Arrange, Act & Assert
         cy.getDataCyElement(AnalysisPageConsts.ratiosAnalysisInputNameCell).then(allCells => {
@@ -52,7 +52,7 @@ describe(`Visibility of Analysis Page elements`, () => {
         })
     })
 
-    it(`Ratios Analysis - input table displayment - Unit column`, () => {
+    it(`Ratios Analysis - Input table displayment - Unit column`, () => {
 
         let units: string[] = [`%`, `-`, `€`, `$`, `¥`, `£`];
 
@@ -186,5 +186,52 @@ describe(`Visibility of Analysis Page elements`, () => {
                 .find(`span`)
                 .should(`contain.text`, `Ratio Details`);
         })
+    })
+
+    it(`Ratios Analysis - File upload section - Main elements visible at the default state`, () => {
+
+        // Arrange, Act & Assert
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSection)
+            .should(`be.visible`)
+            .and(`have.css`, `border-style`, `dashed`)
+            .and(`have.css`, `border-color`, Utils.stylePrimaryColor);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadCellDescription)
+            .should(`be.visible`)
+            .and(`have.text`, `Upload image file for future analysis:`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadCellUpload)
+            .should(`be.visible`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadCellSave)
+            .should(`exist`);
+        Utils.assertButton(AnalysisPageConsts.fileUploadSelectFileBtn, Utils.strokedTypeBtn, `Input`);
+    })
+
+    it(`Ratios Analysis - File upload section - Lack or invisibility of some upload elements at the default state`, () => {
+
+        // Arrange, Act & Assert
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+            .should(`not.be.visible`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadRetrievedImage)
+            .should(`not.be.visible`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+            .should(`not.exist`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+            .should(`not.exist`);
+    })
+
+    it(`Ratios Analysis - File upload section - Elements displayment after file attachment`, () => {
+
+        // Arrange
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+            .selectFile(`cypress/fixtures/imageFileUpload/valid/testImg.png`, { force: true });
+
+        //Act & Assert
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSelectFileBtn)
+            .should(`not.exist`)
+        Utils.assertButton(AnalysisPageConsts.fileUploadSaveButton, Utils.raisedTypeBtn, `Save`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+            .should(`be.visible`)
+            .and(`have.attr`, `src`);
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadRetrievedImage)
+            .should(`not.exist`);
     })
 })

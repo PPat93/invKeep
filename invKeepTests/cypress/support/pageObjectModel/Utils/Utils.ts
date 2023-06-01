@@ -24,6 +24,12 @@ class Utils {
     readonly loadingSpinner = `loading-spinner`;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //  STYLE                       ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    readonly stylePrimaryColor = `rgb(103, 58, 183)`;
+    readonly strokedTypeBtn = `mat-stroked-button`;
+    readonly raisedTypeBtn = `mat-raised-button`;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //  METHODS                     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     visitPage(pageUrl: string) {
         cy.visit(pageUrl);
@@ -37,6 +43,7 @@ class Utils {
         cy.apiGetAsset().then(res => {
             res.body.payload.forEach(singleItem => {
                 if (singleItem.assetName.match(assetTemp)) {
+                    cy.apiDeleteAssetFile(singleItem.id);
                     cy.apiDeleteAsset(singleItem.id);
                 }
             })
@@ -45,6 +52,14 @@ class Utils {
 
     sanitizeRatioName(name) {
         return name.replace(/\s+/g, '-').replace(/\//g, '-').toLowerCase();
+    }
+
+    assertButton(btnDataCyValue: string, btnType: string, btnText: string) {
+        cy.getDataCyElement(btnDataCyValue)
+            .should(`be.visible`)
+            .and(`have.text`, btnText)
+            .and(`have.attr`, `color`, `primary`)
+            .and(`have.attr`, btnType);
     }
 }
 

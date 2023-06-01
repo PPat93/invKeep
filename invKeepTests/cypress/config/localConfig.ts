@@ -4,7 +4,7 @@ const localConfig = {
     viewportWidth: 1200,
     viewportHeight: 1200,
     env:{
-        backendUrl: `http://localhost:3000/api/assets`
+        backendUrl: `http://localhost:3000/api`
     }
 }
 

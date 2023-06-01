@@ -16,6 +16,18 @@ class AnalysisPageConsts {
     readonly saveBtn = `save`;
 
     //-------------------------------------------------------------------------------------------------------------------------------------
+    //  FILE UPLOAD -----------------------------------------------------------------------------------------------------------------------
+    readonly fileUploadSection = `file-upload-section`;
+    readonly fileUploadCellDescription = `file-upload-cell-description`;
+    readonly fileUploadCellUpload = `file-upload-cell-upload`;
+    readonly fileUploadCellSave = `file-upload-cell-save`;
+    readonly fileUploadInputHidden = `file-upload-input-hidden`;
+    readonly fileUploadRetrievedImage = `file-upload-retrieved-img`;
+    readonly fileUploadSelectFileBtn = `file-upload-select-file-button`;
+    readonly fileUploadImagePreview = `file-upload-image-prv`;
+    readonly fileUploadSaveButton = `file-upload-save-img-button`;
+
+    //-------------------------------------------------------------------------------------------------------------------------------------
     //  INPUT TABLE -----------------------------------------------------------------------------------------------------------------------
     readonly ratiosAnalysisInputRow = `input-ratios-items-row`;
     readonly ratiosAnalysisInputTable = `ratios-input-table`;
