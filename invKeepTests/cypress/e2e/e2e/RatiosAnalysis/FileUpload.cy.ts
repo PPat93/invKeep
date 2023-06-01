@@ -383,6 +383,27 @@ describe(`File upload`, () => {
         })
     })
 
+    it(`Ratios Analysis - Simultaneous multiple files uploadt - First file accepted only`, () => {
+
+        //  Arrange 
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadInputHidden)
+            .selectFile([`cypress/fixtures/imageFileUpload/valid/testImg.png`, `cypress/fixtures/imageFileUpload/valid/testImg2.jpg`], { force: true });
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadImagePreview)
+            .should(`be.visible`);
+        cy.intercept(`POST`, `images`).as(`fileUploadRequest`);
+
+        // Act
+        cy.getDataCyElement(AnalysisPageConsts.fileUploadSaveButton)
+            .click();
+
+        //  Assert
+        cy.wait(`@fileUploadRequest`).then(intercept => {
+            expect(intercept.response.statusCode).equal(201);
+            expect(intercept.response.body).have.property(`message`, `File uploaded successfully.`);
+            expect(intercept.response.body.imgPath).contains(`testimg`).and.contains(`png`);
+        })
+    })
+
     // TODO - 1 - not urgent - to be created after functionality is developed
     it.skip(`Ratios Analysis - Incorrect file upload attempt - Too big dimensions`, () => { })
     it.skip(`Ratios Analysis - Incorrect file upload attempt - Invalid name chars`, () => { })
