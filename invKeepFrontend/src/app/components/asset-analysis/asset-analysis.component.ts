@@ -6,7 +6,7 @@ import { UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms
 import { AssetRatiosService } from "../../services/asset-ratios.service";
 import { Subscription } from "rxjs";
 import { RatioDetailsService } from 'src/app/services/ratio-details.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog as MatDialog } from '@angular/material/dialog';
 import { RatioDetailsDialogComponent } from '../ratio-details-dialog/ratio-details-dialog.component';
 import { mimeValidator } from './mime-type.validator';
 import { AssetImageService } from 'src/app/services/asset-image.service';
