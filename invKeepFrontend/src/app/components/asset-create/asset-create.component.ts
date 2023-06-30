@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
 import { AssetsService } from "../../services/assets.service";
 import { AssetRecord } from "../../shared/sharedTS";
 import { ActivatedRoute, ParamMap } from "@angular/router";
@@ -17,21 +17,21 @@ export class AssetCreateComponent implements OnInit {
   assetId: string;
   isLoading: boolean = false;
   usedAsset: AssetRecord;
-  assetForm: FormGroup;
+  assetForm: UntypedFormGroup;
 
   constructor(public AssetsService: AssetsService, public route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.assetForm = new FormGroup({
-      _id: new FormControl(``),
-      id: new FormControl(``),
-      assetName: new FormControl(``, { validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern(`^[a-zA-Z0-9 .\-]*$`)] }),
-      assetSymbol: new FormControl(``, { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern(`^[a-zA-Z0-9,._ ()\-]*$`)] }),
-      amount: new FormControl(null, { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(10), Validators.pattern(`^[0-9]*$`)] }),
-      buyPrice: new FormControl(null, { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(10), Validators.pattern(`^[0-9]*[.0-9]*$`)] }),
-      currency: new FormControl(``, { validators: [Validators.required, Validators.pattern(`^[¥€$£]$`)] }),
-      purchaseDate: new FormControl(``)
+    this.assetForm = new UntypedFormGroup({
+      _id: new UntypedFormControl(``),
+      id: new UntypedFormControl(``),
+      assetName: new UntypedFormControl(``, { validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern(`^[a-zA-Z0-9 .\-]*$`)] }),
+      assetSymbol: new UntypedFormControl(``, { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern(`^[a-zA-Z0-9,._ ()\-]*$`)] }),
+      amount: new UntypedFormControl(null, { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(10), Validators.pattern(`^[0-9]*$`)] }),
+      buyPrice: new UntypedFormControl(null, { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(10), Validators.pattern(`^[0-9]*[.0-9]*$`)] }),
+      currency: new UntypedFormControl(``, { validators: [Validators.required, Validators.pattern(`^[¥€$£]$`)] }),
+      purchaseDate: new UntypedFormControl(``)
     });
     this.isLoading = true;
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
