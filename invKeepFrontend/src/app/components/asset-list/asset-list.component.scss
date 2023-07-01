@@ -24,9 +24,7 @@ div.items {
 }
 
 mat-panel-description {
-  float: right;
-  width: 180px;
-  flex-grow: 0;
+  flex: 0 0 auto;
 }
 
 table {
