@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { RatioDetailsService } from "src/app/services/ratio-details.service";
 import { RatioInfoObject } from "src/app/shared/sharedTS";
-import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from "@angular/material/legacy-dialog";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { Subscription } from "rxjs";
 import {sanitizeRatioName} from "./../../shared/sharedTS"
 
