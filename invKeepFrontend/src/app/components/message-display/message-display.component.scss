@@ -6,12 +6,17 @@ mat-card {
 #close-button {
   display: inline;
   float: right;
-  width: 24px;
-  height: 24px;
+  height: auto;
+  width: fit-content;
   align-content: center;
 }
 
 .material-icons {
   display: flex;
+  font-size: 70%;
   align-items: center;
+}
+
+#message-title {
+  padding-left: 1%;
 }

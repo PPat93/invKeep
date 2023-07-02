@@ -1,11 +1,11 @@
 <mat-card data-cy="message-card" class="message">
   <mat-card-title>
     <div>
-      <span>
+      <span id="message-title" data-cy="message-title">
         {{ chooseContent().title }}
       </span>
-      <button mat-icon-button data-cy="close-message-button" id="close-button">
-        <span class="material-icons" (click)="closeMessage($event)">close</span>
+      <button mat-icon-button data-cy="close-message-button" id="close-button" (click)="closeMessage($event)">
+        <span class="material-icons">close</span>
       </button>
     </div>
   </mat-card-title>
