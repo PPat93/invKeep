@@ -37,9 +37,13 @@ mat-card button {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.create-buttons button {
+.utility-buttons button {
   display: inline-block;
   font-size: large;
+}
+
+.utility-buttons{
+  margin:auto auto 10px 5px;
 }
 
 .fields-wrapper {
