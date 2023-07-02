@@ -27,7 +27,7 @@
             <input name="amount" data-cy="amount" matInput id="asset-amount"
               class="asset-input example-right-align" formControlName="amount">
             <mat-error *ngIf="assetForm.get('amount').invalid"> {{ getErrorMessage('amount') }}</mat-error>
-            <span matSuffix>.00</span>
+            <span matTextSuffix>.00</span>
           </mat-form-field>
         </div>
         <div class="asset-price-field">
