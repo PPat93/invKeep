@@ -1,4 +1,3 @@
-
 input[type=number] {
   -moz-appearance: textfield;
 }
@@ -21,12 +20,16 @@ button {
 }
 
 mat-card {
-  width: 700px;
+  width: 830px;
   margin: 2.5% auto;
 }
 
 mat-card button {
   align-items: flex-end;
+}
+
+.asset-input {
+  width: 180px;
 }
 
 .card-title {
@@ -37,4 +40,40 @@ mat-card button {
 .create-buttons button {
   display: inline-block;
   font-size: large;
+}
+
+.fields-wrapper {
+  display: grid;
+  width: 670px;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 5%;
+  grid-auto-rows: 50%;
+  grid-template-areas:
+    "a b c"
+    "d e f";
+  align-items: start;
+}
+
+.asset-name-field {
+  grid-area: a;
+}
+
+.asset-symbol-field {
+  grid-area: b;
+}
+
+.asset-amount-field {
+  grid-area: c;
+}
+
+.asset-price-field {
+  grid-area: d;
+}
+
+.asset-currency-field {
+  grid-area: e;
+}
+
+.asset-dat-field {
+  grid-area: f;
 }

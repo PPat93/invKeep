@@ -4,48 +4,64 @@
     <mat-divider></mat-divider>
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
     <div *ngIf="!isLoading">
-      <mat-form-field>
-        <mat-label>Full asset name *</mat-label>
-        <input name="fullName" data-cy="full-name" matInput id="asset-name" class="assetInput"
-          formControlName="assetName">
-        <mat-error *ngIf="assetForm.get('assetName').invalid">{{ getErrorMessage('assetName') }}</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Asset symbol *</mat-label>
-        <input name="symbol" data-cy="symbol" matInput id="asset-symbol" class="assetInput"
-          formControlName="assetSymbol">
-        <mat-error *ngIf="assetForm.get('assetSymbol').invalid"> {{ getErrorMessage('symbol') }}</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Amount of units *</mat-label>
-        <input name="amount" data-cy="amount" matInput id="asset-amount" class="assetInput example-right-align"
-          formControlName="amount">
-        <mat-error *ngIf="assetForm.get('amount').invalid"> {{ getErrorMessage('amount') }}</mat-error>
-        <span matSuffix>.00</span>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Price for one unit *</mat-label>
-        <input name="price" data-cy="price" matInput id="asset-price" class="assetInput example-right-align"
-          formControlName="buyPrice">
-        <mat-error *ngIf="assetForm.get('buyPrice').invalid"> {{ getErrorMessage('price') }}</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Currency *</mat-label>
-        <mat-select data-cy="currency" name="currency" formControlName="currency">
-          <mat-option value="$">$</mat-option>
-          <mat-option value="€">€</mat-option>
-          <mat-option value="£">£</mat-option>
-          <mat-option value="¥">¥</mat-option>
-        </mat-select>
-        <mat-error *ngIf="assetForm.get('currency').invalid"> {{ getErrorMessage('currency') }}</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Purchase Date</mat-label>
-        <input name="date" data-cy="purchase-date" matInput [matDatepicker]="picker" formControlName="purchaseDate">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="assetForm.get('purchaseDate').invalid"> {{ getErrorMessage('date') }}</mat-error>
-      </mat-form-field>
+      <div class="fields-wrapper">
+        <div class="asset-name-field">
+          <mat-form-field>
+            <mat-label>Full asset name</mat-label>
+            <input name="fullName" data-cy="full-name" matInput id="asset-name" class="asset-input"
+              formControlName="assetName">
+            <mat-error *ngIf="assetForm.get('assetName').invalid">{{ getErrorMessage('assetName') }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="asset-symbol-field">
+          <mat-form-field>
+            <mat-label>Asset symbol</mat-label>
+            <input name="symbol" data-cy="symbol" matInput id="asset-symbol" class="asset-input"
+              formControlName="assetSymbol">
+            <mat-error *ngIf="assetForm.get('assetSymbol').invalid"> {{ getErrorMessage('symbol') }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="asset-amount-field">
+          <mat-form-field>
+            <mat-label>Amount of units</mat-label>
+            <input name="amount" data-cy="amount" matInput id="asset-amount"
+              class="asset-input example-right-align" formControlName="amount">
+            <mat-error *ngIf="assetForm.get('amount').invalid"> {{ getErrorMessage('amount') }}</mat-error>
+            <span matSuffix>.00</span>
+          </mat-form-field>
+        </div>
+        <div class="asset-price-field">
+          <mat-form-field>
+            <mat-label>Price for one unit</mat-label>
+            <input name="price" data-cy="price" matInput id="asset-price"
+              class="asset-input example-right-align" formControlName="buyPrice">
+            <mat-error *ngIf="assetForm.get('buyPrice').invalid"> {{ getErrorMessage('price') }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="asset-currency-field">
+          <mat-form-field>
+            <mat-label>Currency</mat-label>
+            <mat-select data-cy="currency" name="currency" class="asset-input asset-select"
+              formControlName="currency">
+              <mat-option value="$">$</mat-option>
+              <mat-option value="€">€</mat-option>
+              <mat-option value="£">£</mat-option>
+              <mat-option value="¥">¥</mat-option>
+            </mat-select>
+            <mat-error *ngIf="assetForm.get('currency').invalid"> {{ getErrorMessage('currency') }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="asset-date-field">
+          <mat-form-field>
+            <mat-label>Purchase Date</mat-label>
+            <input name="date" data-cy="purchase-date" matInput [matDatepicker]="picker"
+              classs="asset-input" formControlName="purchaseDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="assetForm.get('purchaseDate').invalid"> {{ getErrorMessage('date') }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
     </div>
     <div class="create-buttons">
       <button [disabled]="" data-cy="submit" mat-raised-button color="primary" type="submit">
