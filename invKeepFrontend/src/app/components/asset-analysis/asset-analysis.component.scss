@@ -3,10 +3,6 @@ mat-card {
   margin: 20px auto;
 }
 
-mat-card-title {
-  height: 30px;
-}
-
 th {
   color: rgb(255, 255, 255);
   background-color: #673ab7 !important;
@@ -30,6 +26,7 @@ th {
 
 .subtitle {
   font-size: 20px;
+  margin-left: 15px;
 }
 
 mat-card-actions {
