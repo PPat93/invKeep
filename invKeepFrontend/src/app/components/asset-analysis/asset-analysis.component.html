@@ -38,27 +38,31 @@
               <app-loading-spinner *ngIf="isLoadingImg"></app-loading-spinner>
               <td *ngIf="!isLoadingImg">
                 <tr class="no-highlight">
-                  <td id="file-upload-cell-description" data-cy="file-upload-cell-description">Upload image file for future analysis:</td>
+                  <td id="file-upload-cell-description" data-cy="file-upload-cell-description">Upload image file for
+                    future analysis:</td>
                 </tr>
                 <tr class="no-highlight">
                   <td class="file-upload" id="file-upload-cell-upload" data-cy="file-upload-cell-upload">
                     <form *ngIf="imageFormGroup" [formGroup]="imageFormGroup">
-                      <input #inputFile type="file" data-cy="file-upload-input-hidden" (change)="onImgSelected($event)" hidden>
+                      <input #inputFile type="file" data-cy="file-upload-input-hidden" (change)="onImgSelected($event)"
+                        hidden>
                       <div class="img-prv-btn">
-                        <img class="image-prv retrieved-img" id="file-upload-retrieved-img" data-cy="file-upload-retrieved-img"
+                        <img class="image-prv retrieved-img" id="file-upload-retrieved-img"
+                          data-cy="file-upload-retrieved-img"
                           *ngIf="(imageFilePath!=='' || imageFilePath!==undefined) && (imagePreview === null || !imagePreview)"
                           [src]="imageFilePath" [alt]="" (click)="inputFile.click()">
                         <button
                           *ngIf="(imageFilePath==='' || imageFilePath===undefined)&& (imagePreview === null || !imagePreview)"
-                          id="select-file-button" data-cy="file-upload-select-file-button" mat-stroked-button color="primary"
-                          (click)="inputFile.click()">Input</button>
-                        <img class="image-prv new-img" data-cy="file-upload-image-prv" *ngIf="imagePreview !== null && imagePreview"
-                          [src]="imagePreview" [alt]="" (click)="inputFile.click();">
+                          id="select-file-button" data-cy="file-upload-select-file-button" mat-stroked-button
+                          color="primary" (click)="inputFile.click()">Input</button>
+                        <img class="image-prv new-img" data-cy="file-upload-image-prv"
+                          *ngIf="imagePreview !== null && imagePreview" [src]="imagePreview" [alt]=""
+                          (click)="inputFile.click();">
                       </div>
                     </form>
                   <td class="file-upload" id="file-upload-cell-save" data-cy="file-upload-cell-save">
-                    <button id="save-img-button" data-cy="file-upload-save-img-button" *ngIf="!hideImageSaveBtn" mat-raised-button color="primary"
-                      (click)="uploadAnalysisImage()">Save</button>
+                    <button id="save-img-button" data-cy="file-upload-save-img-button" *ngIf="!hideImageSaveBtn"
+                      mat-raised-button color="primary" (click)="uploadAnalysisImage()">Save</button>
                   </td>
                 </tr>
               </td>
@@ -76,64 +80,70 @@
       Stock ratios
     </mat-card-subtitle>
     <app-loading-spinner *ngIf="isLoading2"></app-loading-spinner>
-    <mat-card-content data-cy="ratios-section" class="ratios-column" *ngIf="!isLoading2">
-      <form data-cy="ratios-inputs" *ngIf="ratiosFormGroup" [formGroup]="ratiosFormGroup" (submit)="saveRatiosValues()"
-        class="asset-ratios-table" name="ratio-analysis">
-        <table data-cy="ratios-input-table" mat-table [dataSource]="assetAnalysis.ratiosArray">
-          <ng-container matColumnDef="parameterName">
-            <th data-cy="input-ratios-name-header" mat-header-cell *matHeaderCellDef>Ratio</th>
-            <td data-cy="input-ratios-name-cell" class="parameter-name" mat-cell *matCellDef="let ratio">
-              {{ratio.parameterName}}</td>
-          </ng-container>
-          <ng-container matColumnDef="valueNum">
-            <th data-cy="input-ratios-value-header" mat-header-cell *matHeaderCellDef>Value</th>
-            <td data-cy="input-ratios-value-cell" class="input-ratio-value" mat-cell *matCellDef="let ratio">
-              <mat-form-field class="input-ratio-value">
-                <input class="single-asset-ratio"
-                  [attr.data-cy]="ratio.parameterName.replaceAll(' ', '-').toLowerCase() + '-input'"
-                  name="{{ratio.parameterName.replaceAll(' ', '-').toLowerCase()}}" matInput value="{{ratio.valueNum}}"
-                  [formControlName]="ratio.parameterName.replaceAll(' ', '-').replaceAll('/','-').toLowerCase()">
-              </mat-form-field>
-            </td>
-          </ng-container>
-          <ng-container matColumnDef="unit">
-            <th data-cy="input-ratios-unit-header" mat-header-cell *matHeaderCellDef>Unit</th>
-            <td data-cy="input-ratios-unit-cell" class="parameter-unit" mat-cell *matCellDef="let ratio">
-              {{setUnit(ratio.unit)}}</td>
-          </ng-container>
-          <tr data-cy="input-ratios-header-row" mat-header-row *matHeaderRowDef="ratiosColumns"></tr>
-          <tr data-cy="input-ratios-items-row" class="table-row " mat-row *matRowDef="let row; columns: ratiosColumns">
-          </tr>
-        </table>
+    <div class="grid-wrapper">
+      <div class="grid-column-one">
+        <mat-card-content data-cy="ratios-section" class="ratios-column" *ngIf="!isLoading2">
+          <form data-cy="ratios-inputs" *ngIf="ratiosFormGroup" [formGroup]="ratiosFormGroup"
+            (submit)="saveRatiosValues()" class="asset-ratios-table" name="ratio-analysis">
+            <table data-cy="ratios-input-table" mat-table [dataSource]="assetAnalysis.ratiosArray">
+              <ng-container matColumnDef="parameterName">
+                <th data-cy="input-ratios-name-header" mat-header-cell *matHeaderCellDef>Ratio</th>
+                <td data-cy="input-ratios-name-cell" class="parameter-name" mat-cell *matCellDef="let ratio">
+                  {{ratio.parameterName}}</td>
+              </ng-container>
+              <ng-container matColumnDef="valueNum">
+                <th data-cy="input-ratios-value-header" mat-header-cell *matHeaderCellDef>Value</th>
+                <td data-cy="input-ratios-value-cell" class="input-ratio-value" mat-cell *matCellDef="let ratio">
+                  <mat-form-field class="input-ratio-value">
+                    <input class="single-asset-ratio"
+                      [attr.data-cy]="ratio.parameterName.replaceAll(' ', '-').toLowerCase() + '-input'"
+                      name="{{ratio.parameterName.replaceAll(' ', '-').toLowerCase()}}" matInput
+                      value="{{ratio.valueNum}}"
+                      [formControlName]="ratio.parameterName.replaceAll(' ', '-').replaceAll('/','-').toLowerCase()">
+                  </mat-form-field>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="unit">
+                <th data-cy="input-ratios-unit-header" mat-header-cell *matHeaderCellDef>Unit</th>
+                <td data-cy="input-ratios-unit-cell" class="parameter-unit" mat-cell *matCellDef="let ratio">
+                  {{setUnit(ratio.unit)}}</td>
+              </ng-container>
+              <tr data-cy="input-ratios-header-row" mat-header-row *matHeaderRowDef="ratiosColumns"></tr>
+              <tr data-cy="input-ratios-items-row" class="table-row " mat-row
+                *matRowDef="let row; columns: ratiosColumns">
+              </tr>
+            </table>
 
-        <mat-card-actions>
-          <button data-cy="save" mat-raised-button color="primary" type="submit">Save</button>
-        </mat-card-actions>
-      </form>
-    </mat-card-content>
-
-    <mat-card-content *ngIf="!isLoading2" class="ratio-analysis">
-      <table data-cy="ratios-analysis-table" class="analysis-table" mat-table [dataSource]="analyzedAssetRatios">
-        <ng-container matColumnDef="name">
-          <th data-cy="analysis-ratios-name-header" mat-header-cell *matHeaderCellDef>Name</th>
-          <td data-cy="analysis-ratios-name-cell" class="parameter-name" mat-cell *matCellDef="let analysis">
-            {{analysis.name}}</td>
-        </ng-container>
-        <ng-container matColumnDef="value">
-          <th data-cy="analysis-ratios-value-header" mat-header-cell *matHeaderCellDef>Value</th>
-          <td data-cy="analysis-ratios-value-cell" class="parameter-value" mat-cell *matCellDef="let analysis">
-            {{analysis.value}}</td>
-        </ng-container>
-        <ng-container matColumnDef="intervals">
-          <th data-cy="analysis-ratios-intervals-header" mat-header-cell *matHeaderCellDef>Analysis</th>
-          <td data-cy="analysis-ratios-intervals-cell" class="parameter-intervals" mat-cell *matCellDef="let analysis">
-            <div data-cy="analysis-ratios-intervals-cell-verbal-rating" class="interval-verbal-rating">
-              <b>{{analysis.intervals.verbalRating}}</b>
-            </div>
-            <div data-cy="analysis-ratios-intervals-cell-summary" class="interval-summary">
-              {{analysis.intervals.summary}}
-            </div>
-            <div data-cy="analysis-ratios-intervals-cell-number-rating" class="interval-number-rating" [ngClass]="{
+            <mat-card-actions>
+              <button data-cy="save" mat-raised-button color="primary" type="submit">Save</button>
+            </mat-card-actions>
+          </form>
+        </mat-card-content>
+      </div>
+      <div class="grid-column-two">
+        <mat-card-content *ngIf="!isLoading2" class="ratio-analysis">
+          <table data-cy="ratios-analysis-table" class="analysis-table" mat-table [dataSource]="analyzedAssetRatios">
+            <ng-container matColumnDef="name">
+              <th data-cy="analysis-ratios-name-header" mat-header-cell *matHeaderCellDef>Name</th>
+              <td data-cy="analysis-ratios-name-cell" class="parameter-name" mat-cell *matCellDef="let analysis">
+                {{analysis.name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="value">
+              <th data-cy="analysis-ratios-value-header" mat-header-cell *matHeaderCellDef>Value</th>
+              <td data-cy="analysis-ratios-value-cell" class="parameter-value" mat-cell *matCellDef="let analysis">
+                {{analysis.value}}</td>
+            </ng-container>
+            <ng-container matColumnDef="intervals">
+              <th data-cy="analysis-ratios-intervals-header" mat-header-cell *matHeaderCellDef>Analysis</th>
+              <td data-cy="analysis-ratios-intervals-cell" class="parameter-intervals" mat-cell
+                *matCellDef="let analysis">
+                <div data-cy="analysis-ratios-intervals-cell-verbal-rating" class="interval-verbal-rating">
+                  <b>{{analysis.intervals.verbalRating}}</b>
+                </div>
+                <div data-cy="analysis-ratios-intervals-cell-summary" class="interval-summary">
+                  {{analysis.intervals.summary}}
+                </div>
+                <div data-cy="analysis-ratios-intervals-cell-number-rating" class="interval-number-rating" [ngClass]="{
               'terrible' : analysis.intervals.numberRating === 1,
               'rather-bad' : analysis.intervals.numberRating === 2,
               'neutral' : analysis.intervals.numberRating === 3,
@@ -141,27 +151,29 @@
               'rather-good' : analysis.intervals.numberRating === 5,
               'outstanding' : analysis.intervals.numberRating === 6
             }">
-              <mat-progress-bar data-cy="analysis-ratios-intervals-cell-progress-bar"
-                value="{{analysis.intervals.numberRating*100/6}}" mode="determine">
-              </mat-progress-bar>
-            </div>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="shortDescription">
-          <th data-cy="analysis-ratios-additional-info-header" mat-header-cell *matHeaderCellDef>Additional Info</th>
-          <td data-cy="analysis-ratios-additional-info-cell" class="info-button-column" mat-cell
-            *matCellDef="let analysis">
-            <button [attr.data-cy]="sanitizeHTMLRatioName(analysis.name)+'-details-button'" class="details-button"
-              mat-raised-button (click)="openRatioDetails(analysis.name)" color="accent">Ratio
-              Details</button>
-          </td>
-        </ng-container>
-        <tr data-cy="analysis-ratios-header-row" mat-header-row *matHeaderRowDef="ratiosAnalysisColumns"></tr>
-        <tr data-cy="analysis-ratios-items-row" class="table-row" mat-row
-          *matRowDef="let row; columns: ratiosAnalysisColumns"></tr>
-      </table>
-    </mat-card-content>
-
+                  <mat-progress-bar data-cy="analysis-ratios-intervals-cell-progress-bar"
+                    value="{{analysis.intervals.numberRating*100/6}}" mode="determine">
+                  </mat-progress-bar>
+                </div>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="shortDescription">
+              <th data-cy="analysis-ratios-additional-info-header" mat-header-cell *matHeaderCellDef>Additional Info
+              </th>
+              <td data-cy="analysis-ratios-additional-info-cell" class="info-button-column" mat-cell
+                *matCellDef="let analysis">
+                <button [attr.data-cy]="sanitizeHTMLRatioName(analysis.name)+'-details-button'" class="details-button"
+                  mat-raised-button (click)="openRatioDetails(analysis.name)" color="accent">Ratio
+                  Details</button>
+              </td>
+            </ng-container>
+            <tr data-cy="analysis-ratios-header-row" mat-header-row *matHeaderRowDef="ratiosAnalysisColumns"></tr>
+            <tr data-cy="analysis-ratios-items-row" class="table-row" mat-row
+              *matRowDef="let row; columns: ratiosAnalysisColumns"></tr>
+          </table>
+        </mat-card-content>
+      </div>
+    </div>
     <!-- Errors from ratio input fields are displayed here, depending from inputErrorsArray objects -->
     <div *ngIf="inputErrorsArray[0]!==undefined" color="warn" class="alert alert-danger">
       <mat-error *ngIf="!inputErrorsArray.minLength">

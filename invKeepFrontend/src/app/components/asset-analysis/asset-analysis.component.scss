@@ -9,7 +9,7 @@ mat-card-title {
 
 th {
   color: rgb(255, 255, 255);
-  background-color: #673ab7;
+  background-color: #673ab7 !important;
   font-size: 20px;
   padding-right: 5px !important;
   align-content: left !important;
@@ -17,7 +17,6 @@ th {
 
 .interval-summary {
   max-width: 600px;
-  /* feel free to include any other value */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -127,11 +126,6 @@ ul {
   display: inline-block;
 }
 
-.ratio-analysis {
-  float: right;
-  width: 80%;
-}
-
 mat-progress-bar {
   height: 10px !important;
   border-radius: 5px;
@@ -161,7 +155,6 @@ mat-progress-bar {
   padding: 0.5%;
 }
 
-// #file-upload-cell-upload {
 .file-upload {
   display: flex;
   justify-content: center;
@@ -177,7 +170,6 @@ mat-progress-bar {
 
 #select-file-button {
   margin: 8.5px 0 0 0;
-  
 }
 
 tr.no-highlight:hover {
@@ -196,4 +188,21 @@ tr.no-highlight:hover {
 
 .img-prv-btn {
   height: 100%;
+}
+
+.grid-wrapper {
+  display: grid;
+  grid-template-areas: 
+   "a c b";
+   grid-template-columns: 235px 10px 1fr;
+}
+
+.grid-column-one {
+  grid-area: a;
+  min-width: 250px;
+}
+
+.grid-column-two {
+  grid-area: b;
+  min-width: 700px;
 }
