@@ -3,6 +3,22 @@ mat-card {
   margin: 20px auto;
 }
 
+mat-card-actions {
+  display: block;
+  margin-bottom: 20px;
+  height: 20px;
+}
+
+mat-card-actions {
+  padding-left: 1%;
+  padding-bottom: 1%;
+}
+
+mat-progress-bar {
+  height: 10px !important;
+  border-radius: 5px;
+}
+
 th {
   color: rgb(255, 255, 255);
   background-color: #673ab7 !important;
@@ -29,12 +45,6 @@ th {
   margin-left: 15px;
 }
 
-mat-card-actions {
-  display: block;
-  margin-bottom: 20px;
-  height: 20px;
-}
-
 .analysis-table {
   width: 100% !important;
 }
@@ -47,20 +57,15 @@ mat-card-actions {
   width: 200px !important;
   align-content: center;
 }
-.edit{
+
+.edit {
   font-size: large;
 }
-
 
 button {
   display: inline-block;
   margin-right: 10px !important;
   font-size: large;
-}
-
-mat-card-actions {
-  padding-left: 1%;
-  padding-bottom: 1%;
 }
 
 .details-button {
@@ -70,7 +75,6 @@ mat-card-actions {
 
 #symbol {
   display: inline-block;
-  float: right;
   color: grey;
 }
 
@@ -123,11 +127,6 @@ ul {
 .ratios-column {
   width: 20%;
   display: inline-block;
-}
-
-mat-progress-bar {
-  height: 10px !important;
-  border-radius: 5px;
 }
 
 .input-ratio-value,
@@ -191,9 +190,9 @@ tr.no-highlight:hover {
 
 .grid-wrapper {
   display: grid;
-  grid-template-areas: 
-   "a c b";
-   grid-template-columns: 250px 10px 1fr;
+  grid-template-areas:
+    "a c b";
+  grid-template-columns: 250px 10px 1fr;
 }
 
 .grid-column-one {
