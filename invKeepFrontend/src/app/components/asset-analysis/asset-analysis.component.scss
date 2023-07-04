@@ -44,7 +44,7 @@ mat-card-actions {
 }
 
 .info-button-column {
-  width: 140px !important;
+  width: 200px !important;
   align-content: center;
 }
 .edit{
@@ -88,7 +88,7 @@ mat-card-actions {
 }
 
 .parameter-value {
-  width: 100px !important;
+  width: 30px !important;
 }
 
 .parameter-unit {
@@ -97,8 +97,7 @@ mat-card-actions {
 }
 
 .parameter-intervals {
-  width: 50%;
-  max-width: 50%;
+  width: 1fr;
 }
 
 .parameter-description {

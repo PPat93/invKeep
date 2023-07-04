@@ -406,3 +406,5 @@ export class AssetAnalysisComponent implements OnInit {
     }
   }
 }
+
+//  TODO - 5 - good to have - refactor aalysis table layout to no longer use oridinary table but the material one
