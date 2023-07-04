@@ -98,7 +98,7 @@
                     <input class="single-asset-ratio"
                       [attr.data-cy]="ratio.parameterName.replaceAll(' ', '-').toLowerCase() + '-input'"
                       name="{{ratio.parameterName.replaceAll(' ', '-').toLowerCase()}}" matInput
-                      value="{{ratio.valueNum}}"
+                      value="{{ratio.valueNum}}"  maxlength="7"
                       [formControlName]="ratio.parameterName.replaceAll(' ', '-').replaceAll('/','-').toLowerCase()">
                   </mat-form-field>
                 </td>

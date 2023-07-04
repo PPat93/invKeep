@@ -47,8 +47,11 @@ mat-card-actions {
   width: 140px !important;
   align-content: center;
 }
+.edit{
+  font-size: large;
+}
 
-.edit,
+
 button {
   display: inline-block;
   margin-right: 10px !important;
@@ -130,7 +133,7 @@ mat-progress-bar {
 
 .input-ratio-value,
 .single-asset-ratio {
-  max-width: 35px;
+  width: 60px;
 }
 
 #asset-main-details {
@@ -191,7 +194,7 @@ tr.no-highlight:hover {
   display: grid;
   grid-template-areas: 
    "a c b";
-   grid-template-columns: 235px 10px 1fr;
+   grid-template-columns: 250px 10px 1fr;
 }
 
 .grid-column-one {
