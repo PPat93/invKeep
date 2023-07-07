@@ -1,6 +1,6 @@
 <div [attr.data-cy]="dataCyRatioName + '-ratio-details-dialog'" class="ratio-details-dialog">
     <h2 mat-dialog-title class="ratio-name-header-dialog"> Additional info on <b>{{ratioName}}</b></h2>
-    <mat-dialog-content class="mat-typography">
+    <mat-dialog-content class="mat-typography" style="height: calc(100% - 96px);max-height: unset">
         <mat-card class="additional-details-dialog">
             <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
             <mat-card-content class="dialog-body" *ngIf="!isLoading">
@@ -86,7 +86,7 @@
         </mat-card>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
-        <button data-cy="close-dialog-button" mat-button mat-dialog-close (click)="closeDialog()"
+        <button data-cy="close-dialog-button" mat-stroked-button mat-dialog-close (click)="closeDialog()"
             class="close-dialog-btn">Close</button>
     </mat-dialog-actions>
 </div>

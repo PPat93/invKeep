@@ -217,7 +217,8 @@ export class AssetAnalysisComponent implements OnInit {
     this.dialog.open(RatioDetailsDialogComponent, {
       data: ratioName,
       width: `80%`,
-      height: `80%`
+      height: `80%`,
+      autoFocus: false,
     })
   }
 
