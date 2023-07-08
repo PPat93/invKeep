@@ -58,7 +58,13 @@ mat-list-item div mat-icon {
 
 .intervals-bulletpoint-text {
     width: 85%;
-    display: inline-block;
+    float: right;
+    white-space: normal;
+    overflow: visible;
+}
+
+.single-intervals-bulletpoint-item {
+    padding-top: 7px;
 }
 
 .intervals-bulletpoint-range {

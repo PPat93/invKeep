@@ -51,11 +51,10 @@
                     <mat-list>
                         <mat-list-item *ngFor="let singleIntervalData of ratiosInfos.intervals.data, let i = index">
                             <div class="intervals-bulletpoint-text">
-                                <mat-icon>keyboard_arrow_right</mat-icon>
-                                <span [attr.data-cy]="'single-interval-item-'+i">{{ singleIntervalData.summary }}</span>
+                                <span class="single-intervals-bulletpoint-item" [attr.data-cy]="'single-interval-item-'+i">{{ singleIntervalData.summary }}</span>
                             </div>
                             <div class="intervals-bulletpoint-range">
-                                <mat-icon>arrow_right_alt</mat-icon>
+                                <mat-icon>keyboard_arrow_right</mat-icon>
                                 <span [innerHTML]="rangeProcessing(ratiosInfos.intervals.values[i])"></span>
                             </div>
                         </mat-list-item>
