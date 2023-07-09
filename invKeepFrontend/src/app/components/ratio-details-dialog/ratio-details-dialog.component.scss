@@ -42,8 +42,8 @@ mat-list {
     padding-top: 0;
 }
 
-mat-card-content {
-    font-size: 14px !important;
+mat-card-content, span{
+    font-size: 13px !important;
 }
 
 mat-dialog-content {
@@ -60,11 +60,16 @@ mat-list-item div mat-icon {
     width: 85%;
     float: right;
     white-space: normal;
-    overflow: visible;
+    overflow: unset;
+    line-height: normal;
+}
+
+span{
+    font-size: 13px;
 }
 
 .single-intervals-bulletpoint-item {
-    padding-top: 7px;
+    padding-top: 10px;
 }
 
 .intervals-bulletpoint-range {
