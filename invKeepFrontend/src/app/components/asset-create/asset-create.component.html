@@ -1,6 +1,6 @@
 <mat-card data-cy="create-form">
   <form [formGroup]="assetForm" (submit)="onAssetSave()">
-    <mat-card-title class="card-title">Create asset:</mat-card-title>
+    <mat-card-title class="card-title">{{pageTitle}}</mat-card-title>
     <mat-divider></mat-divider>
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
     <div *ngIf="!isLoading">
@@ -24,8 +24,8 @@
         <div class="asset-amount-field">
           <mat-form-field>
             <mat-label>Amount of units</mat-label>
-            <input name="amount" data-cy="amount" matInput id="asset-amount"
-              class="asset-input example-right-align" formControlName="amount">
+            <input name="amount" data-cy="amount" matInput id="asset-amount" class="asset-input example-right-align"
+              formControlName="amount">
             <mat-error *ngIf="assetForm.get('amount').invalid"> {{ getErrorMessage('amount') }}</mat-error>
             <span matTextSuffix>.00</span>
           </mat-form-field>
@@ -33,16 +33,15 @@
         <div class="asset-price-field">
           <mat-form-field>
             <mat-label>Price for one unit</mat-label>
-            <input name="price" data-cy="price" matInput id="asset-price"
-              class="asset-input example-right-align" formControlName="buyPrice">
+            <input name="price" data-cy="price" matInput id="asset-price" class="asset-input example-right-align"
+              formControlName="buyPrice">
             <mat-error *ngIf="assetForm.get('buyPrice').invalid"> {{ getErrorMessage('price') }}</mat-error>
           </mat-form-field>
         </div>
         <div class="asset-currency-field">
           <mat-form-field>
             <mat-label>Currency</mat-label>
-            <mat-select data-cy="currency" name="currency" class="asset-input asset-select"
-              formControlName="currency">
+            <mat-select data-cy="currency" name="currency" class="asset-input asset-select" formControlName="currency">
               <mat-option value="$">$</mat-option>
               <mat-option value="€">€</mat-option>
               <mat-option value="£">£</mat-option>
@@ -54,8 +53,8 @@
         <div class="asset-date-field">
           <mat-form-field>
             <mat-label>Purchase Date</mat-label>
-            <input name="date" data-cy="purchase-date" matInput [matDatepicker]="picker"
-              classs="asset-input" formControlName="purchaseDate">
+            <input name="date" data-cy="purchase-date" matInput [matDatepicker]="picker" classs="asset-input"
+              formControlName="purchaseDate">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             <mat-error *ngIf="assetForm.get('purchaseDate').invalid"> {{ getErrorMessage('date') }}</mat-error>

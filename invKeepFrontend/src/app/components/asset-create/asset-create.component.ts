@@ -18,6 +18,8 @@ export class AssetCreateComponent implements OnInit {
   isLoading: boolean = false;
   usedAsset: AssetRecord;
   assetForm: UntypedFormGroup;
+  pageTitle: string = `Create asset:`;
+
 
   constructor(public AssetsService: AssetsService, public route: ActivatedRoute) {
   }
@@ -37,6 +39,7 @@ export class AssetCreateComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has(`assetId`)) {
         this.actionMode = CreateComponentMode.edit;
+        this.pageTitle = `Edit asset:`;
         this.assetButton = `Edit asset`;
         this.assetId = paramMap.get(`assetId`)
         this.AssetsService.getSingleAsset(this.assetId).subscribe(singleAsset => {
@@ -47,7 +50,7 @@ export class AssetCreateComponent implements OnInit {
         });
       } else {
         this.actionMode = CreateComponentMode.create;
-        this.assetButton = `Add asset`;
+        this.assetButton = `Create asset`;
 
         this.usedAsset = {
           _id: ``,
