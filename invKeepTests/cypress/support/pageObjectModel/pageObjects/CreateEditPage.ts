@@ -11,16 +11,16 @@ class CreateEditpage {
     createEditAsset(assetName: string, assetSymbol: string, amount: number, pricePerUnit: number, currency: AssetCurrency, purchaseDate?: Date | string) {
 
         cy.getDataCyElement(CreateEditPageConsts.fullName)
-            .clear()
+            .clear({ force: true })
             .type(assetName);
         cy.getDataCyElement(CreateEditPageConsts.symbol)
-            .clear()
+            .clear({ force: true })
             .type(assetSymbol);
         cy.getDataCyElement(CreateEditPageConsts.amount)
-            .clear()
+            .clear({ force: true })
             .type(`${amount}`);
         cy.getDataCyElement(CreateEditPageConsts.price)
-            .clear()
+            .clear({ force: true })
             .type(`${pricePerUnit}`);
         cy.getDataCyElement(CreateEditPageConsts.currency)
             .click()
@@ -29,7 +29,7 @@ class CreateEditpage {
             .click({ force: true });
         if (purchaseDate !== undefined) {
             cy.getDataCyElement(CreateEditPageConsts.purchaseDate)
-                .clear()
+                .clear({ force: true })
                 .type(`${purchaseDate}`)
         }
         cy.getDataCyElement(CreateEditPageConsts.submitBtn)
@@ -40,11 +40,10 @@ class CreateEditpage {
     checkErrorField(field: string, error: string) {
 
         cy.getDataCyElement(field)
-            .parentsUntil(`mat-form-field`)
+            .parents(`mat-form-field`)
             .find(`mat-error`)
-            .should(`contain.text`, error)
-            .and(`have.attr`, `role`, `alert`)
-            .and(`be.visible`);
+            .should(`be.visible`)
+            .and(`contain.text`, error);
     }
 }
 

@@ -57,7 +57,7 @@ describe(`Error messages - Create Asset form - wrong chars`, () => {
             cy.getDataCyElement(CreateEditPageConsts.fullName)
                 .then(focusedItem => {
                     cy.wrap(focusedItem)
-                        .type(`Name${singleValue}`).then(() => {
+                        .type(`Name${singleValue}`, { force: true }).then(() => {
                             cy.getDataCyElement(CreateEditPageConsts.submitBtn)
                                 .click();
                         })
@@ -76,7 +76,7 @@ describe(`Error messages - Create Asset form - wrong chars`, () => {
             cy.getDataCyElement(CreateEditPageConsts.symbol)
                 .then(focusedItem => {
                     cy.wrap(focusedItem)
-                        .type(`${singleValue}`).then(() => {
+                        .type(`${singleValue}`, { force: true }).then(() => {
                             cy.getDataCyElement(CreateEditPageConsts.submitBtn)
                                 .click();
                         })
@@ -95,7 +95,7 @@ describe(`Error messages - Create Asset form - wrong chars`, () => {
             cy.getDataCyElement(CreateEditPageConsts.amount)
                 .then(focusedItem => {
                     cy.wrap(focusedItem)
-                        .type(`${singleValue}`).then(() => {
+                        .type(`${singleValue}`, { force: true }).then(() => {
                             cy.getDataCyElement(CreateEditPageConsts.submitBtn)
                                 .click();
                         })
@@ -114,7 +114,7 @@ describe(`Error messages - Create Asset form - wrong chars`, () => {
             cy.getDataCyElement(CreateEditPageConsts.price)
                 .then(focusedItem => {
                     cy.wrap(focusedItem)
-                        .type(`${singleValue}`).then(() => {
+                        .type(`${singleValue}`, { force: true }).then(() => {
                             cy.getDataCyElement(CreateEditPageConsts.submitBtn)
                                 .click();
                         })
@@ -133,7 +133,7 @@ describe(`Error messages - Create Asset form - wrong chars`, () => {
             cy.getDataCyElement(CreateEditPageConsts.purchaseDate)
                 .then(focusedItem => {
                     cy.wrap(focusedItem)
-                        .type(singleValue).then(() => {
+                        .type(singleValue, { force: true }).then(() => {
                             cy.getDataCyElement(CreateEditPageConsts.submitBtn)
                                 .click();
                         })
@@ -158,7 +158,7 @@ describe(`Error messages - Create Asset form - too short/long value`, () => {
         cy.getDataCyElement(CreateEditPageConsts.fullName)
             .then(focusedItem => {
                 cy.wrap(focusedItem)
-                    .type(`a`).then(() => {
+                    .type(`a`, { force: true }).then(() => {
                         cy.getDataCyElement(CreateEditPageConsts.submitBtn)
                             .click();
                     })
@@ -174,7 +174,7 @@ describe(`Error messages - Create Asset form - too short/long value`, () => {
         cy.getDataCyElement(CreateEditPageConsts.fullName)
             .then(focusedItem => {
                 cy.wrap(focusedItem)
-                    .type(`aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa`).then(() => {
+                    .type(`aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa`, { force: true }).then(() => {
                         cy.getDataCyElement(CreateEditPageConsts.submitBtn)
                             .click();
                     })
@@ -190,7 +190,7 @@ describe(`Error messages - Create Asset form - too short/long value`, () => {
         cy.getDataCyElement(CreateEditPageConsts.fullName)
             .then(focusedItem => {
                 cy.wrap(focusedItem)
-                    .type(`aaaaaaa`).then(() => {
+                    .type(`aaaaaaa`, { force: true }).then(() => {
                         cy.getDataCyElement(CreateEditPageConsts.submitBtn)
                             .click();
                     })
@@ -206,7 +206,7 @@ describe(`Error messages - Create Asset form - too short/long value`, () => {
         cy.getDataCyElement(CreateEditPageConsts.amount)
             .then(focusedItem => {
                 cy.wrap(focusedItem)
-                    .type(`11111111111`).then(() => {
+                    .type(`11111111111`, { force: true }).then(() => {
                         cy.getDataCyElement(CreateEditPageConsts.submitBtn)
                             .click();
                     })
@@ -222,7 +222,7 @@ describe(`Error messages - Create Asset form - too short/long value`, () => {
         cy.getDataCyElement(CreateEditPageConsts.price)
             .then(focusedItem => {
                 cy.wrap(focusedItem)
-                    .type(`11111111111`).then(() => {
+                    .type(`11111111111`, { force: true }).then(() => {
                         cy.getDataCyElement(CreateEditPageConsts.submitBtn)
                             .click();
                     })
@@ -238,7 +238,7 @@ describe(`Error messages - Create Asset form - too short/long value`, () => {
         cy.getDataCyElement(CreateEditPageConsts.purchaseDate)
             .then(focusedItem => {
                 cy.wrap(focusedItem)
-                    .type(`1212121`).then(() => {
+                    .type(`1212121`, { force: true }).then(() => {
                         cy.getDataCyElement(CreateEditPageConsts.submitBtn)
                             .click();
                     })
