@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AssetsService } from "../../services/assets.service";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { AnalyzedData, AssetRecord, AssetAndIndicatorsAnlysis, sanitizeRatioName } from "../../shared/sharedTS";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
 import { AssetRatiosService } from "../../services/asset-ratios.service";
 import { Subscription } from "rxjs";
 import { RatioDetailsService } from 'src/app/services/ratio-details.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog as MatDialog } from '@angular/material/dialog';
 import { RatioDetailsDialogComponent } from '../ratio-details-dialog/ratio-details-dialog.component';
 import { mimeValidator } from './mime-type.validator';
 import { AssetImageService } from 'src/app/services/asset-image.service';
@@ -26,8 +26,8 @@ export class AssetAnalysisComponent implements OnInit {
   assetMainDetails: AssetRecord;
 
   //  FormGroups variables declaration, used to control and validate ratios values and image value
-  ratiosFormGroup: FormGroup;
-  imageFormGroup: FormGroup;
+  ratiosFormGroup: UntypedFormGroup;
+  imageFormGroup: UntypedFormGroup;
 
   //  Image preview holding variable
   imagePreview: string = null;
@@ -354,10 +354,10 @@ export class AssetAnalysisComponent implements OnInit {
 
       //  Maximum 7 chars, valid examples: 123.123; 12.1; 1.1; 5; 0.123; 1234; etc. -> and all of them with comma instead of dot
       //  Everything else is invalid
-      tempGroupFormControls[sanitizeRatioName(element.parameterName)] = new FormControl(0, { validators: [Validators.maxLength(7), Validators.pattern(`^([0-9]{1,3}[.,]{0,1}[0-9]{1,3})$|^([0-9]{1})$`)] });
+      tempGroupFormControls[sanitizeRatioName(element.parameterName)] = new UntypedFormControl(0, { validators: [Validators.maxLength(7), Validators.pattern(`^([0-9]{1,3}[.,]{0,1}[0-9]{1,3})$|^([0-9]{1})$`)] });
     });
 
-    this.ratiosFormGroup = new FormGroup(tempGroupFormControls);
+    this.ratiosFormGroup = new UntypedFormGroup(tempGroupFormControls);
 
     //  Dynamic assignment of starting values accordingly to values retrieved from DB 
     //  Each value retrieved from the backend is assigned to an appropriate ratio, all of them are gathered
@@ -379,16 +379,16 @@ export class AssetAnalysisComponent implements OnInit {
 
       //  Any file with jpg, jpeg or png extension is accepted by first pattern validator and simultaneously the file
       //  type that is accepted must be any image one: image/* 
-      name: new FormControl(``, { validators: [Validators.pattern(/^.*[.](jpg|jpeg|png)$/i)] }),
-      type: new FormControl(``, { validators: [Validators.pattern(/^image\/.*$/)] }),
-      size: new FormControl(0, { validators: [Validators.max(2097152)] }),
-      mime_type: new FormControl(null, {
+      name: new UntypedFormControl(``, { validators: [Validators.pattern(/^.*[.](jpg|jpeg|png)$/i)] }),
+      type: new UntypedFormControl(``, { validators: [Validators.pattern(/^image\/.*$/)] }),
+      size: new UntypedFormControl(0, { validators: [Validators.max(2097152)] }),
+      mime_type: new UntypedFormControl(null, {
         validators: [Validators.required],
         asyncValidators: [mimeValidator]
       })
     };
 
-    this.imageFormGroup = new FormGroup(imageFormControls);
+    this.imageFormGroup = new UntypedFormGroup(imageFormControls);
   }
 
   /*  ->  Unsubscribing of subscriptions created for the Analysis component
