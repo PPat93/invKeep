@@ -187,6 +187,7 @@ describe(`Analysis Ratios Ratios Details Dialog opening and closing`, () => {
 
             // Act
             cy.getDataCyElement(AnalysisPageConsts.dialogCloseButton)
+                .scrollIntoView()
                 .should(`be.visible`)
             cy.getDataCyElement(AnalysisPageConsts.dialogCloseButton)
                 .click();
