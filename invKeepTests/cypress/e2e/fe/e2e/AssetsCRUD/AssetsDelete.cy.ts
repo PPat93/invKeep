@@ -1,5 +1,5 @@
-import MainPage from "../../../support/pageObjectModel/pageObjects/MainPage";
-import Utils, { AssetCurrency } from "../../../support/pageObjectModel/Utils/Utils";
+import MainPage from "../../../../support/pageObjectModel/pageObjects/MainPage";
+import Utils, { AssetCurrency } from "../../../../support/pageObjectModel/Utils/Utils";
 
 describe(`Assets deletion`, () => {
 

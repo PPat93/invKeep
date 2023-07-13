@@ -1,6 +1,6 @@
-import Utils, { AssetCurrency } from "../../../support/pageObjectModel/Utils/Utils";
-import CreateEditPageConsts from "../../../support/pageObjectModel/Utils/CreateEditPageConsts";
-import MainPage from "../../../support/pageObjectModel/pageObjects/MainPage";
+import Utils, { AssetCurrency } from "../../../../support/pageObjectModel/Utils/Utils";
+import CreateEditPageConsts from "../../../../support/pageObjectModel/Utils/CreateEditPageConsts";
+import MainPage from "../../../../support/pageObjectModel/pageObjects/MainPage";
 
 describe(`Displayment of asset data on asset edition`, () => {
 

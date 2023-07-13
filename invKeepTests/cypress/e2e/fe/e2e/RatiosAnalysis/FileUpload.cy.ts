@@ -1,6 +1,6 @@
-import MainPage from "../../../support/pageObjectModel/pageObjects/MainPage";
-import AnalysisPageConsts from "../../../support/pageObjectModel/Utils/AnalysisPageConsts";
-import Utils, { AssetCurrency } from "../../../support/pageObjectModel/Utils/Utils";
+import MainPage from "../../../../support/pageObjectModel/pageObjects/MainPage";
+import AnalysisPageConsts from "../../../../support/pageObjectModel/Utils/AnalysisPageConsts";
+import Utils, { AssetCurrency } from "../../../../support/pageObjectModel/Utils/Utils";
 
 describe(`File upload`, () => {
 

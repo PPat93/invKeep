@@ -1,4 +1,4 @@
-import CreateEditPageConsts from "../../../support/pageObjectModel/Utils/CreateEditPageConsts";
+import CreateEditPageConsts from "../../../../support/pageObjectModel/Utils/CreateEditPageConsts";
 
 describe(`Error messages - Create Asset form - empty required`, () => {
 
