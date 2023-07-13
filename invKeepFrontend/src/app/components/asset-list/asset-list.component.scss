@@ -7,13 +7,8 @@ mat-expansion-panel {
   margin-top: 2px;
 }
 
-mat-card-title {
-  font-size: small;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
 div.items {
-  margin-top: 16px;
+  margin: 16px 10px;
 }
 
 #nothing-to-see {
@@ -24,9 +19,7 @@ div.items {
 }
 
 mat-panel-description {
-  float: right;
-  width: 180px;
-  flex-grow: 0;
+  flex: 0 0 auto;
 }
 
 table {
@@ -34,7 +27,6 @@ table {
 }
 
 .details {
-  display: inline-block;
   float: right;
   width: 6rem !important;
   height: 2rem !important;

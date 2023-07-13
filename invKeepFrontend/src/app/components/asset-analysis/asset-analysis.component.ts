@@ -217,7 +217,8 @@ export class AssetAnalysisComponent implements OnInit {
     this.dialog.open(RatioDetailsDialogComponent, {
       data: ratioName,
       width: `80%`,
-      height: `80%`
+      height: `80%`,
+      autoFocus: false,
     })
   }
 
@@ -406,3 +407,5 @@ export class AssetAnalysisComponent implements OnInit {
     }
   }
 }
+
+//  TODO - 5 - good to have - refactor aalysis table layout to no longer use oridinary table but the material one

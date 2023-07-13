@@ -3,13 +3,25 @@ mat-card {
   margin: 20px auto;
 }
 
-mat-card-title {
-  height: 30px;
+mat-card-actions {
+  display: block;
+  margin-bottom: 20px;
+  height: 20px;
+}
+
+mat-card-actions {
+  padding-left: 1%;
+  padding-bottom: 1%;
+}
+
+mat-progress-bar {
+  height: 10px !important;
+  border-radius: 5px;
 }
 
 th {
   color: rgb(255, 255, 255);
-  background-color: #673ab7;
+  background-color: #673ab7 !important;
   font-size: 20px;
   padding-right: 5px !important;
   align-content: left !important;
@@ -17,7 +29,6 @@ th {
 
 .interval-summary {
   max-width: 600px;
-  /* feel free to include any other value */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -31,12 +42,7 @@ th {
 
 .subtitle {
   font-size: 20px;
-}
-
-mat-card-actions {
-  display: block;
-  margin-bottom: 20px;
-  height: 20px;
+  margin-left: 15px;
 }
 
 .analysis-table {
@@ -48,20 +54,18 @@ mat-card-actions {
 }
 
 .info-button-column {
-  width: 140px !important;
+  width: 200px !important;
   align-content: center;
 }
 
-.edit,
+.edit {
+  font-size: large;
+}
+
 button {
   display: inline-block;
   margin-right: 10px !important;
   font-size: large;
-}
-
-mat-card-actions {
-  padding-left: 1%;
-  padding-bottom: 1%;
 }
 
 .details-button {
@@ -72,6 +76,7 @@ mat-card-actions {
 #symbol {
   display: inline-block;
   float: right;
+  padding-right: 10px;
   color: grey;
 }
 
@@ -89,7 +94,7 @@ mat-card-actions {
 }
 
 .parameter-value {
-  width: 100px !important;
+  width: 30px !important;
 }
 
 .parameter-unit {
@@ -98,8 +103,7 @@ mat-card-actions {
 }
 
 .parameter-intervals {
-  width: 50%;
-  max-width: 50%;
+  width: 1fr;
 }
 
 .parameter-description {
@@ -127,19 +131,9 @@ ul {
   display: inline-block;
 }
 
-.ratio-analysis {
-  float: right;
-  width: 80%;
-}
-
-mat-progress-bar {
-  height: 10px !important;
-  border-radius: 5px;
-}
-
 .input-ratio-value,
 .single-asset-ratio {
-  max-width: 35px;
+  width: 60px;
 }
 
 #asset-main-details {
@@ -161,7 +155,6 @@ mat-progress-bar {
   padding: 0.5%;
 }
 
-// #file-upload-cell-upload {
 .file-upload {
   display: flex;
   justify-content: center;
@@ -177,7 +170,6 @@ mat-progress-bar {
 
 #select-file-button {
   margin: 8.5px 0 0 0;
-  
 }
 
 tr.no-highlight:hover {
@@ -196,4 +188,25 @@ tr.no-highlight:hover {
 
 .img-prv-btn {
   height: 100%;
+}
+
+.grid-wrapper {
+  display: grid;
+  grid-template-areas:
+    "a c b";
+  grid-template-columns: 250px 10px 1fr;
+}
+
+.grid-column-one {
+  grid-area: a;
+  min-width: 250px;
+}
+
+.grid-column-two {
+  grid-area: b;
+  min-width: 700px;
+}
+
+.save{
+  margin-left: 5px;
 }
