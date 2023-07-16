@@ -5,8 +5,9 @@ describe(`API - valid asset deletion`, () => {
 
     })
 
-    it(`API - Delete an asset without purchase date`, () => { })
-    it(`API - Delete an asset with purchase date`, () => { })
+    it(`API - Delete an asset with a purchase date`, () => { })
+    it(`API - Delete an asset without a purchase date`, () => { })
+    it(`API - Delete two assets one after another`, () => { })
 })
 
 describe(`API - attempt invalid asset deletion`, () => {
@@ -16,4 +17,6 @@ describe(`API - attempt invalid asset deletion`, () => {
     })
 
     it(`API - Delete a non-existing asset`, () => { })
+    it(`API - Delete an invalid ID asset`, () => { })
+    it(`API - Delete an asset that was already deleted`, () => { })
 })
