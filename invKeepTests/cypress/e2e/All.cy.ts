@@ -32,4 +32,7 @@ import './fe/functional/Errors/ErrorMessagesEditPage.cy';
 ///////////////////////////////////////////////////////////////////////////////
 
 //  Assets CRUD
-import './be/APIAssetCRUD/AssetsCreate.cy';
+import './be/APIAssetCRUD/CreateAsset.cy';
+import './be/APIAssetCRUD/EditAsset.cy';
+import './be/APIAssetCRUD/DeleteAsset.cy';
+import './be/APIAssetCRUD/GetAssets.cy';
