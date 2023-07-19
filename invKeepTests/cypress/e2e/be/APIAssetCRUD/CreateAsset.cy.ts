@@ -1,11 +1,29 @@
+import { AssetCurrency } from "../../../support/pageObjectModel/Utils/Utils";
 
 describe(`API - valid asset creation`, () => {
+
+    let assetName: string = `TestAsset${Date.now().toString().slice(10, 12)}`;
 
     afterEach(`Little teardown`, () => {
 
     })
 
-    it(`API - Create an asset with a purchase date`, () => { })
+    it.only(`API - Create an asset with a purchase date`, () => {
+
+        cy.intercept(`POST`,`/api/assets`).as(`createAssetRes`);
+
+        cy.apiCreateAsset(assetName, `TAwoD`, 12, 10.12, AssetCurrency.euro);
+
+        cy.wait(`@createAssetRes`).then(assetResponse => {
+            cy.wrap(assetResponse)
+                .should(`have.a.property`, `message`, `Asset added successfully!`);
+            cy.wrap(assetResponse)
+                .should(`have.a.property`, `assetId`)
+            cy.wrap(assetResponse)
+                .its(`assetId`).should(`be.a`, `string`);
+        })
+    })
+
     it(`API - Create an asset without a purchase date`, () => { })
     it(`API - Create an asset with maximum value lengths - field `, () => { })
     it(`API - Create an asset with minimum value lengths - field`, () => { })
