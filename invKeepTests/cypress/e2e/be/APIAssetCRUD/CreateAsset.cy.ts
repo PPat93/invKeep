@@ -8,18 +8,17 @@ describe(`API - valid asset creation`, () => {
 
     })
 
-    it.only(`API - Create an asset with a purchase date`, () => {
+    it(`API - Create an asset with a purchase date`, () => {
 
-        cy.intercept(`POST`,`/api/assets`).as(`createAssetRes`);
 
-        cy.apiCreateAsset(assetName, `TAwoD`, 12, 10.12, AssetCurrency.euro);
+        cy.apiCreateAsset(assetName, `TAwoD`, 12, 10.12, AssetCurrency.euro).as(`createAssetRes`);
+        cy.get(`@createAssetRes`).then(assetResponse => {
 
-        cy.wait(`@createAssetRes`).then(assetResponse => {
-            cy.wrap(assetResponse)
+            cy.wrap(assetResponse.body)
                 .should(`have.a.property`, `message`, `Asset added successfully!`);
-            cy.wrap(assetResponse)
+            cy.wrap(assetResponse.body)
                 .should(`have.a.property`, `assetId`)
-            cy.wrap(assetResponse)
+            cy.wrap(assetResponse.body)
                 .its(`assetId`).should(`be.a`, `string`);
         })
     })
