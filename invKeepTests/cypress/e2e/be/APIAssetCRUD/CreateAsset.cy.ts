@@ -1,8 +1,27 @@
+import { AssetRecord } from "../../../../../invKeepFrontend/src/app/shared/sharedTS";
 import Utils, { AssetCurrency } from "../../../support/pageObjectModel/Utils/Utils";
 
 describe(`API - valid asset creation`, () => {
 
     let assetName: string = `TestAsset${Date.now().toString()}`;
+    let assetDetailsCreate: AssetRecord = {
+        id: ``,
+        _id: ``,
+        assetName: assetName,
+        assetSymbol: `TAwoD`,
+        amount: 12,
+        buyPrice: 10.12,
+        currency: AssetCurrency.euro,
+        purchaseDate: `27/09/2020`
+    }
+    let assetLengthProperties: { name: string, maxVal: string | number, minVal: string | number }[] = [
+        { name: `assetName`, maxVal: `TheMaxLengthTestAssetNameIsHer`, minVal: `Te` },
+        { name: `assetSymbol`, maxVal: `Symbol`, minVal: `S` },
+        { name: `amount`, maxVal: 9999999999, minVal: 1 },
+        { name: `buyPrice`, maxVal: 99999.9999, minVal: 2 },
+        { name: `currency`, maxVal: AssetCurrency.euro, minVal: AssetCurrency.yen },
+        { name: `purchaseDate`, maxVal: `12/02/2021`, minVal: `12/02/2021` }
+    ];
 
     afterEach(`Little teardown`, () => {
 
@@ -12,10 +31,11 @@ describe(`API - valid asset creation`, () => {
     it(`API - Create an asset with a purchase date`, () => {
 
         //  Arrange & Act
-        cy.apiCreateAsset(assetName, `TAwoD`, 12, 10.12, AssetCurrency.euro, `27/09/2020`).as(`createAssetRes`);
+        cy.apiCreateAsset(assetDetailsCreate.assetName, assetDetailsCreate.assetSymbol, assetDetailsCreate.amount, assetDetailsCreate.buyPrice, assetDetailsCreate.currency, assetDetailsCreate.purchaseDate).as(`createAssetRes`);
+
+        // Assert
         cy.get(`@createAssetRes`).then(assetResponse => {
 
-            // Assert
             if (`body` in assetResponse) {
 
                 cy.wrap(assetResponse.body)
@@ -28,7 +48,7 @@ describe(`API - valid asset creation`, () => {
                 cy.apiGetAsset().then(res => {
                     res.body.payload.forEach(singleItem => {
                         if (singleItem.assetName.match(assetName)) {
-                            cy.assertAsset(singleItem, assetName, `TAwoD`, 12, 10.12, AssetCurrency.euro, `27/09/2020`);
+                            cy.assertAsset(singleItem, assetDetailsCreate.assetName, assetDetailsCreate.assetSymbol, assetDetailsCreate.amount, assetDetailsCreate.buyPrice, assetDetailsCreate.currency, assetDetailsCreate.purchaseDate);
                         }
                     })
                 })
@@ -39,10 +59,11 @@ describe(`API - valid asset creation`, () => {
     it(`API - Create an asset without a purchase date`, () => {
 
         //  Arrange & Act
-        cy.apiCreateAsset(assetName, `TAwoD2`, 100, 12.05, AssetCurrency.dollar).as(`createAssetRes`);
+        cy.apiCreateAsset(assetDetailsCreate.assetName, assetDetailsCreate.assetSymbol, assetDetailsCreate.amount, assetDetailsCreate.buyPrice, assetDetailsCreate.currency).as(`createAssetRes`);
+
+        // Assert
         cy.get(`@createAssetRes`).then(assetResponse => {
 
-            // Assert
             if (`body` in assetResponse) {
 
                 cy.wrap(assetResponse.body)
@@ -55,7 +76,7 @@ describe(`API - valid asset creation`, () => {
                 cy.apiGetAsset().then(res => {
                     res.body.payload.forEach(singleItem => {
                         if (singleItem.assetName.match(assetName)) {
-                            cy.assertAsset(singleItem, assetName, `TAwoD2`, 100, 12.05, AssetCurrency.dollar, `-`);
+                            cy.assertAsset(singleItem, assetDetailsCreate.assetName, assetDetailsCreate.assetSymbol, assetDetailsCreate.amount, assetDetailsCreate.buyPrice, assetDetailsCreate.currency, `-`);
                         }
                     })
                 })
@@ -63,7 +84,15 @@ describe(`API - valid asset creation`, () => {
         })
     })
 
-    it(`API - Create an asset with maximum value lengths - field `, () => { })
+    assetLengthProperties.forEach(singleAssetField => {
+        it(`API - Create an asset with maximum value lengths - ${singleAssetField.name} field`, () => {
+
+            //  Arrange & Act
+            cy.apiCreateAsset(assetDetailsCreate.assetName, assetDetailsCreate.assetSymbol, assetDetailsCreate.amount, assetDetailsCreate.buyPrice, assetDetailsCreate.currency, assetDetailsCreate.purchaseDate).as(`createAssetRes`);
+
+        })
+    })
+
     it(`API - Create an asset with minimum value lengths - field`, () => { })
     it(`API - Create an asset identical to another one`, () => { })
     it(`API - Attempt to create an asset with additional fields`, () => { })

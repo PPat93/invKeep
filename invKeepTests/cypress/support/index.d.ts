@@ -14,7 +14,7 @@ declare global {
 
             //  BACKEND     //////////////////////////////////////////////////////////////////////////////////////////
             //  Assets      /////////////////
-            apiCreateAsset(assetName: string, assetSymbol: string, amount: number, pricePerUnit: number, currency: AssetCurrency, purchaseDate?: Date | string): Chainable<any>
+            apiCreateAsset(assetName: string, assetSymbol: string, amount: number, pricePerUnit: number, currency: string, purchaseDate?: Date | string): Chainable<any>
             apiDeleteAsset(assetId: string): Chainable<any>,
             apiGetAsset(possibleItem?: string | undefined): Chainable<any>,
 
@@ -22,7 +22,7 @@ declare global {
             apiDeleteAssetFile(assetId: string): Chainable<any>,
 
             // UTIL         //////////////////////////////////////////////////////////////////////////////////////////
-            assertAsset(singleAsset: AssetRecord, assetName: string, assetSymbol: string, amount: number, pricePerUnit: number, currency: AssetCurrency, purchaseDate?: Date | string): Chainable<any>,
+            assertAsset(singleAsset: AssetRecord, assetName: string, assetSymbol: string, amount: number, pricePerUnit: number, currency: string, purchaseDate?: Date | string): Chainable<any>,
         }
     }
 }
