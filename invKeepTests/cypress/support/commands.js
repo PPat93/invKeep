@@ -25,5 +25,8 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 import './commands/commandsFE/mainPage-commands-fe';
+
 import './commands/commandsBE/assets-commands-be';
 import './commands/commandsBE/assets-files-commands-be';
+
+import './commands/utils';

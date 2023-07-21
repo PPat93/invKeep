@@ -1,3 +1,4 @@
+import { AssetRecord } from "../../../invKeepFrontend/src/app/shared/sharedTS";
 import { AssetCurrency } from "./pageObjectModel/Utils/Utils";
 
 
@@ -19,6 +20,9 @@ declare global {
 
             //  Files       /////////////////
             apiDeleteAssetFile(assetId: string): Chainable<any>,
+
+            // UTIL         //////////////////////////////////////////////////////////////////////////////////////////
+            assertAsset(singleAsset: AssetRecord, assetName: string, assetSymbol: string, amount: number, pricePerUnit: number, currency: AssetCurrency, purchaseDate?: Date | string): Chainable<any>,
         }
     }
 }
