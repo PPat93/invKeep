@@ -71,3 +71,4 @@ export enum AssetCurrency {
     pound = `£`,
     yen = `¥`
 }
+// TODO change enum to Union? maybe

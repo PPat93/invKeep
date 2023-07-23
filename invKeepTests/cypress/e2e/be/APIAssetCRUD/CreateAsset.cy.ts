@@ -4,7 +4,7 @@ import Utils, { AssetCurrency } from "../../../support/pageObjectModel/Utils/Uti
 describe(`API - valid asset creation`, () => {
 
     let assetName: string = `TestAsset${Date.now().toString()}`;
-    let assetDetailsCreate: AssetRecord = {
+    let assetBase: AssetRecord = {
         id: ``,
         _id: ``,
         assetName: assetName,
@@ -22,16 +22,18 @@ describe(`API - valid asset creation`, () => {
         { name: `currency`, maxVal: AssetCurrency.euro, minVal: AssetCurrency.yen },
         { name: `purchaseDate`, maxVal: `12/02/2021`, minVal: `12/02/2021` }
     ];
+    let assetTestModel = { ...assetBase };
 
     afterEach(`Little teardown`, () => {
 
+        assetTestModel = { ...assetBase };
         Utils.teardownAssets(`TestAsset`);
     })
 
     it(`API - Create an asset with a purchase date`, () => {
 
         //  Arrange & Act
-        cy.apiCreateAsset(assetDetailsCreate.assetName, assetDetailsCreate.assetSymbol, assetDetailsCreate.amount, assetDetailsCreate.buyPrice, assetDetailsCreate.currency, assetDetailsCreate.purchaseDate).as(`createAssetRes`);
+        cy.apiCreateAsset(assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, assetTestModel.purchaseDate).as(`createAssetRes`);
 
         // Assert
         cy.get(`@createAssetRes`).then(assetResponse => {
@@ -48,7 +50,7 @@ describe(`API - valid asset creation`, () => {
                 cy.apiGetAsset().then(res => {
                     res.body.payload.forEach(singleItem => {
                         if (singleItem.assetName.match(assetName)) {
-                            cy.assertAsset(singleItem, assetDetailsCreate.assetName, assetDetailsCreate.assetSymbol, assetDetailsCreate.amount, assetDetailsCreate.buyPrice, assetDetailsCreate.currency, assetDetailsCreate.purchaseDate);
+                            cy.assertAsset(singleItem, assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, assetTestModel.purchaseDate);
                         }
                     })
                 })
@@ -59,7 +61,7 @@ describe(`API - valid asset creation`, () => {
     it(`API - Create an asset without a purchase date`, () => {
 
         //  Arrange & Act
-        cy.apiCreateAsset(assetDetailsCreate.assetName, assetDetailsCreate.assetSymbol, assetDetailsCreate.amount, assetDetailsCreate.buyPrice, assetDetailsCreate.currency).as(`createAssetRes`);
+        cy.apiCreateAsset(assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency).as(`createAssetRes`);
 
         // Assert
         cy.get(`@createAssetRes`).then(assetResponse => {
@@ -76,7 +78,7 @@ describe(`API - valid asset creation`, () => {
                 cy.apiGetAsset().then(res => {
                     res.body.payload.forEach(singleItem => {
                         if (singleItem.assetName.match(assetName)) {
-                            cy.assertAsset(singleItem, assetDetailsCreate.assetName, assetDetailsCreate.assetSymbol, assetDetailsCreate.amount, assetDetailsCreate.buyPrice, assetDetailsCreate.currency, `-`);
+                            cy.assertAsset(singleItem, assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, `-`);
                         }
                     })
                 })
@@ -86,9 +88,11 @@ describe(`API - valid asset creation`, () => {
 
     assetLengthProperties.forEach(singleAssetField => {
         it(`API - Create an asset with maximum value lengths - ${singleAssetField.name} field`, () => {
+            //  Arrange 
+            assetTestModel[singleAssetField.name] = singleAssetField.maxVal;
 
-            //  Arrange & Act
-            cy.apiCreateAsset(assetDetailsCreate.assetName, assetDetailsCreate.assetSymbol, assetDetailsCreate.amount, assetDetailsCreate.buyPrice, assetDetailsCreate.currency, assetDetailsCreate.purchaseDate).as(`createAssetRes`);
+            //  Act
+            cy.apiCreateAsset(assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, assetTestModel.purchaseDate).as(`createAssetRes`);
 
         })
     })
