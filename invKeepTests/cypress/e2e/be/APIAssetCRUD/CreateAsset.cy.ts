@@ -47,12 +47,10 @@ describe(`API - valid asset creation`, () => {
                 cy.wrap(assetResponse.body)
                     .its(`assetId`).should(`be.a`, `string`);
 
-                cy.apiGetAsset().then(res => {
-                    res.body.payload.forEach(singleItem => {
-                        if (singleItem.assetName.match(assetName)) {
-                            cy.assertAsset(singleItem, assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, assetTestModel.purchaseDate);
-                        }
-                    })
+                cy.apiGetAsset(assetResponse.body.assetId).then(res => {
+                    if (res.body.message === `Asset found!`) {
+                        cy.assertAsset(res.body.payload, assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, assetTestModel.purchaseDate);
+                    }
                 })
             }
         })
@@ -75,12 +73,10 @@ describe(`API - valid asset creation`, () => {
                 cy.wrap(assetResponse.body)
                     .its(`assetId`).should(`be.a`, `string`);
 
-                cy.apiGetAsset().then(res => {
-                    res.body.payload.forEach(singleItem => {
-                        if (singleItem.assetName.match(assetName)) {
-                            cy.assertAsset(singleItem, assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, `-`);
-                        }
-                    })
+                cy.apiGetAsset(assetResponse.body.assetId).then(res => {
+                    if (res.body.message === `Asset found!`) {
+                        cy.assertAsset(res.body.payload, assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, `-`);
+                    }
                 })
             }
         })
@@ -94,6 +90,25 @@ describe(`API - valid asset creation`, () => {
             //  Act
             cy.apiCreateAsset(assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, assetTestModel.purchaseDate).as(`createAssetRes`);
 
+            // Assert
+            cy.get(`@createAssetRes`).then(assetResponse => {
+
+                if (`body` in assetResponse) {
+
+                    cy.wrap(assetResponse.body)
+                        .should(`have.a.property`, `message`, `Asset added successfully!`);
+                    cy.wrap(assetResponse.body)
+                        .should(`have.a.property`, `assetId`)
+                    cy.wrap(assetResponse.body)
+                        .its(`assetId`).should(`be.a`, `string`);
+
+                    cy.apiGetAsset(assetResponse.body.assetId).then(res => {
+                        if (res.body.message === `Asset found!`) {
+                            cy.assertAsset(res.body.payload, assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, assetTestModel.purchaseDate);
+                        }
+                    })
+                }
+            })
         })
     })
 
