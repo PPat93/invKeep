@@ -91,6 +91,8 @@ describe(`API - valid asset creation`, () => {
         })
     })
 
+    it(`API - Create an asset with maximum boundry value - field`, () => { })
+    it(`API - Create an asset with minimum boundry value - field`, () => { })
     it(`API - Create an asset identical to another one`, () => { })
     it(`API - Attempt to create an asset with additional fields`, () => { })
     it(`API - Attempt to set asset ID during asset creation`, () => { })
