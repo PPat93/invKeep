@@ -14,13 +14,13 @@ describe(`API - valid asset creation`, () => {
         currency: AssetCurrency.euro,
         purchaseDate: `27/09/2020`
     }
-    let assetLengthProperties: { name: string, maxVal: string | number, minVal: string | number }[] = [
-        { name: `assetName`, maxVal: `TheMaxLengthTestAssetNameIsHer`, minVal: `Te` },
-        { name: `assetSymbol`, maxVal: `Symbol`, minVal: `S` },
-        { name: `amount`, maxVal: 9999999999, minVal: 1 },
-        { name: `buyPrice`, maxVal: 99999.9999, minVal: 2 },
-        { name: `currency`, maxVal: AssetCurrency.euro, minVal: AssetCurrency.yen },
-        { name: `purchaseDate`, maxVal: `12/02/2021`, minVal: `1/1/2021` }
+    let assetLengthProperties: { name: string, maxValLen: string | number, minValLen: string | number }[] = [
+        { name: `assetName`, maxValLen: `TheMaxLengthTestAssetNameIsHer`, minValLen: `Te` },
+        { name: `assetSymbol`, maxValLen: `Symbol`, minValLen: `S` },
+        { name: `amount`, maxValLen: 9999999999, minValLen: 1 },
+        { name: `buyPrice`, maxValLen: 99999.9999, minValLen: 2 },
+        { name: `currency`, maxValLen: AssetCurrency.euro, minValLen: AssetCurrency.yen },
+        { name: `purchaseDate`, maxValLen: `12/02/2021`, minValLen: `1/1/2021` }
     ];
     let assetTestModel = { ...assetBase };
 
@@ -61,7 +61,7 @@ describe(`API - valid asset creation`, () => {
         it(`API - Create an asset with maximum value lengths - ${singleAssetField.name} field`, () => {
 
             //  Arrange 
-            assetTestModel[singleAssetField.name] = singleAssetField.maxVal;
+            assetTestModel[singleAssetField.name] = singleAssetField.maxValLen;
 
             //  Act
             cy.apiCreateAsset(assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, assetTestModel.purchaseDate).as(`createAssetRes`);
@@ -78,7 +78,7 @@ describe(`API - valid asset creation`, () => {
         it(`API - Create an asset with minimum value lengths - ${singleAssetField.name} field`, () => {
 
             //  Arrange 
-            assetTestModel[singleAssetField.name] = singleAssetField.minVal;
+            assetTestModel[singleAssetField.name] = singleAssetField.minValLen;
 
             //  Act
             cy.apiCreateAsset(assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, assetTestModel.purchaseDate).as(`createAssetRes`);
