@@ -61,6 +61,25 @@ class Utils {
             .and(`have.attr`, `color`, `primary`)
             .and(`have.attr`, btnType);
     }
+
+    assertAssetCreateResponse(assetResponse, assetTestModel) {
+
+        if (`body` in assetResponse) {
+
+            cy.wrap(assetResponse.body)
+                .should(`have.a.property`, `message`, `Asset added successfully!`);
+            cy.wrap(assetResponse.body)
+                .should(`have.a.property`, `assetId`)
+            cy.wrap(assetResponse.body)
+                .its(`assetId`).should(`be.a`, `string`);
+
+            cy.apiGetAsset(assetResponse.body.assetId).then(res => {
+                if (res.body.message === `Asset found!`) {
+                    cy.assertAsset(res.body.payload, assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, assetTestModel.purchaseDate);
+                }
+            })
+        }
+    }
 }
 
 export default new Utils();

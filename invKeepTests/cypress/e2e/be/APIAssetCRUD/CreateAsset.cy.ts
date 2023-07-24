@@ -20,7 +20,7 @@ describe(`API - valid asset creation`, () => {
         { name: `amount`, maxVal: 9999999999, minVal: 1 },
         { name: `buyPrice`, maxVal: 99999.9999, minVal: 2 },
         { name: `currency`, maxVal: AssetCurrency.euro, minVal: AssetCurrency.yen },
-        { name: `purchaseDate`, maxVal: `12/02/2021`, minVal: `12/02/2021` }
+        { name: `purchaseDate`, maxVal: `12/02/2021`, minVal: `1/1/2021` }
     ];
     let assetTestModel = { ...assetBase };
 
@@ -38,52 +38,28 @@ describe(`API - valid asset creation`, () => {
         // Assert
         cy.get(`@createAssetRes`).then(assetResponse => {
 
-            if (`body` in assetResponse) {
-
-                cy.wrap(assetResponse.body)
-                    .should(`have.a.property`, `message`, `Asset added successfully!`);
-                cy.wrap(assetResponse.body)
-                    .should(`have.a.property`, `assetId`)
-                cy.wrap(assetResponse.body)
-                    .its(`assetId`).should(`be.a`, `string`);
-
-                cy.apiGetAsset(assetResponse.body.assetId).then(res => {
-                    if (res.body.message === `Asset found!`) {
-                        cy.assertAsset(res.body.payload, assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, assetTestModel.purchaseDate);
-                    }
-                })
-            }
+            Utils.assertAssetCreateResponse(assetResponse, assetTestModel);
         })
     })
 
     it(`API - Create an asset without a purchase date`, () => {
 
-        //  Arrange & Act
+        //  Arrange 
+        assetTestModel.purchaseDate = `-`;
+
+        //  Act
         cy.apiCreateAsset(assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency).as(`createAssetRes`);
 
         // Assert
         cy.get(`@createAssetRes`).then(assetResponse => {
 
-            if (`body` in assetResponse) {
-
-                cy.wrap(assetResponse.body)
-                    .should(`have.a.property`, `message`, `Asset added successfully!`);
-                cy.wrap(assetResponse.body)
-                    .should(`have.a.property`, `assetId`)
-                cy.wrap(assetResponse.body)
-                    .its(`assetId`).should(`be.a`, `string`);
-
-                cy.apiGetAsset(assetResponse.body.assetId).then(res => {
-                    if (res.body.message === `Asset found!`) {
-                        cy.assertAsset(res.body.payload, assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, `-`);
-                    }
-                })
-            }
+            Utils.assertAssetCreateResponse(assetResponse, assetTestModel);
         })
     })
 
     assetLengthProperties.forEach(singleAssetField => {
         it(`API - Create an asset with maximum value lengths - ${singleAssetField.name} field`, () => {
+
             //  Arrange 
             assetTestModel[singleAssetField.name] = singleAssetField.maxVal;
 
@@ -93,26 +69,28 @@ describe(`API - valid asset creation`, () => {
             // Assert
             cy.get(`@createAssetRes`).then(assetResponse => {
 
-                if (`body` in assetResponse) {
-
-                    cy.wrap(assetResponse.body)
-                        .should(`have.a.property`, `message`, `Asset added successfully!`);
-                    cy.wrap(assetResponse.body)
-                        .should(`have.a.property`, `assetId`)
-                    cy.wrap(assetResponse.body)
-                        .its(`assetId`).should(`be.a`, `string`);
-
-                    cy.apiGetAsset(assetResponse.body.assetId).then(res => {
-                        if (res.body.message === `Asset found!`) {
-                            cy.assertAsset(res.body.payload, assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, assetTestModel.purchaseDate);
-                        }
-                    })
-                }
+                Utils.assertAssetCreateResponse(assetResponse, assetTestModel);
             })
         })
     })
 
-    it(`API - Create an asset with minimum value lengths - field`, () => { })
+    assetLengthProperties.forEach(singleAssetField => {
+        it(`API - Create an asset with minimum value lengths - ${singleAssetField.name} field`, () => {
+
+            //  Arrange 
+            assetTestModel[singleAssetField.name] = singleAssetField.minVal;
+
+            //  Act
+            cy.apiCreateAsset(assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, assetTestModel.purchaseDate).as(`createAssetRes`);
+
+            // Assert
+            cy.get(`@createAssetRes`).then(assetResponse => {
+
+                Utils.assertAssetCreateResponse(assetResponse, assetTestModel);
+            })
+        })
+    })
+
     it(`API - Create an asset identical to another one`, () => { })
     it(`API - Attempt to create an asset with additional fields`, () => { })
     it(`API - Attempt to set asset ID during asset creation`, () => { })
