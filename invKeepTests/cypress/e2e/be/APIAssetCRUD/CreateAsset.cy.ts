@@ -91,9 +91,26 @@ describe(`API - valid asset creation`, () => {
         })
     })
 
+    it(`API - Create an asset identical to another one`, () => {
+
+        //  Act && Arrange
+        cy.apiCreateAsset(assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, assetTestModel.purchaseDate).as(`createAssetRes`);
+        cy.apiCreateAsset(assetTestModel.assetName, assetTestModel.assetSymbol, assetTestModel.amount, assetTestModel.buyPrice, assetTestModel.currency, assetTestModel.purchaseDate).as(`createAssetRes2`);
+
+        // Assert
+        cy.get(`@createAssetRes`).then(assetResponse => {
+            cy.get(`@createAssetRes2`).then(assetResponse2 => {
+
+                Utils.assertAssetCreateResponse(assetResponse, assetTestModel);
+                Utils.assertAssetCreateResponse(assetResponse2, assetTestModel);
+                
+                expect(assetResponse.body.assetId).not.equal(assetResponse2.body.assetId)
+
+            })
+        })
+    })
     it(`API - Create an asset with maximum boundry value - field`, () => { })
     it(`API - Create an asset with minimum boundry value - field`, () => { })
-    it(`API - Create an asset identical to another one`, () => { })
     it(`API - Attempt to create an asset with additional fields`, () => { })
     it(`API - Attempt to set asset ID during asset creation`, () => { })
 })
