@@ -21,12 +21,12 @@ Run `npm install` in invKeepFrontend folder.
 
 ## Frontend development server
 
-Run `ng serve` in `invKeepFrontend` folder for a dev server. Navigate to `http://localhost:4200/`. The app will
+Run `npm run startfe` in `invKeepFrontend` folder for a dev server. Navigate to `http://localhost:4200/`. The app will
 automatically reload if you change any of the source files.
 
 ## Backend with Server
 
-Run `npm run start:server` in `invKeepFrontend` folder to start backend server of invKeep. \
+Run `npm run startbe` in `invKeepFrontend` folder to start backend server of invKeep.
 To reload changes introduced in backend run `rs` in server console.
 `http://localhost:3000/`
 
@@ -37,16 +37,16 @@ To reload changes introduced in backend run `rs` in server console.
 ### Empty database
 - If you don't have installed local MongoDB -> download it from `https://www.mongodb.com/try/download`.
 - After installation create folders `C:\data\db`.
-- In `C:\Program Files\MongoDB\Server\4.4\bin` (default MongoDB path) run `mongod.exe` -> start local MongoDB.
-- To monitor databases, in different console window from `C:\Program Files\MongoDB\Server\4.4\bin` run `mongo.exe`.
+- In `C:\Program Files\MongoDB\Server\8.0\bin` (default MongoDB path) run `mongod.exe` -> start local MongoDB.
 
-Above steps is enough to run the app - create and load assets.
+Above steps are enough to run the app - create and load assets.
 
 ### Import collection to database
 
 - Create database `invKeepDatabase`.
 - Inside created database - create `assets` collection.
 - Inside created database - create `assetRatios` collection.
+- Inside created database - create `analysisFilePaths` collection.
 - Import files from `invKeepDatabase` repository folder to previously created collections
 
 After invKeep main page refresh, all imported assets should be displayed.
