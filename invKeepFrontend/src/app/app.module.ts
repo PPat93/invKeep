@@ -2,7 +2,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from '@angular/common/http'
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -31,45 +31,38 @@ import { ToolbarMenuComponent } from './components/toolbar/toolbar.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { RatioDetailsDialogComponent } from "./components/ratio-details-dialog/ratio-details-dialog.component";
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    AssetCreateComponent,
-    AssetAnalysisComponent,
-    AssetListComponent,
-    HomePageComponent,
-    LoadingSpinnerComponent,
-    MenuComponent,
-    MessageDisplayComponent,
-    RatioDetailsDialogComponent,
-    ToolbarMenuComponent
-  ],
-  imports: [
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    MatButtonModule,
-    MatCardModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatNativeDateModule,
-    MatProgressBarModule,
-    MatSelectModule,
-    MatTableModule,
-    MatToolbarModule,
-    MatProgressSpinnerModule,
-    ReactiveFormsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        AssetCreateComponent,
+        AssetAnalysisComponent,
+        AssetListComponent,
+        HomePageComponent,
+        LoadingSpinnerComponent,
+        MenuComponent,
+        MessageDisplayComponent,
+        RatioDetailsDialogComponent,
+        ToolbarMenuComponent
+    ],
+    bootstrap: [AppComponent], imports: [AppRoutingModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        FormsModule,
+        MatButtonModule,
+        MatCardModule,
+        MatDatepickerModule,
+        MatDialogModule,
+        MatDividerModule,
+        MatExpansionModule,
+        MatIconModule,
+        MatInputModule,
+        MatListModule,
+        MatNativeDateModule,
+        MatProgressBarModule,
+        MatSelectModule,
+        MatTableModule,
+        MatToolbarModule,
+        MatProgressSpinnerModule,
+        ReactiveFormsModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 
 export class AppModule {
 }
