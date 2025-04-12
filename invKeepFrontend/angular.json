@@ -75,18 +75,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "invKeep:build"
+            "buildTarget": "invKeep:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "invKeep:build:production"
+              "buildTarget": "invKeep:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "invKeep:build"
+            "buildTarget": "invKeep:build"
           }
         },
         "test": {
