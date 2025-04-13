@@ -3,36 +3,37 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "startfe": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start:server": "nodemon server.js"
+    "startbe": "nodemon server.js"
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^16.1.3",
-    "@angular/cdk": "^16.1.3",
-    "@angular/common": "^16.1.3",
-    "@angular/compiler": "^16.1.3",
-    "@angular/core": "^16.1.3",
-    "@angular/forms": "^16.1.3",
-    "@angular/material": "^16.1.3",
-    "@angular/platform-browser": "^16.1.3",
-    "@angular/platform-browser-dynamic": "^16.1.3",
-    "@angular/router": "^16.1.3",
+    "@angular/animations": "^18.2.13",
+    "@angular/cdk": "^18.2.14",
+    "@angular/common": "^18.2.13",
+    "@angular/compiler": "^18.2.13",
+    "@angular/core": "^18.2.13",
+    "@angular/forms": "^18.2.13",
+    "@angular/material": "^18.2.14",
+    "@angular/platform-browser": "^18.2.13",
+    "@angular/platform-browser-dynamic": "^18.2.13",
+    "@angular/router": "^18.2.13",
     "body": "^5.1.0",
     "body-parser": "^1.19.0",
+    "cjs-loader": "^0.1.0",
     "nodemon": "^2.0.10",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
-    "zone.js": "^0.13.1"
+    "zone.js": "^0.14.10"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^16.1.3",
-    "@angular/cli": "^16.1.3",
-    "@angular/compiler-cli": "^16.1.3",
+    "@angular-devkit/build-angular": "^18.2.18",
+    "@angular/cli": "^18.2.18",
+    "@angular/compiler-cli": "^18.2.13",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
@@ -46,6 +47,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.9.5"
+    "typescript": "5.5.4"
   }
 }
